@@ -10,6 +10,25 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Japan 2026">
+  <!-- iOS ignores the manifest for the home-screen icon and cannot use an SVG here; without
+       this PNG, Add to Home Screen falls back to a screenshot of the page. -->
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <!-- iOS launch screens. Without these, opening the home-screen app shows a blank
+       white frame until the document paints; iOS does not honour the manifest's
+       background_color, so apple-touch-startup-image is the only mechanism. -->
+  <link rel="apple-touch-startup-image" href="./splash-750x1334.png" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-828x1792.png" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1125x2436.png" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1242x2688.png" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1080x2340.png" media="screen and (device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1170x2532.png" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1179x2556.png" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1206x2622.png" media="screen and (device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1284x2778.png" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1290x2796.png" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./splash-1320x2868.png" media="screen and (device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
   <title>Japan 2026 — Final Mobile Travel Companion</title>
   <!-- v40 motion + progress pass: preserves the v39 redundancy cleanup while restoring a subtle journey progress bar and adding restrained spatial motion. Uses native View Transitions, progressive scroll-driven reveal where supported, and reduced-motion fallbacks. Zero accordions; itinerary content preserved. Updated 2026-09-10. -->
   <!-- v42 typography pass: semantic Unicode route arrows, quieter middle-dot conjunctions, balanced hero wrapping, and styled hero separators. Arithmetic/protein plus signs remain unchanged. -->
@@ -3991,6 +4010,16 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
 
 <style id="v46-final-mobile-production-pass">
+  /* Registered so the computed value resolves to a real <length>. An unregistered
+     custom property holding calc() returns its raw token stream from
+     getComputedStyle(), which parseFloat() reads as NaN — that is why every hash
+     scroll silently fell back to a hardcoded 180px. */
+  @property --v46-scroll-offset {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 128px;
+  }
+
   :root {
     --v46-vvh: 100dvh;
     --v46-header-h: var(--header-h, 62px);
@@ -4001,7 +4030,10 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     --v46-safe-right: env(safe-area-inset-right, 0px);
     --v46-safe-bottom: env(safe-area-inset-bottom, 0px);
     --v46-safe-left: env(safe-area-inset-left, 0px);
-    --v46-scroll-offset: calc(var(--v46-header-h) + var(--v46-day-strip-h) + var(--v46-section-nav-h) + var(--v46-safe-top) + 12px);
+    /* Only genuinely sticky chrome belongs here. The day rail scrolls away, so its
+       height is not reserved; --v46-header-h is measured with getBoundingClientRect()
+       and already contains the safe-area padding, so safe-top is not added twice. */
+    --v46-scroll-offset: calc(var(--v46-header-h) + var(--v46-section-nav-h) + 12px);
   }
 
   .v46-sr-only {
@@ -4037,12 +4069,8 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   }
 
   main,
-  .app-shell,
   .tab-pane,
-  .day-workspace,
-  .today-content-grid,
-  .today-main-column,
-  .today-side-rail {
+  .day-workspace {
     min-width: 0;
     max-width: 100%;
   }
@@ -4075,13 +4103,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     touch-action: pan-x pinch-zoom;
   }
 
-  .day-title,
-  .timeline-title,
-  .now-title,
-  .section-title,
-  .ticket-title,
-  .booking-title,
-  .index-title {
+  .ticket-title {
     overflow-wrap: break-word;
     word-break: normal;
     hyphens: none;
@@ -4089,9 +4111,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
   .day-hero,
   .timeline-card,
-  .now-next-card,
-  .shopping-card,
-  .backup-section,
   [id^="day-"] {
     scroll-margin-top: var(--v46-scroll-offset);
   }
@@ -4151,82 +4170,14 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       scroll-snap-align: center;
     }
 
-    .day-chip-number {
-      min-width: 27px !important;
-      height: 27px !important;
-    }
-
     .day-hero {
       padding: 17px 15px 15px !important;
       border-radius: 22px !important;
       container-type: inline-size;
     }
 
-    .day-title {
-      max-width: none !important;
-      font-size: clamp(1.62rem, 7.6vw, 2.15rem) !important;
-      line-height: 1.065 !important;
-      letter-spacing: -0.043em !important;
-      text-wrap: pretty !important;
-    }
-
-    .day-kicker {
-      font-size: 11px !important;
-      line-height: 1.35 !important;
-      gap: 6px !important;
-    }
-
-    .hero-actions {
-      gap: 6px !important;
-    }
-
-    .hero-actions .icon-action,
-    .hero-actions button,
-    .hero-actions a {
-      width: 48px !important;
-      height: 48px !important;
-      min-width: 48px !important;
-      min-height: 48px !important;
-    }
-
     .journey-progress {
       margin-top: 14px !important;
-    }
-
-    .fact-grid {
-      grid-template-columns: 1fr !important;
-      gap: 7px !important;
-      margin-top: 13px !important;
-    }
-
-    .fact-card {
-      display: grid !important;
-      grid-template-columns: minmax(88px, .34fr) minmax(0, 1fr) !important;
-      align-items: center !important;
-      gap: 10px !important;
-      padding: 10px 11px !important;
-    }
-
-    .fact-value {
-      margin-top: 0 !important;
-      text-align: right;
-      overflow-wrap: anywhere;
-    }
-
-    .today-content-grid {
-      display: grid !important;
-      grid-template-columns: minmax(0, 1fr) !important;
-      gap: 18px !important;
-    }
-
-    .today-side-rail {
-      position: static !important;
-      display: grid !important;
-      gap: 14px !important;
-    }
-
-    .timeline-stack::before {
-      left: 6px !important;
     }
 
     .timeline-card {
@@ -4242,72 +4193,12 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       height: 8px !important;
     }
 
-    .timeline-time {
-      font-size: 11px !important;
-      letter-spacing: .01em;
-    }
-
-    .timeline-title {
-      font-size: 1rem !important;
-      line-height: 1.27 !important;
-      letter-spacing: -.015em !important;
-      text-wrap: pretty !important;
-    }
-
-    .timeline-note {
-      font-size: .79rem !important;
-      line-height: 1.55 !important;
-      margin-top: 9px !important;
-    }
-
-    .guide-panel {
-      margin-top: 10px !important;
-      padding: 10px !important;
-      border-radius: 13px !important;
-    }
-
-    .guide-steps {
-      grid-template-columns: minmax(0, 1fr) !important;
-      gap: 8px !important;
-    }
-
-    .guide-step {
-      grid-template-columns: 22px minmax(0, 1fr) !important;
-      gap: 8px !important;
-    }
-
-    .step-copy {
-      font-size: .75rem !important;
-      line-height: 1.52 !important;
-    }
-
-    .icon-action,
-    .today-jump,
     .map-badge,
     [aria-label="Directions"],
     [aria-label*="direction" i],
     [aria-label*="copy" i] {
       min-width: 48px !important;
       min-height: 48px !important;
-    }
-
-    .summary-card,
-    .backup-section,
-    .shopping-card,
-    .surface-card,
-    .index-card,
-    .booking-card {
-      border-radius: 18px !important;
-    }
-
-    .summary-card,
-    .backup-section {
-      padding: 13px !important;
-    }
-
-    .backup-card {
-      padding: 11px !important;
-      border-radius: 14px !important;
     }
 
     .mobile-dock-shell {
@@ -4326,28 +4217,9 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       backdrop-filter: saturate(135%) blur(18px) !important;
     }
 
-    .mobile-nav-item {
-      min-width: 0 !important;
-      min-height: 56px !important;
-      padding-inline: 2px !important;
-      font-size: 9.5px !important;
-    }
-
-    .mobile-nav-item svg {
-      width: 20px !important;
-      height: 20px !important;
-    }
-
-    .mobile-toast {
-      bottom: calc(var(--v46-mobile-dock-h) + var(--v46-safe-bottom) + 8px) !important;
-      width: min(calc(100% - max(24px, var(--v46-safe-left) + var(--v46-safe-right) + 18px)), 28rem) !important;
-    }
-
     [role="dialog"],
     dialog,
-    .modal-panel,
-    .dialog-panel,
-    .sheet-panel {
+    .modal-panel {
       max-height: min(calc(var(--v46-vvh) - var(--v46-safe-top) - 12px), 92dvh) !important;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
@@ -4372,11 +4244,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       padding-right: max(10px, var(--v46-safe-right)) !important;
     }
 
-    .day-title {
-      font-size: clamp(1.48rem, 7.6vw, 1.88rem) !important;
-      letter-spacing: -.038em !important;
-    }
-
     .day-chip {
       min-height: 49px !important;
       padding-inline: 11px !important;
@@ -4390,14 +4257,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     .timeline-card::before {
       left: -15px !important;
     }
-
-    .timeline-title {
-      font-size: .96rem !important;
-    }
-
-    .mobile-nav-item span {
-      font-size: 8.5px !important;
-    }
   }
 
   @media (max-width: 339px) {
@@ -4405,19 +4264,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     .status-pill .status-copy,
     .status-pill span:last-child {
       max-width: 74px !important;
-    }
-
-    .day-title {
-      font-size: 1.42rem !important;
-    }
-
-    .hero-actions .icon-action,
-    .hero-actions button,
-    .hero-actions a {
-      width: 46px !important;
-      height: 46px !important;
-      min-width: 46px !important;
-      min-height: 46px !important;
     }
   }
 
@@ -4447,20 +4293,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       border-radius: 20px !important;
     }
 
-    .mobile-nav-item {
-      min-height: 44px !important;
-      gap: 0 !important;
-    }
-
-    .mobile-nav-item span {
-      display: none !important;
-    }
-
-    .mobile-nav-item svg {
-      width: 21px !important;
-      height: 21px !important;
-    }
-
     .day-hero {
       padding-block: 14px !important;
     }
@@ -4470,18 +4302,13 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     .nav-item,
     .desktop-tabs button,
     .day-chip,
-    .mobile-nav-item,
-    .icon-action,
-    .map-badge,
-    .today-jump {
+    .map-badge {
       min-height: 44px !important;
     }
   }
 
   @media (hover: none), (pointer: coarse) {
     .timeline-card:hover,
-    .index-card:hover,
-    .booking-card:hover,
     .day-chip:hover,
     .map-badge:hover {
       transform: none !important;
@@ -4828,11 +4655,286 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   }
 </style>
 
+<style id="coherence-v47">
+
+
+  /*
+    v47 coherence pass. v46 was authored against a different document's class names:
+    most of it never matched, but its handful of global rules silently overwrote v44's
+    motion system and flattened the adaptive colour. This layer restores the intent,
+    repairs the regressions, and adds the interaction polish that was missing.
+
+    Deliberately NOT using @layer: this document carries 621 !important declarations,
+    and layering reverses !important precedence between layers. Introducing it here
+    would invert the cascade wholesale. Source order plus matched specificity is the
+    correct tool for a file in this state.
+  */
+
+  /* ---------- 1. Motion system ---------- */
+  :root {
+    /* Springs are for things that POP — chips, icons, cards, incoming content.
+       Anything travelling along a track, any colour, and any width uses a curve with
+       no overshoot: a lens that overshoots gets clipped by its own overflow:hidden,
+       and an overshooting colour interpolation flashes past its target. */
+    --motion-spatial-fast: 260ms cubic-bezier(.34, 1.28, .36, 1);
+    --motion-spatial-default: 340ms cubic-bezier(.30, 1.16, .32, 1);
+    --motion-spatial-slow: 460ms cubic-bezier(.28, 1.10, .30, 1);
+    --motion-effect-fast: 130ms cubic-bezier(.2, .8, .25, 1);
+    --motion-effect-default: 190ms cubic-bezier(.2, .8, .2, 1);
+    --motion-effect-slow: 280ms cubic-bezier(.16, 1, .3, 1);
+    --motion-lens: 340ms cubic-bezier(.16, 1, .3, 1);
+    --motion-ambient: 620ms cubic-bezier(.33, 0, .2, 1);
+  }
+
+  .nav-lens,
+  .jump-lens,
+  .mobile-nav-lens {
+    transition: transform var(--motion-lens), background var(--motion-effect-slow) !important;
+  }
+
+  .journey-progress-fill {
+    transition: width var(--motion-effect-slow), box-shadow var(--motion-effect-default) !important;
+  }
+
+  body {
+    transition:
+      --city-a var(--motion-ambient),
+      --city-b var(--motion-ambient),
+      --city-c var(--motion-ambient) !important;
+  }
+
+  /* ---------- 2. Day change on browsers without scoped view transitions ---------- */
+  @keyframes day-swap-in {
+    from { opacity: .16; transform: translate3d(var(--day-new-shift, 0px), 0, 0) scale(.994); }
+    to   { opacity: 1;   transform: translate3d(0, 0, 0) scale(1); }
+  }
+  .day-swap-in {
+    animation: day-swap-in 360ms var(--motion-spatial-default) both;
+    will-change: transform, opacity;
+  }
+
+  /* ---------- 3. Interaction polish ---------- */
+  @keyframes dock-pop {
+    0%   { transform: scale(1) translateY(0); }
+    42%  { transform: scale(1.17) translateY(-2px); }
+    100% { transform: scale(1.045) translateY(0); }
+  }
+  .dock-item.is-active i,
+  .dock-item.is-active svg {
+    animation: dock-pop 380ms var(--motion-spatial-fast) both;
+  }
+
+  /* @starting-style was already present but inert — nothing declared a transition for
+     it to interpolate from. allow-discrete lets the x-show display toggle animate. */
+  .toast-card {
+    transition:
+      opacity var(--motion-effect-default),
+      transform var(--motion-spatial-fast),
+      overlay var(--motion-effect-default) allow-discrete,
+      display var(--motion-effect-default) allow-discrete;
+  }
+  @starting-style {
+    .toast-card { opacity: 0; transform: translateY(10px) scale(.98); }
+  }
+
+  /* ---------- 4. Colour harmony ---------- */
+  :root {
+    /* Six event tones previously sat at mixed lightness and chroma, which reads as a
+       rainbow at phone size. Unified L and a lower shared chroma keeps each hue
+       distinguishable for scanning while letting them read as one family — and leaves
+       --warning (C .135) as the most saturated thing on screen, so Now still dominates. */
+    --tone-l: 77%;
+    --tone-c: .095;
+    --food-tone: oklch(var(--tone-l) var(--tone-c) 152);
+    --transit-tone: oklch(var(--tone-l) var(--tone-c) 234);
+    --active-tone: oklch(var(--tone-l) var(--tone-c) 68);
+    --shop-tone: oklch(var(--tone-l) var(--tone-c) 318);
+    --night-tone: oklch(var(--tone-l) var(--tone-c) 288);
+  }
+
+  /* v46 collapsed card tint to 2% city colour — below perceptual threshold — and
+     dropped v44's event-tone glow entirely. Both restored at a readable strength. */
+  .timeline-card {
+    background:
+      radial-gradient(520px 170px at 0 -10%, color-mix(in oklab, var(--event-accent) 7%, transparent), transparent 73%),
+      color-mix(in oklab, var(--surface) 94.5%, var(--city-a) 5.5%) !important;
+  }
+
+  .now-card {
+    background:
+      radial-gradient(390px 190px at 0 0, color-mix(in oklab, var(--warning) 10%, transparent), transparent 72%),
+      radial-gradient(320px 180px at 100% 100%, color-mix(in oklab, var(--city-a) 7%, transparent), transparent 72%),
+      color-mix(in oklab, var(--surface) 95%, var(--city-a) 5%) !important;
+  }
+
+  .secondary-panel {
+    background: color-mix(in oklab, var(--surface) 95%, var(--city-a) 5%) !important;
+  }
+
+  @media (max-width: 767px) {
+    /* The day rail is styled as sticky chrome but has no position:sticky, so this
+       opaque band and its blur were a flat rectangle interrupting the ambient
+       gradient — and a third backdrop-filter layer in the scroll path. */
+    .day-strip-wrap {
+      background: transparent !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+
+    /* Scroll-driven reveal was disabled on phones — the one device where entrance
+       motion matters most. Transform and opacity only, so it stays on the compositor. */
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .timeline-row {
+          animation: timeline-settle-mobile linear both !important;
+          animation-timeline: view() !important;
+          animation-range: entry 4% entry 26% !important;
+        }
+      }
+    }
+  }
+
+  @keyframes timeline-settle-mobile {
+    from { opacity: .5; transform: translate3d(0, 10px, 0); }
+    to   { opacity: 1; transform: none; }
+  }
+
+
+  /* ---------- Primary action button contrast ---------- */
+  /*
+    .text-white is remapped by the v40 layer to oklch(97.5% .006 260) — not pure white — so
+    "Add Ticket Task" and its siblings measured 4.21:1 on bg-rose-600, under the 4.5 floor
+    for text below 24px. Pure white plus a slightly deeper rose takes it to ~5:1 with no
+    visible change in character. bg-rose-600 is a static utility, not a city-derived token,
+    so this holds for every destination theme.
+  */
+  button.bg-rose-600,
+  a.bg-rose-600,
+  .bg-rose-600.text-white {
+    background-color: color-mix(in oklab, var(--accent-strong) 84%, black 16%) !important;
+    color: #fff !important;
+  }
+  button.bg-rose-600:hover,
+  a.bg-rose-600:hover {
+    background-color: color-mix(in oklab, var(--accent-strong) 92%, black 8%) !important;
+  }
+
+  /* ---------- 5. Contrast: --muted-2 failed WCAG AA everywhere it was used ---------- */
+  /*
+    Measured with a canvas-resolved compositor (getComputedStyle returns oklch(), which a
+    naive rgb parse silently mangles). At oklch(56.5% .026 260) this tier scored 4.14:1 on
+    the dock, 4.32:1 on cards and 3.78:1 on --surface-2, against a 4.5:1 requirement for
+    text below 24px. It is used for the bottom-navigation labels — Trip / Prep / Transit /
+    Settings — so the primary navigation of the app was below AA.
+    63% clears every surface (5.44 / 5.67 / 4.97) while staying visibly quieter than
+    --muted, so the three-tier text hierarchy is preserved.
+  */
+  :root {
+    --muted-2: oklch(63% .024 260);
+  }
+
+  /* ---------- 6. Phone in landscape keeps the phone navigation model ---------- */
+  /*
+    A 6.1" phone on its side is 844x390 — past the 768px breakpoint, so every
+    `max-width: 767px` rule switched off and the app flipped to the desktop tab bar while
+    the bottom dock disappeared. Rotating the device should not change the navigation
+    model. Width alone cannot tell a phone in landscape from a small laptop, so this keys
+    on `pointer: coarse`, matching the guard the Taiwan build already uses.
+  */
+  @media (pointer: coarse) and (min-width: 768px) and (max-width: 920px),
+         (pointer: coarse) and (min-width: 921px) and (max-width: 1024px) and (max-height: 600px) {
+    .desktop-tabs { display: none !important; }
+    .mobile-dock-shell { display: block !important; }
+
+    main,
+    #app-main {
+      padding-bottom: calc(var(--v46-mobile-dock-h, 82px) + env(safe-area-inset-bottom, 0px) + 24px) !important;
+      padding-left: max(12px, env(safe-area-inset-left, 0px)) !important;
+      padding-right: max(12px, env(safe-area-inset-right, 0px)) !important;
+    }
+    .today-pane {
+      padding-bottom: calc(var(--v46-mobile-dock-h, 82px) + env(safe-area-inset-bottom, 0px) + 30px) !important;
+    }
+
+    /* Coarse-pointer rules elsewhere set a min-height on these but never a min-width, so
+       the icon-only map button stayed 38px wide once the ≤480px rule stopped applying. */
+    .map-badge { min-width: 44px !important; }
+    .hero-action, .jump-item, .nav-item { min-height: 44px !important; }
+  }
+
+  /* ---------- 7. Legibility floor for reading text on a phone ---------- */
+  /*
+    Measured across the rendered page: 18 nodes of actual prose — hotel names, transit
+    lines, prep instructions, day facts — were rendering at 11–11.5px. That is text you
+    read one-handed, outdoors, in daylight, in a country where you cannot guess the word
+    from context. Short uppercase eyebrow labels are deliberately left small; this raises
+    only the strings a person actually reads.
+  */
+  @media (max-width: 767px) {
+    .hero-subline,
+    .hero-subline span {
+      font-size: 12.5px !important;
+      line-height: 1.45 !important;
+    }
+
+    .day-fact-value {
+      font-size: 13px !important;
+      line-height: 1.45 !important;
+    }
+
+    .tab-pane .text-\[11px\]:not(.uppercase),
+    .tab-pane .text-\[10px\]:not(.uppercase) {
+      font-size: 12.5px !important;
+      line-height: 1.5 !important;
+    }
+  }
+
+  /* ---------- 6. Accessibility fallbacks for everything added above ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .day-swap-in,
+    .dock-item.is-active i,
+    .dock-item.is-active svg,
+    .timeline-row {
+      animation: none !important;
+    }
+    .nav-lens,
+    .jump-lens,
+    .mobile-nav-lens,
+    .journey-progress-fill,
+    .toast-card,
+    body {
+      transition: none !important;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+    .timeline-card,
+    .now-card,
+    .secondary-panel {
+      background: var(--surface) !important;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .timeline-card,
+    .now-card,
+    .secondary-panel {
+      background: Canvas !important;
+    }
+    .day-swap-in,
+    .dock-item.is-active i,
+    .dock-item.is-active svg {
+      animation: none !important;
+    }
+  }
+</style>
+
 </head>
 <body class="h-full bg-gray-950 text-slate-100 antialiased selection:bg-rose-500 selection:text-white" 
       x-data="travelCompanion()" 
       x-init="initApp()"
       :data-city-theme="currentCityTheme">
+
 <div id="v46-live-announcer" class="v46-sr-only" aria-live="polite" aria-atomic="true"></div>
   <div id="dependency-warning" hidden class="fixed inset-x-3 top-3 z-[100] rounded-2xl border border-amber-500/40 bg-gray-950/95 p-4 shadow-2xl text-sm text-slate-200" style="display:none;position:fixed;left:12px;right:12px;top:12px;z-index:2147483647;">
     <div class="flex items-start gap-3">
@@ -5412,7 +5514,8 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
       <div class="relative w-full md:w-80">
         <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
-        <input type="text" x-model="searchQuery" placeholder="Search fashion, Fuji, workshops, food..." class="w-full min-h-[44px] bg-gray-950 border border-gray-800 rounded-xl pl-9 pr-12 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition-all">
+        <label for="itinerary-search" class="v46-sr-only">Search days, places, food and activities</label>
+        <input id="itinerary-search" type="search" autocomplete="off" inputmode="search" x-model="searchQuery" placeholder="Search fashion, Fuji, workshops, food..." class="w-full min-h-[44px] bg-gray-950 border border-gray-800 rounded-xl pl-9 pr-12 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition-all">
         <button x-show="searchQuery" @click="searchQuery = ''" class="absolute right-1 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label="Clear search" type="button">
           <i data-lucide="x" class="w-3.5 h-3.5"></i>
         </button>
@@ -6300,10 +6403,33 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             scope.style.setProperty('--day-old-shift', oldShift);
             scope.style.setProperty('--day-new-shift', newShift);
           }
-          if (!scope || typeof scope.startViewTransition !== 'function' || this.prefersReducedMotion()) {
+          if (!scope || this.prefersReducedMotion()) {
             update();
             return null;
           }
+
+          // Tier 2 — browsers without scoped view transitions (Safari). Previously this
+          // fell through to a bare update(), so switching days — the most frequent action
+          // in the app — had no motion at all on iPhone while tab switching did.
+          // A document-level transition is deliberately not used: it snapshots the entire
+          // page including chrome that must not move. Applying the update immediately and
+          // animating only the incoming content keeps the same spatial language, costs no
+          // snapshot, and cannot drop an update when days are tapped rapidly.
+          if (typeof scope.startViewTransition !== 'function') {
+            update();
+            this.$nextTick(() => {
+              if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons(scope);
+              }
+              scope.classList.remove('day-swap-in');
+              void scope.offsetWidth; // restart the animation when taps come faster than it finishes
+              scope.classList.add('day-swap-in');
+              window.clearTimeout(this._daySwapTimer);
+              this._daySwapTimer = window.setTimeout(() => scope.classList.remove('day-swap-in'), 420);
+            });
+            return null;
+          }
+
           try {
             if (this._activeDayTransition && typeof this._activeDayTransition.skipTransition === 'function') {
               this._activeDayTransition.skipTransition();
@@ -6430,12 +6556,14 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           if (!el) return;
           if (map[id]) this.activeDaySection = map[id];
 
-          const rootStyle = getComputedStyle(document.documentElement);
-          const headerH = parseFloat(rootStyle.getPropertyValue('--header-h')) || 62;
-          const safeTop = parseFloat(rootStyle.getPropertyValue('--safe-top')) || 0;
-          const jumpH = document.querySelector('.day-jumpbar-inner')?.getBoundingClientRect().height || 50;
-          const safeGap = 14;
-          const desiredTop = el.getBoundingClientRect().top + window.scrollY - headerH - safeTop - jumpH - safeGap;
+          // Single source of truth shared with the runtime's hash-link handler. The old
+          // math read --header-h (a declared token that excludes safe-area padding) and
+          // --safe-top (an env() expression parseFloat cannot read), so on notched phones
+          // the section landed underneath the sticky header.
+          const offset = typeof window.__v47ScrollOffset === 'function'
+            ? window.__v47ScrollOffset()
+            : (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--v46-scroll-offset')) || 128);
+          const desiredTop = el.getBoundingClientRect().top + window.scrollY - offset;
           const maxTop = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
           const top = Math.max(0, Math.min(desiredTop, maxTop));
 
@@ -11299,11 +11427,26 @@ ${r?'Expression: "'+r+`"
 
   const announceCurrentContext = () => {
     if (!announcer) return;
-    const activeTitle = document.querySelector('.day-title, [data-active-day-title], h1, h2');
+    const activeTitle = document.querySelector('.hero-title, [data-active-day-title], h1, h2');
     const activeTab = document.querySelector('[aria-current="page"]');
     const text = [activeTab?.textContent, activeTitle?.textContent].map(v => String(v || '').trim()).filter(Boolean).join(' — ');
     if (text) announcer.textContent = text.replace(/\s+/g, ' ');
   };
+
+  // The one scroll offset for the whole document. Measures only chrome that is
+  // actually sticky at the moment of the call, so a layout change cannot silently
+  // desynchronise it from a hardcoded constant.
+  const stickyScrollOffset = () => {
+    const GAP = 12;
+    let offset = GAP;
+    for (const selector of ['.app-chrome, header[role="banner"], body > header', '.day-jumpbar, .day-section-nav, .section-nav']) {
+      const node = document.querySelector(selector);
+      if (node && getComputedStyle(node).position === 'sticky') offset += node.getBoundingClientRect().height;
+    }
+    if (offset === GAP) offset = parseFloat(getComputedStyle(root).getPropertyValue('--v46-scroll-offset')) || 128;
+    return offset;
+  };
+  window.__v47ScrollOffset = stickyScrollOffset;
 
   const scrollHashTarget = (hash, behavior = 'smooth') => {
     if (!hash || hash === '#') return false;
@@ -11311,13 +11454,17 @@ ${r?'Expression: "'+r+`"
     try { target = document.querySelector(hash); } catch (_) { return false; }
     if (!target) return false;
     const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    const offset = parseFloat(getComputedStyle(root).getPropertyValue('--v46-scroll-offset')) || 180;
+    const offset = stickyScrollOffset();
     const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset);
     window.scrollTo({ top, behavior: reduced ? 'auto' : behavior });
     return true;
   };
 
   document.addEventListener('click', event => {
+    // The in-day navigator links are already handled by Alpine's scrollToSection via
+    // @click.prevent. Without this guard both handlers fire on one tap and issue two
+    // competing smooth scrolls to different offsets.
+    if (event.defaultPrevented) return;
     const link = event.target.closest('a[href^="#"]');
     if (!link || link.hasAttribute('download') || link.target === '_blank') return;
     const hash = link.getAttribute('href');
@@ -11356,6 +11503,49 @@ ${r?'Expression: "'+r+`"
     }, 120);
   }, { once: true });
 
+  // ---- Offline shell -------------------------------------------------------------
+  // Without a service worker this page can only be opened offline if the browser's HTTP
+  // cache happens to still hold it, which on GitHub Pages is roughly ten minutes. Any
+  // tab discard after that — routine on iOS under memory pressure — lands on an error
+  // page. The worker serves a persistent copy from Cache Storage instead.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(error => {
+        console.warn('[offline] service worker registration failed:', error);
+      });
+    }, { once: true });
+
+    // Cache-first means a content update lands one visit later. Rather than leave that
+    // invisible, offer the reload explicitly.
+    let updateShown = false;
+    navigator.serviceWorker.addEventListener('message', event => {
+      if (event.data?.type !== 'SW_UPDATED' || updateShown) return;
+      updateShown = true;
+      const bar = document.createElement('button');
+      bar.type = 'button';
+      bar.textContent = 'Updated itinerary available — tap to reload';
+      bar.setAttribute('aria-live', 'polite');
+      bar.style.cssText = [
+        'position:fixed',
+        'left:max(12px,env(safe-area-inset-left,0px))',
+        'right:max(12px,env(safe-area-inset-right,0px))',
+        'bottom:calc(96px + env(safe-area-inset-bottom,0px))',
+        'z-index:140',
+        'min-height:48px',
+        'padding:12px 16px',
+        'border:1px solid var(--stroke-strong,rgb(255 255 255/.14))',
+        'border-radius:15px',
+        'background:var(--surface-2,#1b1e27)',
+        'color:var(--text,#fff)',
+        'font:650 12.5px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif',
+        'box-shadow:0 18px 48px rgb(0 0 0/.42)',
+        'cursor:pointer'
+      ].join(';');
+      bar.addEventListener('click', () => location.reload());
+      document.body.appendChild(bar);
+    });
+  }
+
   window.addEventListener('resize', scheduleMeasure, { passive: true });
   window.addEventListener('orientationchange', () => window.setTimeout(scheduleMeasure, 180), { passive: true });
   window.addEventListener('pageshow', () => {
@@ -11379,5 +11569,115 @@ ${r?'Expression: "'+r+`"
 })();
 </script>
 
+
+
+<script id="history-routing">
+  /*
+    Back-button + deep-link support.
+
+    Without this the app pushed no history at all: after switching tabs four times, one
+    press of the Android system Back button exited the app entirely rather than stepping
+    back through it, and the URL never reflected what you were looking at, so a reload or a
+    shared link always dumped you on the default view.
+
+    Tabs push a history entry, so Back retraces destinations. Day changes only *replace*
+    the entry — 16 days would otherwise bury the app under history and make Back useless.
+    Query params rather than a hash, because both documents already use hash fragments for
+    in-page section anchors.
+  */
+  (() => {
+    const DAY_PROP = 'selectedDayNumber';
+    let restoring = false;
+
+    const readState = () => {
+      const q = new URLSearchParams(location.search);
+      return { tab: q.get('tab'), day: q.get('day') };
+    };
+    const urlFor = (tab, day) => {
+      const q = new URLSearchParams();
+      if (tab) q.set('tab', tab);
+      if (day !== undefined && day !== null && day !== '') q.set('day', String(day));
+      const s = q.toString();
+      return location.pathname + (s ? '?' + s : '') + location.hash;
+    };
+
+    const boot = () => {
+      const host = document.querySelector('[x-data]');
+      const app = window.Alpine && host && Alpine.$data(host);
+      if (!app) return false;
+
+      const snapshot = () => ({ tab: app.activeTab, day: app[DAY_PROP] });
+
+      // A URL is untrusted input: it can be hand-edited, stale after a rename, or a
+      // shared link from an older build. Anything that is not a real tab or a real day is
+      // ignored, otherwise the app lands in a state where no pane matches and the screen
+      // is simply blank.
+      const validTabs = (Array.isArray(app.tabs) && app.tabs.length)
+        ? app.tabs.map(t => t.id)
+        : [...document.querySelectorAll('[x-show]')]
+            .map(el => (el.getAttribute('x-show').match(/activeTab\s*===\s*'([^']+)'/) || [])[1])
+            .filter(Boolean);
+      const dayIsNumeric = typeof app[DAY_PROP] === 'number';
+      const dayKey = d => (dayIsNumeric ? d.dayNumber : d.id);
+      const coerceDay = v => (dayIsNumeric ? Number(v) : String(v));
+
+      const applyTab = t => {
+        if (!t || (validTabs.length && !validTabs.includes(t))) return;
+        if (t !== app.activeTab) app.activeTab = t;
+      };
+      const applyDay = v => {
+        if (v === null || v === undefined || v === '') return;
+        const want = coerceDay(v);
+        if (dayIsNumeric && !Number.isFinite(want)) return;
+        if (!(Array.isArray(app.days) && app.days.some(d => dayKey(d) === want))) return;
+        if (want !== app[DAY_PROP]) app[DAY_PROP] = want;
+      };
+
+      // Restore from the URL on first load (deep link / reload / shared link).
+      const initial = readState();
+      restoring = true;
+      applyTab(initial.tab);
+      applyDay(initial.day);
+      restoring = false;
+
+      const s = snapshot();
+      history.replaceState(s, '', urlFor(s.tab, s.day));
+
+      app.$watch('activeTab', () => {
+        if (restoring) return;
+        const n = snapshot();
+        history.pushState(n, '', urlFor(n.tab, n.day));
+      });
+
+      app.$watch(DAY_PROP, () => {
+        if (restoring) return;
+        const n = snapshot();
+        history.replaceState(n, '', urlFor(n.tab, n.day));
+      });
+
+      window.addEventListener('popstate', event => {
+        const st = event.state || readState();
+        restoring = true;
+        try {
+          applyTab(st.tab);
+          applyDay(st.day);
+        } finally {
+          // release after Alpine has applied the change so the watchers stay quiet
+          requestAnimationFrame(() => { restoring = false; });
+        }
+      });
+      return true;
+    };
+
+    // This script is parsed after the embedded Alpine runtime, so alpine:initialized has
+    // usually already fired by now and a plain listener never runs. Try immediately, keep
+    // the listener for the slow path, and poll briefly to cover both orderings.
+    if (!boot()) {
+      document.addEventListener('alpine:initialized', boot, { once: true });
+      let tries = 0;
+      const poll = setInterval(() => { if (boot() || ++tries > 60) clearInterval(poll); }, 50);
+    }
+  })();
+</script>
 </body>
 </html>
