@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark h-full">
 <head>
-<!-- v46 final production pass: mobile-first safe areas, offline runtime, measured sticky offsets, viewport/keyboard hardening, accessibility announcements, and exhaustive QA. No itinerary data changed. -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="theme-color" content="#090a0f">
@@ -11,6 +10,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Japan 2026">
+  <meta name="application-name" content="Japan 2026">
   <!-- iOS ignores the manifest for the home-screen icon and cannot use an SVG here; without
        this PNG, Add to Home Screen falls back to a screenshot of the page. -->
   <link rel="apple-touch-icon" href="./icon-192.png">
@@ -30,10 +30,6 @@
   <link rel="apple-touch-startup-image" href="./splash-1290x2796.png" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
   <link rel="apple-touch-startup-image" href="./splash-1320x2868.png" media="screen and (device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
   <title>Japan 2026</title>
-  <!-- v40 motion + progress pass: preserves the v39 redundancy cleanup while restoring a subtle journey progress bar and adding restrained spatial motion. Uses native View Transitions, progressive scroll-driven reveal where supported, and reduced-motion fallbacks. Zero accordions; itinerary content preserved. Updated 2026-09-10. -->
-  <!-- v42 typography pass: semantic Unicode route arrows, quieter middle-dot conjunctions, balanced hero wrapping, and styled hero separators. Arithmetic/protein plus signs remain unchanged. -->
-  <!-- v44 luminous adaptive UI: city-responsive OKLCH ambience, Material 3 motion-physics curves, sliding navigation lenses, element-scoped day transitions, an adaptive desktop command rail, semantic timeline color, optical pointer feedback, squircle/text-trim/scrollspy progressive enhancements, and full reduced-motion/transparency fallbacks. Zero accordions; itinerary data preserved. Updated 2026-09-10. -->
-  <!-- v46 final mobile-first field pass: thumb-zone sizing, compact responsive chrome, safer day rail, mobile timeline geometry, icon-first maps, iOS-safe inputs, bottom-sheet dialogs, safe-area-aware anchors, landscape mode, and lighter mobile GPU effects. Desktop v44 behavior remains intact. Zero accordions. Updated 2026-09-10. -->
   <!-- Tailwind utilities compiled locally with Tailwind CSS v4.1.10; no runtime Tailwind CDN dependency. -->
   <style id="tailwind-local-build">
 /*! tailwindcss v4.1.10 | MIT License | https://tailwindcss.com */
@@ -2539,7 +2535,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     .text-slate-400 { color: var(--muted) !important; }
     .text-slate-500 { color: var(--muted-2) !important; }
     .text-rose-200, .text-rose-300, .text-rose-400 { color: var(--accent) !important; }
-    /* Normalize legacy utility chroma into the v41 semantic palette so old itinerary markup cannot become a rainbow. */
+    /* Normalize utility chroma into the semantic palette so itinerary markup cannot become a rainbow. */
     .text-amber-200, .text-amber-300, .text-amber-400, .text-amber-500 { color: var(--warning) !important; }
     .text-emerald-200, .text-emerald-300, .text-emerald-400, .text-emerald-500 { color: var(--success) !important; }
     .text-sky-200, .text-sky-300, .text-sky-400, .text-sky-500 { color: var(--info) !important; }
@@ -3613,11 +3609,8 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   </style>
 
   <style id="mobile-first-v45">
-    /*
-      Mobile is the primary execution environment for v45.
-      The desktop design remains v44; these overrides optimize one-handed field use,
-      narrow-screen information density, iOS/Android safe areas and low-power rendering.
-    */
+    /* Mobile overrides optimize one-handed field use, narrow-screen information density,
+       iOS/Android safe areas and low-power rendering. */
     :root {
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-right: env(safe-area-inset-right, 0px);
@@ -4659,12 +4652,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
 
   /*
-    v47 coherence pass. v46 was authored against a different document's class names:
-    most of it never matched, but its handful of global rules silently overwrote v44's
-    motion system and flattened the adaptive colour. This layer restores the intent,
-    repairs the regressions, and adds the interaction polish that was missing.
-
-    Deliberately NOT using @layer: this document carries 621 !important declarations,
+    Deliberately not using @layer: this document carries 621 !important declarations,
     and layering reverses !important precedence between layers. Introducing it here
     would invert the cascade wholesale. Source order plus matched specificity is the
     correct tool for a file in this state.
@@ -4752,8 +4740,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     --night-tone: oklch(var(--tone-l) var(--tone-c) 288);
   }
 
-  /* v46 collapsed card tint to 2% city colour — below perceptual threshold — and
-     dropped v44's event-tone glow entirely. Both restored at a readable strength. */
+  /* Keep card tint and event-tone glow at a readable strength. */
   .timeline-card {
     background:
       radial-gradient(520px 170px at 0 -10%, color-mix(in oklab, var(--event-accent) 7%, transparent), transparent 73%),
@@ -4802,7 +4789,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
   /* ---------- Primary action button contrast ---------- */
   /*
-    .text-white is remapped by the v40 layer to oklch(97.5% .006 260) — not pure white — so
+    .text-white resolves to oklch(97.5% .006 260) — not pure white — so
     "Add Ticket Task" and its siblings measured 4.21:1 on bg-rose-600, under the 4.5 floor
     for text below 24px. Pure white plus a slightly deeper rose takes it to ~5:1 with no
     visible change in character. bg-rose-600 is a static utility, not a city-derived token,
@@ -5117,7 +5104,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
            :style="'--jump-index:' + activeDaySectionIndex + ';--jump-count:' + activeDaySectionCount"
            aria-label="Day sections">
         <span class="jump-lens" aria-hidden="true"></span>
-        <a href="#day-now" @click.prevent="scrollToSection('day-now')" aria-controls="day-now"
+        <a href="#day-now" @click.prevent="jumpToToday()" aria-controls="day-now"
                 :class="activeDaySection === 'now' ? 'jump-item is-active section-now' : 'jump-item'">
           <span class="live-dot" aria-hidden="true"></span><span>Now</span>
         </a>
@@ -5141,7 +5128,9 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     <div class="day-workspace">
 
     <!-- DYNAMIC NOW / NEXT MILESTONE STRIP -->
-    <div id="day-now" class="now-card interactive-surface scroll-mt-header bg-gray-900 border rounded-2xl p-4 shadow-lg space-y-2">
+    <div id="day-now" class="now-card interactive-surface scroll-mt-header bg-gray-900 border rounded-2xl p-4 shadow-lg space-y-2"
+         :data-plan-state="relevantPlan?.targetKind === 'summary' && relevantPlan.day === selectedDayNumber ? relevantPlan.state : null"
+         :aria-label="relevantPlan?.targetKind === 'summary' && relevantPlan.day === selectedDayNumber ? relevantPlan.state.toUpperCase() + ': Now / Next — ' + relevantPlan.label : null">
       <div class="flex items-center justify-between">
         <span class="text-xs font-mono uppercase font-bold tracking-wider text-amber-400 flex items-center gap-1.5">
 <span class="live-dot" x-show="isViewingLiveTripDay" aria-hidden="true"></span>
@@ -5209,14 +5198,16 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
         <template x-for="(event, idx) in currentDay.events" :key="idx">
           <div>
             <div class="timeline-row relative flex items-start gap-3 sm:gap-4"
-                 :class="['event-tone-' + getEventTone(event), isEventCurrent(event) ? 'is-current' : '']"
+                 :id="'timeline-event-' + currentDay.dayNumber + '-' + idx"
+                 :aria-label="eventPlanState(idx) ? eventPlanState(idx).toUpperCase() + ': ' + event.title : event.title"
+                 :class="['event-tone-' + getEventTone(event), eventPlanState(idx) ? 'is-current' : '']"
                  :style="`--timeline-index:${idx}`">
               
               <!-- LEFT TIME COLUMN + TIMELINE DOT & CONNECTOR -->
               <div class="timeline-time-rail flex flex-col items-end shrink-0 w-16 sm:w-20 pt-3 relative self-stretch">
                 <span class="text-xs font-mono font-bold text-slate-300" x-text="event.time"></span>
-                <template x-if="isEventCurrent(event)">
-                  <span class="text-[9px] font-mono uppercase font-black px-1.5 py-0.5 rounded bg-amber-500 text-slate-950 mt-1 shadow">NOW</span>
+                <template x-if="eventPlanState(idx)">
+                  <span class="text-[9px] font-mono uppercase font-black px-1.5 py-0.5 rounded bg-amber-500 text-slate-950 mt-1 shadow" x-text="eventPlanState(idx).toUpperCase()"></span>
                 </template>
 
                 <!-- Node Dot -->
@@ -5232,7 +5223,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
               <!-- EVENT CONTENT CARD (Single surface, aligned hierarchy) -->
               <div class="timeline-card interactive-surface flex-1 min-w-0 bg-gray-900 border rounded-2xl p-4 md:p-5 space-y-3"
-                   :class="isEventCurrent(event) ? 'border-amber-500/60 bg-gray-900 ring-1 ring-amber-500/40' : 'border-gray-800 hover:border-gray-700'">
+                   :class="eventPlanState(idx) ? 'border-amber-500/60 bg-gray-900 ring-1 ring-amber-500/40' : 'border-gray-800 hover:border-gray-700'">
                 
                 <!-- Card Header: Title and Maps Link -->
                 <div class="event-card-header flex items-start justify-between gap-2.5 pb-2.5 border-b border-gray-800/80">
@@ -5476,10 +5467,13 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       </template>
 
       <!-- Cut First, Disruption & Backup Fallback Section -->
-      <div id="day-backup" tabindex="-1" class="scroll-mt-header interactive-surface bg-gray-900 border border-gray-800 rounded-2xl p-4 md:p-5 space-y-3 shadow-lg">
+      <div id="day-backup" tabindex="-1" class="scroll-mt-header interactive-surface bg-gray-900 border border-gray-800 rounded-2xl p-4 md:p-5 space-y-3 shadow-lg"
+           :data-plan-state="relevantPlan?.targetKind === 'complete' && relevantPlan.day === selectedDayNumber ? 'complete' : null"
+           :aria-label="relevantPlan?.targetKind === 'complete' && relevantPlan.day === selectedDayNumber ? 'Day complete — Triage and delay fallback protocol' : null">
         <span class="text-xs font-mono uppercase font-bold text-amber-400 flex items-center gap-1.5">
           <i data-lucide="shield-alert" class="w-4 h-4"></i>
           <span>Triage & Delay Fallback Protocol</span>
+          <span x-show="relevantPlan?.targetKind === 'complete' && relevantPlan.day === selectedDayNumber">· Day complete</span>
         </span>
         <div class="space-y-2">
           <template x-for="item in getFallbackItems(currentDay)" :key="item.label">
@@ -6002,28 +5996,35 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
     // Timezone-safe Asia/Tokyo extraction without wall-clock conversion errors
     function getTokyoDateComponents(d = new Date()) {
-      const formatter = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'Asia/Tokyo',
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-        hour12: false
-      });
-      const parts = formatter.formatToParts(d);
-      const res = {};
-      parts.forEach(p => { res[p.type] = p.value; });
-      let h = parseInt(res.hour, 10);
-      if (h === 24) h = 0;
+      let year;
+      let month;
+      let day;
+      let hour;
+      let minute;
+      try {
+        const formatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Tokyo', year: 'numeric', month: 'numeric', day: 'numeric',
+          hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false
+        });
+        const res = {};
+        formatter.formatToParts(d).forEach(part => { res[part.type] = part.value; });
+        year = parseInt(res.year, 10);
+        month = parseInt(res.month, 10);
+        day = parseInt(res.day, 10);
+        hour = parseInt(res.hour, 10);
+        minute = parseInt(res.minute, 10);
+      } catch (_) {
+        const tokyo = new Date(d.getTime() + 9 * 60 * 60 * 1000);
+        year = tokyo.getUTCFullYear();
+        month = tokyo.getUTCMonth() + 1;
+        day = tokyo.getUTCDate();
+        hour = tokyo.getUTCHours();
+        minute = tokyo.getUTCMinutes();
+      }
+      if (hour === 24) hour = 0;
       return {
-        year: parseInt(res.year, 10),
-        month: parseInt(res.month, 10),
-        day: parseInt(res.day, 10),
-        hour: h,
-        minute: parseInt(res.minute, 10),
-        timeStr: `${String(h).padStart(2, '0')}:${String(res.minute).padStart(2, '0')}`
+        year, month, day, hour, minute,
+        timeStr: `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`
       };
     }
 
@@ -6305,6 +6306,9 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
         _opticalFrame: 0,
         _activeModalName: null,
         _modalOpener: null,
+        relevantPlan: null,
+        _followingLiveDay: false,
+        _lastLiveDay: null,
 
         // Simulation state
         isSimulated: false,
@@ -6459,9 +6463,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             return null;
           }
 
-          // Tier 2 — browsers without scoped view transitions (Safari). Previously this
-          // fell through to a bare update(), so switching days — the most frequent action
-          // in the app — had no motion at all on iPhone while tab switching did.
+          // Browsers without scoped view transitions still receive local day-change motion.
           // A document-level transition is deliberately not used: it snapshots the entire
           // page including chrome that must not move. Applying the update immediately and
           // animating only the incoming content keeps the same spatial language, costs no
@@ -6561,6 +6563,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
         selectDay(dayNum) {
           if (!dayNum) return;
+          this._followingLiveDay = false;
           if (dayNum === this.selectedDayNumber) {
             if (this.activeTab !== 'today') this.switchTab('today');
             else requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: this.prefersReducedMotion() ? 'auto' : 'smooth' }));
@@ -6740,7 +6743,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           return idx < 0 ? 0 : Math.round(((idx + 1) / this.days.length) * 1000) / 10;
         },
 
-        // v42 display typography: keep route meaning clear while visually de-emphasizing separators.
+        // Keep route meaning clear while visually de-emphasizing separators.
         escapeDisplayHtml(value) {
           return String(value ?? '')
             .replace(/&/g, '&amp;')
@@ -6756,7 +6759,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             .replace(/\s*·\s*/g, '<span class="title-separator" aria-hidden="true">·</span>');
         },
 
-        // v40 redundancy helpers — keep one canonical visible expression for repeated information.
+        // Keep one canonical visible expression for repeated information.
         normalizeForDedupe(value) {
           return String(value || '')
             .toLowerCase()
@@ -6852,48 +6855,147 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           return [];
         },
 
-        // Determine if an event is currently active using its aggregate milestone window.
-        isEventCurrent(event) {
-          if (!event || !event.time) return false;
-          if (!this.tripStatus.isOngoing) return false;
-          if (this.selectedDayNumber !== this.tripStatus.currentDayNum) return false;
+        resolveRelevantPlan(now = this.getNowDate()) {
+          const instant = now instanceof Date ? now : new Date(now);
+          if (Number.isNaN(instant.getTime())) {
+            return { day: this.selectedDayNumber, targetKind: 'summary', state: 'next', label: 'Now / Next' };
+          }
 
-          const day = this.currentDay;
-          if (!day || !Array.isArray(day.events) || day.events.length === 0) return false;
+          const start = Date.UTC(2026, 9, 23, 4, 55);
+          const end = Date.UTC(2026, 10, 8, 15, 0);
+          const components = getTokyoDateComponents(instant);
+          const calendar = Date.UTC(components.year, components.month - 1, components.day);
+          const dayNumber = Math.min(17, Math.max(1, Math.floor((calendar - Date.UTC(2026, 9, 23)) / 86400000) + 1));
+          if (instant.getTime() < start) return { day: 1, targetKind: 'summary', state: 'next', label: 'Trip not started' };
+          if (instant.getTime() >= end) return { day: 17, targetKind: 'complete', state: 'complete', label: 'Trip complete' };
 
-          const evIdx = day.events.indexOf(event);
-          if (evIdx === -1) return false;
+          const day = this.days.find(candidate => candidate.dayNumber === dayNumber);
+          if (!day) return { day: dayNumber, targetKind: 'summary', state: 'next', label: 'Now / Next' };
+          const nowMinutes = components.hour * 60 + components.minute;
+          const toMinutes = value => {
+            const parsed = convertEventTimeToHHMM(value);
+            if (!parsed) return null;
+            const [hours, minutes] = parsed.split(':').map(Number);
+            return hours * 60 + minutes;
+          };
 
-          const eventStart = convertEventTimeToHHMM(event.time);
-          if (!eventStart) return false;
-
-          const isLastEvent = evIdx === day.events.length - 1;
-          const parsedNext = !isLastEvent ? convertEventTimeToHHMM(day.events[evIdx + 1].time) : '';
-          const nextEventStart = isLastEvent ? '23:59' : (parsedNext || '23:59');
-          let eventEnd = nextEventStart;
-
-          if (Array.isArray(day.milestones) && day.milestones.length > 0) {
-            const candidates = day.milestones
-              .map(m => {
-                const rawStart = m.startTime || (m.time && m.time.includes('–') ? m.time.split('–')[0].trim() : m.time);
-                return { milestone: m, start: convertEventTimeToHHMM(rawStart) };
-              })
-              .filter(x => x.start && x.start >= eventStart && x.start < nextEventStart)
-              .sort((a, b) => a.start.localeCompare(b.start));
-
-            if (candidates.length > 0) {
-              const lastM = candidates[candidates.length - 1].milestone;
-              const rawEnd = lastM.endTime || (lastM.time && lastM.time.includes('–') ? lastM.time.split('–')[1].trim() : '');
-              const milestoneEnd = convertEventTimeToHHMM(rawEnd);
-              if (milestoneEnd) eventEnd = milestoneEnd;
+          if (dayNumber === 17) {
+            const departureMilestones = (day.milestones || []).filter(milestone =>
+              /security|departure/i.test(String(milestone.label || ''))
+            );
+            const firstDeparture = toMinutes(departureMilestones[0]?.startTime || departureMilestones[0]?.time);
+            if (firstDeparture !== null && nowMinutes >= firstDeparture) {
+              for (const milestone of departureMilestones) {
+                const startMinutes = toMinutes(milestone.startTime || milestone.time);
+                const endMinutes = toMinutes(milestone.endTime);
+                if (startMinutes === null) continue;
+                if (nowMinutes === startMinutes || (endMinutes !== null && endMinutes > startMinutes && nowMinutes < endMinutes && nowMinutes >= startMinutes)) {
+                  return { day: dayNumber, targetKind: 'summary', state: 'current', label: milestone.label };
+                }
+                if (nowMinutes < startMinutes) {
+                  return { day: dayNumber, targetKind: 'summary', state: 'next', label: milestone.label };
+                }
+              }
+              return { day: dayNumber, targetKind: 'complete', state: 'complete', label: 'Day complete' };
             }
           }
 
-          if (!isLastEvent && eventEnd > nextEventStart) eventEnd = nextEventStart;
-          if (!eventEnd || eventEnd <= eventStart) eventEnd = nextEventStart;
+          const events = Array.isArray(day.events) ? day.events : [];
+          for (let index = 0; index < events.length; index += 1) {
+            const event = events[index];
+            const eventStart = toMinutes(event.time);
+            if (eventStart === null) return { day: dayNumber, targetKind: 'summary', state: 'next', label: 'Now / Next' };
+            if (nowMinutes < eventStart) {
+              return { day: dayNumber, targetKind: 'event', eventIndex: index, state: 'next', label: event.title };
+            }
 
-          const currTime = this.jstNow.timeStr;
-          return currTime >= eventStart && currTime < eventEnd;
+            const nextStart = index + 1 < events.length ? toMinutes(events[index + 1].time) : 1440;
+            const upperBound = nextStart === null ? 1440 : nextStart;
+            const matchingMilestones = (day.milestones || []).map(milestone => ({
+              milestone,
+              start: toMinutes(milestone.startTime || milestone.time),
+              end: toMinutes(milestone.endTime)
+            })).filter(candidate => candidate.start !== null && candidate.start < upperBound && (
+              candidate.start >= eventStart || (candidate.end !== null && candidate.end > eventStart)
+            ));
+            const lastMilestone = matchingMilestones.at(-1)?.milestone;
+            const explicitEnd = toMinutes(lastMilestone?.endTime || '');
+            const explicitEndCreatesGap = explicitEnd !== null && explicitEnd > eventStart && explicitEnd < upperBound;
+            const eventEnd = explicitEnd !== null && explicitEnd > eventStart
+              ? Math.min(explicitEnd, upperBound)
+              : upperBound;
+            if (nowMinutes < eventEnd || (explicitEndCreatesGap && nowMinutes === eventEnd)) {
+              return { day: dayNumber, targetKind: 'event', eventIndex: index, state: 'current', label: event.title };
+            }
+          }
+
+          return { day: dayNumber, targetKind: 'complete', state: 'complete', label: 'Day complete' };
+        },
+
+        eventPlanState(index) {
+          const plan = this.relevantPlan;
+          if (!plan || plan.targetKind !== 'event' || plan.day !== this.selectedDayNumber || plan.eventIndex !== index) return '';
+          return plan.state === 'current' ? 'current' : 'up next';
+        },
+
+        positionRelevantPlan(plan, behavior = 'auto') {
+          const targetId = plan.targetKind === 'event'
+            ? `timeline-event-${plan.day}-${plan.eventIndex}`
+            : plan.targetKind === 'complete' ? 'day-backup' : 'day-now';
+          const target = document.getElementById(targetId) || document.getElementById('day-now');
+          if (!target) return false;
+          const offset = (typeof window.__v47ScrollOffset === 'function' ? window.__v47ScrollOffset() : 128) + 16;
+          const desired = window.scrollY + target.getBoundingClientRect().top - offset;
+          const maximum = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+          target.classList.remove('section-arrival');
+          const immediate = behavior === 'auto' || this.prefersReducedMotion();
+          const rootScrollBehavior = document.documentElement.style.scrollBehavior;
+          if (immediate) document.documentElement.style.setProperty('scroll-behavior', 'auto', 'important');
+          window.scrollTo({ top: Math.max(0, Math.min(desired, maximum)), behavior: immediate ? 'auto' : behavior });
+          if (immediate) requestAnimationFrame(() => { document.documentElement.style.scrollBehavior = rootScrollBehavior; });
+          target.classList.add('section-arrival');
+          window.setTimeout(() => target.classList.remove('section-arrival'), 700);
+          return true;
+        },
+
+        showRelevantPlan(behavior = 'auto') {
+          const plan = this.resolveRelevantPlan();
+          this.relevantPlan = plan;
+          this._lastLiveDay = plan.day;
+          this._followingLiveDay = true;
+          this.selectedDayNumber = plan.day;
+          this.activeTab = 'today';
+          this.activeDaySection = plan.targetKind === 'event' ? 'timeline' : plan.targetKind === 'complete' ? 'backup' : 'now';
+          this.$nextTick(() => window.setTimeout(() => this.positionRelevantPlan(plan, behavior), 350));
+        },
+
+        refreshLiveContext() {
+          this.updateJST();
+          const previousLiveDay = this._lastLiveDay;
+          const plan = this.resolveRelevantPlan();
+          this.relevantPlan = plan;
+          this._lastLiveDay = plan.day;
+          if (this._followingLiveDay && this.tripStatus.isOngoing && this.activeTab === 'today' && this.selectedDayNumber === previousLiveDay && previousLiveDay !== null && plan.day !== previousLiveDay) {
+            this.selectedDayNumber = plan.day;
+            this.activeTab = 'today';
+            this.activeDaySection = plan.targetKind === 'event' ? 'timeline' : plan.targetKind === 'complete' ? 'backup' : 'now';
+            this.$nextTick(() => window.setTimeout(() => this.positionRelevantPlan(plan, 'auto'), 350));
+          }
+        },
+
+        handleRouteReady(event) {
+          const explicit = Boolean(event?.detail?.explicit);
+          const plan = this.resolveRelevantPlan();
+          this.relevantPlan = plan;
+          this._lastLiveDay = plan.day;
+          if (this.tripStatus.isOngoing && !explicit) {
+            history.scrollRestoration = 'manual';
+            this.showRelevantPlan('auto');
+          }
+        },
+
+        isEventCurrent(event) {
+          return this.eventPlanState(this.currentDay.events.indexOf(event)) === 'current';
         },
 
         // Formatted leave-by or recheck notice
@@ -10841,8 +10943,8 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           check(Boolean(document.querySelector('.event-icon')), 'Semantic event icon missing.');
           check(!document.getElementById('day-food'), 'Separate day-food section still exists.');
           this.semanticQa = { passed: issues.length === 0, issues, checks };
-          if (issues.length) console.warn('[v44 semantic QA]', issues);
-          else console.info(`[v44 semantic QA] ${checks}/${checks} checks passed`);
+          if (issues.length) console.warn('[semantic QA]', issues);
+          else console.info(`[semantic QA] ${checks}/${checks} checks passed`);
         },
 
         initApp() {
@@ -10853,7 +10955,12 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           const targetDay = this.tripStatus.currentDayNum || 1;
           this.selectedDayNumber = targetDay;
 
-          setInterval(() => this.updateJST(), 15000);
+          window.addEventListener('itinerary:route-ready', event => this.handleRouteReady(event), { once: true });
+          setInterval(() => this.refreshLiveContext(), 15000);
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') this.refreshLiveContext();
+          });
+          window.addEventListener('pageshow', () => this.refreshLiveContext(), { passive: true });
 
           this.$nextTick(() => {
             if (window.lucide) lucide.createIcons();
@@ -10931,8 +11038,16 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
         },
 
         jumpToToday() {
+          if (this.tripStatus.isOngoing) {
+            this.showRelevantPlan('smooth');
+            return;
+          }
           const targetDay = this.tripStatus.currentDayNum || 1;
-          this.selectDay(targetDay);
+          if (this.activeTab === 'today' && this.selectedDayNumber === targetDay) {
+            this.scrollToSection('day-now');
+          } else {
+            this.selectDay(targetDay);
+          }
         },
 
         get activeMilestone() {
@@ -10965,9 +11080,9 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             }
 
             if (start === end) {
-              if (currTime === start) return { ...m, status: 'CURRENT' };
+              if (currTime === start) return { ...m, status: 'CURRENT', time: start };
             } else if (currTime >= start && currTime < end) {
-              return { ...m, status: 'CURRENT' };
+              return { ...m, status: 'CURRENT', time: start };
             }
           }
 
@@ -10976,7 +11091,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             const m = day.milestones[i];
             const start = m.startTime || m.time.split('–')[0].trim();
             if (currTime < start) {
-              return { ...m, status: 'NEXT' };
+              return { ...m, status: 'NEXT', time: start };
             }
           }
 
@@ -11114,7 +11229,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           const icsContent = [
             "BEGIN:VCALENDAR",
             "VERSION:2.0",
-            "PRODID:-//Japan 2026 Travel Companion//EN",
+            "PRODID:-//Japan 2026//EN",
             "CALSCALE:GREGORIAN",
             "METHOD:PUBLISH",
             "BEGIN:VEVENT",
@@ -11299,7 +11414,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = `japan_2026_companion_backup_${new Date().toISOString().slice(0, 10)}.json`;
+          link.download = `japan_2026_backup_${new Date().toISOString().slice(0, 10)}.json`;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
@@ -11566,55 +11681,19 @@ ${r?'Expression: "'+r+`"
       });
     }, { once: true });
 
-    // Cache-first means a content update lands one visit later. Rather than leave that
-    // invisible, offer the reload explicitly.
-    //
-    // This deliberately does NOT rely on the service worker telling the page about an
-    // update via postMessage. That was tried first and found genuinely racy: the client
-    // for a 'navigate' request is not guaranteed discoverable via clients.matchAll() until
-    // shortly after the fetch event resolves, so a broadcast sent from inside that fetch
-    // handler can reach zero listeners — confirmed directly against this file. Worse, once
-    // *any* request (including the page's own navigation) has silently refreshed the
-    // cache, a later comparison inside the worker finds cached === fresh and has nothing
-    // left to report, even though the page on screen is still the old one.
-    //
-    // document.lastModified sidesteps all of that: it is set by the browser itself from
-    // the Last-Modified header of the exact response this document was rendered from, with
-    // no service worker involvement and no race. Comparing it against a fresh fetch's own
-    // Last-Modified header is a plain page-side check.
+    // The bypass response is cached under the canonical shell key before it reaches this
+    // comparison, so reloading here applies the exact version that was just detected.
     const myVersion = Date.parse(document.lastModified) || 0;
-    let updateShown = false;
-    const showUpdateBar = () => {
-      if (updateShown) return;
-      updateShown = true;
-      const bar = document.createElement('button');
-      bar.type = 'button';
-      bar.textContent = 'Updated itinerary available — tap to reload';
-      bar.setAttribute('aria-live', 'polite');
-      bar.style.cssText = [
-        'position:fixed',
-        'left:max(12px,env(safe-area-inset-left,0px))',
-        'right:max(12px,env(safe-area-inset-right,0px))',
-        'bottom:calc(96px + env(safe-area-inset-bottom,0px))',
-        'z-index:140',
-        'min-height:48px',
-        'padding:12px 16px',
-        'border:1px solid var(--stroke-strong,rgb(255 255 255/.14))',
-        'border-radius:15px',
-        'background:var(--surface-2,#1b1e27)',
-        'color:var(--text,#fff)',
-        'font:650 12.5px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif',
-        'box-shadow:0 18px 48px rgb(0 0 0/.42)',
-        'cursor:pointer'
-      ].join(';');
-      bar.addEventListener('click', () => location.reload());
-      document.body.appendChild(bar);
-    };
+    let updateReloadStarted = false;
     const checkForUpdate = () => {
       fetch('./index.html?swBypass=1&_=' + Date.now(), { cache: 'no-store' }).then(response => {
+        if (!response.ok) return;
         const header = response.headers.get('Last-Modified');
         const serverVersion = header ? Date.parse(header) : 0;
-        if (serverVersion && myVersion && serverVersion > myVersion) showUpdateBar();
+        if (serverVersion && myVersion && serverVersion > myVersion && !updateReloadStarted) {
+          updateReloadStarted = true;
+          location.reload();
+        }
       }).catch(() => {});
     };
     window.addEventListener('load', () => window.setTimeout(checkForUpdate, 1500), { once: true });
@@ -11716,9 +11795,13 @@ ${r?'Expression: "'+r+`"
       applyTab(initial.tab);
       applyDay(initial.day);
       restoring = false;
+      const explicit = Boolean(
+        (initial.tab && (!validTabs.length || validTabs.includes(initial.tab))) ||
+        (initial.day && Array.isArray(app.days) && app.days.some(d => dayKey(d) === coerceDay(initial.day)))
+      );
 
       const s = snapshot();
-      history.replaceState(s, '', urlFor(s.tab, s.day));
+      history.replaceState(s, '', explicit ? urlFor(s.tab, s.day) : location.pathname + location.hash);
 
       app.$watch('activeTab', () => {
         if (restoring) return;
@@ -11743,6 +11826,7 @@ ${r?'Expression: "'+r+`"
           requestAnimationFrame(() => { restoring = false; });
         }
       });
+      window.dispatchEvent(new CustomEvent('itinerary:route-ready', { detail: { explicit } }));
       return true;
     };
 
