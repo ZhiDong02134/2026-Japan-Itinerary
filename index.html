@@ -5066,7 +5066,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     <div id="day-transition-scope" class="day-transition-scope space-y-5">
 
     <!-- OPERATIONAL DAY HERO -->
-    <div class="day-hero luminous-hero interactive-surface rounded-2xl p-4 md:p-6 space-y-3.5" :class="'city-' + currentDay.city.toLowerCase()">
+    <div id="day-summary" class="day-hero luminous-hero interactive-surface rounded-2xl p-4 md:p-6 space-y-3.5" :class="'city-' + currentDay.city.toLowerCase()">
       
       <div class="hero-top hero-top-stacked">
         <div class="min-w-0 flex-1">
@@ -7053,7 +7053,8 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
         positionRelevantPlan(plan, behavior = 'auto') {
           const targetId = plan.targetKind === 'event'
             ? `timeline-event-${plan.day}-${plan.eventIndex}`
-            : plan.targetKind === 'complete' ? 'day-backup' : 'day-now';
+            : plan.targetKind === 'day-summary' ? 'day-summary'
+              : plan.targetKind === 'complete' ? 'day-backup' : 'day-now';
           const target = document.getElementById(targetId) || document.getElementById('day-now');
           if (!target) return false;
           const offset = (typeof window.__v47ScrollOffset === 'function' ? window.__v47ScrollOffset() : 128) + 16;
@@ -7070,7 +7071,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           return true;
         },
 
-        showRelevantPlan(behavior = 'auto') {
+        showRelevantPlan(behavior = 'auto', destination = 'relevant') {
           const plan = this.resolveRelevantPlan();
           this.relevantPlan = plan;
           this._lastLiveDay = plan.day;
@@ -7078,7 +7079,10 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           this.selectedDayNumber = plan.day;
           this.activeTab = 'today';
           this.activeDaySection = plan.targetKind === 'event' ? 'timeline' : plan.targetKind === 'complete' ? 'backup' : 'now';
-          this.$nextTick(() => window.setTimeout(() => this.positionRelevantPlan(plan, behavior), 350));
+          const positionPlan = destination === 'summary' || plan.targetKind !== 'event'
+            ? { day: plan.day, targetKind: 'day-summary' }
+            : plan;
+          this.$nextTick(() => window.setTimeout(() => this.positionRelevantPlan(positionPlan, behavior), 350));
         },
 
         refreshLiveContext() {
@@ -7104,7 +7108,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           this._lastLiveDay = plan.day;
           if (this.tripStatus.isOngoing && !explicit) {
             history.scrollRestoration = 'manual';
-            this.showRelevantPlan('auto');
+            this.showRelevantPlan('auto', 'summary');
           }
         },
 
