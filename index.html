@@ -6676,7 +6676,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             this.activeDaySection = 'timeline';
             requestAnimationFrame(() => {
               this.scrollActiveDayChip();
-              this.positionRelevantPlan({ day: dayNum, targetKind: 'event', eventIndex: 0 }, 'auto');
+              this.positionRelevantPlan({ day: dayNum, targetKind: 'day-summary' }, 'auto');
               this.updateActiveDaySection();
             });
             return;
@@ -6695,7 +6695,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             : this.withViewTransition(apply, direction);
           const finish = () => requestAnimationFrame(() => {
             this.scrollActiveDayChip();
-            this.positionRelevantPlan({ day: dayNum, targetKind: 'event', eventIndex: 0 }, 'auto');
+            this.positionRelevantPlan({ day: dayNum, targetKind: 'day-summary' }, 'auto');
             this.updateActiveDaySection();
           });
           if (transition && transition.finished) transition.finished.then(finish).catch(finish);
