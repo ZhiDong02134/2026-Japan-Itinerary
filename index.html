@@ -6361,6 +6361,31 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
     function travelCompanion() {
       return {
+        initApp() {
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+              .then(registration => {
+                document.addEventListener('visibilitychange', async () => {
+                  if (document.visibilityState === 'visible') {
+                    try {
+                      await registration.update();
+                    } catch (e) {
+                      // Silently catch network errors if offline
+                    }
+                  }
+                });
+              })
+              .catch(err => console.error('SW registration failed:', err));
+          }
+
+          // Initialize clock and route state
+          if (typeof this.refreshLiveContext === 'function') {
+            this.refreshLiveContext();
+          }
+          if (typeof this.installOpticalFeedback === 'function') {
+            this.installOpticalFeedback();
+          }
+        },
         activeTab: 'today',
         prepView: 'tickets',
         cityFilter: 'ALL',
