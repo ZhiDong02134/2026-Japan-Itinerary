@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="theme-color" content="#090a0f">
   <meta name="color-scheme" content="dark">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111620'/%3E%3Ccircle cx='32' cy='32' r='15' fill='%23fb7185'/%3E%3Cpath d='M20 33h24M32 21v22' stroke='white' stroke-width='4' stroke-linecap='round' opacity='.92'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2718%27%20fill%3D%27%230d0f17%27%2F%3E%3Cdefs%3E%3Cpath%20id%3D%27p%27%20d%3D%27M32%2032.25%20C26.25%2027.5%2C%2024.5%2020.5%2C%2027.5%2015.25%20C28.88%2012.88%2C%2030.63%2012.38%2C%2032%2014.75%20C33.38%2012.38%2C%2035.13%2012.88%2C%2036.5%2015.25%20C39.5%2020.5%2C%2037.75%2027.5%2C%2032%2032.25%20Z%27%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%27%23ff726c%27%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%280%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%2872%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28144%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28216%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28288%2032%2032%29%27%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%273%27%20fill%3D%27%23ffd9d2%27%2F%3E%3C%2Fsvg%3E">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Japan 2026">
+  <meta name="apple-mobile-web-app-title" content="Japan '26">
   <meta name="application-name" content="Japan 2026">
   <!-- iOS ignores the manifest for the home-screen icon and cannot use an SVG here; without
        this PNG, Add to Home Screen falls back to a screenshot of the page. -->
-  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
   <link rel="manifest" href="./manifest.webmanifest">
   <!-- iOS launch screens. Without these, opening the home-screen app shows a blank
        white frame until the document paints; iOS does not honour the manifest's
@@ -476,7 +476,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   min-height: 72px;
 }
 .min-h-screen {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 .w-0\.5 {
   width: calc(var(--spacing) * 0.5);
@@ -4759,13 +4759,91 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   }
 
   @media (max-width: 767px) {
-    /* The day rail is styled as sticky chrome but has no position:sticky, so this
-       opaque band and its blur were a flat rectangle interrupting the ambient
-       gradient — and a third backdrop-filter layer in the scroll path. */
+    /*
+      The v46 layer wrote this rail's sticky offset (--v46-header-h + --v46-safe-top)
+      but never the position, so it scrolled away with the content: measured on day 16
+      (9,543px tall) the rail sat at -3,837px by 4,000px of scroll, meaning the day
+      switcher was off-screen for almost the entire day. Sticky restores it.
+
+      The earlier note here was right that an opaque band travelling through content is
+      wrong — but that reasoning inverts once the rail genuinely floats. This is now the
+      functional layer Apple's Liquid Glass guidance describes: controls above content.
+
+      Deliberately NOT a fourth backdrop-filter, though. This document already paints
+      three (.app-chrome, .day-jumpbar-inner, .mobile-dock) where the sibling Taiwan
+      build paints two, and the HIG is explicit that the material should be used
+      "sparingly" and limited "to the most important functional elements" — a fourth
+      blur under a bar that only needs legibility is the overuse it warns about, and it
+      is the exact cost the earlier note here flagged. An opaque-to-transparent gradient
+      buys the separation for free: solid behind the chips so labels stay legible, fading
+      out below so the timeline still peeks through rather than meeting a hard edge.
+    */
     .day-strip-wrap {
-      background: transparent !important;
+      position: sticky;
+      top: calc(var(--v46-header-h, var(--header-h, 56px)) + var(--v46-safe-top, env(safe-area-inset-top, 0px)));
+      z-index: 28;
+      background: linear-gradient(180deg,
+        var(--bg) 0%,
+        color-mix(in oklab, var(--bg) 92%, transparent) 70%,
+        color-mix(in oklab, var(--bg) 40%, transparent) 100%) !important;
       -webkit-backdrop-filter: none !important;
       backdrop-filter: none !important;
+    }
+
+    /*
+      Only one bar gets the pinned slot. The in-day jumpbar also pins at 60px, so once
+      the rail became sticky the two collided (measured: rail 63-141 vs jumpbar 60-118
+      at 2,000px of scroll, jumpbar winning on z-index). Stacking them instead would put
+      header + rail + jumpbar = 199px of permanent chrome on an 844px screen, which
+      spends a quarter of the display to avoid scrolling — the opposite of the goal.
+
+      The rail wins because switching days is structural navigation, while the jumpbar is
+      a set of in-page jump shortcuts; and its most important item, "Now", already has a
+      second path in permanently-visible chrome (the header brand button calls
+      jumpToToday()). So the jumpbar scrolls with its content on phones.
+    */
+    .day-jumpbar.day-sticky {
+      position: static !important;
+    }
+
+    /*
+      Elevation only when actually pinned, so the rail reads as the functional layer
+      floating above content rather than a band welded into it. Same mechanism the
+      Taiwan build already ships, and @supports-gated there for the same reason.
+
+      Deliberately not compacting the rail here: shrinking it on scroll recovers about
+      19px (2% of an 844px screen) and would require taking the chips from 52px down to
+      exactly 44px, spending the entire margin above the touch-target floor to buy it.
+    */
+    /*
+      Hands horizontal movement to the swipe handler while leaving vertical panning
+      entirely to the browser, so scrolling the page through the hero stays native.
+    */
+    .day-hero {
+      touch-action: pan-y;
+    }
+
+    @supports (container-type: scroll-state) {
+      .day-strip-wrap { container-type: scroll-state; container-name: daystrip; }
+      @container daystrip scroll-state(stuck: top) {
+        .day-strip {
+          background: color-mix(in oklab, var(--surface) 80%, transparent);
+          box-shadow: 0 12px 34px rgb(0 0 0 / .20), inset 0 1px 0 rgb(255 255 255 / .045);
+        }
+      }
+    }
+
+    /*
+      Nested, not appended. Earlier layers already strip this material for these
+      preferences, but they sit above this block in source order — an appended rule
+      would silently out-rank them and hand glass back to people who opted out.
+    */
+    @media (prefers-reduced-transparency: reduce), (prefers-reduced-data: reduce), (update: slow) {
+      .day-strip-wrap {
+        background: var(--surface) !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
     }
 
     /* Scroll-driven reveal was disabled on phones — the one device where entrance
@@ -5066,7 +5144,10 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     <div id="day-transition-scope" class="day-transition-scope space-y-5">
 
     <!-- OPERATIONAL DAY HERO -->
-    <div id="day-summary" class="day-hero luminous-hero interactive-surface rounded-2xl p-4 md:p-6 space-y-3.5" :class="'city-' + currentDay.city.toLowerCase()">
+    <div id="day-summary" class="day-hero luminous-hero interactive-surface rounded-2xl p-4 md:p-6 space-y-3.5" :class="'city-' + currentDay.city.toLowerCase()"
+         @touchstart.passive="onHeroTouchStart($event)"
+         @touchend.passive="onHeroTouchEnd($event)"
+         @touchcancel.passive="_heroSwipe = null">
       
       <div class="hero-top hero-top-stacked">
         <div class="min-w-0 flex-1">
@@ -5579,7 +5660,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       <div class="relative w-full md:w-80">
         <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
         <label for="itinerary-search" class="v46-sr-only">Search days, places, food and activities</label>
-        <input id="itinerary-search" type="search" autocomplete="off" inputmode="search" x-model="searchQuery" placeholder="Search fashion, Fuji, workshops, food..." class="w-full min-h-[44px] bg-gray-950 border border-gray-800 rounded-xl pl-9 pr-12 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition-all">
+        <input id="itinerary-search" type="search" autocomplete="off" inputmode="search" x-model="searchQuery" placeholder="Search fashion, Fuji, workshops, food..." class="w-full min-h-[44px] bg-gray-950 border border-gray-800 rounded-xl pl-9 pr-12 py-2 text-base text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition-all">
         <button x-show="searchQuery" @click="searchQuery = ''" class="absolute right-1 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label="Clear search" type="button">
           <i data-lucide="x" class="w-3.5 h-3.5"></i>
         </button>
@@ -5852,7 +5933,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
         </div>
 
         <div x-show="isSimulated" class="flex flex-wrap items-center gap-2 pt-1">
-          <input type="datetime-local" x-model="simulatedInput" class="bg-gray-900 border border-gray-700 rounded-lg px-2.5 py-2 min-h-[44px] text-xs text-slate-200 focus:outline-none focus:border-rose-500 font-mono">
+          <input type="datetime-local" x-model="simulatedInput" class="bg-gray-900 border border-gray-700 rounded-lg px-2.5 py-2 min-h-[44px] text-base text-slate-200 focus:outline-none focus:border-rose-500 font-mono">
           <button @click="applySimulatedTime()" class="px-3.5 py-2 min-h-[44px] rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold hover:bg-amber-500/30 cursor-pointer flex items-center" type="button">Apply</button>
           <button @click="resetToLiveTime()" class="px-3.5 py-2 min-h-[44px] rounded-lg bg-gray-800 text-slate-300 border border-gray-700 text-xs hover:bg-gray-700 cursor-pointer flex items-center" type="button">Reset to Live</button>
         </div>
@@ -6361,31 +6442,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
     function travelCompanion() {
       return {
-        initApp() {
-          if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-              .then(registration => {
-                document.addEventListener('visibilitychange', async () => {
-                  if (document.visibilityState === 'visible') {
-                    try {
-                      await registration.update();
-                    } catch (e) {
-                      // Silently catch network errors if offline
-                    }
-                  }
-                });
-              })
-              .catch(err => console.error('SW registration failed:', err));
-          }
-
-          // Initialize clock and route state
-          if (typeof this.refreshLiveContext === 'function') {
-            this.refreshLiveContext();
-          }
-          if (typeof this.installOpticalFeedback === 'function') {
-            this.installOpticalFeedback();
-          }
-        },
         activeTab: 'today',
         prepView: 'tickets',
         cityFilter: 'ALL',
@@ -6725,6 +6781,41 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           });
           if (transition && transition.finished) transition.finished.then(finish).catch(finish);
           else this.$nextTick(finish);
+        },
+
+        /*
+          Swipe the hero left/right to step days. Scoped to the hero card only — a
+          full-page horizontal handler steals vertical scroll, and the day rail below is
+          itself a horizontal scroller that must keep its own gestures.
+
+          Horizontal intent is enforced by CSS (`touch-action: pan-y` on the hero) rather
+          than preventDefault: the browser keeps vertical panning native and only hands
+          over sideways movement, so a diagonal thumb-scroll can never be swallowed. The
+          thresholds below are a second guard for slow or ambiguous drags.
+
+          This is additive, never the only way: the day rail remains the visible control,
+          which is what both the HIG and the swipe-affordance guidance require of any
+          gesture. No live finger-tracking — the resulting day change already animates
+          through the existing view transition, and tracking would mean re-plumbing the
+          hero's transform against the `interactive-surface` press effect for little gain.
+        */
+        onHeroTouchStart(event) {
+          if (!event.touches || event.touches.length !== 1) { this._heroSwipe = null; return; }
+          const touch = event.touches[0];
+          this._heroSwipe = { x: touch.clientX, y: touch.clientY, at: Date.now() };
+        },
+
+        onHeroTouchEnd(event) {
+          const start = this._heroSwipe;
+          this._heroSwipe = null;
+          if (!start || !event.changedTouches || !event.changedTouches.length) return;
+          const touch = event.changedTouches[0];
+          const dx = touch.clientX - start.x;
+          const dy = touch.clientY - start.y;
+          if (Math.abs(dx) < 56) return;              // too short to be deliberate
+          if (Math.abs(dx) < Math.abs(dy) * 1.6) return; // too diagonal — treat as a scroll
+          if (Date.now() - start.at > 600) return;    // too slow — treat as a drag, not a flick
+          this.selectRelativeDay(dx < 0 ? 1 : -1);    // drag left reveals the next day
         },
 
         selectRelativeDay(delta) {
