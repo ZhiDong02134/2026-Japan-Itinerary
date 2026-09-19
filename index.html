@@ -4023,10 +4023,17 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     --v46-safe-right: env(safe-area-inset-right, 0px);
     --v46-safe-bottom: env(safe-area-inset-bottom, 0px);
     --v46-safe-left: env(safe-area-inset-left, 0px);
-    /* Only genuinely sticky chrome belongs here. The day rail scrolls away, so its
-       height is not reserved; --v46-header-h is measured with getBoundingClientRect()
-       and already contains the safe-area padding, so safe-top is not added twice. */
-    --v46-scroll-offset: calc(var(--v46-header-h) + var(--v46-section-nav-h) + 12px);
+    /* Only genuinely sticky chrome belongs here, and which chrome that is now depends on
+       the viewport: on phones the day rail pins and the in-day jumpbar does not, and on
+       desktop it is the other way round. Both heights are therefore measured at runtime
+       and written to 0px when their element is not sticky, so this sum stays correct
+       either way. Reserving the wrong one is not cosmetic — it lands the hero title
+       underneath the pinned rail when you tap a day.
+
+       --v46-header-h is measured with getBoundingClientRect() and already contains the
+       safe-area padding, so safe-top is not added twice. */
+    --v46-day-strip-h: 0px;
+    --v46-scroll-offset: calc(var(--v46-header-h) + var(--v46-day-strip-h) + var(--v46-section-nav-h) + 12px);
   }
 
   .v46-sr-only {
@@ -4782,10 +4789,14 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       position: sticky;
       top: calc(var(--v46-header-h, var(--header-h, 56px)) + var(--v46-safe-top, env(safe-area-inset-top, 0px)));
       z-index: 28;
+      /* Opaque for the whole chip row, with only a short feathered edge at the very
+         bottom. An earlier version faded to 40% across the lower third, which read as a
+         nice "content peeks through" idea in the abstract and as smeared, half-legible
+         text in the hand once real timeline copy scrolled underneath it. */
       background: linear-gradient(180deg,
         var(--bg) 0%,
-        color-mix(in oklab, var(--bg) 92%, transparent) 70%,
-        color-mix(in oklab, var(--bg) 40%, transparent) 100%) !important;
+        var(--bg) 86%,
+        color-mix(in oklab, var(--bg) 72%, transparent) 100%) !important;
       -webkit-backdrop-filter: none !important;
       backdrop-filter: none !important;
     }
@@ -11928,8 +11939,11 @@ ${r?'Expression: "'+r+`"
       const measurements = [
         ['--v46-vvh', `${Math.max(320, Math.round(viewportHeight))}px`],
         header && ['--v46-header-h', `${Math.round(header.getBoundingClientRect().height)}px`],
-        dayStrip && getComputedStyle(dayStrip).position === 'sticky' && ['--v46-day-strip-h', `${Math.round(dayStrip.getBoundingClientRect().height)}px`],
-        sectionNav && getComputedStyle(sectionNav).position === 'sticky' && ['--v46-section-nav-h', `${Math.round(sectionNav.getBoundingClientRect().height)}px`],
+        // Written unconditionally, 0px when the element is not pinned. Skipping the write
+        // instead left a stale height behind whenever a bar stopped being sticky — either
+        // across a resize, or permanently once the phone layout swapped which bar pins.
+        dayStrip && ['--v46-day-strip-h', getComputedStyle(dayStrip).position === 'sticky' ? `${Math.round(dayStrip.getBoundingClientRect().height)}px` : '0px'],
+        sectionNav && ['--v46-section-nav-h', getComputedStyle(sectionNav).position === 'sticky' ? `${Math.round(sectionNav.getBoundingClientRect().height)}px` : '0px'],
         dock && ['--v46-mobile-dock-h', `${Math.round(dock.getBoundingClientRect().height)}px`]
       ].filter(Boolean);
 
@@ -11962,7 +11976,10 @@ ${r?'Expression: "'+r+`"
   const stickyScrollOffset = () => {
     const GAP = 12;
     let offset = GAP;
-    for (const selector of ['.app-chrome, header[role="banner"], body > header', '.day-jumpbar, .day-section-nav, .section-nav']) {
+    // The day rail belongs in this list now that it pins. Leaving it out cost 78px, which
+    // is precisely the height of the hero's date row and its share/complete buttons — so
+    // tapping a day scrolled the card's own header underneath the rail.
+    for (const selector of ['.app-chrome, header[role="banner"], body > header', '.day-strip-wrap', '.day-jumpbar, .day-section-nav, .section-nav']) {
       const node = document.querySelector(selector);
       if (node && getComputedStyle(node).position === 'sticky') offset += node.getBoundingClientRect().height;
     }
