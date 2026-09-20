@@ -10,7 +10,7 @@
   Bump CACHE when older cache namespaces must be evicted.
 */
 const CACHE_PREFIX = 'japan-2026-';
-const CACHE = `${CACHE_PREFIX}v15`;
+const CACHE = `${CACHE_PREFIX}v16`;
 const SHELL = [
   './index.html',
   './manifest.webmanifest',
