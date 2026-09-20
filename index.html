@@ -7330,9 +7330,21 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           const offset = typeof window.__v47ScrollOffset === 'function'
             ? window.__v47ScrollOffset()
             : (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--v46-scroll-offset')) || 128);
-          const desiredTop = target.getBoundingClientRect().top + window.scrollY - offset - 8;
-          const maxTop = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-          window.scrollTo({ top: Math.max(0, Math.min(desiredTop, maxTop)), behavior: this.prefersReducedMotion() ? 'auto' : 'smooth' });
+          const root = document.documentElement;
+          const alignTarget = () => {
+            const desiredTop = target.getBoundingClientRect().top + window.scrollY - offset - 8;
+            const maxTop = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            const previousScrollBehavior = root.style.getPropertyValue('scroll-behavior');
+            const previousScrollBehaviorPriority = root.style.getPropertyPriority('scroll-behavior');
+            root.style.setProperty('scroll-behavior', 'auto', 'important');
+            window.scrollTo({ top: Math.max(0, Math.min(desiredTop, maxTop)), behavior: 'auto' });
+            requestAnimationFrame(() => {
+              if (previousScrollBehavior) root.style.setProperty('scroll-behavior', previousScrollBehavior, previousScrollBehaviorPriority);
+              else root.style.removeProperty('scroll-behavior');
+            });
+          };
+          alignTarget();
+          window.setTimeout(alignTarget, 100);
           target.classList.remove('search-hit-flash');
           void target.offsetWidth;
           target.classList.add('search-hit-flash');
