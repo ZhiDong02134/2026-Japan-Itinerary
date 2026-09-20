@@ -3284,11 +3284,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     .day-chip.is-active .city-dot { box-shadow: 0 0 0 4px color-mix(in oklab, currentColor 12%, transparent), 0 0 18px currentColor; }
 
     /* Hero carries the day's atmosphere while content cards remain steady. */
-    .day-transition-scope {
-      --day-old-shift: 0px;
-      --day-new-shift: 0px;
-      view-transition-name: none;
-    }
     .luminous-hero {
       background:
         radial-gradient(660px 310px at 100% -8%, color-mix(in oklab, var(--city-a) 14%, transparent), transparent 69%),
@@ -3565,16 +3560,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     .dock-item.is-active i,
     .dock-item.is-active svg { color: color-mix(in oklab, var(--city-b) 76%, white 24%); transform: scale(1.045); }
 
-    /* Element-scoped day transitions keep header/day rail stable and eliminate full-screen flashes. */
-    .day-transition-scope::view-transition-old(root) { animation: 155ms cubic-bezier(.31,.94,.34,1) both day-scope-out; }
-    .day-transition-scope::view-transition-new(root) { animation: 430ms cubic-bezier(.38,1.21,.22,1) both day-scope-in; }
-    @keyframes day-scope-out {
-      to { opacity: .22; transform: translateX(var(--day-old-shift)) scale(.996); filter: blur(1.5px); }
-    }
-    @keyframes day-scope-in {
-      from { opacity: .18; transform: translateX(var(--day-new-shift)) scale(.997); filter: blur(1.5px); }
-    }
-
     /* Progressive 2026 platform enhancements. Every one has a stable fallback above. */
     @supports (corner-shape: squircle) {
       .day-hero, .timeline-card, .now-card, #day-shopping, #day-backup, .day-jumpbar-inner, .desktop-tabs, .mobile-dock {
@@ -3613,8 +3598,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       body, .brand-mark, .nav-lens, .mobile-nav-lens, .jump-lens, .day-chip, .journey-progress-fill, .timeline-node, .timeline-card, .dock-item {
         transition: none !important;
       }
-      .day-transition-scope::view-transition-old(root),
-      .day-transition-scope::view-transition-new(root) { animation: none !important; }
       .brand-button:hover .brand-mark, .timeline-card:hover, .dock-item.is-active { transform: none !important; }
     }
     @media (prefers-reduced-transparency: reduce) {
@@ -3944,15 +3927,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
         text-align: center;
       }
 
-      /* Phone day transitions keep spatial continuity but drop blur/expensive effects. */
-      .day-transition-scope::view-transition-old(root) { animation: 130ms cubic-bezier(.31,.94,.34,1) both day-scope-out-mobile !important; }
-      .day-transition-scope::view-transition-new(root) { animation: 300ms var(--ease-spring-snappy) both day-scope-in-mobile !important; }
-      @keyframes day-scope-out-mobile {
-        to { opacity: .30; transform: translateX(var(--day-old-shift)) scale(.998); }
-      }
-      @keyframes day-scope-in-mobile {
-        from { opacity: .26; transform: translateX(var(--day-new-shift)) scale(.998); }
-      }
     }
 
     /* Common phone width: use icon-only map actions so titles get the width, not chrome. */
@@ -4017,8 +3991,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
         -webkit-backdrop-filter: none !important;
         backdrop-filter: none !important;
       }
-      .day-transition-scope::view-transition-old(root),
-      .day-transition-scope::view-transition-new(root) { animation: none !important; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -4371,7 +4343,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       linear-gradient(180deg, color-mix(in oklab, var(--bg-raised) 96%, var(--city-a) 1%), var(--bg) 32%, oklch(9.8% .011 272));
   }
 
-  .day-transition-scope,
   .day-workspace,
   #day-timeline,
   .timeline-row,
@@ -4739,15 +4710,39 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       --city-c var(--motion-ambient) !important;
   }
 
-  /* ---------- 2. Day change on browsers without scoped view transitions ---------- */
-  @keyframes day-swap-in {
-    from { opacity: .16; transform: translate3d(var(--day-new-shift, 0px), 0, 0) scale(.994); }
-    to   { opacity: 1;   transform: translate3d(0, 0, 0) scale(1); }
+  /* ---------- 2. Day-change choreography ---------- */
+  body { --day-shift: 12px; }
+  body[data-motion-direction='backward'] { --day-shift: -12px; }
+
+  @keyframes day-hero-swap {
+    from { opacity: 0; transform: translate3d(var(--day-shift), 0, 0) scale(.994); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
   }
-  .day-swap-in {
-    animation: day-swap-in 360ms var(--motion-spatial-default) both;
-    will-change: transform, opacity;
+  @keyframes day-card-swap {
+    from { opacity: 0; transform: translate3d(calc(var(--day-shift) * .7), 6px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
   }
+
+  body[data-day-changing] .day-hero {
+    animation: day-hero-swap 340ms var(--ease-spring-snappy) both;
+  }
+  body[data-day-changing] .timeline-row {
+    animation: day-card-swap 300ms var(--ease-emphasized) both !important;
+    animation-timeline: auto !important;
+  }
+  body[data-day-changing] .now-card,
+  body[data-day-changing] #day-shopping,
+  body[data-day-changing] #day-backup {
+    animation: day-card-swap 300ms var(--ease-emphasized) 120ms both;
+  }
+
+  body[data-day-changing] .timeline-stack > div:nth-child(1) .timeline-row { animation-delay: 0ms !important; }
+  body[data-day-changing] .timeline-stack > div:nth-child(2) .timeline-row { animation-delay: 38ms !important; }
+  body[data-day-changing] .timeline-stack > div:nth-child(3) .timeline-row { animation-delay: 76ms !important; }
+  body[data-day-changing] .timeline-stack > div:nth-child(4) .timeline-row { animation-delay: 114ms !important; }
+  body[data-day-changing] .timeline-stack > div:nth-child(5) .timeline-row { animation-delay: 152ms !important; }
+  body[data-day-changing] .timeline-stack > div:nth-child(6) .timeline-row { animation-delay: 190ms !important; }
+  body[data-day-changing] .timeline-stack > div:nth-child(n+7) .timeline-row { animation-delay: 220ms !important; }
 
   /* ---------- 3. Interaction polish ---------- */
   @keyframes dock-pop {
@@ -4991,7 +4986,11 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
   /* ---------- 6. Accessibility fallbacks for everything added above ---------- */
   @media (prefers-reduced-motion: reduce) {
-    .day-swap-in,
+    body[data-day-changing] .day-hero,
+    body[data-day-changing] .timeline-row,
+    body[data-day-changing] .now-card,
+    body[data-day-changing] #day-shopping,
+    body[data-day-changing] #day-backup,
     .dock-item.is-active i,
     .dock-item.is-active svg,
     .timeline-row {
@@ -5021,7 +5020,11 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     .secondary-panel {
       background: Canvas !important;
     }
-    .day-swap-in,
+    body[data-day-changing] .day-hero,
+    body[data-day-changing] .timeline-row,
+    body[data-day-changing] .now-card,
+    body[data-day-changing] #day-shopping,
+    body[data-day-changing] #day-backup,
     .dock-item.is-active i,
     .dock-item.is-active svg {
       animation: none !important;
@@ -5496,7 +5499,8 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 <body class="h-full bg-gray-950 text-slate-100 antialiased selection:bg-rose-500 selection:text-white" 
       x-data="travelCompanion()" 
       x-init="initApp()"
-      :data-city-theme="currentCityTheme">
+      :data-city-theme="currentCityTheme"
+      :data-motion-direction="motionDirection">
 
 <div id="v46-live-announcer" class="v46-sr-only" aria-live="polite" aria-atomic="true"></div>
   <div id="dependency-warning" hidden class="fixed inset-x-3 top-3 z-[100] rounded-2xl border border-amber-500/40 bg-gray-950/95 p-4 shadow-2xl text-sm text-slate-200" style="display:none;position:fixed;left:12px;right:12px;top:12px;z-index:2147483647;">
@@ -5590,7 +5594,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       </div>
     </div>
 
-    <div id="day-transition-scope" class="day-transition-scope space-y-5">
+    <div class="space-y-5">
 
     <!-- OPERATIONAL DAY HERO -->
     <div id="day-summary" class="day-hero luminous-hero interactive-surface rounded-2xl p-4 md:p-6 space-y-3.5" :class="'city-' + currentDay.city.toLowerCase()"
@@ -5607,10 +5611,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
               <span class="hero-city" x-text="currentDay.city"></span>
               <template x-if="currentDay.isTransferDay"><span class="hero-city">Hotel transfer</span></template>
             </div>
-            <button type="button" @click="shareDayPlan()" class="hero-action" aria-label="Share today's plan">
-              <i data-lucide="upload" class="w-4 h-4"></i>
-              <span class="hidden sm:inline">Share</span>
-            </button>
             <button type="button" @click="toggleDayCompleted(currentDay.dayNumber)"
                     :aria-label="isDayCompleted(currentDay.dayNumber) ? 'Mark day incomplete' : 'Mark day complete'"
                     :aria-pressed="isDayCompleted(currentDay.dayNumber)"
@@ -5784,7 +5784,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       <!-- Meals and fuel remain chronological timeline events. -->
 
       <!-- Aligned Vertical Time Rail Stream -->
-      <div class="relative space-y-5">
+      <div class="timeline-stack relative space-y-5">
         <template x-for="(event, idx) in currentDay.events" :key="idx">
           <div>
             <div class="timeline-row relative flex items-start gap-3 sm:gap-4"
@@ -6089,7 +6089,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
     </div>
 
-    </div><!-- /day-transition-scope -->
+    </div>
 
   </div>
 
@@ -7013,9 +7013,10 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
         completedDays: [],
         jstTimeFormatted: '00:00',
         activeDaySection: 'now',
+        motionDirection: 'forward',
         tabScrollPositions: { today: 0, itinerary: 0, prep: 0, transit: 0, settings: 0 },
         _scrollTicking: false,
-        _activeDayTransition: null,
+        _dayChangeTimer: 0,
         _opticalFrame: 0,
         _activeModalName: null,
         _modalOpener: null,
@@ -7048,44 +7049,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             if (isInert) element.setAttribute('aria-hidden', 'true');
             else element.removeAttribute('aria-hidden');
           });
-        },
-
-        // Builds a plain-text digest of the selected day and hands it to the native share
-        // sheet (Messages/WhatsApp/AirDrop/Notes). Falls back to clipboard + toast on
-        // browsers without navigator.share (desktop Chrome/Firefox) so the button never
-        // does nothing when tapped.
-        buildDaySharePlainText(day) {
-          const lines = [
-            `Japan 2026 — Day ${day.dayNumber} · ${day.dateFormatted} · ${day.city}`,
-            day.title,
-            `Base: ${day.baseHotel} · Start: ${day.startTime}`,
-            ''
-          ];
-          (day.events || []).forEach(event => {
-            if (event.time && event.title) lines.push(`${event.time}  ${event.title}`);
-          });
-          return lines.join('\n');
-        },
-
-        async shareDayPlan() {
-          const day = this.currentDay;
-          if (!day) return;
-          const text = this.buildDaySharePlainText(day);
-          const title = `Japan 2026 — Day ${day.dayNumber}`;
-          if (navigator.share) {
-            try {
-              await navigator.share({ title, text });
-            } catch (error) {
-              if (error && error.name !== 'AbortError') this.triggerToast('Could not open share sheet');
-            }
-            return;
-          }
-          try {
-            await navigator.clipboard.writeText(text);
-            this.triggerToast('Day plan copied to clipboard');
-          } catch (_) {
-            this.triggerToast('Sharing is not available in this browser');
-          }
         },
 
         syncModalState(name, isOpen) {
@@ -7418,66 +7381,16 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           }, { passive: true });
         },
 
-        withDayViewTransition(update, direction = 'neutral') {
-          if (typeof update !== 'function') return null;
-          const scope = document.getElementById('day-transition-scope');
-          const oldShift = direction === 'forward' ? '-14px' : direction === 'backward' ? '14px' : '0px';
-          const newShift = direction === 'forward' ? '18px' : direction === 'backward' ? '-18px' : '0px';
-          if (scope) {
-            scope.style.setProperty('--day-old-shift', oldShift);
-            scope.style.setProperty('--day-new-shift', newShift);
-          }
-          if (!scope || this.prefersReducedMotion()) {
-            update();
-            return null;
-          }
-
-          // Browsers without scoped view transitions still receive local day-change motion.
-          // A document-level transition is deliberately not used: it snapshots the entire
-          // page including chrome that must not move. Applying the update immediately and
-          // animating only the incoming content keeps the same spatial language, costs no
-          // snapshot, and cannot drop an update when days are tapped rapidly.
-          if (typeof scope.startViewTransition !== 'function') {
-            update();
-            this.$nextTick(() => {
-              if (window.lucide && typeof window.lucide.createIcons === 'function') {
-                window.lucide.createIcons(scope);
-              }
-              scope.classList.remove('day-swap-in');
-              void scope.offsetWidth; // restart the animation when taps come faster than it finishes
-              scope.classList.add('day-swap-in');
-              window.clearTimeout(this._daySwapTimer);
-              this._daySwapTimer = window.setTimeout(() => scope.classList.remove('day-swap-in'), 420);
-            });
-            return null;
-          }
-
-          try {
-            if (this._activeDayTransition && typeof this._activeDayTransition.skipTransition === 'function') {
-              this._activeDayTransition.skipTransition();
-            }
-            const transition = scope.startViewTransition({
-              update: async () => {
-                update();
-                await this.$nextTick();
-                if (window.lucide && typeof window.lucide.createIcons === 'function') {
-                  window.lucide.createIcons(scope);
-                }
-              },
-              types: direction === 'neutral' ? ['day-change'] : ['day-change', `day-${direction}`]
-            });
-            this._activeDayTransition = transition;
-            transition.ready.catch(() => {});
-            transition.updateCallbackDone.catch(() => {});
-            const clear = () => {
-              if (this._activeDayTransition === transition) this._activeDayTransition = null;
-            };
-            transition.finished.then(clear).catch(clear);
-            return transition;
-          } catch (error) {
-            update();
-            return null;
-          }
+        playDayChange() {
+          const body = document.body;
+          window.clearTimeout(this._dayChangeTimer);
+          body.removeAttribute('data-day-changing');
+          if (this.prefersReducedMotion()) return;
+          this.$nextTick(() => {
+            void body.offsetWidth;
+            body.setAttribute('data-day-changing', '');
+            this._dayChangeTimer = window.setTimeout(() => body.removeAttribute('data-day-changing'), 700);
+          });
         },
 
         withViewTransition(update, direction = 'neutral') {
@@ -7551,15 +7464,13 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           const fromIdx = this.days.findIndex(d => d.dayNumber === this.selectedDayNumber);
           const toIdx = this.days.findIndex(d => d.dayNumber === dayNum);
           const direction = toIdx > fromIdx ? 'forward' : (toIdx < fromIdx ? 'backward' : 'neutral');
+          this.motionDirection = direction === 'backward' ? 'backward' : 'forward';
           const wasToday = this.activeTab === 'today';
           const apply = () => {
             this.selectedDayNumber = dayNum;
             this.activeTab = 'today';
             this.activeDaySection = 'timeline';
           };
-          const transition = wasToday
-            ? this.withDayViewTransition(apply, direction)
-            : this.withViewTransition(apply, direction);
           const finish = () => requestAnimationFrame(() => {
             this.scrollActiveDayChip();
             const searchTarget = this._pendingSearchTargetId;
@@ -7571,6 +7482,13 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
             }
             this.updateActiveDaySection();
           });
+          if (wasToday) {
+            apply();
+            this.playDayChange();
+            this.$nextTick(finish);
+            return;
+          }
+          const transition = this.withViewTransition(apply, direction);
           if (transition && transition.finished) transition.finished.then(finish).catch(finish);
           else this.$nextTick(finish);
         },
@@ -12361,7 +12279,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
           check(Boolean(document.querySelector('.nav-lens')), 'Desktop navigation lens missing.');
           check(Boolean(document.querySelector('.mobile-nav-lens')), 'Mobile navigation lens missing.');
           check(Boolean(document.querySelector('.jump-lens')), 'In-day navigation lens missing.');
-          check(Boolean(document.getElementById('day-transition-scope')), 'Element-scoped day transition root missing.');
+          check(typeof this.playDayChange === 'function', 'Cancellable day transition controller missing.');
           check(Boolean(document.querySelector('.day-workspace')), 'Adaptive day workspace missing.');
           check(Boolean(document.querySelector('.event-icon')), 'Semantic event icon missing.');
           check(Boolean(document.getElementById('global-search-trigger')), 'Global itinerary search trigger missing.');
