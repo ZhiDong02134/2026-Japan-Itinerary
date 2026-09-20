@@ -4179,7 +4179,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     }
 
     .day-strip-wrap {
-      top: calc(var(--v46-header-h) + var(--v46-safe-top)) !important;
+      top: var(--v46-header-h) !important;
       margin-inline: calc(-1 * max(12px, var(--v46-safe-left))) calc(-1 * max(12px, var(--v46-safe-right))) !important;
       padding-left: max(12px, var(--v46-safe-left)) !important;
       padding-right: max(12px, var(--v46-safe-right)) !important;
@@ -4807,28 +4807,11 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   }
 
   @media (max-width: 767px) {
-    /*
-      The v46 layer wrote this rail's sticky offset (--v46-header-h + --v46-safe-top)
-      but never the position, so it scrolled away with the content: measured on day 16
-      (9,543px tall) the rail sat at -3,837px by 4,000px of scroll, meaning the day
-      switcher was off-screen for almost the entire day. Sticky restores it.
-
-      The earlier note here was right that an opaque band travelling through content is
-      wrong — but that reasoning inverts once the rail genuinely floats. This is now the
-      functional layer Apple's Liquid Glass guidance describes: controls above content.
-
-      Deliberately NOT a fourth backdrop-filter, though. This document already paints
-      three (.app-chrome, .day-jumpbar-inner, .mobile-dock) where the sibling Taiwan
-      build paints two, and the HIG is explicit that the material should be used
-      "sparingly" and limited "to the most important functional elements" — a fourth
-      blur under a bar that only needs legibility is the overuse it warns about, and it
-      is the exact cost the earlier note here flagged. An opaque-to-transparent gradient
-      buys the separation for free: solid behind the chips so labels stay legible, fading
-      out below so the timeline still peeks through rather than meeting a hard edge.
-    */
+    /* The measured header height already includes safe-area padding. The opaque-to-
+       transparent background keeps pinned labels legible without another blur layer. */
     .day-strip-wrap {
       position: sticky;
-      top: calc(var(--v46-header-h, var(--header-h, 56px)) + var(--v46-safe-top, env(safe-area-inset-top, 0px)));
+      top: var(--v46-header-h, var(--header-h, 56px));
       z-index: 28;
       /* Opaque for the whole chip row, with only a short feathered edge at the very
          bottom. An earlier version faded to 40% across the lower third, which read as a
@@ -7982,7 +7965,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
               : plan.targetKind === 'complete' ? 'day-backup' : 'day-now';
           const target = document.getElementById(targetId) || document.getElementById('day-now');
           if (!target) return false;
-          const offset = (typeof window.__v47ScrollOffset === 'function' ? window.__v47ScrollOffset() : 128) + 16;
+          const offset = typeof window.__v47ScrollOffset === 'function' ? window.__v47ScrollOffset() : 128;
           const desired = window.scrollY + target.getBoundingClientRect().top - offset;
           const maximum = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
           target.classList.remove('section-arrival');
