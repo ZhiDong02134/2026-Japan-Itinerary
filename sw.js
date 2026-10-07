@@ -10,7 +10,7 @@
   Bump CACHE when older cache namespaces must be evicted.
 */
 const CACHE_PREFIX = 'japan-2026-';
-const CACHE = `${CACHE_PREFIX}v27`;
+const CACHE = `${CACHE_PREFIX}v28`;
 const SHELL = [
   './index.html',
   './manifest.webmanifest',
@@ -61,6 +61,20 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('message', event => {
   if (event.data === 'SKIP_WAITING') self.skipWaiting();
+});
+
+// A tapped leave-by alert brings the app forward (or opens it) instead of doing nothing.
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  event.waitUntil((async () => {
+    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    const inScope = windows.filter(client => client.url.startsWith(self.registration.scope));
+    const existing = inScope.find(client => client.focused)
+      || inScope.find(client => client.visibilityState === 'visible')
+      || inScope.find(client => 'focus' in client);
+    if (existing) return existing.focus();
+    return self.clients.openWindow('./');
+  })());
 });
 
 self.addEventListener('fetch', event => {
