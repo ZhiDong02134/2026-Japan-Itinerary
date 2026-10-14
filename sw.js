@@ -1,16 +1,12 @@
 /*
   Offline service worker for Japan 2026.
 
-  Strategy: cache-first with background revalidation.
-  A cached shell is served immediately for reliable offline use. When online,
-  successful same-origin responses refresh the current cache in the background.
-  The page's bypass check stores a detected HTML update under the canonical shell
-  key and reloads automatically.
-
-  Bump CACHE when older cache namespaces must be evicted.
+  Navigations prefer the deployed document, then fall back to the canonical cached shell.
+  Static same-origin assets use stale-while-revalidate. Query-string navigation state is
+  normalised to one shell key so Today, Trip, and Prep cannot drift into separate copies.
 */
-const CACHE_PREFIX = 'japan-2026-';
-const CACHE = `${CACHE_PREFIX}v31`;
+const CACHE_PREFIX = 'japan-2026-shell-';
+const CACHE = `${CACHE_PREFIX}f9db88c934ca`;
 const SHELL = [
   './index.html',
   './manifest.webmanifest',
@@ -20,50 +16,46 @@ const SHELL = [
   './icon-maskable-512.png',
   './apple-touch-icon.png'
 ];
-
-// Every navigation is stored and retrieved under this one key. The app writes its current
-// tab and day into the query string, so without normalising, `?tab=plan` and `?tab=today`
-// become separate cache entries — the worker then reads one key and writes another, and the
-// cached copy can never be replaced. That silently freezes an installed app on whatever
-// version it first cached.
 const SHELL_KEY = new URL('./index.html', self.location).href;
-const keyFor = request =>
-  request.mode === 'navigate' ? new Request(SHELL_KEY, { credentials: 'same-origin' }) : request;
+const NAVIGATION_TIMEOUT_MS = 2600;
 
-// cache.add() rejects on a 404, so a single missing file in SHELL used to reject the
-// whole Promise.all, fail waitUntil, and make the browser discard the worker entirely —
-// leaving the app with no offline copy at all. Verified by accident: a deploy whose
-// icons lagged its sw.js registered zero workers while still creating an empty cache.
-// Only the shell document is worth failing over; every other entry is best-effort, so a
-// forgotten icon degrades one asset instead of the entire offline story.
+const canonicalKey = request =>
+  request.mode === 'navigate'
+    ? new Request(SHELL_KEY, { credentials: 'same-origin' })
+    : request;
+
+const store = async (cache, key, response) => {
+  if (!response || !response.ok) return response;
+  try { await cache.put(key, response.clone()); } catch {}
+  return response;
+};
+
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE)
-      .then(async cache => {
-        await cache.add(SHELL[0]);
-        await Promise.all(
-          SHELL.slice(1).map(url => cache.add(url).catch(() => {}))
-        );
-      })
-      .then(() => self.skipWaiting())
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE);
+    await cache.add(SHELL[0]);
+    await Promise.all(SHELL.slice(1).map(url => cache.add(url).catch(() => undefined)));
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys
-        .filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE)
-        .map(key => caches.delete(key))))
-      .then(() => self.clients.claim())
-  );
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys
+      .filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE)
+      .map(key => caches.delete(key)));
+    if (self.registration.navigationPreload) {
+      try { await self.registration.navigationPreload.enable(); } catch {}
+    }
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener('message', event => {
   if (event.data === 'SKIP_WAITING') self.skipWaiting();
 });
 
-// A tapped leave-by alert brings the app forward (or opens it) instead of doing nothing.
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   event.waitUntil((async () => {
@@ -73,62 +65,81 @@ self.addEventListener('notificationclick', event => {
       || inScope.find(client => client.visibilityState === 'visible')
       || inScope.find(client => 'focus' in client);
     if (existing) return existing.focus();
-    return self.clients.openWindow('./');
+    return self.clients.openWindow('./?tab=today');
   })());
 });
+
+async function networkNavigation(event) {
+  const request = event.request;
+  const cache = await caches.open(CACHE);
+  const key = canonicalKey(request);
+
+  const network = (async () => {
+    try {
+      const preloaded = await event.preloadResponse;
+      const response = preloaded || await fetch(request);
+      return await store(cache, key, response);
+    } catch {
+      return null;
+    }
+  })();
+
+  const timed = await Promise.race([
+    network,
+    new Promise(resolve => setTimeout(() => resolve(null), NAVIGATION_TIMEOUT_MS))
+  ]);
+  if (timed) return timed;
+
+  const cached = await cache.match(key) || await cache.match(SHELL_KEY);
+  if (cached) {
+    event.waitUntil(network);
+    return cached;
+  }
+
+  const late = await network;
+  return late || Response.error();
+}
+
+async function staleWhileRevalidate(event) {
+  const request = event.request;
+  const cache = await caches.open(CACHE);
+  const cached = await cache.match(request);
+  const network = fetch(request)
+    .then(response => store(cache, request, response))
+    .catch(() => null);
+
+  if (cached) {
+    event.waitUntil(network);
+    return cached;
+  }
+  return await network || Response.error();
+}
 
 self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
 
-  // The page's update check needs a real network round trip. Persist that response under
-  // the canonical shell key so the automatic reload displays the version it detected.
-  if (new URL(request.url).searchParams.has('swBypass')) {
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
+
+  // The document's update probe deliberately bypasses the cached shell, then stores the
+  // successful response under the canonical key before the page reloads.
+  if (url.searchParams.has('swBypass')) {
     event.respondWith((async () => {
-      const response = await fetch(request);
+      const response = await fetch(request, { cache: 'no-store' });
       if (response && response.ok) {
-        try {
-          const cache = await caches.open(CACHE);
-          await cache.put(SHELL_KEY, response.clone());
-        } catch {}
+        const cache = await caches.open(CACHE);
+        await store(cache, new Request(SHELL_KEY, { credentials: 'same-origin' }), response);
       }
       return response;
     })());
     return;
   }
 
-  // Leave cross-origin requests alone. The Japan build makes none, but this keeps the
-  // worker from ever becoming a bottleneck for something it should not be handling.
-  if (new URL(request.url).origin !== self.location.origin) return;
+  if (request.mode === 'navigate') {
+    event.respondWith(networkNavigation(event));
+    return;
+  }
 
-  event.respondWith((async () => {
-    const cache = await caches.open(CACHE);
-    const key = keyFor(request);
-    const cached = await cache.match(key);
-
-    // The page owns automatic version checking and reload because a navigation client is not
-    // guaranteed to be discoverable via clients.matchAll() until shortly after this resolves.
-    const fromNetwork = fetch(request).then(async response => {
-      if (response && response.ok) {
-        // Storage pressure must not turn a valid network response into a failed request.
-        try { await cache.put(key, response.clone()); } catch {}
-      }
-      return response;
-    }).catch(() => null);
-
-    if (cached) {
-      event.waitUntil(fromNetwork);
-      return cached;
-    }
-
-    const network = await fromNetwork;
-    if (network) return network;
-
-    // Cold cache and no network: still answer a navigation with the app shell if we have it.
-    if (request.mode === 'navigate') {
-      const shell = await cache.match(SHELL_KEY);
-      if (shell) return shell;
-    }
-    return Response.error();
-  })());
+  event.respondWith(staleWhileRevalidate(event));
 });

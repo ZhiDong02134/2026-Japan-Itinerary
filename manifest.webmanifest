@@ -1,11 +1,15 @@
 {
   "name": "Japan 2026",
   "short_name": "Japan '26",
-  "description": "Offline day-by-day field guide for the Japan 2026 trip.",
-  "start_url": "./",
+  "description": "An offline, day-by-day field guide for the Japan 2026 trip.",
+  "id": "./",
+  "start_url": "./?tab=today",
   "scope": "./",
-  "id": "/japan-pwa/",
   "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "any",
   "background_color": "#090a0f",
   "theme_color": "#090a0f",
@@ -13,8 +17,10 @@
   "dir": "ltr",
   "categories": [
     "travel",
-    "navigation"
+    "navigation",
+    "productivity"
   ],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "./icon-192.png",
@@ -39,6 +45,60 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Today",
+      "short_name": "Today",
+      "description": "Open the active day and live itinerary.",
+      "url": "./?tab=today",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Trip",
+      "short_name": "Trip",
+      "description": "Browse all trip days and shopping windows.",
+      "url": "./?tab=itinerary",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Prep",
+      "short_name": "Prep",
+      "description": "Open bookings and the departure checklist.",
+      "url": "./?tab=prep",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./screenshot-dark.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Day itinerary in dark appearance"
+    },
+    {
+      "src": "./screenshot-light.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip overview in light appearance"
     }
   ]
 }
