@@ -6,17 +6,17 @@ A static, phone-first trip companion for Oct 23 – Nov 8, 2026 (Tokyo → Kyoto
 
 Copy [index.html](index.html), [sw.js](sw.js) and this README into the Pages repo root, next to the unchanged manifest, icons and startup images. All paths are relative, so the repo name doesn't matter.
 
-The service-worker cache is bumped to `v30`. Installed copies pick up the new version on their next update check. GitHub Pages' CDN can take about 10 minutes to show a deploy, and the app never reloads while a sheet is open.
+The service-worker cache name changes with each release, so installed copies pick up the update on their next check. GitHub Pages' CDN can take about 10 minutes to show a deploy, and the app never reloads while a sheet is open.
 
 On iPhone, **Add to Home Screen is still mandatory**. WebKit purges Cache Storage and `localStorage` after 7 days of Safari use without a visit; Home Screen apps are exempt.
 
-## v50 · October 10–11, 2026
+## This update · October 10–13, 2026
 
 Your latest itinerary (`japan_itinerary_latest.html`) was merged into the PWA, followed by a second UI/UX pass. No accordions, frameworks, webfonts or network requests were added.
 
 ### Your itinerary, applied
 
-The new file was the v49 app with edited data, so its tickets, days, transit routes and self-check edits were adopted as they are. On top of that, five consistency fixes were made where the edit had left a contradiction:
+The new file was the previous app with edited data, so its tickets, days, transit routes and self-check edits were adopted as they are. On top of that, five consistency fixes were made where the edit had left a contradiction:
 
 - **Day 10, Harada:** the meal card still said "reserve only if ¥0". It now matches your "locked for 18:30".
 - **Day 12, lunch:** gained the missing fallback ("live wait >10 min → Karahori quick meal").
@@ -28,7 +28,7 @@ The Day 12 and Day 14 start times now match their first stops.
 
 Milestones that continue an earlier card's activity link to that card, so the timeline keeps the right card Now. Examples: Daikichiyama, the Tenma dinner, the Expo Park walk after the Tower, and GEAR (whose milestone moved to 18:00 while its card stays at the 17:30 arrival).
 
-**Phones that already had v49 now show your confirmations.** The app used to restore every saved booked flag over the itinerary's own. A phone that had saved anything showed all eight new confirmations as not booked. Saved flags now merge three ways: your tap on a phone still wins, but a booking confirmed in the itinerary arrives as confirmed.
+**Phones that already had the app now show your confirmations.** The app used to restore every saved booked flag over the itinerary's own. A phone that had saved anything showed all eight new confirmations as not booked. Saved flags now merge three ways: your tap on a phone still wins, but a booking confirmed in the itinerary arrives as confirmed.
 
 **Left as you wrote it.** Some new texts read like edit notes, for example "the 14:30 Tower booking is now fixed" and "the structured Fukujuen workshop is canceled". Happy to tidy them if you like. The Tower of the Sun ref is shown to staff exactly as typed, `is20261012140307102026-11-05`; if "is" isn't part of the number, drop it in the itinerary.
 
@@ -57,7 +57,7 @@ The confirmed bookings are the trip's fixed points, so they are now drawn as pas
 
 ### Live correctness
 
-- **Real-clock bug, also in v49.** With the app left open, the Now card's title and Directions stayed on the block you opened it in, while its times moved on. The header pill and the pre-trip pass didn't update at touchdown or midnight either. Everything derived from the clock now follows it.
+- **Real-clock bug, from before.** With the app left open, the Now card's title and Directions stayed on the block you opened it in, while its times moved on. The header pill and the pre-trip pass didn't update at touchdown or midnight either. Everything derived from the clock now follows it.
 - **The live day is followed after a resume.** This covers a session opened before touchdown, and a phone resumed after midnight on another tab.
 - **Now and Up next always agree.** The timeline's Up next is the card of the next milestone, so the walk to the Tempozan ferry points at the ferry, not Dotonbori. A card stays Now through gaps between its own milestones, e.g. from the Wakakusa bus to the Shosoin door.
 - **Leave-by keeps counting.** The countdown runs through the gap after its block. Day 4's Toshogu block ends at 16:30, but its leave-by protecting the 17:44 SPACIA X is 16:45. The red "Nm past leave-by" now disappears after 10 minutes.
@@ -145,6 +145,21 @@ One rule for colour: paper and ink neutrals, one city hue per day (identity only
   - The bottom fade moves with the live accessory instead of snapping.
   - Glass goes opaque during transitions (WebKit drops the blur there).
 
+### The images
+
+- **The scenes are lit.** Each of the 16 hero prints keeps its woodblock style and gains light and weather:
+  - a halo round the sun (or the moon at night), and crepuscular rays at dawn and golden hour;
+  - clouds lit by the hour: white by day, pink at dawn, gold at golden hour, glowing underneath at sunset;
+  - Hiroshige's kasumi, the long flat mist bands across the far hills and the foot of the town;
+  - mirrored, rippled reflections in the five water scenes, including 逆さ富士 (Fuji upside down in Lake Kawaguchi) and the Phoenix Hall in its pond at Uji, with a path of sunlight or moonlight on the water;
+  - at night, windows and lanterns glow, and a few stars carry a four-point glint;
+  - Haneda's plane trails a contrail;
+  - a fine washi grain over the whole print.
+
+  None of it moves on its own, so nothing changes under Reduce Motion, and scrolling measured exactly as before.
+- **The icon is lit.** The same rose sakura on the same night ground, now with pale petal tips, veins, gold stamens, a soft glow behind it like a hinomaru sun, and a shadow lifting it off the ground.
+- **The launch screens** carry the new icon in a faint rose bloom, with 日本 and JAPAN · 2026 beneath it. iPhone keeps the old icon and launch screen until the app is added to the Home Screen again.
+
 ### Small delights
 
 - **Light.** Each day shows sunrise, sunset and golden hour. On the live day, from golden hour, the Now card counts down the light left, then marks blue hour.
@@ -160,17 +175,17 @@ One rule for colour: paper and ink neutrals, one city hue per day (identity only
 - **Touchdown.** On landing day the header says "Lands 13:55". For 90 minutes after, a 到着 stamp and ようこそ日本へ, with how far ahead of home Japan is.
 - **Tomorrow (明日).** Once today's plan is done, the card says so and shows tomorrow's first step, its sunrise and, on move nights, the next hotel.
 
-### Defects fixed in v50
+### Defects fixed
 
 | Issue | Resolution |
 | --- | --- |
-| Confirmed bookings showed as unbooked on phones that had used v49 | Three-way merge of saved flags with the itinerary's |
+| Confirmed bookings showed as unbooked on phones that had used the app before | Three-way merge of saved flags with the itinerary's |
 | Booked labels hidden behind a bare "BOOKED"; booked cards dimmed and struck through (2.6–3.5:1 contrast) | Your labels on full-contrast passes |
 | GEAR (Oct 31) and Shosoin (Oct 30) shown as past while happening; Now card and timeline disagreed | Milestone links plus Up next from the next milestone; 0 disagreements in 1,128 samples |
 | Now card title and Directions frozen while the app stayed open | The clock is reactive; real-clock tests across block edges, touchdown and midnight |
 | Leave-by alerts never reached 10 minutes on Day 4 and Day 6 | The countdown runs through the gap; Day 6's trail resumes on its own card |
 | Export and calendar reminder stranded the Home Screen app | Share sheet in the installed app |
-| Update check could reload in a loop | One attempt per version per 10 minutes |
+| Update check could reload in a loop | One attempt per release per 10 minutes |
 | Directional and theme view transitions never ran | Selectors fixed |
 | Hero swipe committed on elapsed time, reversed after release and left an empty frame | Velocity projection plus pager carry-through |
 | Docked-rail chip tap glided the page and undocked the rail | The rail scrolls itself |
@@ -205,10 +220,10 @@ Playwright WebKit in an iPhone 390×844 @3x touch context, light and dark, plus 
 
 | Check | Result |
 | --- | --- |
-| Built-in self-check (`?qa` in the URL, or `runSemanticQa()`) | 442/442 |
-| Live-plan consistency: every 15 min, 07:00–23:45, all 17 days | 0 disagreements in 1,128 samples (v49: 2) |
+| Built-in self-check (`?qa` in the URL, or `runSemanticQa()`) | 443/443 |
+| Live-plan consistency: every 15 min, 07:00–23:45, all 17 days | 0 disagreements in 1,128 samples (before: 2) |
 | Layout gates: overflow, targets <44pt, text <10px; 4 widths × 2 themes × 9 screens | 72 screens, 0 failures |
-| v49 phone upgrading (saved state) | New confirmations shown; your own taps kept |
+| A phone upgrading with saved state | New confirmations shown; your own taps kept |
 | Real clock, no simulation, across block edges, touchdown, midnight, departure day | Pass |
 | Pass, Show-staff, Copy, wake lock, Prep order, toggles | Pass |
 | Swipe physics, docked rail, sheets, transitions, accessory, reduced motion | Pass |
@@ -238,11 +253,11 @@ Playwright WebKit in an iPhone 390×844 @3x touch context, light and dark, plus 
 - **Milestones:** if a milestone continues an earlier card's activity, give it `timelineEventTime` (that card's time). Transit and buffer blocks stay unlinked: they mark the next card as Up next.
 - **Shipped vs saved flags:** marking a ticket booked in the itinerary reaches every phone. Un-marking it on a phone sticks on that phone.
 - `DAY_SUN`, `ALMANAC`, `DAY_HOLIDAY`, `DAY_SCENES` and `DAY_PLACES` are static for this trip.
-- Bump `CACHE` in [sw.js](sw.js) (the `${CACHE_PREFIX}vNN` template) whenever cached assets change.
+- Change the cache name in [sw.js](sw.js) (`CACHE`) whenever cached assets change, so installed copies fetch them again.
 
 ---
 
-<sub>v49 (Oct 4–5, 2026), the previous pass, delivered:</sub>
+<sub>The previous pass (Oct 4–5, 2026) delivered:</sub>
 - <sub>the sora sky wash, with real sun, moon and 72-kō almanac</sub>
 - <sub>the pre-trip boarding pass</sub>
 - <sub>the unified live plan</sub>
