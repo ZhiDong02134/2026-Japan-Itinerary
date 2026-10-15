@@ -33,9 +33,9 @@ The manifest uses relative `id`, `scope`, and `start_url` values, so the app rem
 
 ## Current itinerary actions
 
-- Reserve **Forest Adventure Fuji — Trek 90 + Excite** around 13:00 on Nov 7.
 - Make the free **Zen & Ghibli timed-entry reservation** when the reservation window opens; the existing Rakuten ticket remains the admission ticket.
-- Aqua-Liner remains recorded as submitted at 10:20 from Yodoyabashi; the operator confirmation email is authoritative.
+- The Nikko rail pair, Nozomi 453, Aqua-Liner, Nozomi 146, both Fuji Excursions, and **THE HIGHEST PEAK Aokigahara cave tour** are recorded with their confirmed times, seats, and references.
+- Before Nov 7, reconfirm the cave guide's live meeting message and weather status; the app already protects the 13:20 pickup and 17:10 station return.
 
 ## Local check
 

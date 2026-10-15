@@ -625,7 +625,7 @@ strong { font-weight: 650; }
 
 /* iOS 26 has no scroll anchoring and iOS 27 turns it on by default (with open WebKit bugs).
    The app restores scroll positions itself (jumpScroll, revealDayTop, per-tab restore), so both
-   versions get the same explicit behaviour. */
+   implementations get the same explicit behaviour. */
 html { overflow-anchor: none; }
 
 .dependency-warning {
@@ -4815,15 +4815,15 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
   },
   {
     "id": "t4",
-    "title": "Tobu SPACIA X Express Train (Nikko)",
+    "title": "Nikko trains · JR Nikko 21 + Tobu Kegon 052",
     "event": "Day 04 Transit",
     "releaseAt": "2026-09-26T09:00:00+09:00",
     "booked": true,
     "departureRequired": true,
     "priority": 6,
-    "officialUrl": "https://www.tobu.co.jp/spaciax/en/",
-    "details": "Booked for the Nikko day. Use the reserved 07:50 Asakusa → Tobu-Nikko 09:39 outbound and 17:44 → Asakusa 19:35 return; live platform information wins.",
-    "statusLabel": "BOOKED · SPACIA X"
+    "officialUrl": "https://www.jreast.co.jp/multi/en/",
+    "details": "Confirmed Nikko rail pair for Mon Oct 26. Outbound: JR Limited Express Nikko 21, Shinjuku 08:03 → Tobu-Nikko 10:01, Car 4, Seats 1-C & 1-D, booking ref E48706, ¥8,280 total. Return: Tobu Limited Express Kegon 052, Tobu-Nikko 18:41 → Asakusa 20:35, Car 1, Seats 03A & 03B, transaction ID Ex20261009U6ICNS (customer ID YBHUVQ9H57), ¥3,300 total.",
+    "statusLabel": "CONFIRMED · NIKKO 21 & KEGON 052"
   },
   {
     "id": "t5",
@@ -4834,8 +4834,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "departureRequired": true,
     "priority": 5,
     "officialUrl": "https://smart-ex.jp/en/index.php",
-    "statusLabel": "BOOKED · TOKYO → KYOTO",
-    "details": "Booked Tokyo → Kyoto transfer. Keep the confirmed train and seat assignment as the source of truth; the itinerary preserves the Ginza / Cat Street shopping block and leaves a luggage-return buffer before departure."
+    "statusLabel": "CONFIRMED · NOZOMI 453 · CAR 12 4-D/E",
+    "details": "Confirmed: Tokaido Shinkansen Nozomi 453, Tokyo 16:21 → Kyoto 18:32. Car 12, Seats 4-D & 4-E; Seat E is the Mt. Fuji window side. Booking ref 2008. ¥27,940 total."
   },
   {
     "id": "t6",
@@ -4870,8 +4870,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "departureRequired": true,
     "priority": 3,
     "officialUrl": "https://smart-ex.jp/en/index.php",
-    "statusLabel": "BOOKED · OSAKA → TOKYO",
-    "details": "Booked Osaka → Tokyo transfer. Keep the confirmed train and seat assignment as authoritative; get off at Shinagawa for the efficient Tamachi connection."
+    "statusLabel": "CONFIRMED · NOZOMI 146 · CAR 13 14-D/E",
+    "details": "Confirmed: Tokaido Shinkansen Nozomi 146, Shin-Osaka 13:39 → Tokyo 16:06. Car 13, Seats 14-D & 14-E; Seat E is the Mt. Fuji window side. Booking ref 2011. ¥29,440 total."
   },
   {
     "id": "t9",
@@ -4882,21 +4882,20 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "departureRequired": true,
     "priority": 2,
     "officialUrl": "https://www.eki-net.com/pc/jreast-shinkansen-reservation/English/wb/common/Menu/Menu.aspx",
-    "details": "Booked for Sat Nov 7: Shinjuku 08:30 → Kawaguchiko 10:26 on Fuji Excursion 7; Kawaguchiko 17:41 → Shinjuku 19:40 on Fuji Excursion 48. The day now protects a large post-activity station buffer.",
-    "statusLabel": "BOOKED · FUJI EXCURSION 7 & 48"
+    "details": "Confirmed for Sat Nov 7. Outbound: Fuji Excursion 7, Shinjuku 08:30 → Kawaguchiko 10:26, Car 3, Seats 1-C & 1-D, booking ref E99479. Return: Fuji Excursion 48, Kawaguchiko 17:41 → Shinjuku 19:40, Car 1, Seats 1-C & 1-D, booking ref E00812.",
+    "statusLabel": "CONFIRMED · CAR 3 1-C/D & CAR 1 1-C/D"
   },
   {
     "id": "t23",
-    "title": "Forest Adventure Fuji · Trek 90 + Excite",
+    "title": "THE HIGHEST PEAK · Aokigahara Ice Cave Adventure",
     "event": "Day 16 Fuji",
     "releaseAt": null,
-    "booked": false,
+    "booked": true,
     "departureRequired": true,
     "priority": 1,
-    "tone": "now",
-    "officialUrl": "https://reserve.foret-aventure.jp/user/courses/461",
-    "statusLabel": "BOOK NEXT · TARGET ~13:00",
-    "details": "Replace the unresponsive cave operator with Forest Adventure Fuji. Book Trek 90 + Excite around 13:00. Allow a conservative 12:35–15:00 check-in / safety / activity envelope, then taxi back; this protects more than two hours before Fuji Excursion 48 at 17:41."
+    "officialUrl": "https://www.the-highestpeak.com/aokigahara-forest-cave",
+    "statusLabel": "CONFIRMED · 14:00–17:00 CAVE TOUR",
+    "details": "Confirmed with guide Tada for Sat Nov 7. Meet in front of the Kawaguchiko Station Tourist Information Center at 13:20. The guided Aokigahara ice-cave tour runs 14:00–17:00, followed by direct drop-off at Kawaguchiko Station at about 17:10—31 minutes before Fuji Excursion 48 at 17:41. ¥11,800 total for 2."
   },
   {
     "id": "t15",
@@ -4944,7 +4943,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "priority": 17,
     "officialUrl": "https://www.hotpepper.jp/strJ000760539/yoyaku/",
     "statusLabel": "OPTIONAL REQUEST / WALK-IN",
-    "details": "Target Oct 27 around 19:30 after the later Shinkansen. Current Hot Pepper listing shows dinner 17:00–22:30 and Oct 27 request-reservation availability. Do not let this dinner dictate the train: if the request is not confirmed, use the <=15 minute walk-in gate or the nearby backup."
+    "details": "Target Oct 27 around 20:00 after Nozomi 453 reaches Kyoto at 18:32 and the Nijo check-in/reset is complete. Do not let this optional dinner dictate the train: if the request is not confirmed, use the <=15 minute walk-in gate or the nearby backup."
   },
   {
     "id": "t22",
@@ -4967,8 +4966,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "departureRequired": true,
     "priority": 12,
     "officialUrl": "https://suijo-bus.osaka/",
-    "statusLabel": "SUBMITTED · 10:20 YODOYABASHI",
-    "details": "Standard Aqua-Liner request submitted for Tue Nov 3 at 10:20 from Yodoyabashi Port, ¥4,000 total, ref KEVLSGCB. Carry the confirmation email; the live operator response remains authoritative."
+    "statusLabel": "CONFIRMED · 10:20 YODOYABASHI",
+    "details": "Confirmed: Standard Aqua-Liner 55-minute loop departing Yodoyabashi Port at 10:20 on Tue Nov 3. Check in by 10:05. Reservation ID GD1CGA75; application KEVLSGCB. ¥4,000 total."
   },
   {
     "id": "t29",
@@ -5156,7 +5155,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         searchQuery: '',
         globalSearchQuery: '',
         showGlobalSearch: false,
-        globalSearchSuggestions: ['Shopping', 'Ginza', 'Akihabara', 'Forest Adventure', 'Fuji', 'Ghibli'],
+        globalSearchSuggestions: ['Shopping', 'Ginza', 'Akihabara', 'Aokigahara', 'Fuji', 'Ghibli'],
         shoppingWindows: [
                 {
                         "day": 1,
@@ -6788,7 +6787,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             const nextMapped = after < 0 ? -1 : (mapped.slice(after).find(index => index >= 0) ?? -1);
             const nextEvent = nextMapped >= 0 ? nextMapped : events.findIndex(event => { const s = toMinutes(event.time); return s !== null && s > nowMinutes; });
             // The card whose block just ended keeps its leave-by alive through the gap: Toshogu
-            // ends 16:30, but its leave-by protecting the 17:44 SPACIA X is 16:45.
+            // ends 17:00, but its leave-by protecting the 18:41 Kegon 052 is 17:00.
             const afterEventIndex = before >= 0 ? mapped[before] : -1;
             if (nextEvent >= 0) return { day: dayNumber, targetKind: 'event', eventIndex: nextEvent, state: 'next', label: events[nextEvent].title, afterEventIndex, ...live };
             if (nowEntry) return { day: dayNumber, targetKind: 'summary', state: 'current', label: nowEntry.label, pastBefore: events.length, afterEventIndex, ...live };
@@ -7008,8 +7007,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         // event in the day, since a countdown on a leave-by that isn't actionable yet (an
         // event later today) would just be confusing plan text wearing a clock.
         //
-        // leaveBy strings are free text with the clock time embedded ("16:45 - protect the
-        // 17:44 SPACIA X"), not a clean field — every sample in the current data leads with
+        // leaveBy strings are free text with the clock time embedded ("17:00 - protect the
+        // 18:41 Kegon 052"), not a clean field — every sample in the current data leads with
         // 24-hour HH:MM, verified against all of them before writing this regex. If a string
         // doesn't match that shape, this returns null and the existing static callout is the
         // only thing shown — it must never display a fabricated or guessed countdown.
@@ -8862,146 +8861,178 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "city": "TOKYO",
     "title": "Nikko Nature Day: Kegon · Cedar Mountains · Toshogu",
     "baseHotel": "APA Hotel Asakusa Kaminarimon Minami",
-    "startTime": "07:30 AM",
-    "primaryTransit": "Tobu SPACIA X + mountain bus",
-    "criticalRule": "HARD 09:39 NIKKO GATE: before joining the Upper-Nikko bus queue, check the official Nikko 2026 congestion page/live bus position plus the physical queue. The official guide says station→Lake Chuzenji can stretch to 80–120 minutes in heavy traffic and 120+ minutes in the worst category, while Irohazaka itself can take 2–3 hours when congested. Trip-specific guardrail: GO to Kegon only if the live picture still supports reaching Chuzenji/Kegon by about 11:00–11:15. If not, ABORT Upper Nikko immediately and use the Central-Nikko fallback; do not get trapped halfway. Toshogu and the reserved 17:44 SPACIA X are protected.",
-    "flexOption": "RED-GATE fallback if Upper Nikko is jammed: Tobu-Nikko → Toshogu while it is still early → quick central-Nikko lunch → Kanmangafuchi Abyss/Daiya riverside → Shinkyo/coffee → station by ~16:45. Kanmangafuchi is open year-round and keeps the day nature-heavy without gambling on Irohazaka.",
+    "startTime": "06:35 AM",
+    "primaryTransit": "JR Limited Express Nikko 21 + Tobu Limited Express Kegon 052 + mountain bus",
+    "criticalRule": "HARD 10:01 NIKKO GATE: immediately after Nikko 21 arrives, check the official Nikko 2026 congestion page/live bus position plus the physical queue before committing to Upper Nikko. GO to Kegon only if the live picture still supports reaching Chuzenji/Kegon by roughly 11:30–11:45. If not, pivot immediately to the Central-Nikko fallback. Protect Toshogu, be back at Tobu-Nikko by about 18:20, and never risk the confirmed 18:41 Kegon 052 return.",
+    "flexOption": "RED-GATE fallback if Upper Nikko is jammed: Tobu-Nikko → Toshogu while it is still early → central-Nikko lunch → Kanmangafuchi Abyss / Daiya riverside → Shinkyo / coffee → station by about 18:10. The later confirmed return train gives this fallback useful breathing room without gambling on Irohazaka.",
     "briefing": {
-      "pace": "Strict nature excursion",
-      "walking": "10-13 km + stairs",
-      "reservations": "SPACIA X reserved seats",
-      "cutFirst": "At 09:39, cut Upper Nikko entirely if the live arrival-to-Chuzenji estimate slips beyond ~11:15; if GO, cut Kegon elevator/lake wandering and sit-down lunch first.",
-      "backup": "Central-Nikko fallback: Toshogu first, then Kanmangafuchi/Daiya riverside + Shinkyo. Keep the 17:44 SPACIA X untouched.",
-      "localTips": "The 11:15 threshold is this itinerary’s guardrail, not an official cutoff. Official 2026 congestion data is the input; the decision rule protects the rest of the day."
+      "pace": "Early confirmed rail pair + strict mountain gate + nature/culture day",
+      "walking": "10–13 km + stairs",
+      "reservations": "JR Nikko 21 confirmed 08:03 Shinjuku → 10:01 Tobu-Nikko, Car 4 1-C/D, ref E48706. Kegon 052 confirmed 18:41 Tobu-Nikko → 20:35 Asakusa, Car 1 03A/B, transaction Ex20261009U6ICNS.",
+      "cutFirst": "At 10:01, cut Upper Nikko entirely if the live arrival-to-Chuzenji estimate slips beyond about 11:45. If GO, cut the Kegon elevator, lake wandering and sit-down lunch first—not the 18:20 station target.",
+      "backup": "Central-Nikko fallback: Toshogu first, then Kanmangafuchi / Daiya riverside + Shinkyo. Keep Kegon 052 untouched.",
+      "localTips": "The 11:45 threshold is this itinerary’s guardrail, not an official cutoff. The later return adds useful time, but Irohazaka can still consume the day if you commit blindly."
     },
     "milestones": [
       {
-        "startTime": "07:20",
+        "startTime": "06:35",
+        "endTime": "06:50",
+        "label": "NIKKO FUEL · prepacked breakfast",
+        "timelineEventTime": "06:35 AM",
+        "mapQuery": "APA Hotel Asakusa Kaminarimon Minami"
+      },
+      {
+        "startTime": "06:50",
         "endTime": "07:35",
-        "label": "NIKKO FUEL · breakfast · portable protein",
-        "mapQuery": "Asakusa Station"
+        "label": "Asakusa → Shinjuku",
+        "timelineEventTime": "06:35 AM",
+        "mapQuery": "Shinjuku Station"
       },
       {
-        "startTime": "07:50",
-        "endTime": "09:39",
-        "label": "SPACIA X 1 outbound",
-        "mapQuery": "Tobu Asakusa Station"
+        "startTime": "07:35",
+        "endTime": "08:03",
+        "label": "Platform / boarding buffer",
+        "mapQuery": "Shinjuku Station"
       },
       {
-        "startTime": "09:39",
-        "endTime": "09:50",
+        "startTime": "08:03",
+        "endTime": "10:01",
+        "label": "CONFIRMED · JR Limited Express Nikko 21",
+        "timelineEventTime": "08:03 AM",
+        "mapQuery": "Shinjuku Station"
+      },
+      {
+        "startTime": "10:01",
+        "endTime": "10:15",
         "label": "NIKKO LIVE TRAFFIC GATE · GO / NO-GO",
         "mapQuery": "Tobu Nikko Station"
       },
       {
-        "startTime": "10:30",
-        "endTime": "12:30",
-        "label": "IF GO · Upper Nikko: Kegon · lake edge",
+        "startTime": "10:15",
+        "endTime": "11:20",
+        "label": "IF GO · mountain bus to Upper Nikko",
         "mapQuery": "Kegon Falls"
       },
       {
-        "startTime": "12:30",
-        "endTime": "13:15",
-        "label": "NIKKO LUNCH · yuba / soba route pick",
+        "startTime": "11:20",
+        "endTime": "12:40",
+        "label": "IF GO · Kegon · lake edge",
+        "timelineEventTime": "11:20 AM",
+        "mapQuery": "Kegon Falls"
+      },
+      {
+        "startTime": "12:40",
+        "endTime": "13:20",
+        "label": "NIKKO LUNCH · fast route pick",
+        "timelineEventTime": "12:40 PM",
         "mapQuery": "Lake Chuzenji"
       },
       {
-        "startTime": "14:15",
-        "endTime": "16:30",
-        "label": "Toshogu",
+        "startTime": "13:20",
+        "endTime": "14:30",
+        "label": "Upper Nikko → Toshogu",
         "mapQuery": "Nikko Toshogu"
       },
       {
-        "startTime": "16:45",
-        "endTime": "17:30",
-        "label": "Hard return buffer",
+        "startTime": "14:30",
+        "endTime": "17:00",
+        "label": "Toshogu",
+        "timelineEventTime": "02:30 PM",
+        "mapQuery": "Nikko Toshogu"
+      },
+      {
+        "startTime": "17:00",
+        "endTime": "18:20",
+        "label": "Return to Tobu-Nikko · protected buffer",
         "mapQuery": "Tobu Nikko Station"
       },
       {
-        "startTime": "17:44",
-        "endTime": "19:35",
-        "label": "SPACIA X return",
+        "startTime": "18:41",
+        "endTime": "20:35",
+        "label": "CONFIRMED · Tobu Limited Express Kegon 052",
+        "timelineEventTime": "06:41 PM",
         "mapQuery": "Tobu Nikko Station"
       },
       {
-        "startTime": "19:45",
-        "endTime": "20:45",
+        "startTime": "20:45",
+        "endTime": "21:45",
         "label": "Asakusa dinner · protein closeout",
+        "timelineEventTime": "08:45 PM",
         "mapQuery": "Asakusa"
       }
     ],
     "events": [
       {
-        "time": "07:20 AM",
-        "title": "Breakfast — prepacked onigiri · OIKOS/SAVAS",
-        "description": "The Nikko early start is fed from a pack bought the night before.",
-        "mapQuery": "7-Eleven Asakusa Kaminarimon Tokyo",
-        "mapLabel": "Asakusa",
-        "nextTransit": "Board SPACIA X",
+        "time": "06:35 AM",
+        "title": "Breakfast + Asakusa → Shinjuku",
+        "description": "The confirmed 08:03 Shinjuku departure requires a genuinely early, no-restaurant start. Eat the pack and move.",
+        "mapQuery": "Shinjuku Station",
+        "mapLabel": "Shinjuku",
+        "nextTransit": "JR Limited Express Nikko 21",
         "execution": {
           "steps": [
-            "Eat the prepacked breakfast.",
-            "Carry one extra portable protein item.",
-            "Leave for SPACIA X on time."
+            "Eat the prepacked breakfast at the hotel or while moving.",
+            "Leave Asakusa around 06:50 using the simplest live rail route to Shinjuku.",
+            "Reach the JR platform area by about 07:35.",
+            "Carry one portable protein item for the train."
           ],
-          "watch": "Never miss SPACIA X for breakfast.",
+          "watch": "Do not add a morning restaurant stop; the 08:03 departure is fixed.",
           "protein": "~20–35g."
         },
         "kind": "fuel",
         "foodPlace": "Night-before Asakusa konbini pack",
-        "foodBackup": "Tobu Asakusa station food",
-        "foodBackupMap": "Tobu Asakusa Station",
+        "foodBackup": "Shinjuku Station food",
+        "foodBackupMap": "Shinjuku Station",
         "foodOrder": "1–2 onigiri + OIKOS/SAVAS + egg or salad chicken. Eat at hotel/station/train.",
-        "foodSwitch": "Do not create a morning restaurant stop; if something was forgotten, buy the first equivalent item at Tobu Asakusa."
+        "foodSwitch": "If something was forgotten, buy the first equivalent item inside Shinjuku Station without delaying the platform buffer."
       },
       {
-        "time": "07:50 AM",
-        "title": "SPACIA X to Nikko",
-        "description": "This is one of the trip's justified early starts: the rail timetable and late-October mountain traffic make the early train materially valuable.",
-        "mapQuery": "Tobu Asakusa Station",
-        "mapLabel": "SPACIA X",
-        "nextTransit": "09:39 live gate → Upper Nikko only if GO",
+        "time": "08:03 AM",
+        "title": "JR Limited Express Nikko 21 → Tobu-Nikko — CONFIRMED",
+        "description": "Confirmed direct morning leg from Shinjuku to Tobu-Nikko.",
+        "mapQuery": "Shinjuku Station",
+        "mapLabel": "Nikko 21",
+        "nextTransit": "10:01 live gate → Upper Nikko only if GO",
         "execution": {
           "steps": [
-            "Be at Tobu Asakusa by ~07:35.",
-            "Board reserved SPACIA X 1 at 07:50.",
-            "Use the ride for breakfast and rest.",
-            "Arrive Tobu-Nikko 09:39 and run the hard live traffic/queue gate BEFORE committing to the mountain bus."
+            "Board JR Limited Express Nikko 21 at Shinjuku at 08:03.",
+            "Use Car 4, Seats 1-C & 1-D.",
+            "Booking ref E48706; live platform information wins.",
+            "Arrive Tobu-Nikko at 10:01 and run the traffic/queue gate before joining the mountain bus."
           ],
-          "recheck": "Official sources: Nikko Tourism 2026 congestion page + live bus/road information. The itinerary pivots early rather than reacting after entering Irohazaka."
+          "recheck": "The confirmed train is fixed; only the Upper-Nikko branch is conditional."
         }
       },
       {
-        "time": "10:30 AM",
+        "time": "11:20 AM",
         "title": "IF GO — Kegon Falls · Lake Chuzenji",
-        "description": "Conditional Upper-Nikko branch only after the 09:39 traffic gate passes. Get above town, use the free Kegon viewpoint, and keep the lake stop compact.",
+        "description": "Conditional Upper-Nikko branch only after the 10:01 gate passes. Use the free Kegon viewpoint and keep the lake stop compact.",
         "mapQuery": "Kegon Falls",
         "mapLabel": "Kegon Falls",
-        "nextTransit": "Downhill bus to Toshogu / Shinkyo",
+        "nextTransit": "Fast lunch → downhill transfer to Toshogu",
         "execution": {
           "steps": [
-            "GO only if the official live traffic/bus picture still supports Chuzenji/Kegon arrival by roughly 11:00–11:15.",
+            "GO only if the live traffic/bus picture still supports reaching Chuzenji/Kegon by roughly 11:30–11:45.",
             "Skip Akechidaira and go directly to the Kegon/Chuzenji area.",
-            "Use the free upper Kegon viewpoint first.",
-            "Only buy the elevator if the queue is short; otherwise use the time by the lake.",
-            "Leave the mountain area early enough to protect Toshogu and the 17:44 SPACIA X."
+            "Use the free upper viewpoint first. Buy the elevator only if the queue is short.",
+            "Turn toward lunch by about 12:40."
           ],
-          "watch": "If the gate fails, do not board for Upper Nikko. Pivot immediately to Toshogu + Kanmangafuchi instead.",
+          "watch": "If the gate fails, pivot immediately to Toshogu + Kanmangafuchi.",
           "sourceUrl": "https://www.nikko-kankou.org/public/features/congestion"
         }
       },
       {
-        "time": "12:30 PM",
+        "time": "12:40 PM",
         "title": "Lunch — ZEN RESORT NIKKO",
-        "description": "Refuel without sacrificing the 14:15 Toshogu anchor.",
+        "description": "Fast refuel before the downhill transfer; the later train helps, but Toshogu still closes on schedule.",
         "mapQuery": "ZEN RESORT NIKKO restaurant",
         "mapLabel": "Lunch",
         "nextTransit": "Bus toward central Nikko",
         "execution": {
           "steps": [
-            "Enter ZEN only inside the 15-minute seating gate.",
+            "Enter only inside the 15-minute seating gate.",
             "Order promptly.",
-            "Leave for lower Nikko/Toshogu on schedule."
+            "Leave for lower Nikko by about 13:20."
           ],
           "watch": "Leave the upper lake area on schedule.",
           "protein": "~20–40g.",
@@ -9009,50 +9040,50 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         },
         "kind": "meal",
         "foodPlace": "ZEN RESORT NIKKO",
-        "foodBackup": "SPACIA X bento / Tobu-Nikko station food",
+        "foodBackup": "Tobu-Nikko station food / portable train snack",
         "foodBackupMap": "Tobu Nikko Station",
         "foodOrder": "Choose the fastest satisfying pork/chicken/curry/soba-style lunch available; add yuba if it is offered without slowing the stop.",
         "foodSwitch": "If seating projects >15 minutes, abort the restaurant and protect the Toshogu transfer.",
         "foodExtra": "Nikko yuba is the regional taste to look for here or as a station snack; it is optional, not a queue target."
       },
       {
-        "time": "02:15 PM",
+        "time": "02:30 PM",
         "title": "Nikko Toshogu - one must-see cultural anchor",
-        "description": "Keep the ornate UNESCO complex despite the overall temple-light preference because it is uniquely tied to Nikko and pairs well with the nature day.",
+        "description": "The one cultural anchor after the nature branch; leave on time for the station buffer.",
         "mapQuery": "Nikko Toshogu",
         "mapLabel": "Toshogu",
         "nextTransit": "Bus / downhill walk to Tobu-Nikko",
-        "leaveBy": "16:45 - protect the 17:44 SPACIA X",
+        "leaveBy": "17:00 - protect the 18:41 Kegon 052",
         "execution": {
           "steps": [
             "Enter the main precinct and prioritize Yomeimon, Three Wise Monkeys and the core mausoleum route.",
             "Do not try to visit every surrounding temple/shrine.",
             "Move steadily through the cedar setting and architectural highlights.",
-            "Leave the precinct by 16:45 even if something remains."
+            "Leave the precinct by 17:00 even if something remains."
           ],
           "watch": "Official April–October hours are 09:00–17:00 with last entry 30 minutes before closing. On the RED-GATE fallback, visit Toshogu in the morning instead."
         }
       },
       {
-        "time": "05:44 PM",
-        "title": "SPACIA X back to Asakusa",
-        "description": "Use the train as decompression after the mountain day and keep the evening simple.",
+        "time": "06:41 PM",
+        "title": "Tobu Limited Express Kegon 052 → Asakusa — CONFIRMED",
+        "description": "Confirmed return leg with enough time for a calm station buffer after Toshogu.",
         "mapQuery": "Tobu Nikko Station",
-        "mapLabel": "Tobu-Nikko",
+        "mapLabel": "Kegon 052",
         "execution": {
           "steps": [
-            "Reach Tobu-Nikko by ~17:25.",
-            "Check the live platform board and board the reserved 17:44 train.",
-            "Eat station food or a bento if hungry.",
-            "Arrive Asakusa 19:35; have a simple non-drinking dinner and return to hotel."
+            "Reach Tobu-Nikko by about 18:20.",
+            "Board Kegon 052 at 18:41, Car 1, Seats 03A & 03B.",
+            "Transaction ID Ex20261009U6ICNS; live platform information wins.",
+            "Arrive Asakusa at 20:35 and walk directly to dinner."
           ],
-          "food": "Station bento or Asakusa noodles/rice after return."
+          "food": "Use a station snack only if needed; a full dinner is scheduled in Asakusa."
         }
       },
       {
-        "time": "07:45 PM",
+        "time": "08:45 PM",
         "title": "Dinner — CoCo Ichibanya Tobu Asakusa",
-        "description": "Reliable recovery dinner after the long Nikko day; no restaurant hunt.",
+        "description": "Reliable recovery dinner after the confirmed 20:35 arrival; no restaurant hunt.",
         "mapQuery": "CoCo Ichibanya Tobu Asakusa",
         "mapLabel": "Dinner",
         "nextTransit": "Walk back to hotel",
@@ -9082,14 +9113,14 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "baseHotel": "Tabist Kyogura Kyoto Nijo",
     "startTime": "09:30 AM",
     "primaryTransit": "Metro/JR + Tokyo Station luggage storage + Nozomi + JR Sagano",
-    "criticalRule": "MAIN SHOPPING DAY stays on Oct 27, before the Nov 1 tax-free refund-method switch. Check out of Asakusa, park luggage at Tokyo Station, complete the intentional Ginza + Jingumae/Cat Street purchases, then return for a late-afternoon Nozomi. Do not defer planned wardrobe shopping to Nov 6; Oct 31 is rescue/top-up only.",
-    "flexOption": "If shopping runs long, cut the Kyoto night walk first — never the Tokyo Station luggage-retrieval buffer or reserved Shinkansen. If JR East staffed storage has a line, use a station coin locker / Multi E-Cube fallback immediately.",
+    "criticalRule": "MAIN SHOPPING DAY stays on Oct 27 before the Nov 1 tax-free refund-method switch. Check out of Asakusa, park luggage at Tokyo Station, complete the protected Ginza + Jingumae/Cat Street purchases, and be back at Tokyo Station with luggage by about 16:05. Nozomi 453 is fixed: Tokyo 16:21 → Kyoto 18:32, Car 12 Seats 4-D/4-E. Do not defer the shopping mission or compress the train buffer.",
+    "flexOption": "If shopping runs long, cut the Kyoto night walk first—never the Tokyo Station luggage-retrieval buffer or Nozomi 453. If JR East staffed storage has a line, switch immediately to a station coin locker / Multi E-Cube.",
     "briefing": {
       "pace": "Protected Tokyo shopping + cross-country transfer + short Kyoto night",
       "walking": "8-11 km, mostly flat shopping streets/stations",
-      "reservations": "SmartEX late-afternoon Nozomi + optional Kura dinner request; Tokyo Station storage is same-day, no need to build the day around hotel luggage.",
-      "cutFirst": "Cut Kyoto Kiyamachi/Pontocho time first. Inside Tokyo, skip low-priority stores before cutting the protected Ginza/Cat Street windows.",
-      "backup": "JR East staffed storage line/full -> station coin locker. Shopping delay -> later reserved Nozomi only if luggage is already secured and dinner is released.",
+      "reservations": "Nozomi 453 confirmed: Tokyo 16:21 → Kyoto 18:32, Car 12 Seats 4-D/4-E, ref 2008. Optional Kura dinner now targets about 20:00.",
+      "cutFirst": "Cut the Kyoto Kiyamachi/Pontocho walk first. Inside Tokyo, skip low-priority stores before cutting the protected Ginza/Cat Street windows or the 16:05 station readiness target.",
+      "backup": "JR East staffed storage line/full → station coin locker. Shopping delay → release the optional dinner and keep Nozomi 453.",
       "localTips": "Ginza first because Itoya / GINZA SIX are open before the weekday BEAMS/Jingumae noon openings. Finish intentional purchases here while the pre-Nov-1 point-of-sale tax-free method is still in effect for eligible travelers; Oct 31 is only a last-chance top-up if something specific remains."
     },
     "milestones": [
@@ -9144,34 +9175,37 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       },
       {
         "startTime": "15:40",
-        "endTime": "16:05",
-        "label": "Retrieve luggage · ekiben / platform buffer",
+        "endTime": "16:15",
+        "label": "Retrieve luggage · ekiben · platform buffer",
         "timelineEventTime": "03:05 PM",
         "mapQuery": "Tokyo Station"
       },
       {
-        "startTime": "16:10",
-        "endTime": "18:20",
-        "label": "TARGET WINDOW · Nozomi Tokyo → Kyoto",
-        "timelineEventTime": "03:05 PM",
+        "startTime": "16:21",
+        "endTime": "18:32",
+        "label": "CONFIRMED · Nozomi 453 · Tokyo → Kyoto",
+        "timelineEventTime": "04:21 PM",
         "mapQuery": "Tokyo Station"
       },
       {
-        "startTime": "18:20",
-        "endTime": "19:10",
+        "startTime": "18:32",
+        "endTime": "19:20",
         "label": "Kyoto → Nijo · check-in / reset",
+        "timelineEventTime": "06:32 PM",
         "mapQuery": "Tabist Kyogura Kyoto Nijo"
       },
       {
-        "startTime": "19:30",
-        "endTime": "20:30",
+        "startTime": "20:00",
+        "endTime": "21:00",
         "label": "DINNER · Kyo Yakiniku Kura Teramachi",
+        "timelineEventTime": "08:00 PM",
         "mapQuery": "Kyo Yakiniku Kura Teramachi Kyoto"
       },
       {
-        "startTime": "20:35",
-        "endTime": "21:30",
+        "startTime": "21:05",
+        "endTime": "21:45",
         "label": "Kiyamachi → Pontocho short night walk",
+        "timelineEventTime": "09:05 PM",
         "mapQuery": "Pontocho Alley Kyoto"
       }
     ],
@@ -9261,53 +9295,70 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       },
       {
         "time": "03:05 PM",
-        "title": "Return to Tokyo Station · luggage · Nozomi",
-        "description": "Finish shopping with a protected station buffer, then make the cross-country transfer without sprinting.",
+        "title": "Return to Tokyo Station · luggage / platform",
+        "description": "Finish shopping with a protected retrieval and boarding buffer for the exact train.",
         "mapQuery": "Tokyo Station",
         "mapLabel": "Tokyo Station",
-        "nextTransit": "Tokaido Shinkansen → Kyoto",
+        "nextTransit": "Nozomi 453 at 16:21",
         "execution": {
           "steps": [
             "Leave Jingumae around 15:05.",
             "Retrieve stored luggage around 15:40.",
-            "Buy water / ekiben only if needed and be through the Shinkansen gates before the reserved departure.",
-            "Target a Nozomi in roughly the 16:10–16:30 window; the final SmartEX reservation/timetable overrides this planning window.",
-            "JR Central’s current basic timetable puts Tokyo→Kyoto at about 130 minutes; seasonal extra trains can vary."
+            "Buy water / ekiben only if frictionless.",
+            "Be through the Shinkansen gates and near the platform by about 16:05."
           ],
-          "watch": "Do not hard-code a train number this far out. Reserve the actual Oct 27 service in SmartEX and update the app once the final choice is made.",
+          "watch": "Nozomi 453 departs Tokyo at 16:21. Do not replace the confirmed train with a planning window.",
           "sourceUrl": "https://global.jr-central.co.jp/en/info/timetable/"
         },
         "kind": "transit"
       },
       {
-        "time": "06:20 PM",
+        "time": "04:21 PM",
+        "title": "Nozomi 453 → Kyoto — CONFIRMED",
+        "description": "Confirmed Tokaido Shinkansen transfer: Tokyo 16:21 → Kyoto 18:32.",
+        "mapQuery": "Tokyo Station",
+        "mapLabel": "Nozomi 453",
+        "nextTransit": "Kyoto Station → Nijo",
+        "kind": "transit",
+        "execution": {
+          "steps": [
+            "Board Car 12 and use Seats 4-D & 4-E.",
+            "Seat 4-E is the Mt. Fuji window side.",
+            "Booking ref 2008; live platform information wins.",
+            "Arrive Kyoto at 18:32."
+          ],
+          "watch": "The train is fixed. Cut Kyoto evening time—not the boarding buffer—if the shopping day runs late."
+        }
+      },
+      {
+        "time": "06:32 PM",
         "title": "Kyoto → Nijo · check-in / reset",
-        "description": "The shopping move intentionally replaces the old Kamo Delta filler. Get the luggage into the room, reset briefly, then use only a compact Kyoto night.",
+        "description": "Transfer to Nijo, check in, and reset before the optional late dinner.",
         "mapQuery": "Tabist Kyogura Kyoto Nijo",
         "mapLabel": "Nijo",
         "nextTransit": "Kawaramachi / Teramachi dinner",
         "execution": {
           "steps": [
-            "Transfer from Kyoto Station to Nijo after the Nozomi.",
+            "Transfer from Kyoto Station to Nijo after the 18:32 arrival.",
             "Check in and drop everything.",
             "Hydrate and reset briefly.",
-            "Leave for dinner only when ready; there is no afternoon sightseeing debt to repay."
+            "Leave for dinner around 19:35–19:40 only if everyone is ready."
           ]
         },
         "kind": "transit"
       },
       {
-        "time": "07:30 PM",
+        "time": "08:00 PM",
         "title": "Dinner — Kyo Yakiniku Kura Teramachi",
-        "description": "Late enough to be realistic after shopping + Shinkansen, but still comfortably inside the current 17:00–22:30 dinner hours.",
+        "description": "A realistic target after the confirmed 18:32 arrival and Nijo check-in.",
         "mapQuery": "Kyo Yakiniku Kura Teramachi Kyoto",
         "mapLabel": "Kura Teramachi",
         "nextTransit": "Kiyamachi / Pontocho",
         "execution": {
           "steps": [
-            "Use a 19:30 target rather than the obsolete 18:00 transfer-day booking.",
+            "Use a 20:00 target after the Nijo reset.",
             "If the reservation request is not confirmed, use the walk-in queue gate or the nearby backup.",
-            "Keep dinner around an hour, then take a short Kiyamachi/Pontocho walk only if energy is good."
+            "Keep dinner around an hour, then take only a short night walk if energy is good."
           ],
           "protein": "~35–55g depending meal."
         },
@@ -9316,20 +9367,20 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "foodBackup": "Onimaru Sanjo Kawaramachi",
         "foodBackupMap": "Onimaru Sanjo Kawaramachi",
         "foodOrder": "Yakiniku beef + rice/vegetables to appetite.",
-        "foodSwitch": "If no clean 19:30 seat or walk-in projects >15 minutes, use Onimaru; do not start a restaurant hunt.",
+        "foodSwitch": "If no clean 20:00 seat or the walk-in projects >15 minutes, use Onimaru; do not start a restaurant hunt.",
         "foodBooking": "Hot Pepper currently lists dinner 17:00–22:30 and Oct 27 as request-reservation availability. Treat the booking as optional, not a transfer constraint."
       },
       {
-        "time": "08:35 PM",
+        "time": "09:05 PM",
         "title": "Kiyamachi · Pontocho short night walk",
-        "description": "A compact first Kyoto night after the heavy transfer/shopping day; stop early rather than manufacturing more mileage.",
+        "description": "A compact first Kyoto night after shopping and the exact Shinkansen transfer.",
         "mapQuery": "Pontocho Alley Kyoto",
         "mapLabel": "Pontocho / Kiyamachi",
         "execution": {
           "steps": [
             "Walk the Kiyamachi/Pontocho lanes for atmosphere.",
             "Dessert/tea only if it is genuinely convenient.",
-            "Return to Nijo around 21:30 or earlier if tired; tomorrow is the active Fushimi Inari / Kyoto Trail day."
+            "Return to Nijo around 21:45 or earlier if tired; tomorrow is the active Fushimi Inari / Kyoto Trail day."
           ]
         }
       }
@@ -10714,15 +10765,15 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "baseHotel": "Quintessa Hotel Osaka Umeda Comic&Books",
     "startTime": "09:45 AM",
     "primaryTransit": "Osaka Metro + Standard Aqua-Liner",
-    "criticalRule": "Use the submitted 10:20 Standard Aqua-Liner from Yodoyabashi as the morning anchor; carry ref KEVLSGCB and let the operator confirmation email win. After the cruise, default to neighborhood walking: Tanimachi → Karahori → Midosuji opening-night illumination → Tenma. Osaka Museum of History remains optional only.",
-    "flexOption": "If Aqua-Liner does not confirm or is canceled for weather/river conditions, use a compact Nakanoshima riverside / Central Public Hall exterior walk and continue to Tanimachi/Karahori. Do not replace it with another forced indoor attraction.",
+    "criticalRule": "Use the confirmed 10:20 Standard Aqua-Liner from Yodoyabashi as the morning anchor. Check in by 10:05 with reservation ID GD1CGA75 / application KEVLSGCB. After the 55-minute loop, default to neighborhood walking: Nakanoshima → Tanimachi → Karahori → Midosuji opening-night illumination → Tenma. Osaka Museum of History remains optional only.",
+    "flexOption": "If Aqua-Liner is canceled for weather or river conditions, use a compact Nakanoshima riverside / Central Public Hall exterior walk and continue to Tanimachi/Karahori. Do not replace it with another forced indoor attraction.",
     "briefing": {
       "pace": "River cruise + old neighborhoods + opening-night lights + local food night",
       "walking": "9–12 km",
-      "reservations": "Standard Aqua-Liner request SUBMITTED for 10:20 Yodoyabashi, ref KEVLSGCB; ¥4,000 total. Carry the final email.",
+      "reservations": "Standard Aqua-Liner CONFIRMED for 10:20 from Yodoyabashi. Check in by 10:05. Reservation ID GD1CGA75; application KEVLSGCB; ¥4,000 total.",
       "cutFirst": "Cut optional museum time first; protect Midosuji around dusk and the relaxed Tenma night.",
       "backup": "Cruise canceled -> Nakanoshima riverside / Central Public Hall exterior, then continue to Tanimachi/Karahori.",
-      "localTips": "This version intentionally favors city texture over exhibits. Osaka Museum of History remains a same-day optional detour, not a scheduled obligation."
+      "localTips": "This plan intentionally favors city texture over exhibits. Osaka Museum of History remains a same-day optional detour, not a scheduled obligation."
     },
     "milestones": [
       {
@@ -10740,7 +10791,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "startTime": "10:20",
         "endTime": "11:15",
-        "label": "SUBMITTED · Standard Aqua-Liner cruise",
+        "label": "CONFIRMED · Standard Aqua-Liner cruise",
         "timelineEventTime": "10:20 AM",
         "mapQuery": "Yodoyabashi Port Osaka"
       },
@@ -10812,24 +10863,24 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "time": "09:45 AM",
         "title": "Umeda → Yodoyabashi Port",
-        "description": "Leave enough room for the submitted standard-cruise check-in; the final operator email is authoritative.",
+        "description": "Leave enough room for the confirmed 10:05 check-in and boarding sequence.",
         "mapQuery": "Yodoyabashi Port Osaka",
         "nextTransit": "Standard Aqua-Liner"
       },
       {
         "time": "10:20 AM",
-        "title": "Standard Aqua-Liner — SUBMITTED 10:20",
-        "description": "Use the standard cruise request you submitted: 10:20 from Yodoyabashi, ¥4,000 total, English audio, ref KEVLSGCB.",
+        "title": "Standard Aqua-Liner — CONFIRMED 10:20",
+        "description": "Confirmed 55-minute standard loop from Yodoyabashi Port, ¥4,000 total.",
         "mapQuery": "Yodoyabashi Port Osaka",
         "mapLabel": "Aqua-Liner",
         "nextTransit": "Nakanoshima riverside",
         "execution": {
           "steps": [
-            "Arrive by ~10:05 unless the confirmation instructs otherwise.",
-            "Take the 10:20 standard cruise.",
-            "After disembarking, stay outdoors around Nakanoshima/Yodoyabashi rather than adding the special architecture route."
+            "Arrive by 10:05 and show the confirmation.",
+            "Board the 10:20 standard cruise.",
+            "After disembarking around 11:15, stay outdoors around Nakanoshima/Yodoyabashi rather than adding the special architecture route."
           ],
-          "watch": "Request submitted, not represented as confirmed. Carry the final operator email; weather and river conditions can change operations."
+          "watch": "Reservation ID GD1CGA75; application KEVLSGCB. Weather and river conditions can still change operations."
         },
         "sourceUrl": "https://suijo-bus.osaka/"
       },
@@ -11279,113 +11330,153 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "dayNumber": 15,
     "dateFormatted": "FRI NOV 06",
     "city": "TOKYO",
-    "title": "Osaka -> Tokyo -> Meiji Forest -> Reset -> Edo-Tokyo Museum Night",
+    "title": "Osaka → Tokyo → Tamachi Reset → Edo-Tokyo Museum Night",
     "baseHotel": "Sotetsu Fresa Inn Tokyo-Tamachi",
     "startTime": "10:15 AM",
-    "primaryTransit": "Nozomi + JR + Toei Oedo Line",
-    "criticalRule": "Keep the Osaka-to-Tokyo transfer, compact Meiji visit and a real Tamachi reset, then use the Nov 6 Autumn Night Museum opening at the Edo-Tokyo Museum. Eat in Tamachi first, reach Ryogoku around 17:50, and use roughly 105 minutes on the permanent exhibition only. Nov 6 is officially open until 20:00 with last admission 19:30; entry after 17:00 receives the night-program discount for the permanent exhibition when purchased at the ticket window. Skip the separate BROTHERS IN ARMS special exhibition: it costs more, does not receive the night discount and would cannibalize the permanent collection. Hard-exit about 19:40, return to Tamachi, buy the Fuji breakfast pack and bank sleep.",
-    "flexOption": "Current secular alternatives if Edo-Tokyo stops appealing: (1) Tokyo Metropolitan Teien Art Museum's Marimekko exhibition is also officially open until 20:00 on Nov 6 and the Former Prince Asaka Residence itself is the architecture draw; it is timed-entry and closer to Tamachi. (2) Edo-Tokyo Open-Air Architectural Museum has a Nov 6 special evening opening from 16:30-20:30 with illuminated historic buildings and candlelight; adult admission is JPY400, but the Koganei location creates a much larger cross-city move, so it is not the base plan before Fuji. (3) MONO NO AWARE plays Spotify O-EAST Nov 6, doors 18:00 / start 19:00, advance JPY5,000 + drink. (4) the Blind Rugby International Tournament is officially at Komazawa Olympic Park on Nov 6-7, but its organizer still has not published a usable public match timetable/ticket plan, so keep it as a watch-only option rather than building the day around it.",
+    "primaryTransit": "Nozomi 146 + JR + Toei Oedo Line",
+    "criticalRule": "Nozomi 146 is fixed: Shin-Osaka 13:39 → Tokyo 16:06, Car 13 Seats 14-D/14-E. The former 14:30 west-Tokyo sightseeing block is impossible and is removed. Use a relaxed late morning in Osaka, eat before boarding, reach the Tamachi hotel around 16:45, take only a quick reset, then go directly to Ryogoku for the Edo-Tokyo Museum Friday night opening. Hard-exit around 19:40, eat in Tamachi afterward, buy the Fuji breakfast pack and bank sleep.",
+    "flexOption": "If Edo-Tokyo stops appealing, Teien Art Museum remains the closer timed-entry alternative on the same late-opening date. The Koganei open-air museum and live-music options require a larger cross-city move and remain non-base alternatives. Do not insert another west-Tokyo stop into this transfer day.",
     "briefing": {
-      "pace": "Transfer + compact Meiji + reset + early dinner + focused physical-history museum",
-      "walking": "About 5-8 km",
-      "reservations": "Nozomi only for the base plan. Edo-Tokyo permanent exhibition can be bought at the 1F window; buy after 17:00 to use the official night-program discount.",
-      "cutFirst": "The separate special exhibition is already excluded. If the afternoon slips, shorten the permanent museum pass rather than deleting the hotel reset or pushing the night late. Hard-exit by roughly 19:40 and protect Fuji sleep.",
-      "backup": "Edo-Tokyo unavailable / mood mismatch -> Teien Art Museum if a 17:00+ timed ticket is clean. If you want live music instead, MONO NO AWARE is the exact-date alternative. Blind Rugby remains watch-only until the organizer publishes a practical spectator schedule.",
-      "localTips": "The permanent exhibition spans about 9,000 square meters across floors 5-6 and emphasizes full-scale reconstructions, detailed city models and real everyday objects. The museum is about 1 minute from Toei Oedo Line Ryogoku A3/A4, which makes the evening easy to time-box."
+      "pace": "Relaxed Osaka morning → confirmed afternoon train → quick hotel reset → focused museum night → late dinner",
+      "walking": "About 4–7 km",
+      "reservations": "Nozomi 146 confirmed: Shin-Osaka 13:39 → Tokyo 16:06, Car 13 Seats 14-D/14-E, ref 2011. Edo-Tokyo permanent exhibition is walk-up after 17:00.",
+      "cutFirst": "Cut the optional Namba wander first. Never compromise the 12:50 Shin-Osaka buffer, the Tamachi check-in, or the museum hard exit. Dinner moves after the museum.",
+      "backup": "Edo-Tokyo unavailable / mood mismatch → Teien Art Museum only if a clean 17:00+ timed ticket exists. Otherwise use a calm Tamachi dinner and early night.",
+      "localTips": "Tokyo Station → Tamachi is straightforward, but allow the full station transfer and hotel walk. The museum is about one minute from Oedo Line Ryogoku A3/A4."
     },
     "milestones": [
       {
         "startTime": "10:15",
-        "endTime": "11:45",
-        "label": "Osaka checkout -> Nozomi",
+        "endTime": "10:45",
+        "label": "Osaka checkout · final pack",
+        "timelineEventTime": "10:15 AM",
+        "mapQuery": "APA Hotel Namba-Eki Higashi"
+      },
+      {
+        "startTime": "10:45",
+        "endTime": "11:35",
+        "label": "Relaxed Namba final morning",
+        "timelineEventTime": "10:15 AM",
+        "mapQuery": "Namba Parks"
+      },
+      {
+        "startTime": "11:35",
+        "endTime": "12:10",
+        "label": "Namba → Shin-Osaka",
+        "timelineEventTime": "11:35 AM",
         "mapQuery": "Shin-Osaka Station"
       },
       {
-        "startTime": "11:45",
-        "endTime": "12:15",
-        "label": "SHINKANSEN LUNCH - Ekiben Nigiwai",
+        "startTime": "12:10",
+        "endTime": "12:50",
+        "label": "LUNCH · Ekiben Nigiwai / station meal",
+        "timelineEventTime": "12:10 PM",
         "mapQuery": "Ekiben Nigiwai Shin Osaka"
       },
       {
-        "startTime": "12:15",
+        "startTime": "12:50",
         "endTime": "13:30",
-        "label": "Nozomi -> Tokyo / hotel",
-        "mapQuery": "Tamachi Station Tokyo"
+        "label": "Protected platform / boarding buffer",
+        "mapQuery": "Shin-Osaka Station"
       },
       {
-        "startTime": "14:30",
-        "endTime": "15:25",
-        "label": "Meiji forest / shrine",
-        "mapQuery": "Meiji Jingu"
+        "startTime": "13:39",
+        "endTime": "16:06",
+        "label": "CONFIRMED · Nozomi 146 · Shin-Osaka → Tokyo",
+        "timelineEventTime": "01:39 PM",
+        "mapQuery": "Shin-Osaka Station"
       },
       {
-        "startTime": "15:25",
-        "endTime": "16:05",
-        "label": "Meiji -> Tamachi",
+        "startTime": "16:06",
+        "endTime": "16:45",
+        "label": "Tokyo Station → Tamachi hotel",
+        "timelineEventTime": "04:06 PM",
         "mapQuery": "Sotetsu Fresa Inn Tokyo-Tamachi"
       },
       {
-        "startTime": "16:05",
-        "endTime": "16:40",
-        "label": "HOTEL RESET - shower / Fuji prep",
+        "startTime": "16:45",
+        "endTime": "17:10",
+        "label": "QUICK RESET · check-in / change / Fuji bag",
+        "timelineEventTime": "04:06 PM",
         "mapQuery": "Sotetsu Fresa Inn Tokyo-Tamachi"
       },
       {
-        "startTime": "16:40",
-        "endTime": "17:15",
-        "label": "EARLY DINNER - Ootoya Tamachi",
-        "mapQuery": "Ootoya Tamachi"
-      },
-      {
-        "startTime": "17:15",
-        "endTime": "17:55",
-        "label": "Tamachi / Mita -> Ryogoku",
+        "startTime": "17:10",
+        "endTime": "17:45",
+        "label": "Tamachi / Mita → Ryogoku",
+        "timelineEventTime": "05:10 PM",
         "mapQuery": "Edo-Tokyo Museum"
       },
       {
-        "startTime": "17:55",
+        "startTime": "17:45",
         "endTime": "19:40",
-        "label": "EDO-TOKYO MUSEUM - permanent exhibition night opening",
+        "label": "EDO-TOKYO MUSEUM · permanent exhibition night opening",
+        "timelineEventTime": "05:45 PM",
         "mapQuery": "Edo-Tokyo Museum"
       },
       {
         "startTime": "19:40",
         "endTime": "20:25",
-        "label": "Ryogoku -> Tamachi",
+        "label": "Ryogoku → Tamachi",
+        "timelineEventTime": "07:40 PM",
         "mapQuery": "Tamachi Station Tokyo"
       },
       {
         "startTime": "20:25",
-        "endTime": "20:45",
-        "label": "FUJI BREAKFAST PACK - Life / first convenient konbini",
+        "endTime": "21:10",
+        "label": "DINNER · Ootoya Tamachi",
+        "timelineEventTime": "08:25 PM",
+        "mapQuery": "Ootoya Tamachi"
+      },
+      {
+        "startTime": "21:10",
+        "endTime": "21:30",
+        "label": "FUJI BREAKFAST PACK · Life / konbini",
+        "timelineEventTime": "09:10 PM",
         "mapQuery": "Life msb Tamachi"
       }
     ],
     "events": [
       {
         "time": "10:15 AM",
-        "title": "Osaka checkout -> Nozomi",
-        "description": "Transfer to Tokyo; lunch remains onboard so the afternoon stays intact.",
-        "mapQuery": "Shin-Osaka Station",
-        "mapLabel": "Shin-Osaka",
-        "nextTransit": "11:45 onboard lunch",
-        "kind": "transit",
+        "title": "Osaka checkout · relaxed Namba final morning",
+        "description": "Use the late confirmed train to avoid a rushed morning, but keep the block local and luggage-safe.",
+        "mapQuery": "Namba Parks",
+        "mapLabel": "Namba",
+        "nextTransit": "Namba → Shin-Osaka",
+        "kind": "activity",
         "execution": {
           "steps": [
-            "Check out around 10:15 with light luggage; the main suitcases should already be forwarded.",
-            "Ride Midosuji Line to Shin-Osaka.",
-            "Board the reserved roughly 11:00 Nozomi; Seat E is the left-side eastbound Fuji-facing window.",
-            "Disembark at Shinagawa around early afternoon and continue one stop to Tamachi."
+            "Check out around 10:15; the main suitcases should already be forwarded.",
+            "Use one relaxed nearby block—Namba Parks, coffee or a short neighborhood walk.",
+            "Do not add a distant attraction or a new shopping mission.",
+            "Leave Namba by about 11:35."
           ]
         }
       },
       {
-        "time": "11:45 AM",
-        "title": "Lunch - Ekiben Nigiwai Shin-Osaka (onboard)",
-        "description": "Buy at Shin-Osaka and eat on the train to Tokyo.",
+        "time": "11:35 AM",
+        "title": "Namba → Shin-Osaka · protected station move",
+        "description": "Move early enough that lunch and boarding remain calm.",
+        "mapQuery": "Shin-Osaka Station",
+        "mapLabel": "Shin-Osaka",
+        "nextTransit": "Lunch / Nozomi 146",
+        "kind": "transit",
+        "execution": {
+          "steps": [
+            "Use the Midosuji Line to Shin-Osaka.",
+            "Reach the station around 12:10.",
+            "Keep luggage with you and locate the Shinkansen gates before lunch."
+          ]
+        }
+      },
+      {
+        "time": "12:10 PM",
+        "title": "Lunch — Ekiben Nigiwai Shin-Osaka",
+        "description": "Eat at the station or carry the meal aboard; the 13:39 departure remains the hard anchor.",
         "mapQuery": "Ekiben Nigiwai Shin-Osaka",
         "mapLabel": "Onboard",
-        "nextTransit": "Continue to Tokyo",
+        "nextTransit": "Nozomi 146",
         "kind": "meal",
         "foodPlace": "Ekiben Nigiwai - Eki Marche Shin-Osaka",
         "foodBackup": "Shin-Osaka station convenience store",
@@ -11394,106 +11485,71 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "foodSwitch": "If the bento counter is busy, buy the first good station bento/onigiri pack and board; never delay the Nozomi.",
         "execution": {
           "steps": [
-            "Buy at Ekiben Nigiwai before boarding.",
-            "Eat onboard so Meiji begins on time."
+            "Buy a chicken/beef/pork ekiben or another quick cooked meal.",
+            "Finish or board with it by about 12:50.",
+            "Be near the platform by 13:20."
           ],
           "protein": "~25-40g"
         }
       },
       {
-        "time": "12:15 PM",
-        "title": "Finish Nozomi -> Tokyo arrival",
-        "description": "Hotel transfer and light unpack only; the real recovery block comes after Meiji.",
-        "mapQuery": "Sotetsu Fresa Inn Tokyo-Tamachi",
-        "mapLabel": "Tamachi",
-        "nextTransit": "Meiji Jingu",
+        "time": "01:39 PM",
+        "title": "Nozomi 146 → Tokyo — CONFIRMED",
+        "description": "Confirmed Tokaido Shinkansen transfer: Shin-Osaka 13:39 → Tokyo 16:06.",
+        "mapQuery": "Shin-Osaka Station",
+        "mapLabel": "Nozomi 146",
+        "nextTransit": "Tokyo Station → Tamachi hotel",
         "kind": "transit",
         "execution": {
           "steps": [
-            "Continue from Shinagawa to Tamachi and drop bags/check in as available.",
-            "Do not reopen shopping; all intentional Tokyo shopping was front-loaded before Nov 1.",
-            "Leave for Meiji with a compact day bag."
+            "Board Car 13 and use Seats 14-D & 14-E.",
+            "Seat 14-E is the Mt. Fuji window side.",
+            "Booking ref 2011; live platform information wins.",
+            "Arrive Tokyo Station at 16:06."
           ]
         }
       },
       {
-        "time": "02:30 PM",
-        "title": "Meiji Jingu - compact forest visit",
-        "description": "Keep this with your friend: cedar approach and main courtyard, with no museum/garden detours.",
-        "mapQuery": "Meiji Jingu",
-        "mapLabel": "Meiji Jingu",
-        "nextTransit": "Tamachi reset",
-        "execution": {
-          "steps": [
-            "Reach the Harajuku/Meiji area around 14:30.",
-            "Walk the main cedar approach and shrine courtyard.",
-            "Exit around 15:25 and return directly to Tamachi."
-          ]
-        }
-      },
-      {
-        "time": "04:05 PM",
-        "title": "Tamachi hotel reset - shower + Fuji prep",
-        "description": "Use a real 35-minute reset before the museum. Tomorrow's Fuji bag is solved now, not after the museum.",
+        "time": "04:06 PM",
+        "title": "Tokyo Station → Tamachi · check-in / quick reset",
+        "description": "The exact arrival removes the old sightseeing block from the day. Transfer straight to the hotel, check in and prepare for Ryogoku.",
         "mapQuery": "Sotetsu Fresa Inn Tokyo-Tamachi",
-        "mapLabel": "Tamachi reset",
-        "nextTransit": "Ootoya Tamachi",
-        "kind": "activity",
+        "mapLabel": "Tamachi",
+        "nextTransit": "Ryogoku / Edo-Tokyo Museum",
+        "kind": "transit",
         "execution": {
           "steps": [
-            "Return around 16:05 and shower/change.",
-            "Check the Nov 7 Fuji tickets, operator message, weather and small day bag.",
-            "Leave around 16:40 for a fast early dinner."
+            "Take the simplest live JR route from Tokyo Station to Tamachi.",
+            "Reach the hotel around 16:45, check in and change quickly.",
+            "Confirm Fuji tickets / day bag now.",
+            "Leave around 17:10; do not add shopping or sightseeing."
           ]
         }
       },
       {
-        "time": "04:40 PM",
-        "title": "Early dinner - Ootoya Tamachi",
-        "description": "Eat before Ryogoku so the museum's limited Friday-night window is uninterrupted.",
-        "mapQuery": "Ootoya Tamachi",
-        "mapLabel": "Ootoya",
-        "nextTransit": "Ryogoku / Edo-Tokyo Museum",
-        "kind": "meal",
-        "foodPlace": "Ootoya Tamachi",
-        "foodBackup": "Tamachi Station zero-wait meal / convenience store",
-        "foodBackupMap": "Tamachi Station",
-        "foodOrder": "Choose a grilled chicken/pork/fish set based on preference; prioritize a full protein-forward set before the museum.",
-        "foodSwitch": "If not seated promptly, switch immediately to a zero-wait station meal; the museum closes at 20:00.",
-        "execution": {
-          "steps": [
-            "Leave the hotel around 16:40.",
-            "Eat efficiently and finish around 17:15.",
-            "Use the live quickest route from Mita/Tamachi toward Toei Oedo Line Ryogoku."
-          ],
-          "protein": "~35-55g target"
-        },
-        "sourceUrl": "https://store.ootoya.com/detail/27227/"
-      },
-      {
-        "time": "05:15 PM",
-        "title": "Tamachi / Mita -> Ryogoku - night-museum positioning",
-        "description": "Build enough transfer margin to enter after 17:00, claim the official night discount and still get almost two hours inside.",
+        "time": "05:10 PM",
+        "title": "Tamachi / Mita → Ryogoku · night-museum positioning",
+        "description": "Go directly after check-in so the permanent exhibition gets a useful window.",
         "mapQuery": "Edo-Tokyo Museum",
         "mapLabel": "Ryogoku",
         "nextTransit": "Edo-Tokyo Museum ticket window",
         "kind": "transit",
         "execution": {
           "steps": [
-            "Use the live quickest route; a Toei transfer onto the Oedo Line is usually the most direct subway logic from the Mita/Tamachi area.",
-            "Target Ryogoku around 17:50-17:55.",
-            "The museum is officially about 1 minute from Oedo Line Ryogoku exits A3/A4, so there is almost no final-mile uncertainty."
+            "Use the live quickest route, usually via a Toei connection to the Oedo Line.",
+            "Target Ryogoku around 17:40–17:45.",
+            "Enter immediately after buying the permanent-exhibition ticket."
           ]
         },
         "sourceUrl": "https://www.edo-tokyo-museum.or.jp/en/information/access/"
       },
       {
-        "time": "05:55 PM",
+        "time": "05:45 PM",
         "title": "Edo-Tokyo Museum - focused permanent-exhibition night",
         "description": "Use the late Friday opening for the museum's physical reconstructions and city-history models, not a second expensive special exhibition.",
         "mapQuery": "Edo-Tokyo Museum",
         "mapLabel": "Edo-Tokyo Museum",
-        "nextTransit": "Tamachi / Fuji breakfast pack",
+        "nextTransit": "Tamachi dinner",
         "kind": "activity",
         "execution": {
           "steps": [
@@ -11509,8 +11565,47 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       },
       {
         "time": "07:40 PM",
-        "title": "Ryogoku -> Tamachi + Fuji breakfast pack",
-        "description": "The whole point of using the museum's early night opening is to finish early enough to protect the next morning.",
+        "title": "Ryogoku → Tamachi",
+        "description": "Leave on time, return directly and eat near the hotel.",
+        "mapQuery": "Tamachi Station Tokyo",
+        "mapLabel": "Tamachi return",
+        "nextTransit": "Ootoya Tamachi",
+        "kind": "transit",
+        "execution": {
+          "steps": [
+            "Hard-exit the museum around 19:40.",
+            "Take the live easiest route back to Tamachi.",
+            "Do not detour before dinner."
+          ]
+        }
+      },
+      {
+        "time": "08:25 PM",
+        "title": "Dinner — Ootoya Tamachi",
+        "description": "The confirmed train moves dinner after the museum; use the predictable hotel-area set meal and stop.",
+        "mapQuery": "Ootoya Tamachi",
+        "mapLabel": "Ootoya",
+        "nextTransit": "Fuji breakfast pack",
+        "kind": "meal",
+        "foodPlace": "Ootoya Tamachi",
+        "foodBackup": "Tamachi Station zero-wait meal / convenience store",
+        "foodBackupMap": "Tamachi Station",
+        "foodOrder": "Choose a grilled chicken/pork/fish set based on preference; prioritize a full protein-forward set before the museum.",
+        "foodSwitch": "If Ootoya has a meaningful wait, use the first zero-wait Tamachi set meal or convenience-store meal; sleep matters more than restaurant upside.",
+        "execution": {
+          "steps": [
+            "Eat promptly after returning to Tamachi.",
+            "Choose a full protein-forward set.",
+            "Finish around 21:10, then buy only tomorrow’s breakfast items."
+          ],
+          "protein": "~35-55g target"
+        },
+        "sourceUrl": "https://store.ootoya.com/detail/27227/"
+      },
+      {
+        "time": "09:10 PM",
+        "title": "Fuji breakfast pack — Life / first convenient konbini",
+        "description": "Solve tomorrow’s early breakfast on the direct route to the hotel.",
         "mapQuery": "Tamachi Station Tokyo",
         "mapLabel": "Tamachi return",
         "nextTransit": "Hotel / sleep",
@@ -11522,9 +11617,9 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "foodSwitch": "If Life is not frictionless, use the first konbini; product type matters more than brand.",
         "execution": {
           "steps": [
-            "Leave the museum around 19:40 and take the live easiest route back to Tamachi.",
-            "Pick up the Fuji breakfast pack only on the direct route home.",
-            "Be back at the hotel around 20:45-ish and stop for the night."
+            "Buy one carb + OIKOS/SAVAS + egg/chicken.",
+            "Add one portable backup item for Kawaguchiko only if useful.",
+            "Return to the hotel immediately and stop for the night."
           ]
         }
       }
@@ -11538,31 +11633,32 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "dayNumber": 16,
     "dateFormatted": "SAT NOV 07",
     "city": "TOKYO",
-    "title": "Mt. Fuji South Shore · Forest Adventure · Tori-no-Ichi",
+    "title": "Mt. Fuji South Shore · Aokigahara Ice Cave · Tori-no-Ichi",
     "baseHotel": "Sotetsu Fresa Inn Tokyo-Tamachi",
     "startTime": "07:20 AM",
-    "primaryTransit": "Fuji Excursion 7 & 48 + short local taxi legs",
-    "criticalRule": "Forest Adventure Fuji is the active anchor. Book Trek 90 + Excite around 13:00, use a conservative 12:35–15:00 on-site envelope, and preserve Fuji Excursion 48 at 17:41. The large station buffer is intentional. Then go directly to Ohtori Shrine / Iriya for the Nov 7 Ichi-no-Tori, which officially runs 00:00–24:00.",
-    "flexOption": "If Forest Adventure closes for weather/operations, use Fuji-Q pay-per-ride or a simple lake / café day. Do not resurrect the cave plan. If the Fuji day finishes early, bank the time at Kawaguchiko Station or reach Tori-no-Ichi earlier; do not add a remote north-shore detour.",
+    "primaryTransit": "Fuji Excursion 7 & 48 + THE HIGHEST PEAK station pickup / drop-off",
+    "criticalRule": "The cave tour is confirmed. Meet guide Tada in front of the Kawaguchiko Station Tourist Information Center at 13:20; tour 14:00–17:00; direct station drop-off is expected around 17:10. Fuji Excursion 48 leaves at 17:41, so the 31-minute buffer is protected and no post-tour stop is allowed. Then continue directly to Ohtori Shrine / Iriya for the Nov 7 Ichi-no-Tori.",
+    "flexOption": "If Tada cancels for weather or safety, keep the confirmed trains and use a relaxed south-shore / station-area day or Fuji-Q pay-per-ride. If the live return estimate slips, ask for the fastest safe direct station drop-off and go straight to the platform. Do not add a north-shore or bus-dependent detour.",
     "briefing": {
-      "pace": "Scenic lake prelude → active canopy / zipline course → protected train buffer → date-specific Tokyo festival",
-      "walking": "About 6–9 km total plus 90 minutes of elevated obstacle / zipline activity",
-      "reservations": "Fuji Excursion 7 & 48 BOOKED. Forest Adventure Trek 90 + Excite is the one remaining booking action. Tori-no-Ichi is untimed.",
-      "cutFirst": "Shorten the south-shore walk first. Never compromise the 12:35 park arrival or the 17:20 boarding buffer.",
-      "backup": "Forest Adventure weather closure -> Fuji-Q or relaxed lake / café plan. Severe area-wide weather -> Tokyo recovery, with Tori-no-Ichi still available at night if energy is good.",
-      "localTips": "The official Fuji park has 11 Trek sites / 91 activities and a 90-minute + Excite booking product. Use a taxi both ways; ask the driver to search the facility by name."
+      "pace": "Scenic lake prelude → confirmed guided forest / lava-cave adventure → tight protected train handoff → date-specific Tokyo festival",
+      "walking": "About 6–9 km total plus guided forest walking and natural cave footing",
+      "reservations": "Fuji Excursion 7 confirmed, Car 3 Seats 1-C/D, ref E99479. THE HIGHEST PEAK confirmed with Tada, 13:20 pickup / 14:00–17:00 tour / ~17:10 station return, ¥11,800 total. Fuji Excursion 48 confirmed, Car 1 Seats 1-C/D, ref E00812.",
+      "cutFirst": "Shorten the south-shore walk first. Never compromise the 13:20 rendezvous or the 17:10→17:41 station handoff.",
+      "backup": "Guide cancellation → station-oriented lake / café day or Fuji-Q while retaining Fuji Excursion 48. Severe area-wide weather → Tokyo recovery, with Tori-no-Ichi still available at night if energy is good.",
+      "localTips": "Meet in front of the Kawaguchiko Station Tourist Information Center. After the tour, bathroom/snack can wait until after boarding; the confirmed train is the priority."
     },
     "milestones": [
       {
         "startTime": "07:20",
         "endTime": "07:35",
-        "label": "FUJI · WEATHER / PARK STATUS GATE",
-        "mapQuery": "Forest Adventure Fuji"
+        "label": "FUJI · WEATHER / GUIDE STATUS GATE",
+        "mapQuery": "Kawaguchiko Station"
       },
       {
         "startTime": "07:35",
         "endTime": "07:50",
         "label": "FUJI BREAKFAST · eat prepacked fuel",
+        "timelineEventTime": "07:35 AM",
         "mapQuery": "Sotetsu Fresa Inn Tokyo Tamachi"
       },
       {
@@ -11580,7 +11676,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "startTime": "08:30",
         "endTime": "10:26",
-        "label": "BOOKED · Fuji Excursion 7",
+        "label": "CONFIRMED · Fuji Excursion 7",
+        "timelineEventTime": "08:30 AM",
         "mapQuery": "Shinjuku Station"
       },
       {
@@ -11599,47 +11696,49 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       },
       {
         "startTime": "12:10",
-        "endTime": "12:35",
-        "label": "Taxi envelope → Forest Adventure Fuji",
-        "mapQuery": "Forest Adventure Fuji"
-      },
-      {
-        "startTime": "12:35",
-        "endTime": "13:00",
-        "label": "Check-in · gear · safety briefing",
+        "endTime": "12:45",
+        "label": "Return to Kawaguchiko Station · warm-up / restroom",
         "timelineEventTime": "12:10 PM",
-        "mapQuery": "Forest Adventure Fuji"
+        "mapQuery": "Kawaguchiko Station Tourist Information Center"
       },
       {
-        "startTime": "13:00",
-        "endTime": "15:00",
-        "label": "FOREST ADVENTURE · Trek 90 + Excite · protected envelope",
-        "timelineEventTime": "01:00 PM",
-        "mapQuery": "Forest Adventure Fuji"
+        "startTime": "12:45",
+        "endTime": "13:20",
+        "label": "Protected rendezvous buffer · Tourist Information Center",
+        "timelineEventTime": "12:10 PM",
+        "mapQuery": "Kawaguchiko Station Tourist Information Center"
       },
       {
-        "startTime": "15:00",
-        "endTime": "15:25",
-        "label": "Taxi → Kawaguchiko Station",
+        "startTime": "13:20",
+        "endTime": "14:00",
+        "label": "CONFIRMED PICKUP · Tada · station → cave area",
+        "timelineEventTime": "01:20 PM",
+        "mapQuery": "Kawaguchiko Station Tourist Information Center"
+      },
+      {
+        "startTime": "14:00",
+        "endTime": "17:00",
+        "label": "CONFIRMED · AOKIGAHARA ICE CAVE · THE HIGHEST PEAK",
+        "timelineEventTime": "02:00 PM",
+        "mapQuery": "Aokigahara Forest"
+      },
+      {
+        "startTime": "17:00",
+        "endTime": "17:10",
+        "label": "Direct drop-off → Kawaguchiko Station",
         "mapQuery": "Kawaguchiko Station"
       },
       {
-        "startTime": "15:25",
-        "endTime": "17:20",
-        "label": "HUGE BUFFER · café / souvenir / short lake reset",
-        "timelineEventTime": "03:25 PM",
-        "mapQuery": "Kawaguchiko Station"
-      },
-      {
-        "startTime": "17:20",
+        "startTime": "17:10",
         "endTime": "17:41",
-        "label": "Boarding buffer · Fuji Excursion 48",
+        "label": "PROTECTED · 31-minute platform / boarding buffer",
+        "timelineEventTime": "05:10 PM",
         "mapQuery": "Kawaguchiko Station"
       },
       {
         "startTime": "17:41",
         "endTime": "19:40",
-        "label": "BOOKED · Fuji Excursion 48",
+        "label": "CONFIRMED · Fuji Excursion 48",
         "timelineEventTime": "05:41 PM",
         "mapQuery": "Kawaguchiko Station"
       },
@@ -11666,19 +11765,19 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "events": [
       {
         "time": "07:20 AM",
-        "title": "Fuji · weather / park-status gate",
-        "description": "Fuji visibility is a bonus, not the go/no-go criterion. Check severe weather and Forest Adventure operations; cloud alone is not a reason to cancel.",
-        "mapQuery": "Forest Adventure Fuji",
+        "title": "Fuji · weather / guide-status gate",
+        "description": "Fuji visibility is a bonus. Check severe weather and Tada’s latest operational message; the confirmed cave tour—not a perfect mountain view—is the anchor.",
+        "mapQuery": "Kawaguchiko Station",
         "mapLabel": "Fuji conditions",
         "nextTransit": "Tamachi → Shinjuku if GO",
         "execution": {
           "steps": [
-            "Check severe rain/wind and the park’s latest operating notice.",
+            "Check severe rain/wind and any message from guide Tada.",
             "Do not cancel just because Fuji is cloudy.",
-            "If the park closes, choose Fuji-Q or a simple lake / café day before leaving Tamachi.",
+            "If the operator cancels, choose the station-oriented backup before leaving Tamachi.",
             "Make the call by about 07:35."
           ],
-          "recheck": "Forest Adventure remains the only unbooked activity; reserve Trek 90 + Excite before departure."
+          "recheck": "The tour is confirmed; this gate is only for live operational safety or cancellation."
         }
       },
       {
@@ -11712,8 +11811,9 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "execution": {
           "steps": [
             "Reach the platform by about 08:20.",
-            "Confirm Fuji Excursion 7 on the live board.",
-            "Board the reserved service and stay aboard to Kawaguchiko."
+            "Board Fuji Excursion 7 at 08:30, Car 3, Seats 1-C & 1-D.",
+            "Booking ref E99479; live platform information wins.",
+            "Stay aboard to Kawaguchiko, arriving 10:26."
           ]
         },
         "sourceUrl": "https://timetables.jreast.co.jp/en/2610/train/050/054791.html"
@@ -11721,7 +11821,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "time": "10:35 AM",
         "title": "South-shore lakeside walk — flexible Fuji views",
-        "description": "A relaxed active prelude, not a viewpoint checklist. Stay south of the lake and keep the Forest Adventure transfer buffer sacred.",
+        "description": "A relaxed active prelude, not a viewpoint checklist. Stay south of the lake and keep the 13:20 cave-tour rendezvous sacred.",
         "mapQuery": "Oike Park Kawaguchiko",
         "mapLabel": "South shore",
         "nextTransit": "Takegawa Udon",
@@ -11739,77 +11839,96 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "time": "11:30 AM",
         "title": "Lunch — Takegawa Udon",
-        "description": "Keep the local Yoshida-udon stop, but hard-exit for the park transfer.",
+        "description": "Keep the local Yoshida-udon stop, but hard-exit for the station rendezvous.",
         "mapQuery": "Takegawa Udon Kawaguchiko",
         "mapLabel": "Takegawa Udon",
-        "nextTransit": "Taxi to Forest Adventure Fuji",
+        "nextTransit": "Kawaguchiko Station Tourist Information Center",
         "kind": "meal",
         "foodPlace": "Takegawa Udon",
         "foodBackup": "Gateway Fujiyama Kawaguchiko Station",
         "foodBackupMap": "Gateway Fujiyama Kawaguchiko Station",
         "foodOrder": "Yoshida udon; meat udon if wanted.",
-        "foodSwitch": "Queue >15 minutes, sold out, or lunch threatens a 12:10 exit -> Gateway Fujiyama immediately.",
+        "foodSwitch": "Queue >15 minutes, sold out, or lunch threatens a 12:10 exit → Gateway Fujiyama immediately.",
         "foodExtra": "Bring cash; do not spend time troubleshooting payment.",
         "execution": {
           "steps": [
             "Use the 15-minute queue gate.",
             "Order quickly.",
-            "Hard-exit around 12:10 and call / join a taxi."
+            "Hard-exit around 12:10 and return to Kawaguchiko Station."
           ],
           "protein": "~20–35g depending order."
         }
       },
       {
         "time": "12:10 PM",
-        "title": "Taxi + check-in buffer → Forest Adventure Fuji",
-        "description": "A deliberate 50-minute envelope covers taxi availability, arrival, harness fitting and the safety briefing.",
-        "mapQuery": "Forest Adventure Fuji",
-        "mapLabel": "Forest Adventure",
-        "nextTransit": "Trek 90 + Excite",
+        "title": "Return to Kawaguchiko Station · cave-tour buffer",
+        "description": "Deliberate slack for restroom, warm layers and a calm meet-up at the exact pickup point.",
+        "mapQuery": "Kawaguchiko Station Tourist Information Center",
+        "mapLabel": "Tourist Information Center",
+        "nextTransit": "Meet Tada at 13:20",
         "kind": "transit",
         "execution": {
           "steps": [
-            "Leave lunch by 12:10.",
-            "Use a taxi and search the facility by name, not only the shared address.",
-            "Target physical arrival by 12:35.",
-            "Finish check-in / gear / safety before the booked start."
-          ],
-          "watch": "If taxi dispatch is slow, cut lake/lunch linger—not the activity or return-train buffer."
+            "Return to Kawaguchiko Station by about 12:45.",
+            "Use the restroom, layer up and organize only what the cave requires.",
+            "Wait in front of the Tourist Information Center.",
+            "Be visibly ready before 13:20; do not wander into shops at the rendezvous time."
+          ]
         }
       },
       {
-        "time": "01:00 PM",
-        "title": "Forest Adventure Fuji — Trek 90 + Excite",
-        "description": "The reliable active replacement: elevated obstacle courses and ziplines, plus the more intense Excite elements.",
-        "mapQuery": "Forest Adventure Fuji",
-        "mapLabel": "Forest Adventure",
-        "nextTransit": "Taxi to Kawaguchiko Station",
+        "time": "01:20 PM",
+        "title": "Meet Tada · confirmed cave-tour pickup",
+        "description": "Guide pickup in front of the Kawaguchiko Station Tourist Information Center, followed by direct transfer and preparation.",
+        "mapQuery": "Kawaguchiko Station Tourist Information Center",
+        "mapLabel": "Meet Tada",
+        "nextTransit": "Aokigahara cave area",
+        "kind": "transit",
+        "execution": {
+          "steps": [
+            "Meet Tada at 13:20.",
+            "Confirm the expected direct station return around 17:10.",
+            "Use the drive for briefing and gear preparation.",
+            "The activity itself begins at 14:00."
+          ],
+          "watch": "The guide’s live instructions and safety decisions override the planning minute."
+        }
+      },
+      {
+        "time": "02:00 PM",
+        "title": "THE HIGHEST PEAK · Aokigahara Ice Cave Adventure — CONFIRMED",
+        "description": "Confirmed guided three-hour forest-and-natural-lava-cave adventure with Tada.",
+        "mapQuery": "Aokigahara Forest",
+        "mapLabel": "Aokigahara cave",
+        "nextTransit": "Direct drop-off at Kawaguchiko Station",
         "kind": "activity",
         "execution": {
           "steps": [
-            "Book Trek 90 + Excite around 13:00.",
-            "Use the 90-minute course rather than 120 minutes; the safety / overrun envelope runs through 15:00.",
-            "Wear closed, grippy shoes and movement-friendly layers.",
-            "Leave the facility by 15:00 even if the group could keep playing."
+            "Tour runs 14:00–17:00.",
+            "Wear warm layers and grippy closed shoes; use the guide-provided safety gear.",
+            "Follow Tada’s pace and cave-safety instructions exactly.",
+            "At the end, take the direct ride back to Kawaguchiko Station with no detour."
           ],
-          "watch": "The official product is time-based. Weather, course controls and the booked start time override the planning minute."
-        },
-        "sourceUrl": "https://reserve.foret-aventure.jp/user/courses/461"
+          "watch": "Confirmed station drop-off is about 17:10. Fuji Excursion 48 leaves at 17:41, leaving 31 scheduled minutes.",
+          "sourceUrl": "https://www.the-highestpeak.com/aokigahara-forest-cave"
+        }
       },
       {
-        "time": "03:25 PM",
-        "title": "Kawaguchiko Station buffer — café / souvenir / short lake reset",
-        "description": "Nearly two hours of protected slack after the planned station return. This is train insurance, not empty time that needs filling.",
+        "time": "05:10 PM",
+        "title": "Kawaguchiko Station drop-off · protected train handoff",
+        "description": "The 31-minute buffer is for platform navigation and boarding only—not another stop.",
         "mapQuery": "Kawaguchiko Station",
-        "mapLabel": "Station buffer",
+        "mapLabel": "31-minute buffer",
         "nextTransit": "Fuji Excursion 48",
+        "kind": "transit",
         "execution": {
           "steps": [
-            "Bathroom, warm drink/snack and recharge first.",
-            "Use nearby souvenirs or a very short lake revisit only if everyone is settled.",
-            "Be back at the station by 17:20.",
-            "Do not start any bus-dependent attraction."
-          ]
+            "Exit the vehicle around 17:10 and go straight into the station.",
+            "Check the live platform immediately.",
+            "Use restroom or buy a drink only if the train is fully located and boarding is safe.",
+            "Be at the train well before 17:41."
+          ],
+          "watch": "If the return drive is delayed, boarding wins over every nonessential task."
         }
       },
       {
@@ -11822,10 +11941,10 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "kind": "transit",
         "execution": {
           "steps": [
-            "Board at Kawaguchiko at 17:41.",
-            "Arrive Shinjuku 19:40.",
-            "Use the fastest live rail route toward Iriya.",
-            "From Iriya Station Exit 3, walk to the shrine area."
+            "Board Fuji Excursion 48 at 17:41, Car 1, Seats 1-C & 1-D.",
+            "Booking ref E00812; live platform information wins.",
+            "Arrive Shinjuku at 19:40.",
+            "Continue directly toward Iriya / Ohtori Shrine."
           ]
         },
         "sourceUrl": "https://timetables.jreast.co.jp/en/2610/train/060/063472.html"
@@ -12078,16 +12197,16 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "hack": "Oct 25 Yokohama Marathon road restrictions make rail + walking the default. Avoid buses/taxis through the afternoon restriction window."
   },
   {
-    "title": "3. Asakusa → Nikko",
-    "tag": "SPACIA X",
-    "path": "Tobu Asakusa 07:50 -> Tobu-Nikko 09:39; return 17:44 -> 19:35",
-    "hack": "The early train buys useful mountain time and protects against late-October Irohazaka traffic."
+    "title": "3. Asakusa → Shinjuku → Nikko",
+    "tag": "Confirmed Nikko 21 + Kegon 052",
+    "path": "Asakusa -> Shinjuku -> JR Nikko 21 08:03 -> Tobu-Nikko 10:01; return Kegon 052 18:41 -> Asakusa 20:35",
+    "hack": "The outbound now starts at Shinjuku, so leave Asakusa early. Run the live Upper-Nikko gate at 10:01 and protect the 18:41 confirmed return."
   },
   {
     "title": "4. Tokyo shopping → Kyoto",
     "tag": "Pre-Nov-1 Shop + Transfer",
-    "path": "Asakusa -> Tokyo Station luggage -> Ginza -> Cat Street/Jingumae -> Tokyo Station -> Nozomi -> Kyoto -> Nijo",
-    "hack": "Shop hands-free before the Nov 1 refund-method switch. Ginza runs first; the weekday BEAMS cluster opens at noon. Retrieve luggage around 15:40 and target a ~16:10–16:30 Nozomi. Seat E is the westbound Fuji-facing side."
+    "path": "Asakusa -> Tokyo Station luggage -> Ginza -> Cat Street/Jingumae -> Tokyo Station -> Nozomi 453 16:21 -> Kyoto 18:32 -> Nijo",
+    "hack": "Shop hands-free before the Nov 1 refund-method switch. Be back at Tokyo Station with luggage by about 16:05; Car 12 Seats 4-D/4-E are confirmed."
   },
   {
     "title": "5. Fushimi Inari → Kiyomizu",
@@ -12127,15 +12246,15 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
   },
   {
     "title": "11. Osaka → Tokyo / Tamachi",
-    "tag": "Seat E Fuji View",
-    "path": "Umeda -> Shin-Osaka -> Nozomi -> Shinagawa -> Tamachi",
-    "hack": "Seat E is the eastbound left-side Fuji-facing window. Get off at Shinagawa for a fast final transfer to Tamachi."
+    "tag": "Confirmed Nozomi 146 · Seat E",
+    "path": "Namba -> Shin-Osaka -> Nozomi 146 13:39 -> Tokyo 16:06 -> Tamachi",
+    "hack": "The exact train removes the old west-Tokyo sightseeing block. Use a relaxed Osaka morning, protect the 12:50 station buffer, then check in at Tamachi and go directly to Ryogoku."
   },
   {
-    "title": "12. Tokyo → Kawaguchiko → Forest Adventure",
-    "tag": "Booked Fuji Excursion + Taxi",
-    "path": "Tamachi -> Shinjuku -> Fuji Excursion 7 -> Kawaguchiko -> taxi -> Forest Adventure Fuji -> taxi -> Kawaguchiko -> Fuji Excursion 48 -> Iriya",
-    "hack": "Use a taxi for the short local legs, book Trek 90 + Excite around 13:00, and target a station return by ~15:25. The 17:41 train keeps more than two hours of protected buffer."
+    "title": "12. Tokyo → Kawaguchiko → Aokigahara",
+    "tag": "Confirmed Fuji Excursions + Cave Tour",
+    "path": "Tamachi -> Shinjuku -> Fuji Excursion 7 -> Kawaguchiko -> 13:20 Tada pickup -> THE HIGHEST PEAK cave tour 14:00-17:00 -> station ~17:10 -> Fuji Excursion 48 -> Iriya",
+    "hack": "The operator-confirmed station return leaves 31 minutes before the 17:41 train. Go straight from Tada’s drop-off to the platform; no post-tour detour."
   },
   {
     "title": "13. Tamachi / Mita → Haneda T3",
@@ -12167,23 +12286,31 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(this.days.find(d => d.dayNumber === 12)?.events?.some(e => e.kind === 'meal' && /Tanimachi/i.test(e.title || '')), 'Day 12 Tanimachi lunch block missing.');
           check(this.days.find(d => d.dayNumber === 3)?.milestones?.some(m => m.startTime === '15:30' && m.endTime === '16:40' && m.label.includes('Chicken Ramen Factory')), 'Day 3 confirmed 15:30-16:40 Chicken Ramen slot missing.');
           check(this.days.find(d => d.dayNumber === 12)?.milestones?.some(m => /Midosuji/i.test(m.label || '')), 'Day 12 Midosuji illumination block missing.');
+          check(this.days.find(d => d.dayNumber === 4)?.milestones?.some(m => m.startTime === '08:03' && m.label.includes('Nikko 21')), 'Day 4 confirmed 08:03 Nikko 21 milestone missing.');
+          check(this.days.find(d => d.dayNumber === 4)?.milestones?.some(m => m.startTime === '18:41' && m.label.includes('Kegon 052')), 'Day 4 confirmed 18:41 Kegon 052 milestone missing.');
+          check(this.days.find(d => d.dayNumber === 5)?.milestones?.some(m => m.startTime === '16:21' && m.label.includes('Nozomi 453')), 'Day 5 confirmed Nozomi 453 milestone missing.');
+          check(this.days.find(d => d.dayNumber === 12)?.milestones?.some(m => m.startTime === '10:20' && /CONFIRMED/.test(m.label || '')), 'Day 12 Aqua-Liner is not marked confirmed.');
+          check(this.days.find(d => d.dayNumber === 15)?.milestones?.some(m => m.startTime === '13:39' && m.label.includes('Nozomi 146')), 'Day 15 confirmed Nozomi 146 milestone missing.');
+          check(!JSON.stringify(this.days.find(d => d.dayNumber === 15) || {}).includes('Meiji'), 'Day 15 still contains the impossible Meiji block.');
+          check(this.days.find(d => d.dayNumber === 16)?.milestones?.some(m => m.startTime === '13:20' && m.label.includes('Tada')), 'Day 16 13:20 Tada pickup milestone missing.');
+          check(this.days.find(d => d.dayNumber === 16)?.milestones?.some(m => m.startTime === '17:10' && m.label.includes('31-minute')), 'Day 16 protected 17:10 station handoff missing.');
           check(this.days.find(d => d.dayNumber === 14)?.events?.some(e => e.title.includes('FANTAZOOMA')), 'Day 14 FANTAZOOMA missing.');
-          check(this.days.find(d => d.dayNumber === 4)?.criticalRule?.includes('09:39 NIKKO GATE'), 'Day 4 Nikko live go/no-go gate missing.');
+          check(this.days.find(d => d.dayNumber === 4)?.criticalRule?.includes('10:01 NIKKO GATE'), 'Day 4 10:01 Nikko live go/no-go gate missing.');
           check(this.days.find(d => d.dayNumber === 5)?.shoppingPlan?.priority?.includes('BEFORE NOV 1'), 'Day 5 pre-Nov-1 shopping block missing.');
           check(String(this.days.find(d => d.dayNumber === 9)?.shoppingPlan?.objective || '').includes('LAST-CHANCE PRE-NOV-1'), 'Day 9 is not clearly limited to pre-Nov-1 rescue shopping.');
           check(this.days.find(d => d.dayNumber === 5)?.events?.some(e => e.title.includes('PROTECTED GINZA')), 'Day 5 Ginza block missing.');
           check(this.days.find(d => d.dayNumber === 5)?.events?.some(e => e.title.includes('Cat Street')), 'Day 5 Cat Street block missing.');
           check(!this.days.find(d => d.dayNumber === 15)?.shoppingPlan, 'Day 15 still contains planned post-Nov-1 shopping.');
           check(this.days.find(d => d.dayNumber === 14)?.milestones?.some(m => m.startTime === '14:30' && m.label.includes('Tower of the Sun')), 'Day 14 confirmed Tower 14:30 slot missing.');
-          check(this.days.find(d => d.dayNumber === 16)?.milestones?.some(m => m.startTime === '13:00' && m.label.includes('FOREST ADVENTURE')), 'Day 16 13:00 Forest Adventure milestone missing.');
+          check(this.days.find(d => d.dayNumber === 16)?.milestones?.some(m => m.startTime === '14:00' && m.label.includes('AOKIGAHARA ICE CAVE')), 'Day 16 confirmed 14:00 cave milestone missing.');
           check(this.days.find(d => d.dayNumber === 17)?.milestones?.some(m => m.startTime === '14:05' && m.label.includes('security')), 'Day 17 early security milestone missing.');
           check(Array.isArray(this.days) && this.days.length === 17, 'Expected exactly 17 itinerary days.');
           check(new Set(this.days.map(d => d.dayNumber)).size === this.days.length, 'Duplicate dayNumber detected.');
           check(CANONICAL_TICKETS.every(ticket => typeof ticket.departureRequired === 'boolean' && Number.isInteger(ticket.priority) && ticket.priority > 0), 'Every canonical booking needs departure-readiness and positive integer priority metadata.');
           check(new Set(CANONICAL_TICKETS.map(ticket => ticket.priority)).size === CANONICAL_TICKETS.length, 'Canonical booking priorities must be unique.');
           check(CANONICAL_CHECKLIST.every(item => typeof item.departureRequired === 'boolean'), 'Every canonical checklist item needs departure-readiness metadata.');
-          check(CANONICAL_TICKETS.find(ticket => ticket.id === 't23')?.priority === Math.min(...CANONICAL_TICKETS.map(ticket => ticket.priority)), 'The Forest Adventure booking is not the top booking priority.');
-          check(CANONICAL_TICKETS.find(ticket => ticket.id === 't23')?.tone === 'now', 'The Forest Adventure booking is not visually marked for action now.');
+          check(CANONICAL_TICKETS.find(ticket => ticket.id === 't23')?.booked === true, 'The confirmed Aokigahara cave tour is not marked booked.');
+          check(/THE HIGHEST PEAK/.test(CANONICAL_TICKETS.find(ticket => ticket.id === 't23')?.title || ''), 'The confirmed cave operator is missing from t23.');
           check(['t20', 't21', 't29'].every(id => CANONICAL_TICKETS.find(ticket => ticket.id === id)?.departureRequired === false), 'Optional or walk-up bookings are counted as departure requirements.');
           check(['c6', 'c8', 'c9', 'c11'].every(id => CANONICAL_CHECKLIST.find(item => item.id === id)?.departureRequired === false), 'In-trip checklist work is counted as departure readiness.');
           check(this.days.every(day => (day.milestones || []).every(milestone => !milestone.timelineEventTime || (day.events || []).some(event => convertEventTimeToHHMM(event.time) === convertEventTimeToHHMM(milestone.timelineEventTime)))), 'A milestone points to a missing timeline event.');
@@ -12264,7 +12391,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           if (d16) {
             const d16s = JSON.stringify(d16);
             check(String(d16.primaryTransit || '').startsWith('Fuji Excursion 7 & 48'), 'Day 16 is not using the optimized Fuji Excursion 7 & 48 pair.');
-            check(d16.events?.some(e => e.title === 'Forest Adventure Fuji — Trek 90 + Excite'), 'Day 16 Forest Adventure event missing.');
+            check(d16.events?.some(e => /THE HIGHEST PEAK.*CONFIRMED/.test(e.title || '')), 'Day 16 confirmed Aokigahara cave event missing.');
             check(d16.events?.some(e => e.title === 'Lunch — Takegawa Udon'), 'Day 16 explicit Yoshida-udon lunch missing.');
             check(d16.events?.some(e => e.title === 'South-shore lakeside walk — flexible Fuji views'), 'Day 16 south-shore walk missing.');
             check(d16.milestones?.some(m => m.startTime === '20:25' && m.label.includes('TORI-NO-ICHI')), 'Day 16 Tori-no-Ichi milestone missing.');
@@ -12311,7 +12438,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(this.searchItinerary('cat street')[0]?.dayNumber === 5, 'Global search cannot locate Cat Street on Day 5.');
           check(this.searchItinerary('fantazooma')[0]?.dayNumber === 14, 'Global search cannot locate FANTAZOOMA on Day 14.');
           check(this.searchItinerary('fuji excursion')[0]?.dayNumber === 16, 'Global search cannot locate the Fuji active day.');
-          check(this.searchItinerary('forest adventure')[0]?.dayNumber === 16, 'Global search cannot locate Forest Adventure on Day 16.');
+          check(this.searchItinerary('aokigahara')[0]?.dayNumber === 16, 'Global search cannot locate Aokigahara on Day 16.');
 
           check(!document.getElementById('day-food'), 'Separate day-food section still exists.');
           check(this.shoppingWindows.length === 7 && Boolean(document.querySelector('.shopping-windows')), 'Shopping-window overview is incomplete.');
