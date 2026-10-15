@@ -5175,7 +5175,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                         "time": "18:45–20:45",
                         "title": "Akihabara",
                         "purpose": "Anime / games / electronics",
-                        "detail": "Protected two-hour block with your friend. Start with the highest-priority store; do not drift into a four-hour browse.",
+                        "detail": "Two-hour block with your friend. Start with the highest-priority store; do not drift into a four-hour browse.",
                         "city": "tokyo",
                         "primary": true
                 },
@@ -8382,7 +8382,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "baseHotel": "APA Hotel Asakusa Kaminarimon Minami",
     "startTime": "09:00 AM",
     "primaryTransit": "Toei/Keio rail + short walks",
-    "criticalRule": "Use Tokyo Racecourse because it is on the same west-Tokyo corridor as Ajinomoto Stadium. Watch only the morning program/paddock; leave no later than 12:20 so the 15:00 Tokyo Verdy match remains protected. Friend lands HND T3 at 14:20 and follows the independent airport -> Asakusa hotel track. Reunite in the APA lobby at 18:15. Protect the full 18:45-20:45 Akihabara block.",
+    "criticalRule": "Use Tokyo Racecourse because it is on the same west-Tokyo corridor as Ajinomoto Stadium. Watch only the morning program/paddock; leave no later than 12:20 so the 15:00 Tokyo Verdy match remains protected. Friend lands HND T3 at 14:20 and follows the independent airport -> Asakusa hotel track. Reunite in the APA lobby at 18:15. Keep the full 18:45-20:45 Akihabara block.",
     "flexOption": "Racecourse is sightseeing, not a gambling obligation: paddock + 2-3 races + lunch, then leave. If race-day access changes, skip it and use a relaxed Asakusa morning before the stadium rather than recreating the old Fukagawa cross-city detour.",
     "parallelLogistics": {
       "label": "FRIEND ARRIVAL · HND T3 14:20",
@@ -8459,7 +8459,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "startTime": "18:45",
         "endTime": "20:45",
-        "label": "PROTECTED AKIHABARA · 2h",
+        "label": "Akihabara · 2h",
         "mapQuery": "Akihabara Electric Town"
       },
       {
@@ -8556,21 +8556,29 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       },
       {
         "time": "06:45 PM",
-        "title": "PROTECTED AKIHABARA (2 hours)",
-        "description": "Keep the full friend-priority block.",
+        "title": "Akihabara (2 hours)",
+        "description": "Keep the full friend-priority block. Pick one optional route, or mix them; all three stay inside Electric Town.",
         "mapQuery": "Akihabara Electric Town",
-        "nextTransit": "Dinner"
+        "nextTransit": "Dinner",
+        "execution": {
+          "steps": [
+            "Optional collector route: Akihabara Radio Kaikan for ~30–40 min → Gashapon Bandai Official Shop Akihabara for ~15–20 min. Gashapon is the easy late stop: the official shop runs until 23:00 and has a very large capsule selection.",
+            "Optional anime route: animate Akihabara for 45–60 min → TAITO Station Akihabara for 20–30 min.",
+            "Optional arcade route: TAITO Station Akihabara for rhythm/fighting games, purikura, or a tightly capped crane-game budget → Gashapon Bandai Official Shop Akihabara → casual Electric Town wandering."
+          ],
+          "watch": "Do the shops that close at 20:00 first. TAITO Station and the Gashapon shop stay open late, so there is no reason to rush to them before 20:00."
+        }
       },
       {
         "time": "08:45 PM",
         "title": "Dinner — Center Beef Akihabara",
-        "description": "Eat only after the protected two-hour Akihabara block.",
+        "description": "Eat only after the two-hour Akihabara block.",
         "mapQuery": "Center Beef Akihabara",
         "mapLabel": "Center Beef",
         "nextTransit": "Rail back to Asakusa",
         "execution": {
           "steps": [
-            "Finish the protected Akihabara block at 20:45.",
+            "Finish Akihabara at 20:45.",
             "Try Center Beef only inside the queue gate.",
             "If it fails, switch once to Hama Sushi and then return to Asakusa."
           ],
