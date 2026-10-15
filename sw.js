@@ -6,7 +6,7 @@
   normalised to one shell key so Today, Trip, and Prep cannot drift into separate copies.
 */
 const CACHE_PREFIX = 'japan-2026-shell-';
-const CACHE = `${CACHE_PREFIX}faddf4eabbb8`;
+const CACHE = `${CACHE_PREFIX}6f6802e3981a`;
 const SHELL = [
   './index.html',
   './manifest.webmanifest',
@@ -43,7 +43,8 @@ self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
     await Promise.all(keys
-      .filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE)
+      // japan-2026-vNN is the previous build's namespace; it is never read again.
+      .filter(key => (key.startsWith(CACHE_PREFIX) && key !== CACHE) || /^japan-2026-v\d+$/.test(key))
       .map(key => caches.delete(key)));
     if (self.registration.navigationPreload) {
       try { await self.registration.navigationPreload.enable(); } catch {}

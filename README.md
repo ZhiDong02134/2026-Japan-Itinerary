@@ -29,7 +29,8 @@ The manifest uses relative `id`, `scope`, and `start_url` values, so the app rem
 - Reduced Motion, increased contrast, forced colors, and keyboard focus fallbacks.
 - City identity is restrained to indigo, wisteria, and celadon; vermilion is reserved for live/action state, green for completion, and amber for genuine risk.
 - Expensive decorative layers are disabled on slow-update devices, while core hierarchy remains intact.
-- Offscreen reference lists use `content-visibility` when supported to reduce initial phone paint cost.
+- Search raises the keyboard from the Search tap itself (iOS ignores a later `focus()`), and the sheet follows `visualViewport` so every result stays reachable above the keyboard.
+- No `content-visibility` (Safari can leave skipped cards blank) and no `interactive-widget` viewport token.
 
 ## Current itinerary actions
 

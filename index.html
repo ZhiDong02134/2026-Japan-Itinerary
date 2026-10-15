@@ -2,7 +2,7 @@
 <html lang="en" data-appearance="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#090a0f">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2718%27%20fill%3D%27%230d0f17%27%2F%3E%3Cdefs%3E%3Cpath%20id%3D%27p%27%20d%3D%27M32%2032.25%20C26.25%2027.5%2C%2024.5%2020.5%2C%2027.5%2015.25%20C28.88%2012.88%2C%2030.63%2012.38%2C%2032%2014.75%20C33.38%2012.38%2C%2035.13%2012.88%2C%2036.5%2015.25%20C39.5%2020.5%2C%2037.75%2027.5%2C%2032%2032.25%20Z%27%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%27%23ff726c%27%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%280%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%2872%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28144%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28216%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28288%2032%2032%29%27%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%273%27%20fill%3D%27%23ffd9d2%27%2F%3E%3C%2Fsvg%3E">
@@ -2643,6 +2643,16 @@ html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .br
 /* ---------- Global search: a tall sheet that owns the screen ---------- */
 .global-search-backdrop { z-index: 85; }
 .global-search-panel { height: calc(100dvh - max(12px, var(--safe-top))); display: flex; flex-direction: column; overflow: hidden; background: var(--bg); }
+/* The iPhone keyboard covers the bottom of the layout viewport without resizing it, so the
+   results list ran on underneath it. While search is open the sheet follows the visual
+   viewport (fitSearchToViewport), keeping every result reachable above the keyboard. */
+@media (max-width: 767px) {
+  .global-search-backdrop { top: var(--search-vv-top, 0px); bottom: auto; height: var(--search-vv-height, 100dvh); }
+  .global-search-panel { height: calc(var(--search-vv-height, 100dvh) - max(12px, var(--safe-top))); }
+}
+/* Focus lands here inside the Search tap so iOS raises the keyboard, then moves to the real
+   field once the sheet has painted. It must stay focusable: no display:none or visibility. */
+.search-focus-proxy { position: fixed; top: 0; left: 0; width: 1px; height: 1px; padding: 0; border: 0; opacity: 0; font-size: 16px; pointer-events: none; }
 :root:not([data-appearance='light']) .global-search-panel { background: var(--bg); }
 .global-search-head { padding: 8px 12px 10px; }
 .global-search-head-row { display: flex; align-items: center; gap: 8px; }
@@ -3046,16 +3056,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
 .shopping-window-detail { margin-top: 2px; color: var(--text-2); font-size: var(--fs-footnote); line-height: 1.45; }
 .shopping-window-chevron { align-self: center; color: var(--text-3); }
 
-/* Long, offscreen reference lists should not consume initial layout and paint on a phone.
-   Live timeline/hero content is deliberately excluded so the current-day experience remains exact. */
-@supports (content-visibility: auto) {
-  .ticket-card, .route-card, .day-row, .settings-group, .shopping-window-item {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 92px;
-  }
-  .route-card { contain-intrinsic-size: auto 220px; }
-  .settings-group { contain-intrinsic-size: auto 180px; }
-}
+/* No content-visibility on lists: Safari can leave skipped cards blank (WebKit bug 321501), and
+   estimated sizes put a jump to a search result in the wrong place. */
 
 /* Native-like optical title bounds where supported; harmlessly ignored elsewhere. */
 @supports (text-box-trim: trim-both) {
@@ -4284,6 +4286,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
 
 </div><!-- /app-shell -->
 
+<input id="search-focus-proxy" class="search-focus-proxy" type="search" inputmode="search" tabindex="-1" aria-hidden="true" autocomplete="off">
+
 <!-- ============================ GLOBAL SEARCH ============================ -->
 <div x-show="showGlobalSearch" x-cloak
      :class="{ 'is-open': showGlobalSearch }"
@@ -5506,23 +5510,62 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         openGlobalSearch(seed = '', opener = null) {
           if (opener?.isConnected) this._modalOpener = opener;
           if (typeof seed === 'string' && seed.trim()) this.globalSearchQuery = seed;
+          // iOS raises the keyboard only for a focus() made inside the tap itself, and the real
+          // field is still display:none here. Focus a stand-in now; moving focus from one text
+          // field to another below keeps the keyboard up.
+          const proxy = document.getElementById('search-focus-proxy');
+          try { proxy?.focus({ preventScroll: true }); } catch (_) {}
           this.showGlobalSearch = true;
           document.documentElement.classList.add('global-search-open');
+          this.watchSearchViewport(true);
           this.$nextTick(() => {
             if (window.lucide) lucide.createIcons();
             requestAnimationFrame(() => {
               const input = document.getElementById('global-itinerary-search');
-              if (input) {
+              if (input && this.showGlobalSearch) {
                 input.focus({ preventScroll: true });
                 const end = input.value.length;
                 try { input.setSelectionRange(end, end); } catch (_) {}
+              } else if (document.activeElement === proxy) {
+                proxy.blur();
               }
             });
           });
         },
 
+        // The keyboard shrinks the visual viewport, not the layout viewport that fixed elements
+        // use, so the sheet is fitted to visualViewport while search is open.
+        watchSearchViewport(active) {
+          const viewport = window.visualViewport;
+          if (!viewport) return;
+          if (this._searchViewportFit) {
+            viewport.removeEventListener('resize', this._searchViewportFit);
+            viewport.removeEventListener('scroll', this._searchViewportFit);
+            this._searchViewportFit = null;
+          }
+          const backdrop = document.querySelector('.global-search-backdrop');
+          if (!active) {
+            backdrop?.style.removeProperty('--search-vv-top');
+            backdrop?.style.removeProperty('--search-vv-height');
+            return;
+          }
+          this._searchViewportFit = () => this.fitSearchToViewport();
+          viewport.addEventListener('resize', this._searchViewportFit);
+          viewport.addEventListener('scroll', this._searchViewportFit);
+          this.fitSearchToViewport();
+        },
+
+        fitSearchToViewport() {
+          const viewport = window.visualViewport;
+          const backdrop = document.querySelector('.global-search-backdrop');
+          if (!viewport || !backdrop) return;
+          backdrop.style.setProperty('--search-vv-top', `${Math.max(0, Math.round(viewport.offsetTop))}px`);
+          backdrop.style.setProperty('--search-vv-height', `${Math.round(Math.min(viewport.height, window.innerHeight))}px`);
+        },
+
         closeGlobalSearch() {
           this.showGlobalSearch = false;
+          this.watchSearchViewport(false);
           try { if (window.CSS && CSS.highlights) CSS.highlights.delete('search-hit'); } catch (_) {}
           document.documentElement.classList.remove('global-search-open');
         },
