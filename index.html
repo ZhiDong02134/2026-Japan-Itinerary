@@ -4614,7 +4614,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     // The reference after 'ref', 'reference', 'confirmation number', 'booking ID' or 予約番号, past
     // filler words ('Booking reference number ABC123', 'Reference code: XYZ-789', 'Ref #AB12CD').
     // A real one has a digit or is all capitals (KEVLSGCB), so 'Bring the reference printout'
-    // gives none. Inner dots and dashes stay ('MX-2026.77'); a sentence's full stop does not.
+    // gives none. Inner dots, dashes and underscores stay ('MX-2026.77', Nara Kotsu's
+    // 'ARS_NARAKOTSU-20261015-F9M9'); a sentence's full stop does not.
     function parseBookingRef(text) {
       const cue = /(?:\bref(?:erence)?\b\.?|\b(?:confirmation|reservation|booking|order)\s*(?:(?:number|no|code|id)\b\.?|#)|予約番号|予約\s*No\.?)/gi;
       let match;
@@ -4625,7 +4626,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           if (/^(?:number|num|nr|no|code|is|was)$/i.test(word)) continue;
           // Placeholders and dates are not references ('Booking ref PENDING', 'ref 2026-11-05').
           if (/^(?:PENDING|TODO|TBA|TBC|TBD|NONE|NA|SENT|EMAIL|PAID|CONFIRMED|BOOKED)$/i.test(word) || /^\d{4}-\d{2}-\d{2}$/.test(word) || (/^[A-Za-z]+$/.test(word) && word.length < 6)) break;
-          if (word.length >= 4 && /^[A-Za-z0-9](?:[A-Za-z0-9./-]*[A-Za-z0-9])?$/.test(word) && (/\d/.test(word) || /^[A-Z]+$/.test(word))) return word;
+          if (word.length >= 4 && /^[A-Za-z0-9](?:[A-Za-z0-9./_-]*[A-Za-z0-9])?$/.test(word) && (/\d/.test(word) || /^[A-Z]+$/.test(word))) return word;
           break;
         }
       }
@@ -4648,13 +4649,14 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       return null;
     }
 
-    // Seats as typed: 'ROW B 7–8', 'Row B seats 7 & 8', 'ROW B 7, 8', or a block, 'Row B seats
-    // 7–10', which is seats 7 to 10 (not seats 7 and 10).
+    // Seats as typed: 'ROW B 7–8', 'Row B seats 7 & 8', 'ROW B 7, 8', a stadium row with a number
+    // in it, 'Row M6 seat 281', or a block, 'Row B seats 7–10', which is seats 7 to 10 (not seats
+    // 7 and 10).
     function parseSeats(label, details) {
       // A comma continues the list only when another seat number follows ('7 & 8, 2 adults' is
       // seats 7 and 8; 'seats 4-5, 19:00 curtain' is not seat 19).
       const list = String.raw`(\d+(?:\s*(?:[–&-]|and\b|,(?=\s*\d+\s*(?:[,&.;·–-]|and\b|$)))\s*\d+)*)`;
-      const seat = label.match(new RegExp(String.raw`\bROW\s+([A-Z])\s+` + list, 'i')) || details.match(new RegExp(String.raw`\bRow\s+([A-Z])\s+seats?\s+` + list, 'i'));
+      const seat = label.match(new RegExp(String.raw`\bROW\s+([A-Z]\d{0,2})\s+` + list, 'i')) || details.match(new RegExp(String.raw`\bRow\s+([A-Z]\d{0,2})\s+seats?\s+` + list, 'i'));
       if (!seat) return null;
       const row = seat[1].toUpperCase();
       const block = seat[2].match(/^(\d+)\s*[–-]\s*(\d+)$/);
@@ -4846,8 +4848,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "departureRequired": true,
     "priority": 13,
     "officialUrl": "https://www.narakotsu.co.jp/temporary/wakakusa_hilltop-bus/",
-    "statusLabel": "BOOKED · WAKAKUSA HILLTOP BUS",
-    "details": "Booked for Fri Oct 30. Protect the reserved departure and return shown in the confirmation; the itinerary keeps the 18:30 Shoso-in entry downstream."
+    "statusLabel": "CONFIRMED · 16:10 KINTETSU-NARA",
+    "details": "Confirmed for Fri Oct 30: Kintetsu-Nara Station sightseeing-bus stop 16:10 → summit 16:35; return 17:20 → Kintetsu-Nara 17:45. 2 adults, ¥4,000 paid. Booking ref ARS_NARAKOTSU-20261015-F9M9. Show the mobile voucher when boarding. Cancelling costs ¥100 per person; no cancellation after departure."
   },
   {
     "id": "t7",
@@ -4858,7 +4860,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "departureRequired": true,
     "priority": 4,
     "officialUrl": "https://www.jleague.co/tickets/",
-    "details": "Booked: Tokyo Verdy vs Avispa Fukuoka, Sat Oct 24, 15:00 at Ajinomoto Stadium.",
+    "details": "Booked: Tokyo Verdy vs Avispa Fukuoka, Sat Oct 24, 15:00 at Ajinomoto Stadium. Main Stand Lower (1F), enter by Gate 3 (Main). Row M6 seat 281. Booking ref 360791072 (J.League order no.).",
     "statusLabel": "BOOKED · 15:00 KICKOFF"
   },
   {
@@ -8411,7 +8413,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "briefing": {
       "pace": "Moderate racecourse morning + fixed football + protected friend priorities",
       "walking": "8-12 km plus stadium/racecourse standing",
-      "reservations": "Tokyo Verdy ticket; racecourse general admission normally walk-in",
+      "reservations": "Tokyo Verdy ticket: Main Stand Lower (1F), Gate 3 (Main), Row M6 seat 281, order 360791072; racecourse general admission normally walk-in",
       "cutFirst": "Leave the racecourse earlier; never cut match arrival, friend reunion, or the 2h Akihabara block.",
       "backup": "If the racecourse is unexpectedly inaccessible, stay east in Asakusa and depart for Ajinomoto Stadium earlier.",
       "localTips": "At the racecourse, prioritize paddock atmosphere and a few live races rather than trying to understand betting. English betting slips/signage exist, but gambling is optional."
@@ -8538,7 +8540,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "nextTransit": "Asakusa hotel reunion",
         "execution": {
           "steps": [
-            "Kickoff 15:00.",
+            "Enter by Gate 3 (Main) to Main Stand Lower (1F): Row M6, seat 281. Kickoff 15:00.",
             "After full time, head directly back to Asakusa.",
             "Friend independently handles HND T3 -> APA check-in and meets in the lobby at 18:15."
           ]
@@ -9833,7 +9835,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "briefing": {
       "pace": "Deer morning + playful goldfish micro-trip + timed sunset/exhibition",
       "walking": "9-12 km",
-      "reservations": "Shosoin CONFIRMED 18:30 (3785481); Wakakusa bus remains the other timed item.",
+      "reservations": "Shosoin CONFIRMED 18:30 (3785481); Wakakusa Hilltop Bus CONFIRMED 16:10 from Kintetsu-Nara, 2 adults (ARS_NARAKOTSU-20261015-F9M9).",
       "cutFirst": "Cut any extra Yamato-Koriyama wandering; protect the 16:10 Wakakusa bus.",
       "backup": "If Kintetsu service or dojo access is disrupted, stay in Nara and use a short Naramachi loop with no checklist.",
       "localTips": "Kochikuya is about 5-6 min from Kintetsu-Koriyama. Goldfish scooping is cheap and simple; do not turn it into a shopping stop."
@@ -9997,13 +9999,13 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "leaveBy": "17:20 - do not miss the return bus",
         "execution": {
           "steps": [
-            "Be at the Kintetsu-Nara sightseeing-bus stop before the 16:10 departure.",
+            "Be at the Kintetsu-Nara sightseeing-bus stop before the reserved 16:10 departure; show the mobile voucher.",
             "Ride to the summit (arrives 16:35) and enjoy the 45-minute ridge/deer/view block.",
             "Board the same bus at 17:20; arrive Kintetsu-Nara 17:45.",
             "Walk to Nara National Museum for the reserved 18:30-19:00 entry window.",
             "View the Shosoin exhibition, then return to Kyoto around 20:15-21:30 depending on museum exit/trains."
           ],
-          "watch": "Shosoin booking ref 3785481; protect the 18:30 entry."
+          "watch": "Wakakusa bus ref ARS_NARAKOTSU-20261015-F9M9 (2 adults). Shosoin booking ref 3785481; protect the 18:30 entry."
         }
       },
       {
@@ -12373,6 +12375,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(parseSeats('', 'Row B seats 7 & 8, 2 adults.').ja === 'B列 7・8番' && parseSeats('', 'Row C seats 4-5, 19:00 curtain.').label === 'Row C · 4–5' && parseSeats('', 'Row C seats 12, 13 and 14.').ja === 'C列 12・13・14番', 'A seat list runs into the next number.');
           check(detailTime('Show 7:00–9:30 PM at the Minamiza.') === '19:00' && parseBookingPass({ statusLabel: 'CONFIRMED · 11:30–1:00 PM LUNCH' }).time === '11:30' && detailTime('Check-in opens 15:00, dinner 18:30.') === '18:30', 'A 12-hour range or a skipped clause gives the wrong pass time.');
           check(['Booking ref PENDING until the deposit clears.', 'Ref: TODO', 'Booking ref is 2026-11-05 per email'].every(text => parseBookingRef(text) === null), 'A placeholder or a date is shown to staff as a booking ref.');
+          check(parseBookingRef('Booking ref ARS_NARAKOTSU-20261015-F9M9. Show the voucher.') === 'ARS_NARAKOTSU-20261015-F9M9' && parseBookingRef('Booking ref _AB12_') === null, 'A booking ref with an inner underscore (Nara Kotsu writes ARS_NARAKOTSU-…) is dropped.');
+          check(parseSeats('', 'Row M6 seat 281.')?.label === 'Row M6 · 281' && parseSeats('', 'Row M6 seat 281.')?.ja === 'M6列 281番' && parseSeats('', 'Row B seats 7 & 8.').label === 'Row B · 7–8', 'A stadium row with a number in it (Row M6) loses its seat.');
           check([...document.querySelectorAll('[x-show]')].every(el => !el.hasAttribute(':style') || el.getAttribute(':style').trim().startsWith('{')), 'An x-show element has a string :style binding, which wipes its display:none.');
           check(this.getTicketStatusText({ booked: false, statusLabel: 'CONFIRMED · 18:00' }) === 'NOT BOOKED' && this.displayLabel('RESERVED DINNER · Mouriya Sannomiya') === 'DINNER · Mouriya Sannomiya' && this.displayLabel('CONFIRMED — GEAR') === 'GEAR', 'An un-ticked booking or a title still claims a booking.');
           check(this.displayLabel('CONFIRMED · GEAR 18:00–19:30', '18:00', '19:30') === 'GEAR' && this.displayLabel('Chicken Ramen Factory — CONFIRMED 15:30–16:40') === 'Chicken Ramen Factory' && this.displayLabel('Wakakusa sunset bus → CONFIRMED Shosoin 18:30').replace(/\u00a0/g, ' ') === 'Wakakusa sunset bus → Shosoin 18:30', 'Status words leak into display titles.');
