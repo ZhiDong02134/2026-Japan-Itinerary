@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#090a0f">
   <meta name="color-scheme" content="light dark">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2718%27%20fill%3D%27%230d0f17%27%2F%3E%3Cdefs%3E%3Cpath%20id%3D%27p%27%20d%3D%27M32%2032.25%20C26.25%2027.5%2C%2024.5%2020.5%2C%2027.5%2015.25%20C28.88%2012.88%2C%2030.63%2012.38%2C%2032%2014.75%20C33.38%2012.38%2C%2035.13%2012.88%2C%2036.5%2015.25%20C39.5%2020.5%2C%2037.75%2027.5%2C%2032%2032.25%20Z%27%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%27%23ff726c%27%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%280%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%2872%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28144%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28216%2032%2032%29%27%2F%3E%3Cuse%20href%3D%27%23p%27%20transform%3D%27rotate%28288%2032%2032%29%27%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%273%27%20fill%3D%27%23ffd9d2%27%2F%3E%3C%2Fsvg%3E">
+  <link rel="icon" href="./icon-192.png" type="image/png">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -254,7 +254,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
    Direction: "washi & sumi". Light mode is warm washi paper with sumi-ink text; dark mode
    is a deep ai-indigo night. One brand accent — shu (朱), the vermilion of torii gates and
-   of the app's own sakura mark — carries action and emphasis. Each base city owns one
+   of the torii in the app's own Fuji mark — carries action and emphasis. Each base city owns one
    traditional hue used only for identity (dots, the hero glow, the map): Tokyo ai 藍,
    Kyoto fuji 藤 (wisteria), Osaka seiji 青磁 (celadon — the old "city of water").
    Amber is reserved for warnings and green for completion, so no city ever looks like a
@@ -954,10 +954,8 @@ textarea.text-input { resize: none; min-height: 88px; }
   background: oklch(20% .02 262);
   box-shadow: 0 0 0 .5px oklch(100% 0 0 / .08) inset, 0 4px 14px color-mix(in oklab, var(--accent) 22%, transparent);
 }
-.brand-mark svg { width: 30px; height: 30px; }
-.brand-petals { fill: #ff726c; transform-origin: 32px 32px; transition: transform 900ms var(--ease-spring-smooth); }
-.brand-core { fill: #ffd9d2; }
-.brand-button:hover .brand-petals { transform: rotate(36deg); }
+.brand-mark { overflow: hidden; background: none; }
+.brand-mark img { width: 100%; height: 100%; display: block; }
 /* The wordmark and the page's own title share one cell. Once the page title scrolls under
    the bars, the wordmark rolls up and out and the title rolls in beneath it — iOS's
    large-title collapse, with an iOS 26 navigation subtitle. The cell clips, so the swap
@@ -1369,6 +1367,13 @@ html.live-announce .status-pill.is-live .status-dot::after, html.live-announce .
   transition: --sky-top var(--dur-ambient) var(--ease-ui), --sky-mid var(--dur-ambient) var(--ease-ui), --sky-bottom var(--dur-ambient) var(--ease-ui), --city var(--dur-ambient) var(--ease-ui);
 }
 .scene-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* A real photo per scene. It fills the frame like the old xMidYMax slice art; at night the
+   app is dark, so the photo is dimmed a little to sit with the rest of the card. */
+.photo-credit-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.photo-credit-subject { font-weight: 600; }
+.photo-credit-meta { font-size: var(--fs-caption); color: var(--text-2, var(--muted)); overflow-wrap: anywhere; }
+.scene-photo { object-fit: cover; object-position: center; -webkit-user-drag: none; user-select: none; }
+:root:not([data-appearance='light']) .scene-photo { filter: brightness(.86) saturate(.96); }
 body[data-sky='dusk'] .hero-scene { --horizon-glow: 12%; }
 body[data-sky='night'] .hero-scene { --horizon-glow: 26%; }
 .scene-art path, .scene-art circle { transition: fill var(--dur-ambient) var(--ease-ui), opacity var(--dur-ambient) var(--ease-ui); }
@@ -3118,9 +3123,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
 <header class="app-chrome">
   <div class="app-header-inner">
     <button type="button" class="brand-button" @click="jumpToToday()" aria-label="Japan 2026 — open today">
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 64 64"><defs><path id="brand-petal" d="M32 32.25C26.25 27.5 24.5 20.5 27.5 15.25C28.88 12.88 30.63 12.38 32 14.75C33.38 12.38 35.13 12.88 36.5 15.25C39.5 20.5 37.75 27.5 32 32.25Z"/></defs><g class="brand-petals"><use href="#brand-petal"/><use href="#brand-petal" transform="rotate(72 32 32)"/><use href="#brand-petal" transform="rotate(144 32 32)"/><use href="#brand-petal" transform="rotate(216 32 32)"/><use href="#brand-petal" transform="rotate(288 32 32)"/></g><circle cx="32" cy="32" r="3.2" class="brand-core"/></svg>
-      </span>
+      <span class="brand-mark" aria-hidden="true"><img src="./icon-192.png" alt="" width="32" height="32" decoding="async"></span>
       <span class="brand-title">
         <span class="brand-wordmark">Japan<span class="brand-year">2026</span></span>
         <span class="brand-context" aria-hidden="true">
@@ -3192,7 +3195,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     <template x-if="!tripStatus.isOngoing && tripStatus.badgeText === 'COUNTDOWN'">
       <button type="button" class="boarding-pass" @click="prepView = 'tickets'; switchTab('prep')"
               :aria-label="'Flight in: New York JFK to Tokyo Haneda Terminal 3, touchdown Friday October 23 at ' + formatClock('13:55') + ' Japan time. ' + passCountdown.spoken + '. ' + prepDone + ' of ' + prepTotal + ' departure items ready. Open Prep.'">
-        <svg class="pass-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#brand-petal"/><use href="#brand-petal" transform="rotate(72 32 32)"/><use href="#brand-petal" transform="rotate(144 32 32)"/><use href="#brand-petal" transform="rotate(216 32 32)"/><use href="#brand-petal" transform="rotate(288 32 32)"/></svg>
+        <svg class="pass-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><mask id="pass-mark-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><polyline points="20.5,23.5 24.5,26.5 27.5,23 30.5,27 33.5,23 36.5,26.5 39.5,23 43.5,23.5" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/><g fill="#000"><path d="M17 31.5h30l-2 2.6H19z"/><rect x="20.5" y="37.2" width="23" height="2"/><rect x="22.6" y="34.1" width="2.6" height="16"/><rect x="38.8" y="34.1" width="2.6" height="16"/><rect x="31" y="34.1" width="2" height="3.1"/></g></mask></defs><path d="M2 50 25 17.5 28.5 14h7l3.5 3.5L62 50z" mask="url(#pass-mark-cut)"/></svg>
         <span class="pass-route" aria-hidden="true">
           <span class="pass-port"><span class="pass-code">JFK</span><span class="pass-city">New York</span></span>
           <span class="pass-flight">
@@ -3352,52 +3355,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
              @touchcancel.passive="onHeroTouchCancel()">
 
       <div class="hero-scene" aria-hidden="true" :class="{ 'is-moonless': !moonUp }" @click="if (sceneParticles) { leafRun++; burstLeaves(); }">
-        <div class="scene-stars"><span class="stars-a"></span><span class="stars-b"></span></div>
-        <svg class="scene-art" viewBox="0 0 400 180" preserveAspectRatio="xMidYMax slice" focusable="false">
-          <defs>
-            <radialGradient id="scene-halo-fill"><stop offset="0" class="halo-in"></stop><stop offset=".42" class="halo-mid"></stop><stop offset="1" class="halo-out"></stop></radialGradient>
-            <radialGradient id="scene-ray-fill" gradientUnits="userSpaceOnUse" :cx="skyBodies.sun.cx" :cy="skyBodies.sun.cy" r="200"><stop offset="0" class="ray-in"></stop><stop offset="1" class="ray-out"></stop></radialGradient>
-            <linearGradient id="scene-cloud-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="cloud-hi"></stop><stop offset="1" class="cloud-lo"></stop></linearGradient>
-            <linearGradient id="scene-mist-fill"><stop offset="0" class="mist-edge"></stop><stop offset=".24" class="mist-core"></stop><stop offset=".76" class="mist-core"></stop><stop offset="1" class="mist-edge"></stop></linearGradient>
-            <linearGradient id="scene-trail-fill" gradientUnits="userSpaceOnUse" x1="175" y1="0" x2="410" y2="0"><stop offset="0" class="trail-in"></stop><stop offset="1" class="trail-out"></stop></linearGradient>
-            <linearGradient id="scene-reflect-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"></stop><stop offset="1" stop-color="#000"></stop></linearGradient>
-            <pattern id="scene-ripples" width="9" height="3.2" patternUnits="userSpaceOnUse"><rect y="2.3" width="9" height=".9" fill="#000"></rect></pattern>
-            <clipPath id="scene-water-clip"><path :d="scene.layers.water || 'M0 0'"></path></clipPath>
-            <mask id="scene-reflect-mask" maskUnits="userSpaceOnUse" x="-60" y="0" width="520" height="180">
-              <rect x="-60" :y="sceneWater || 180" width="520" height="34" fill="url(#scene-reflect-fade)"></rect>
-              <rect x="-60" :y="sceneWater || 180" width="520" height="34" fill="url(#scene-ripples)"></rect>
-            </mask>
-          </defs>
-          <path class="scene-rays" :d="sunRays"></path>
-          <circle class="scene-halo" :cx="haloBody.cx" :cy="haloBody.cy" r="48"></circle>
-          <circle class="scene-sun" :cx="skyBodies.sun.cx" :cy="skyBodies.sun.cy" :r="skyBodies.sun.r"></circle>
-          <path class="scene-moon" :d="moonPath"></path>
-          <path class="scene-cloud" :d="sceneClouds"></path>
-          <path class="scene-far" :d="scene.layers.far || ''"></path>
-          <path class="scene-mist" :d="sceneMist.high"></path>
-          <path class="scene-mid" :d="scene.layers.mid || ''"></path>
-          <path class="scene-water" :d="scene.layers.water || ''"></path>
-          <path class="scene-landmark" :d="scene.layers.landmark || ''"></path>
-          <path class="scene-snow" :d="scene.layers.snow || ''"></path>
-          <path class="scene-detail" :d="scene.layers.detail || ''"></path>
-          <path class="scene-accent" :d="scene.layers.accent || ''"></path>
-          <path class="scene-trail" :d="scene.layers.trail || ''"></path>
-          <g class="scene-reflection" clip-path="url(#scene-water-clip)" mask="url(#scene-reflect-mask)">
-            <g :transform="'translate(0 ' + 2 * (sceneWater || 0) + ') scale(1 -1)'">
-              <path class="scene-mid" :d="sceneWater ? scene.layers.mid || '' : ''"></path>
-              <path class="scene-landmark" :d="sceneWater ? scene.layers.landmark || '' : ''"></path>
-              <path class="scene-snow" :d="sceneWater ? scene.layers.snow || '' : ''"></path>
-              <path class="scene-detail" :d="sceneWater ? scene.layers.detail || '' : ''"></path>
-              <path class="scene-accent" :d="sceneWater ? scene.layers.accent || '' : ''"></path>
-              <path class="scene-glow" :d="sceneWater ? scene.layers.glow || '' : ''"></path>
-            </g>
-          </g>
-          <path class="scene-ripple" :d="waterLines"></path>
-          <path class="scene-glint" :d="waterGlint"></path>
-          <path class="scene-mist is-low" :d="sceneMist.low"></path>
-          <path class="scene-near" :d="scene.layers.near || ''"></path>
-          <path class="scene-glow" :d="scene.layers.glow || ''"></path>
-        </svg>
+        <img class="scene-art scene-photo" :src="scenePhoto.src" alt="" decoding="async" draggable="false">
         <!-- One short flurry each time the scene appears (WCAG 2.2.2: nothing moves on its own
              for more than five seconds); tapping the scene lets them fall again. -->
         <div class="scene-particles" x-show="sceneParticles && leafBurst" x-cloak>
@@ -4232,6 +4190,19 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         </div>
       </div>
       <p class="settings-footnote">Preview countdown, live-day and post-trip states. Turn off to return to the real JST clock.</p>
+    </section>
+
+    <section class="settings-group" aria-labelledby="set-photos">
+      <h3 id="set-photos" class="settings-group-title">Photo credits</h3>
+      <div class="settings-card">
+        <template x-for="photo in photoCredits" :key="photo.src">
+          <a class="settings-row is-button photo-credit-row" :href="photo.page" target="_blank" rel="noopener noreferrer" :aria-label="photo.subject + ', photo by ' + photo.author + ', ' + photo.license">
+            <span class="photo-credit-text"><span class="photo-credit-subject" x-text="photo.subject"></span><span class="photo-credit-meta" x-text="photo.author + ' · ' + photo.license"></span></span>
+            <i data-lucide="chevron-right" class="icon-sm settings-chevron" aria-hidden="true"></i>
+          </a>
+        </template>
+      </div>
+      <p class="settings-footnote">Hero photos from Wikimedia Commons, cropped and compressed. Each opens its source page and license.</p>
     </section>
 
     <section class="settings-group" aria-labelledby="set-reset">
@@ -5127,6 +5098,9 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     };
     // The station sign's kana line, as on every JR and Metro sign.
     const DAY_KANA = { 1: 'あさくさ', 2: 'とうきょう', 3: 'よこはま', 4: 'にっこう', 5: 'とうきょう → きょうと', 6: 'ふしみいなり', 7: 'うじ', 8: 'なら', 9: 'きょうと', 10: 'おおさかわん', 11: 'ひめじ・こうべ', 12: 'おおさか', 13: 'おおさか', 14: 'みのお・ばんぱく', 15: 'おおさか → とうきょう', 16: 'ふじさん', 17: 'はねだ' };
+    // One real photo per scene (Wikimedia Commons, credited in Settings). Stored next to index.html
+    // and precached by sw.js, so the hero works offline.
+    const SCENE_PHOTOS = {"asakusa": {"src": "./photos/asakusa.webp", "subject": "Kaminarimon, Sensō-ji", "author": "Kakidai", "license": "CC BY-SA 3.0", "page": "https://commons.wikimedia.org/wiki/File:Asakusa_Sensoji_Kaminarimon_2012.JPG"}, "tokyo": {"src": "./photos/tokyo.webp", "subject": "Tokyo Tower and Minato skyline", "author": "David Kernan", "license": "CC BY 4.0", "page": "https://commons.wikimedia.org/wiki/File:Minato_City,_Tokyo,_Japan.jpg"}, "yokohama": {"src": "./photos/yokohama.webp", "subject": "Minato Mirai 21 at night", "author": "Kakidai", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:The_night_view_of_Minato_Mirai_21_-_4.jpg"}, "nikko": {"src": "./photos/nikko.webp", "subject": "Kegon Falls", "author": "Jordy Meow", "license": "CC BY-SA 3.0", "page": "https://commons.wikimedia.org/wiki/File:Kegon_Taki.jpg"}, "shinkansen": {"src": "./photos/shinkansen.webp", "subject": "N700 Shinkansen below Mt. Fuji", "author": "tansaisuketti", "license": "CC BY-SA 3.0", "page": "https://commons.wikimedia.org/wiki/File:Shinkansen_N700_with_Mount_Fuji.jpg"}, "inari": {"src": "./photos/inari.webp", "subject": "Senbon torii, Fushimi Inari", "author": "Marco Almbauer", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:Torii,_Fushimi_Inari-Taisha.jpg"}, "uji": {"src": "./photos/uji.webp", "subject": "Byōdō-in Phoenix Hall", "author": "Oilstreet (talk)", "license": "CC BY-SA 3.0", "page": "https://commons.wikimedia.org/wiki/File:Byodoin_Phoenix_Hall_Uji_10-2R.jpg"}, "nara": {"src": "./photos/nara.webp", "subject": "Deer at Tōdai-ji Nandaimon", "author": "Christophe95", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:Deer_in_front_of_Nandaimon_at_Todaiji.jpg"}, "kyoto": {"src": "./photos/kyoto.webp", "subject": "Kiyomizu-dera", "author": "Martin Falbisoner", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:Kiyomizu-dera,_Kyoto,_November_2016_-02.jpg"}, "osaka-bay": {"src": "./photos/osaka-bay.webp", "subject": "Tempozan Ferris wheel from the ferry", "author": "そらみみ", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:Ajigawa_River_and_grand_ferris_wheel_of_Tempozan_Harbor_Village_from_Tempozan_Ferry.jpg"}, "himeji": {"src": "./photos/himeji.webp", "subject": "Himeji Castle", "author": "Nikos Kitsakis", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:Himeji_castle_in_may_2015.jpg"}, "osaka": {"src": "./photos/osaka.webp", "subject": "Osaka Castle and Business Park", "author": "663highland", "license": "CC BY 2.5", "page": "https://commons.wikimedia.org/wiki/File:Osaka_Castle_02bs3200.jpg"}, "shinsekai": {"src": "./photos/shinsekai.webp", "subject": "Shinsekai and Tsūtenkaku", "author": "Sakai Yayoi", "license": "CC0", "page": "https://commons.wikimedia.org/wiki/File:Shinsekai_and_Tsutenkaku_Tower.jpg"}, "expo": {"src": "./photos/expo.webp", "subject": "Minoo Falls", "author": "Kanchi1979", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:JP-Osaka-Minoo-Minootaki_-With-Rainbow.JPG"}, "fuji": {"src": "./photos/fuji.webp", "subject": "Mt. Fuji from Lake Kawaguchi", "author": "Alpsdake", "license": "CC BY-SA 4.0", "page": "https://commons.wikimedia.org/wiki/File:Mount_Fuji_from_Lake_Kawaguchi_(2015-10-26).jpg"}, "haneda": {"src": "./photos/haneda.webp", "subject": "Haneda Airport Terminal 1", "author": "BWard 1997", "license": "CC BY 4.0", "page": "https://commons.wikimedia.org/wiki/File:Japan_Airlines_Aircraft_Terminal_1_Haneda_Airport_26-09-2024.jpg"}};
     const DAY_SCENES = {"1": "asakusa", "2": "tokyo", "3": "yokohama", "4": "nikko", "5": "shinkansen", "6": "inari", "7": "uji", "8": "nara", "9": "kyoto", "10": "osaka-bay", "11": "himeji", "12": "osaka", "13": "shinsekai", "14": "expo", "15": "shinkansen", "16": "fuji", "17": "haneda"};
     const DAY_PLACES = {"1": {"name": "Asakusa", "kanji": "浅草", "stamp": "浅草"}, "2": {"name": "Tokyo", "kanji": "東京", "stamp": "秋葉原"}, "3": {"name": "Yokohama", "kanji": "横浜", "stamp": "横浜"}, "4": {"name": "Nikkō", "kanji": "日光", "stamp": "日光"}, "5": {"name": "Tokyo → Kyoto", "kanji": "東京 → 京都", "stamp": "京都"}, "6": {"name": "Fushimi Inari", "kanji": "伏見稲荷", "stamp": "稲荷"}, "7": {"name": "Uji", "kanji": "宇治", "stamp": "宇治"}, "8": {"name": "Nara", "kanji": "奈良", "stamp": "奈良"}, "9": {"name": "Kyoto", "kanji": "京都", "stamp": "京都"}, "10": {"name": "Osaka Bay", "kanji": "大阪湾", "stamp": "大阪"}, "11": {"name": "Himeji · Kobe", "kanji": "姫路・神戸", "stamp": "姫路"}, "12": {"name": "Osaka", "kanji": "大阪", "stamp": "中之島"}, "13": {"name": "Osaka", "kanji": "大阪", "stamp": "鶴橋"}, "14": {"name": "Minoh · Expo Park", "kanji": "箕面・万博", "stamp": "万博"}, "15": {"name": "Osaka → Tokyo", "kanji": "大阪 → 東京", "stamp": "東京"}, "16": {"name": "Mt. Fuji", "kanji": "富士山", "stamp": "富士"}, "17": {"name": "Haneda", "kanji": "羽田", "stamp": "羽田"}};
     // Route map: Natural Earth 1:50m coastline (public domain), equirectangular projection.
@@ -7334,6 +7308,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
 
         // ---------- Hero scene ----------
         get currentScene() { return DAY_SCENES[this.selectedDayNumber] || 'tokyo'; },
+        get scenePhoto() { return SCENE_PHOTOS[this.currentScene] || SCENE_PHOTOS.tokyo; },
+        get photoCredits() { return Object.values(SCENE_PHOTOS); },
         get scene() {
           const s = SCENES.scenes && SCENES.scenes[this.currentScene];
           return s && s.layers ? s : { layers: {}, sun: { cx: 330, cy: 44, r: 11 } };
@@ -12499,10 +12475,11 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(this.shoppingWindows.length === 7 && Boolean(document.querySelector('.shopping-windows')), 'Shopping-window overview is incomplete.');
           check(CANONICAL_CHECKLIST.some(item => item.id === 'c12'), 'Zen & Ghibli timed-entry task missing.');
           // Presentation checks
-          check(this.days.every(d => SCENES.scenes && SCENES.scenes[DAY_SCENES[d.dayNumber]] && SCENES.scenes[DAY_SCENES[d.dayNumber]].layers.landmark), 'Every day needs an illustrated hero scene.');
+          check(this.days.every(d => SCENE_PHOTOS[DAY_SCENES[d.dayNumber]]?.src), 'Every day needs a hero photo.');
+          check(Object.values(SCENE_PHOTOS).every(p => p.author && p.license && /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/.test(p.page)), 'A hero photo is missing its author, license or source page.');
           check(Object.keys(SCENES.scenes).every(key => SCENE_MIST[key] && SCENE_SKYLINE[key]) && Object.entries(SCENES.scenes).filter(([, sc]) => sc.layers.water).every(([, sc]) => /^M-10 180V\d/.test(sc.layers.water)), 'A scene has no mist, skyline or readable water line.');
           check(this.days.every(d => DAY_PLACES[d.dayNumber] && DAY_PLACES[d.dayNumber].name), 'Every day needs a place label.');
-          check(Boolean(document.querySelector('.hero-scene .scene-landmark')?.getAttribute('d')), 'Hero scene did not render its landmark.');
+          check(document.querySelector('.hero-scene .scene-photo')?.getAttribute('src') === this.scenePhoto.src, 'Hero did not render the day\'s photo.');
           check(['light', 'dark'].includes(document.documentElement.dataset.appearance), 'Appearance did not resolve to light or dark.');
           check(this.formatTime('01:55 PM') === (this.timeFormat === '12h' ? '1:55 PM' : '13:55') && this.formatTime('12:05 AM') === (this.timeFormat === '12h' ? '12:05 AM' : '00:05'), 'Clock formatting is wrong.');
           check(Boolean(MAP_GEO && MAP_GEO.land && MAP_GEO.route && MAP_GEO.stops.length >= 8), 'Route map geometry missing.');

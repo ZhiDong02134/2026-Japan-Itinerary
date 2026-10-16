@@ -6,7 +6,7 @@
   normalised to one shell key so Today, Trip, and Prep cannot drift into separate copies.
 */
 const CACHE_PREFIX = 'japan-2026-shell-';
-const CACHE = `${CACHE_PREFIX}6f6802e3981a`;
+const CACHE = `${CACHE_PREFIX}b6a1d74ad8d2`;
 const SHELL = [
   './index.html',
   './manifest.webmanifest',
@@ -14,7 +14,24 @@ const SHELL = [
   './icon-512.png',
   './icon-maskable-192.png',
   './icon-maskable-512.png',
-  './apple-touch-icon.png'
+  './apple-touch-icon.png',
+  // Hero photos: precached so every day's photo is there offline.
+  './photos/asakusa.webp',
+  './photos/tokyo.webp',
+  './photos/yokohama.webp',
+  './photos/nikko.webp',
+  './photos/shinkansen.webp',
+  './photos/inari.webp',
+  './photos/uji.webp',
+  './photos/nara.webp',
+  './photos/kyoto.webp',
+  './photos/osaka-bay.webp',
+  './photos/himeji.webp',
+  './photos/osaka.webp',
+  './photos/shinsekai.webp',
+  './photos/expo.webp',
+  './photos/fuji.webp',
+  './photos/haneda.webp'
 ];
 const SHELL_KEY = new URL('./index.html', self.location).href;
 const NAVIGATION_TIMEOUT_MS = 2600;

@@ -19,6 +19,12 @@ The manifest uses relative `id`, `scope`, and `start_url` values, so the app rem
 - The app compares the deployed document's modification timestamp when it becomes visible. It refreshes the cached shell before reloading and avoids interrupting an open dialog or active task.
 - User progress, booking checkmarks, display preferences, and map preference are stored locally on the device. There is no analytics or server-side account.
 
+## Photos and icons
+
+- Each day's hero is a real photo from Wikimedia Commons (`photos/*.webp`, one per scene, about 1.8 MB in all), precached by `sw.js` for offline use and credited with author and license in **Settings → Photo credits**.
+- `scripts/make-icons.py` draws the glass app icon (Mt. Fuji and a torii inside the route ring) and the iPhone launch screens. Icons are full-bleed and opaque, because iOS paints transparent corners black and rounds the icon itself; only the launch-screen badge is rounded.
+- iOS saves the Home Screen icon when the app is added. To see a new icon, export a backup, delete the app, add it to the Home Screen again, and import the backup.
+
 ## Phone UX decisions
 
 - Safe-area-aware top and bottom chrome for notched and Dynamic Island iPhones.
@@ -54,6 +60,8 @@ Then open `http://localhost:8000/`. Service workers require HTTP(S); opening `in
 - `manifest.webmanifest`
 - `sw.js`
 - app icons and maskable icons
+- `photos/` (hero photos)
+- `scripts/make-icons.py` (not needed at runtime)
 - iPhone launch images for the referenced device sizes
 - light and dark install screenshots
 - `.nojekyll`
