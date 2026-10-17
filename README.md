@@ -27,6 +27,12 @@ The manifest uses relative `id`, `scope`, and `start_url` values, so the app rem
 
 ## Phone UX decisions
 
+- **Dark only.** There is no light theme or appearance setting; the app is dark even when the phone is in light mode.
+- Vermilion means "now" and nothing else: the live dot, the Now progress and the timeline's current stop. Actions are white or neutral.
+- The header is opaque with a soft edge (iOS 26's dark scroll edge dims rather than blurs), so text never ghosts behind it.
+- On the live trip day the hero photo follows the real light in Japan: warm at golden hour, darker after dusk.
+- The Show-staff pass is paper-white with Gothic Japanese, so staff can read it at arm's length.
+
 - Safe-area-aware top and bottom chrome for notched and Dynamic Island iPhones.
 - Minimum 44px visible touch targets.
 - Dynamic Type-aware type scale and timeline width.
@@ -40,7 +46,7 @@ The manifest uses relative `id`, `scope`, and `start_url` values, so the app rem
 
 ## Current itinerary actions
 
-- Make the free **Zen & Ghibli timed-entry reservation** when the reservation window opens; the existing Rakuten ticket remains the admission ticket.
+- **Zen & Ghibli** is confirmed for the 10:00–10:30 entry window on Oct 31 (ArtPass XZMZ-5UM5); leave Nijo by 09:20.
 - The Nikko rail pair, Nozomi 453, Aqua-Liner, Nozomi 146, both Fuji Excursions, and **THE HIGHEST PEAK Aokigahara cave tour** are recorded with their confirmed times, seats, and references.
 - Before Nov 7, reconfirm the cave guide's live meeting message and weather status; the app already protects the 13:20 pickup and 17:10 station return.
 

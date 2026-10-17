@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#090a0f">
-  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#090c11">
+  <meta name="color-scheme" content="dark">
   <link rel="icon" href="./icon-192.png" type="image/png">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,19 +30,12 @@
   <link rel="apple-touch-startup-image" href="./splash-1290x2796.png" media="screen and (device-width: 430px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
   <link rel="apple-touch-startup-image" href="./splash-1320x2868.png" media="screen and (device-width: 440px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
   <title>Japan 2026</title>
-  <!-- Resolve light/dark before first paint so the page never flashes the wrong theme. -->
+  <!-- The app is dark only. The clock format is applied before first paint. -->
   <script id="appearance-bootstrap">
     (() => {
-      let pref = 'system';
-      try { const saved = localStorage.getItem('jp_appearance'); if (saved === 'light' || saved === 'dark' || saved === 'system') pref = saved; } catch (_) {}
-      const dark = pref === 'dark' || (pref === 'system' && !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches));
       const root = document.documentElement;
-      root.dataset.appearance = dark ? 'dark' : 'light';
+      root.dataset.appearance = 'dark';
       try { if (localStorage.getItem('jp_time_format') === '12h') root.classList.add('is-12h'); } catch (_) {}
-      const theme = document.querySelector('meta[name="theme-color"]');
-      if (theme) theme.content = dark ? '#0b0e15' : '#f7f4ef';
-      const bar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
-      if (bar) bar.content = dark ? 'black-translucent' : 'default';
     })();
   </script>
   <!-- Tailwind utilities compiled locally with Tailwind CSS legacy.10; no runtime Tailwind CDN dependency. -->
@@ -301,18 +294,18 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   --h-osaka: 192;    /* 青磁 seiji */
 
   /* ---------- Surfaces (dark: layered ink; elevation = lighter) ---------- */
-  --bg: oklch(16% .014 var(--h-ink));
+  --bg: oklch(14.5% .012 var(--h-ink));
   --bg-deep: oklch(13% .012 var(--h-ink));
-  --surface: oklch(20.5% .016 var(--h-ink));
-  --surface-2: oklch(24.5% .018 var(--h-ink));
-  --surface-3: oklch(29% .02 var(--h-ink));
+  --surface: oklch(21% .014 var(--h-ink));
+  --surface-2: oklch(26% .016 var(--h-ink));
+  --surface-3: oklch(31% .018 var(--h-ink));
   --fill: oklch(100% 0 0 / .06);
   --fill-2: oklch(100% 0 0 / .10);
   --fill-3: oklch(100% 0 0 / .15);
   --separator: oklch(100% 0 0 / .085);
   --separator-strong: oklch(100% 0 0 / .16);
-  --chrome: oklch(17% .014 var(--h-ink) / .9);
-  --chrome-solid: oklch(17% .014 var(--h-ink));
+  --chrome: oklch(15.5% .012 var(--h-ink) / .9);
+  --chrome-solid: oklch(15.5% .012 var(--h-ink));
   --scrim: oklch(8% .01 var(--h-ink) / .56);
 
   /* ---------- Text ---------- */
@@ -329,7 +322,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   --success: oklch(78% .13 152);
   --success-soft: oklch(78% .13 152 / .13);
   --warning: oklch(83% .13 80);
-  --warning-soft: oklch(78% .14 68 / .13); /* warmer than the text amber: at 80° it read olive on ink */
+  --warning-soft: oklch(83% .13 80 / .1); /* same hue as the text: mixed warmer it composited brown */
   --danger: oklch(69% .15 358);   /* 紅梅 kōbai: crimson, clear of the vermilion accent */
 
   /* ---------- Cities: the dye colours they are named for (identity only) ---------- */
@@ -349,7 +342,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 
   /* The travelled rail (sumi ink) and seal ink (wide-gamut cinnabar, gamut-mapped on sRGB). */
   --rail-done: oklch(96.5% .006 var(--h-ink) / .3);
-  --hanko: oklch(66% .24 33);
+  --hanko: oklch(68% .19 33); /* inside sRGB: the wider value clipped and buzzed on dark */
   /* The toast is inverted (paper on ink here), so its glyphs take the light theme's tones. */
   --toast-success: oklch(49% .13 152);
   --toast-warn: oklch(51% .13 62);
@@ -397,7 +390,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   --glass-rim: inset 0 1px 0 oklch(100% 0 0 / .13), inset 0 -1px 0 oklch(0% 0 0 / .22), inset 0 0 0 .5px oklch(100% 0 0 / .1);
 
   /* ---------- Elevation ---------- */
-  --shadow-card: 0 1px 0 oklch(100% 0 0 / .045) inset, 0 10px 30px oklch(0% 0 0 / .22);
+  --shadow-card: inset 0 .5px 0 oklch(100% 0 0 / .08);
   --shadow-raised: 0 1px 0 oklch(100% 0 0 / .06) inset, 0 18px 46px oklch(0% 0 0 / .32);
   --shadow-float: 0 1px 0 oklch(100% 0 0 / .08) inset, 0 20px 60px oklch(0% 0 0 / .45), 0 2px 8px oklch(0% 0 0 / .25);
 
@@ -435,52 +428,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
 }
 
 /* ---------- Light: washi paper + sumi ink ---------- */
-:root[data-appearance='light'] {
-  color-scheme: light;
-  --bg: oklch(97.2% .006 var(--h-paper));
-  --bg-deep: oklch(95% .008 var(--h-paper));
-  --surface: oklch(99.75% .002 var(--h-paper));
-  --surface-2: oklch(95.8% .007 var(--h-paper));
-  --surface-3: oklch(92.6% .009 var(--h-paper));
-  --fill: oklch(28% .02 60 / .05);
-  --fill-2: oklch(28% .02 60 / .085);
-  --fill-3: oklch(28% .02 60 / .13);
-  --separator: oklch(28% .02 60 / .11);
-  --separator-strong: oklch(28% .02 60 / .2);
-  --chrome: oklch(97.6% .006 var(--h-paper) / .88);
-  --chrome-solid: oklch(97.6% .006 var(--h-paper));
-  --scrim: oklch(20% .01 60 / .32);
 
-  --text: oklch(23% .012 60);
-  --text-2: oklch(38% .012 60);
-  --text-3: oklch(48.5% .012 60);
-
-  --accent: oklch(52% .185 var(--h-shu));
-  --accent-fill: oklch(54% .185 var(--h-shu));
-  --accent-soft: oklch(54% .185 var(--h-shu) / .1);
-  --accent-line: oklch(54% .185 var(--h-shu) / .32);
-  --success: oklch(49% .13 152);
-  --success-soft: oklch(49% .13 152 / .1);
-  --warning: oklch(51% .13 62);
-  --warning-soft: oklch(62% .14 70 / .13);
-  --danger: oklch(50% .19 12);    /* 紅 kurenai */
-
-  --tokyo: oklch(43% .095 250);
-  --kyoto: oklch(47% .11 315);
-  --osaka: oklch(49% .07 180);
-
-  --rail-done: oklch(23% .012 60 / .38);
-  --hanko: oklch(60% .23 32);
-  --toast-success: oklch(78% .13 152);
-  --toast-warn: oklch(83% .13 80);
-  --toast-info: oklch(76% .08 245);
-
-  --shadow-card: 0 1px 2px oklch(30% .03 60 / .06), 0 8px 24px oklch(30% .03 60 / .07);
-  --shadow-raised: 0 2px 4px oklch(30% .03 60 / .06), 0 16px 40px oklch(30% .03 60 / .1);
-  --shadow-float: 0 1px 0 oklch(100% 0 0 / .9) inset, 0 16px 44px oklch(30% .03 60 / .16), 0 2px 8px oklch(30% .03 60 / .08);
-  --glass-sheen: linear-gradient(180deg, oklch(100% 0 0 / .7), oklch(100% 0 0 / 0) 52%);
-  --glass-rim: inset 0 1px 0 oklch(100% 0 0 / .95), inset 0 -1px 0 oklch(30% .03 60 / .07), inset 0 0 0 .5px oklch(30% .03 60 / .12);
-}
 
 /* City identity follows the selected day. --city/--city-2 are registered, so they cross-fade. */
 body { --city: var(--tokyo); --city-2: var(--accent); }
@@ -492,7 +440,7 @@ body[data-city-theme='osaka'] { --city: var(--osaka); }
 
 @media (prefers-contrast: more) {
   :root { --separator: oklch(100% 0 0 / .2); --separator-strong: oklch(100% 0 0 / .34); --text-2: oklch(90% .01 262); --text-3: oklch(82% .012 262); }
-  :root[data-appearance='light'] { --separator: oklch(28% .02 60 / .26); --separator-strong: oklch(28% .02 60 / .4); --text-2: oklch(28% .012 60); --text-3: oklch(36% .012 60); }
+  
 }
 
 /* =============================== BASE =============================== */
@@ -549,18 +497,20 @@ body::before {
   height: min(820px, 100lvh);
   z-index: -1;
   pointer-events: none;
+  /* Top layer: an opaque band of the wash colour behind the clock that feathers out over 24px,
+     so iOS samples one flat colour for the status bar and there is no hard step below it.
+     The city light starts at y=0 underneath it. Vermilion stays out of the wash: it means "now". */
   background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--wash-top) var(--wash-a, 44%), var(--bg)) 0,
+      color-mix(in oklab, var(--wash-top) var(--wash-a, 44%), var(--bg)) calc(var(--safe-top) + 4px),
+      transparent calc(var(--safe-top) + 28px)),
     radial-gradient(120% 58% at 0% 0%, color-mix(in oklab, var(--city) var(--glow-a, 16%), transparent), transparent 62%),
-    radial-gradient(90% 48% at 100% 4%, color-mix(in oklab, var(--city-2) var(--glow-b, 8%), transparent), transparent 64%),
     linear-gradient(180deg,
       color-mix(in oklab, var(--wash-top) var(--wash-a, 44%), transparent) 0,
-      color-mix(in oklab, var(--wash-top) var(--wash-a, 44%), transparent) calc(var(--safe-top) + 12px),
       color-mix(in oklab, var(--wash-mid) var(--wash-b, 20%), transparent) 34%,
       transparent 78%);
-  /* The glows begin under the flat band, so nothing but one colour sits behind the clock. */
   background-repeat: no-repeat;
-  background-position: 0 calc(var(--safe-top) + 12px), 0 calc(var(--safe-top) + 12px), 0 0;
-  background-size: 100% calc(100% - var(--safe-top) - 12px), 100% calc(100% - var(--safe-top) - 12px), 100% 100%;
   transition:
     --city var(--dur-ambient) var(--ease-ui),
     --wash-top var(--dur-ambient) var(--ease-ui),
@@ -570,9 +520,9 @@ body { --wash-top: var(--sky-top); --wash-mid: var(--sky-mid); }
 /* Light mode washes a night in 月白 geppaku and a dusk in pale persimmon; mixed at the light
    wash strength they land near oklch(93% .02–.035) — a tint, never mud. The strip under the
    status bar stays flat. */
-:root[data-appearance='light'] body[data-sky='night'] { --wash-top: oklch(84% .06 250); --wash-mid: oklch(87% .05 250); }
-:root[data-appearance='light'] body[data-sky='dusk'] { --wash-top: oklch(84% .1 55); --wash-mid: oklch(87% .08 55); }
-:root[data-appearance='light'] body::before { --glow-a: 12%; --glow-b: 6%; --wash-a: 30%; --wash-b: 14%; }
+
+
+
 
 h1, h2, h3, h4 { text-wrap: balance; font-weight: 650; }
 p, li, dd { text-wrap: pretty; }
@@ -692,10 +642,10 @@ i[data-lucide] > svg { width: 100%; height: 100%; display: block; overflow: visi
   display: inline-flex; align-items: center; gap: 4px;
   padding: 0 12px;
   border-radius: var(--r-pill);
-  color: var(--accent);
+  color: var(--text-2);
   font-size: var(--fs-subhead); font-weight: 600;
 }
-.link-button:hover { background: var(--accent-soft); }
+.link-button:hover { background: var(--fill); }
 
 /* ---------- Check circle (Reminders-style) ---------- */
 .check-circle {
@@ -742,7 +692,7 @@ i[data-lucide] > svg { width: 100%; height: 100%; display: block; overflow: visi
   opacity: 0;
   transition: translate var(--dur-spatial) var(--ease-spring-snappy), width var(--dur-spatial) var(--ease-spring-snappy), opacity var(--dur-fast) var(--ease-ui);
 }
-:root[data-appearance='light'] .segmented::before { background: var(--surface); box-shadow: 0 1px 2px oklch(30% .03 60 / .12), 0 3px 10px oklch(30% .03 60 / .08); }
+
 .segmented.has-thumb::before { opacity: 1; }
 .segmented.thumb-instant::before { transition: none; }
 .segmented.has-thumb .segment.is-active { background: transparent; box-shadow: none; }
@@ -776,7 +726,7 @@ i[data-lucide] > svg { width: 100%; height: 100%; display: block; overflow: visi
   color: var(--text);
   box-shadow: 0 1px 2px oklch(0% 0 0 / .18), 0 3px 10px oklch(0% 0 0 / .14);
 }
-:root[data-appearance='light'] .segmented:not(.has-thumb) .segment.is-active { background: var(--surface); box-shadow: 0 1px 2px oklch(30% .03 60 / .12), 0 3px 10px oklch(30% .03 60 / .08); }
+
 .segment-count {
   min-width: 20px; height: 20px;
   display: inline-grid; place-items: center;
@@ -920,10 +870,11 @@ textarea.text-input { resize: none; min-height: 88px; }
   pointer-events: none;
   /* Solid under the status bar: iOS colours the bar from this strip, and saturated content
      scrolling under translucent material tinted it. */
-  background: linear-gradient(var(--chrome-solid) 0 calc(var(--safe-top) + 12px), var(--chrome) 0);
-  -webkit-backdrop-filter: saturate(170%) blur(20px);
-  backdrop-filter: saturate(170%) blur(20px);
-  box-shadow: 0 .5px 0 var(--separator);
+  /* Opaque with a 14px soft edge: over dark content iOS 26 dims rather than blurs. Text can no
+     longer ghost through, WebKit has no blur to drop during view transitions, and the status
+     bar is sampled from a solid strip. */
+  bottom: -14px;
+  background: linear-gradient(var(--chrome-solid) 0 calc(100% - 14px), transparent);
   opacity: 0;
   transition: opacity var(--dur-std) var(--ease-ui);
 }
@@ -931,7 +882,7 @@ textarea.text-input { resize: none; min-height: 88px; }
 /* With the day rail docked, header and rail are one opaque bar (hard scroll edge — the HIG
    style for pinned bars full of text): no blur behind thirty chips of type, a single
    hairline under the pair, and no element reaching across another's stacking context. */
-.rail-docked .app-chrome::before { background: var(--chrome-solid); box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.rail-docked .app-chrome::before { bottom: 0; background: var(--chrome-solid); }
 .app-header-inner {
   max-width: 1120px; margin: 0 auto;
   min-height: 44px;
@@ -950,11 +901,10 @@ textarea.text-input { resize: none; min-height: 88px; }
 .brand-mark {
   width: 32px; height: 32px;
   display: grid; place-items: center;
-  border-radius: 10px;
-  background: oklch(20% .02 262);
-  box-shadow: 0 0 0 .5px oklch(100% 0 0 / .08) inset, 0 4px 14px color-mix(in oklab, var(--accent) 22%, transparent);
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 0 0 .5px oklch(100% 0 0 / .1);
 }
-.brand-mark { overflow: hidden; background: none; }
 .brand-mark img { width: 100%; height: 100%; display: block; }
 /* The wordmark and the page's own title share one cell. Once the page title scrolls under
    the bars, the wordmark rolls up and out and the title rolls in beneath it — iOS's
@@ -983,7 +933,7 @@ textarea.text-input { resize: none; min-height: 88px; }
 
 .chrome-actions { margin-left: auto; display: flex; align-items: center; gap: 4px; }
 .chrome-search { display: none; }
-.chrome-settings.is-active { color: var(--accent); background: var(--accent-soft); }
+.chrome-settings.is-active { color: var(--text); background: var(--fill-2); }
 
 .status-pill {
   height: 30px; max-width: 132px;
@@ -997,10 +947,10 @@ textarea.text-input { resize: none; min-height: 88px; }
   white-space: nowrap; overflow: hidden;
 }
 .status-text { overflow: hidden; text-overflow: ellipsis; }
-.status-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--accent); }
-.status-pill.is-live { background: var(--accent-soft); color: var(--accent); }
+.status-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--text-3); }
+.status-pill.is-live .status-dot { background: var(--accent); }
+.status-pill.is-live { background: var(--fill-2); color: var(--text); }
 /* Over the dark sky wash the soft pill measured 4.3:1; a lighter vermilion clears 4.5. */
-:root[data-appearance='dark'] .status-pill.is-live { color: oklch(80% .12 35); }
 /* Live dots announce themselves with a transform/opacity ring three times, then rest: an
    endless box-shadow pulse repainted every frame for as long as the app was open. */
 .status-pill.is-live .status-dot, .live-dot { position: relative; }
@@ -1013,7 +963,7 @@ html.live-announce .status-pill.is-live .status-dot::after, html.live-announce .
 @keyframes live-ring { from { transform: scale(1); opacity: .5; } to { transform: scale(2.6); opacity: 0; } }
 .status-pill.is-done { color: var(--success); background: var(--success-soft); }
 .status-pill.is-done .status-dot { background: var(--success); }
-:root[data-appearance='light'] .status-pill.is-live, :root[data-appearance='light'] .now-badge.is-current { color: oklch(45% .18 33); }
+
 .status-text-short { display: none; }
 @keyframes live-pulse {
   0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 45%, transparent); }
@@ -1040,7 +990,7 @@ html.live-announce .status-pill.is-live .status-dot::after, html.live-announce .
   translate: calc(var(--nav-index, 0) * 100%) 0;
   transition: translate var(--dur-spatial) var(--ease-spring-smooth);
 }
-:root[data-appearance='light'] .nav-lens { background: var(--surface); }
+
 .nav-item {
   min-height: 44px;
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
@@ -1121,13 +1071,13 @@ html.live-announce .status-pill.is-live .status-dot::after, html.live-announce .
 .dock-icon { width: 23px; height: 23px; }
 .dock-icon svg { stroke-width: 1.9; }
 .dock-label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: clamp(10.5px, .62rem, 12.5px); font-weight: 600; letter-spacing: .01em; }
-.dock-item.is-active { color: var(--accent); }
+.dock-item.is-active { color: var(--text); }
 /* SF Symbols switch to the .fill variant when selected; a tinted fill reads the same way. */
-.dock-item.is-active .dock-icon svg { fill: color-mix(in oklab, var(--accent) 18%, transparent); }
+.dock-item.is-active .dock-icon svg { fill: oklch(100% 0 0 / .16); }
 /* Added by script on a change of tab only: a rule keyed on .is-active also popped the tab that
    was simply open at launch, the moment any launch flag was lifted. */
-.dock-item.is-active .dock-icon.is-popping { animation: dock-pop 420ms var(--ease-spring-bouncy) both; }
-@keyframes dock-pop { from { transform: scale(.92); } }
+.dock-item.is-active .dock-icon.is-popping { animation: dock-pop 360ms var(--ease-spring-snappy) both; }
+@keyframes dock-pop { from { transform: scale(.96); } }
 
 .dock-search {
   width: 64px; height: 64px;
@@ -1233,14 +1183,14 @@ html.live-announce .status-pill.is-live .status-dot::after, html.live-announce .
   color: #fff; text-align: left;
   background:
     radial-gradient(120% 90% at 0% 0%, oklch(100% 0 0 / .1), transparent 56%),
-    linear-gradient(152deg, oklch(55% .19 34), oklch(46% .185 27));
+    linear-gradient(152deg, oklch(51% .165 34), oklch(41% .155 28));
   box-shadow:
-    inset 0 1px 0 oklch(100% 0 0 / .24), inset 0 -1px 0 oklch(0% 0 0 / .16),
-    0 16px 36px oklch(46% .17 30 / .3), 0 2px 6px oklch(0% 0 0 / .14);
+    inset 0 1px 0 oklch(100% 0 0 / .22), inset 0 -1px 0 oklch(0% 0 0 / .16),
+    0 16px 36px oklch(0% 0 0 / .38);
   transition: transform var(--dur-press) var(--ease-ui);
 }
 .boarding-pass:active { transform: scale(.985); }
-.pass-mark { position: absolute; z-index: -1; right: -40px; bottom: -46px; width: 200px; height: 200px; fill: oklch(100% 0 0 / .075); transform: rotate(-14deg); pointer-events: none; }
+.pass-mark { position: absolute; z-index: -1; right: -60px; bottom: -70px; width: 200px; height: 200px; fill: oklch(100% 0 0 / .055); transform: rotate(-14deg); pointer-events: none; }
 .pass-field { display: grid; gap: 2px; min-width: 0; }
 .pass-field.is-end { text-align: right; justify-items: end; }
 .pass-label { font-size: var(--fs-caption); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: oklch(100% 0 0 / .94); }
@@ -1321,8 +1271,13 @@ html.live-announce .status-pill.is-live .status-dot::after, html.live-announce .
 }
 .day-chip:active { transform: scale(.95); }
 .day-chip-top { display: flex; align-items: baseline; gap: 3px; font-size: var(--fs-caption); font-weight: 650; letter-spacing: .04em; text-transform: uppercase; color: var(--text-3); }
-.day-chip-kanji { font-family: var(--font-jp); font-size: var(--fs-caption); letter-spacing: 0; text-transform: none; opacity: .85; }
-:root[data-appearance='light'] .day-chip-kanji { opacity: .9; }
+.day-chip-kanji { font-family: var(--font-jp-ui); font-size: var(--fs-caption); letter-spacing: 0; text-transform: none; opacity: .85; }
+/* Printed Japanese calendars set Saturday in indigo and Sunday in red: one native accent on the rail. */
+.day-chip-kanji[data-wd='土'] { color: var(--tokyo); opacity: 1; }
+.day-chip-kanji[data-wd='日'] { color: var(--danger); opacity: 1; }
+.day-chip.is-active .day-chip-kanji[data-wd='土'] { color: oklch(26% .13 258); }
+.day-chip.is-active .day-chip-kanji[data-wd='日'] { color: oklch(32% .16 22); }
+
 .day-chip-date { font-family: var(--font-rounded); font-size: 22px; line-height: 1.05; font-weight: 700; letter-spacing: -.02em; color: var(--text); font-variant-numeric: tabular-nums; }
 .day-chip-meta { display: flex; align-items: center; gap: 4px; font-size: var(--fs-caption); font-weight: 650; color: var(--text-3); font-variant-numeric: tabular-nums slashed-zero; }
 .day-chip-meta .city-dot, .city-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c, var(--text-3)); flex: 0 0 auto; }
@@ -1341,8 +1296,8 @@ html.live-announce .status-pill.is-live .status-dot::after, html.live-announce .
 .day-chip.is-active .day-chip-top, .day-chip.is-active .day-chip-meta, .day-chip.is-active .day-chip-date { color: var(--bg); }
 .day-chip.is-active .day-chip-top, .day-chip.is-active .day-chip-meta { opacity: .72; }
 .day-chip.is-active.is-live::after { box-shadow: 0 0 0 3px var(--text); }
-:root:not([data-appearance='light']) .day-chip.is-active { background: oklch(88% .012 262); }
-:root:not([data-appearance='light']) .day-chip.is-active.is-live::after { box-shadow: 0 0 0 3px oklch(88% .012 262); }
+:root[data-appearance] .day-chip.is-active { background: oklch(88% .012 262); }
+:root[data-appearance] .day-chip.is-active.is-live::after { box-shadow: 0 0 0 3px oklch(88% .012 262); }
 
 /* ---------- Hero ---------- */
 .day-hero {
@@ -1372,8 +1327,14 @@ html.live-announce .status-pill.is-live .status-dot::after, html.live-announce .
 .photo-credit-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .photo-credit-subject { font-weight: 600; }
 .photo-credit-meta { font-size: var(--fs-caption); color: var(--text-2, var(--muted)); overflow-wrap: anywhere; }
-.scene-photo { object-fit: cover; object-position: center; -webkit-user-drag: none; user-select: none; }
-:root:not([data-appearance='light']) .scene-photo { filter: brightness(.86) saturate(.96); }
+.scene-photo { object-fit: cover; object-position: center; -webkit-user-drag: none; user-select: none; transition: filter var(--dur-ambient) var(--ease-ui); }
+/* On the live trip day the photo follows the real light in Japan: warm at golden hour, cooler
+   and darker at dusk, a quiet night print after dark, so the phone is never a flashlight. */
+body[data-live-day][data-sky='golden'] .scene-photo { filter: brightness(.9) saturate(1.06) sepia(.14); }
+body[data-live-day][data-sky='dusk'] .scene-photo { filter: brightness(.68) saturate(.84) hue-rotate(-8deg); }
+body[data-live-day][data-sky='night'] .scene-photo { filter: brightness(.52) saturate(.7) contrast(1.06); }
+body[data-live-day][data-sky='dawn'] .scene-photo { filter: brightness(.82) saturate(.92) sepia(.08) hue-rotate(-6deg); }
+:root[data-appearance] .scene-photo { filter: brightness(.86) saturate(.96); }
 body[data-sky='dusk'] .hero-scene { --horizon-glow: 12%; }
 body[data-sky='night'] .hero-scene { --horizon-glow: 26%; }
 .scene-art path, .scene-art circle { transition: fill var(--dur-ambient) var(--ease-ui), opacity var(--dur-ambient) var(--ease-ui); }
@@ -1414,10 +1375,10 @@ body[data-sky='night'] .is-moonless .scene-moon, body[data-sky='night'] .is-moon
 }
 /* The card's own colour rises into the bottom of the scene so the art sits in the card. In light
    mode it runs all the way to the card (a half-veil left a milky band and a hard step). */
-:root[data-appearance='light'] .hero-scene::after { height: 32px; background: linear-gradient(to bottom, transparent, var(--surface)); }
+
 .hero-scene::after {
-  content: ""; position: absolute; inset: auto 0 0; height: 26px;
-  background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--surface) 55%, transparent));
+  content: ""; position: absolute; inset: auto 0 0; height: 56px;
+  background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--surface) 82%, transparent));
   pointer-events: none;
 }
 /* Bottom-left, over the darkest ground: the sky stays clear for the sun and moon, which
@@ -1427,9 +1388,9 @@ body[data-sky='night'] .is-moonless .scene-moon, body[data-sky='night'] .is-moon
   display: flex; align-items: baseline; gap: 8px;
   padding: 5px 11px 5px 10px;
   border-radius: var(--r-pill);
-  background: var(--scene-chip);
-  color: var(--scene-chip-text);
-  box-shadow: 0 0 0 .5px color-mix(in oklab, var(--scene-chip-text) 14%, transparent) inset, 0 2px 10px oklch(0% 0 0 / .12);
+  background: oklch(0% 0 0 / .5);
+  color: oklch(98% .004 262);
+  box-shadow: 0 0 0 .5px oklch(100% 0 0 / .16) inset;
 }
 .scene-place-name { font-size: var(--fs-footnote); font-weight: 700; letter-spacing: .02em; }
 .scene-place-kanji { font-size: var(--fs-footnote); letter-spacing: .12em; opacity: .8; }
@@ -1468,39 +1429,20 @@ body[data-sky='night'] .scene-glint { fill: oklch(95% .022 242); }
 body[data-sky='night'] .scene-glow { filter: drop-shadow(0 0 1.4px var(--glow)); }
 /* The copy left behind by a swipe draws its sky but not its water (its defs lost their ids). */
 .hero-ghost :is(.scene-reflection, .scene-glint, .scene-ripple) { display: none; }
-/* Washi: a fine paper grain over the whole print. */
-.hero-scene::before {
-  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  opacity: var(--grain-o, .22);
-  mix-blend-mode: soft-light;
-}
-
 /* Light appearance */
-:root[data-appearance='light'] body[data-sky='day'] { --cloud-hi: oklch(100% 0 0); --cloud-lo: oklch(94% .014 238); --cloud-o: .92; --mist: oklch(99% .006 238); --mist-o: .72; --ray-o: 0; --reflect-o: .38; --glint-o: .85; --grain-o: .28; }
-:root[data-appearance='light'] body[data-sky='dawn'] { --cloud-hi: oklch(96% .035 20); --cloud-lo: oklch(86% .075 345); --cloud-o: .9; --mist: oklch(97% .03 15); --mist-o: .62; --ray-o: .55; --reflect-o: .4; --glint-o: .85; --grain-o: .28; }
-:root[data-appearance='light'] body[data-sky='golden'] { --cloud-hi: oklch(98% .04 85); --cloud-lo: oklch(87% .09 55); --cloud-o: .9; --mist: oklch(97% .045 80); --mist-o: .6; --ray-o: .7; --reflect-o: .42; --glint-o: .9; --grain-o: .28; }
-:root[data-appearance='light'] body[data-sky='dusk'] { --cloud-hi: oklch(62% .08 300); --cloud-lo: oklch(78% .13 40); --cloud-o: .88; --mist: oklch(80% .07 25); --mist-o: .42; --ray-o: 0; --reflect-o: .46; --glint-o: .85; --grain-o: .3; }
-:root[data-appearance='light'] body[data-sky='night'] { --cloud-hi: oklch(44% .045 268); --cloud-lo: oklch(36% .045 270); --cloud-o: .55; --mist: oklch(58% .045 268); --mist-o: .26; --ray-o: 0; --reflect-o: .5; --glint-o: .75; --grain-o: .32; }
-/* Dark appearance */
-:root:not([data-appearance='light']) body[data-sky='night'] { --cloud-hi: oklch(33% .045 270); --cloud-lo: oklch(25% .04 270); --cloud-o: .6; --mist: oklch(46% .045 270); --mist-o: .22; --ray-o: 0; --reflect-o: .55; --glint-o: .75; --grain-o: .3; }
-:root:not([data-appearance='light']) body[data-sky='day'] { --cloud-hi: oklch(70% .045 238); --cloud-lo: oklch(56% .05 240); --cloud-o: .75; --mist: oklch(72% .035 238); --mist-o: .3; --ray-o: 0; --reflect-o: .4; --glint-o: .8; --grain-o: .28; }
-:root:not([data-appearance='light']) body[data-sky='dawn'] { --cloud-hi: oklch(55% .09 340); --cloud-lo: oklch(48% .1 30); --cloud-o: .8; --mist: oklch(60% .07 330); --mist-o: .3; --ray-o: .4; --reflect-o: .42; --glint-o: .8; --grain-o: .28; }
-:root:not([data-appearance='light']) body[data-sky='golden'] { --cloud-hi: oklch(68% .1 65); --cloud-lo: oklch(50% .1 42); --cloud-o: .8; --mist: oklch(70% .08 60); --mist-o: .3; --ray-o: .5; --reflect-o: .42; --glint-o: .85; --grain-o: .28; }
-:root:not([data-appearance='light']) body[data-sky='dusk'] { --cloud-hi: oklch(40% .08 300); --cloud-lo: oklch(52% .12 32); --cloud-o: .8; --mist: oklch(55% .08 20); --mist-o: .28; --ray-o: 0; --reflect-o: .46; --glint-o: .8; --grain-o: .3; }
 
-/* Scroll-driven parallax (iOS 26+): the far layers drift slower than the page. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .scene-art { animation: scene-parallax linear both; animation-timeline: view(); animation-range: exit -10% exit 100%; }
-    .scene-far, .scene-sun, .scene-moon { animation: scene-parallax-far linear both; animation-timeline: view(); animation-range: exit -10% exit 100%; }
-    .scene-stars { animation: scene-parallax-stars linear both; animation-timeline: view(); animation-range: exit -10% exit 100%; }
-  }
-}
-@keyframes scene-parallax-stars { to { transform: translateY(30%); } }
-@keyframes scene-parallax { to { transform: translateY(18%); } }
-@keyframes scene-parallax-far { to { transform: translateY(10%); } }
+
+
+
+
+/* Dark appearance */
+:root[data-appearance] body[data-sky='night'] { --cloud-hi: oklch(33% .045 270); --cloud-lo: oklch(25% .04 270); --cloud-o: .6; --mist: oklch(46% .045 270); --mist-o: .22; --ray-o: 0; --reflect-o: .55; --glint-o: .75; --grain-o: .3; }
+:root[data-appearance] body[data-sky='day'] { --cloud-hi: oklch(70% .045 238); --cloud-lo: oklch(56% .05 240); --cloud-o: .75; --mist: oklch(72% .035 238); --mist-o: .3; --ray-o: 0; --reflect-o: .4; --glint-o: .8; --grain-o: .28; }
+:root[data-appearance] body[data-sky='dawn'] { --cloud-hi: oklch(55% .09 340); --cloud-lo: oklch(48% .1 30); --cloud-o: .8; --mist: oklch(60% .07 330); --mist-o: .3; --ray-o: .4; --reflect-o: .42; --glint-o: .8; --grain-o: .28; }
+:root[data-appearance] body[data-sky='golden'] { --cloud-hi: oklch(68% .1 65); --cloud-lo: oklch(50% .1 42); --cloud-o: .8; --mist: oklch(70% .08 60); --mist-o: .3; --ray-o: .5; --reflect-o: .42; --glint-o: .85; --grain-o: .28; }
+:root[data-appearance] body[data-sky='dusk'] { --cloud-hi: oklch(40% .08 300); --cloud-lo: oklch(52% .12 32); --cloud-o: .8; --mist: oklch(55% .08 20); --mist-o: .28; --ray-o: 0; --reflect-o: .46; --glint-o: .8; --grain-o: .3; }
+
+
 
 /* Autumn particles: a handful of momiji leaves drift through foliage-season scenes. */
 .scene-particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
@@ -1561,15 +1503,15 @@ body[data-scene='fuji'] .leaf-1, body[data-scene='fuji'] .leaf-3, body[data-scen
   color: var(--text);
   text-wrap: balance;
 }
-.hero-title .route-arrow { display: inline-block; margin: 0 0 0 .2em; color: var(--city); font-family: var(--font-ui); font-weight: 500; font-size: .7em; transform: translateY(-.1em); }
+.hero-title .route-arrow { display: inline-block; margin: 0 0 0 .2em; color: var(--text-3); font-family: var(--font-ui); font-weight: 500; font-size: .7em; transform: translateY(-.1em); }
 .hero-title .title-separator { display: inline-block; margin: 0 0 0 .22em; color: var(--text-3); font-weight: 400; }
 .hero-title .title-bind { white-space: nowrap; }
 
 /* 七十二候: Mincho for the micro-season, a quiet gloss beside it. */
 .hero-almanac { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; margin-top: -4px; font-size: var(--fs-footnote); color: var(--text-3); }
-.almanac-ko { font-family: var(--font-jp); font-size: 1.08em; letter-spacing: .14em; color: var(--text-2); }
+.almanac-ko { font-family: var(--font-jp-ui); font-size: 1.04em; letter-spacing: .1em; color: var(--text-2); }
 .almanac-term, .almanac-holiday { flex-basis: 100%; }
-.almanac-term [lang='ja'] { font-family: var(--font-jp); letter-spacing: .08em; color: var(--text-2); }
+.almanac-term [lang='ja'] { font-family: var(--font-jp-ui); letter-spacing: .06em; color: var(--text-2); }
 .almanac-holiday { font-weight: 600; color: var(--warning); }
 .almanac-holiday [lang='ja'] { font-family: var(--font-jp); letter-spacing: .08em; }
 .hero-meta { display: grid; gap: 0; margin: 2px 0 0; border-top: .5px solid var(--separator); }
@@ -1616,12 +1558,7 @@ body[data-scene='fuji'] .leaf-1, body[data-scene='fuji'] .leaf-3, body[data-scen
   box-shadow: var(--shadow-card);
   overflow: hidden;
 }
-.now-card.is-current {
-  background:
-    radial-gradient(120% 90% at 0% 0%, color-mix(in oklab, var(--accent) 13%, transparent), transparent 62%),
-    var(--surface);
-  box-shadow: var(--shadow-card), 0 0 0 1px var(--accent-line) inset;
-}
+.now-card.is-current { box-shadow: var(--shadow-card), 0 0 0 1px var(--separator-strong) inset; }
 .now-card.is-next { box-shadow: var(--shadow-card), 0 0 0 1px var(--separator-strong) inset; }
 .now-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .now-badge {
@@ -1676,7 +1613,8 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 .map-button:hover { background: var(--fill-2); }
 .map-button:active { transform: scale(.9); }
 .map-button svg { transform: rotate(0deg); }
-.map-button.is-prominent { width: 52px; height: 52px; flex-basis: 52px; background: var(--accent-fill); color: var(--text-on-accent); box-shadow: 0 6px 18px color-mix(in oklab, var(--accent) 34%, transparent); }
+/* The primary action is a white disc, as in Maps and Wallet: vermilion is kept for "now". */
+.map-button.is-prominent { width: 52px; height: 52px; flex-basis: 52px; background: var(--text); color: var(--bg); box-shadow: 0 4px 14px oklch(0% 0 0 / .35); }
 .map-button.is-small { width: 44px; height: 44px; }
 .map-button.is-quiet { width: 48px; height: 48px; flex-basis: 48px; }
 
@@ -1735,7 +1673,7 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
   transform: translateX(calc(var(--jump-index, 0) * 100%));
   transition: transform var(--dur-spatial) var(--ease-spring-smooth);
 }
-:root[data-appearance='light'] .jump-lens { background: var(--surface); }
+
 .jump-item {
   min-height: 44px;
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
@@ -1746,7 +1684,7 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
   transition: color var(--dur-fast) var(--ease-ui);
 }
 .jump-item.is-active { color: var(--text); }
-.jump-item.is-active i { color: var(--accent); }
+.jump-item.is-active i { color: var(--text); }
 
 /* ---------- Timeline ---------- */
 .day-workspace { display: grid; gap: 16px; }
@@ -1840,14 +1778,14 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 .event-heading { min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 7px; padding-top: 4px; }
 .event-title { flex: 1 1 100%; font-size: var(--fs-headline); line-height: 1.3; font-weight: 650; letter-spacing: -.008em; overflow-wrap: anywhere; }
 .event-state { order: -1; display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: var(--r-pill); font-size: var(--fs-caption); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-.event-state.is-now { background: var(--accent-fill); color: var(--text-on-accent); }
+.event-state.is-now { background: var(--accent-soft); color: var(--accent); }
 .event-state.is-next { background: var(--fill-2); color: var(--text); }
 .event-kind { font-size: var(--fs-caption); font-weight: 650; color: var(--tone-food); }
 .event-desc { font-size: var(--fs-body); line-height: 1.5; color: var(--text-2); }
 
-.food-decision { display: grid; gap: 8px; padding: 10px; border-radius: var(--r-inner); background: color-mix(in oklab, var(--tone-food) 8%, var(--surface-2)); }
-.food-choice { display: grid; gap: 1px; padding: 8px 10px; border-radius: calc(var(--r-inner) - 4px); background: var(--surface); }
-.food-choice.is-primary { box-shadow: 0 0 0 1px color-mix(in oklab, var(--tone-food) 30%, transparent) inset; }
+.food-decision { display: grid; gap: 8px; padding: 10px; border-radius: var(--r-inner); background: var(--surface-2); }
+.food-choice { display: grid; gap: 1px; padding: 8px 10px; border-radius: calc(var(--r-inner) - 4px); background: var(--surface-3); }
+.food-choice.is-primary { box-shadow: inset 3px 0 0 var(--text-2); }
 .food-choice-label { font-size: var(--fs-caption); font-weight: 750; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
 .food-choice.is-primary .food-choice-label { color: var(--tone-food); }
 .food-choice-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
@@ -2019,16 +1957,9 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
    ================================================================================== */
 
 /* Light · day (default for light appearance) */
-:root[data-appearance='light'] body {
-  --sky-top: oklch(85% .055 238); --sky-mid: oklch(91.5% .032 225); --sky-bottom: oklch(96% .018 85);
-  --sun: oklch(98.5% .03 95); --sun-glow: oklch(97% .07 90 / .9); --sun-o: 1;
-  --far: oklch(83% .026 240); --mid: oklch(72% .032 245); --water: oklch(84% .035 232);
-  --landmark: oklch(38% .03 262); --near: oklch(29% .026 262); --snow: oklch(99% .005 250);
-  --scene-accent: oklch(57% .19 33); --glow: oklch(86% .14 82); --glow-o: 0;
-  --scene-chip: oklch(99.5% .003 80); --scene-chip-text: oklch(26% .02 262);
-}
+
 /* Dark · night (default for dark appearance) */
-:root:not([data-appearance='light']) body {
+:root[data-appearance] body {
   --sky-top: oklch(15% .04 268); --sky-mid: oklch(21% .05 272); --sky-bottom: oklch(29% .055 288);
   --sun: oklch(93% .025 95); --sun-glow: oklch(92% .05 95 / .5); --sun-o: .95;
   --far: oklch(27% .045 272); --mid: oklch(21.5% .038 270); --water: oklch(20% .045 266);
@@ -2038,53 +1969,31 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 }
 
 /* ---------- Live-day phases, light appearance ---------- */
-:root[data-appearance='light'] body[data-sky='dawn'] {
-  --sky-top: oklch(80% .055 285); --sky-mid: oklch(88% .06 15); --sky-bottom: oklch(94% .06 65);
-  --sun: oklch(95% .07 70); --sun-glow: oklch(90% .12 55 / .9);
-  --far: oklch(82% .04 320); --mid: oklch(70% .045 300); --water: oklch(86% .045 20);
-  --landmark: oklch(36% .035 290); --near: oklch(28% .03 285);
-}
-:root[data-appearance='light'] body[data-sky='golden'] {
-  --sky-top: oklch(84% .06 238); --sky-mid: oklch(90% .07 78); --sky-bottom: oklch(93% .09 68);
-  --sun: oklch(94% .12 85); --sun-glow: oklch(88% .16 70 / .9);
-  --far: oklch(82% .045 60); --mid: oklch(70% .05 50); --water: oklch(86% .07 72);
-  --landmark: oklch(35% .04 40); --near: oklch(27% .035 35);
-}
-:root[data-appearance='light'] body[data-sky='dusk'] {
-  --sky-top: oklch(52% .09 282); --sky-mid: oklch(70% .12 22); --sky-bottom: oklch(82% .11 58);
-  --sun: oklch(88% .14 60); --sun-glow: oklch(80% .17 45 / .9); --sun-o: .95;
-  --far: oklch(56% .07 330); --mid: oklch(42% .06 310); --water: oklch(60% .09 20);
-  --landmark: oklch(24% .04 290); --near: oklch(18% .03 285); --glow-o: .9;
-  --scene-chip: oklch(20% .03 285); --scene-chip-text: oklch(96% .01 60);
-}
-:root[data-appearance='light'] body[data-sky='night'] {
-  --sky-top: oklch(24% .05 268); --sky-mid: oklch(31% .06 272); --sky-bottom: oklch(40% .06 290);
-  --sun: oklch(94% .025 95); --sun-glow: oklch(92% .05 95 / .55);
-  --far: oklch(36% .05 272); --mid: oklch(29% .045 270); --water: oklch(27% .05 266);
-  --landmark: oklch(19% .03 266); --near: oklch(15% .025 266); --snow: oklch(82% .03 250); --glow-o: 1;
-  --scene-chip: oklch(16% .02 266); --scene-chip-text: oklch(96% .01 266);
-}
+
+
+
+
 
 /* ---------- Live-day phases, dark appearance ---------- */
-:root:not([data-appearance='light']) body[data-sky='dawn'] {
+:root[data-appearance] body[data-sky='dawn'] {
   --sky-top: oklch(24% .06 285); --sky-mid: oklch(36% .08 330); --sky-bottom: oklch(52% .1 42);
   --sun: oklch(84% .1 60); --sun-glow: oklch(76% .15 45 / .7);
   --far: oklch(34% .06 320); --mid: oklch(26% .05 300); --water: oklch(33% .07 20);
   --landmark: oklch(17% .03 290); --near: oklch(13% .025 285); --glow-o: .6;
 }
-:root:not([data-appearance='light']) body[data-sky='day'] {
+:root[data-appearance] body[data-sky='day'] {
   --sky-top: oklch(39% .085 248); --sky-mid: oklch(49% .075 236); --sky-bottom: oklch(59% .055 222);
   --sun: oklch(95% .07 85); --sun-glow: oklch(86% .13 75 / .85);
   --far: oklch(40% .045 244); --mid: oklch(31% .04 248); --water: oklch(38% .05 238);
   --landmark: oklch(19% .03 258); --near: oklch(14.5% .025 262); --snow: oklch(88% .02 250); --glow-o: 0;
 }
-:root:not([data-appearance='light']) body[data-sky='golden'] {
+:root[data-appearance] body[data-sky='golden'] {
   --sky-top: oklch(30% .07 258); --sky-mid: oklch(44% .09 52); --sky-bottom: oklch(58% .11 66);
   --sun: oklch(86% .13 78); --sun-glow: oklch(78% .16 62 / .75);
   --far: oklch(38% .06 50); --mid: oklch(29% .05 40); --water: oklch(44% .09 60);
   --landmark: oklch(17% .03 35); --near: oklch(13% .025 30); --glow-o: .4;
 }
-:root:not([data-appearance='light']) body[data-sky='dusk'] {
+:root[data-appearance] body[data-sky='dusk'] {
   --sky-top: oklch(22% .07 285); --sky-mid: oklch(37% .11 20); --sky-bottom: oklch(52% .12 46);
   --sun: oklch(80% .14 55); --sun-glow: oklch(72% .17 40 / .75);
   --far: oklch(33% .07 330); --mid: oklch(25% .055 310); --water: oklch(34% .09 22);
@@ -2092,8 +2001,8 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 }
 
 /* Fuji's cap should read as snow in daylight, not as a hole in the mountain. */
-:root[data-appearance='light'] body[data-sky='dusk'] { --snow: oklch(90% .04 30); }
-:root:not([data-appearance='light']) body[data-sky='dusk'] { --snow: oklch(72% .06 20); }
+
+:root[data-appearance] body[data-sky='dusk'] { --snow: oklch(72% .06 20); }
 
 /* =============================== SHARED PANE PATTERNS =============================== */
 .pane-header { display: grid; gap: 2px; padding: 6px 4px 2px; }
@@ -2117,7 +2026,7 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 }
 .route-map { display: block; width: 100%; height: auto; aspect-ratio: 292 / 166; }
 .map-land { fill: var(--surface-3); stroke: var(--separator-strong); stroke-width: .6; stroke-linejoin: round; }
-:root[data-appearance='light'] .map-land { fill: oklch(92% .012 80); }
+
 .map-route { fill: none; stroke: color-mix(in oklab, var(--text-3) 55%, transparent); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .map-route-progress {
   fill: none; stroke: color-mix(in oklab, var(--text) 70%, transparent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
@@ -2248,8 +2157,8 @@ html.live-announce .map-here-pulse { animation: here-pulse 2.4s var(--ease-out) 
 .ticket-links { flex-wrap: wrap; justify-content: flex-end; }
 .booking-fields { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 24px; padding-top: 10px; border-top: 1px dashed var(--separator-strong); }
 .booking-field { display: grid; gap: 2px; min-width: 0; }
-.booking-field.is-ref { grid-template-columns: minmax(0, auto) auto; align-items: center; column-gap: 2px; }
-.booking-field.is-ref .booking-label { grid-column: 1 / -1; }
+.booking-field.is-ref { position: relative; min-height: 44px; padding-right: 40px; }
+.booking-field.is-ref .icon-button { position: absolute; right: -6px; top: 50%; transform: translateY(-50%); }
 .booking-label { font-size: var(--fs-caption); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
 .booking-value { font-size: var(--fs-callout); font-weight: 650; color: var(--text); }
 .booking-ref { font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums slashed-zero; letter-spacing: .02em; overflow-wrap: anywhere; -webkit-user-select: all; user-select: all; }
@@ -2275,6 +2184,15 @@ html.live-announce .map-here-pulse { animation: here-pulse 2.4s var(--ease-out) 
 .now-card .pass-stub { margin-top: 10px; }
 
 .show-card-body { display: grid; gap: 16px; padding: 8px 20px 18px; }
+/* Held out to staff, so it is paper even in a dark app: dark ink on white reads at arm's length
+   under station light and in a dim restaurant, as Wallet passes do. Gothic, not Mincho, for the phrase. */
+.show-card {
+  --surface-2: oklch(93.5% .008 80); --text: oklch(19% .012 262); --text-2: oklch(36% .014 262); --text-3: oklch(46% .014 262);
+  --separator: oklch(19% .012 262 / .1); --separator-strong: oklch(19% .012 262 / .18);
+  --fill: oklch(0% 0 0 / .05); --fill-2: oklch(0% 0 0 / .08); --fill-3: oklch(0% 0 0 / .12);
+  background: oklch(98.5% .004 80) !important; color: var(--text);
+}
+.show-card [lang='ja'] { font-family: var(--font-jp-ui); font-weight: 700; }
 .show-card .sheet-title:focus { outline: none; }
 .show-card-when { font-size: var(--fs-subhead); font-weight: 650; color: var(--text-2); }
 .show-card-title { margin-top: -10px; font-size: clamp(22px, 1.4rem, 30px); font-weight: 700; line-height: 1.2; overflow-wrap: break-word; }
@@ -2291,6 +2209,7 @@ html.live-announce .map-here-pulse { animation: here-pulse 2.4s var(--ease-out) 
 .show-card-ref { font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace; font-size: clamp(34px, 2.6rem, 56px); font-weight: 650; line-height: 1.1; letter-spacing: .03em; font-variant-numeric: tabular-nums slashed-zero; overflow-wrap: anywhere; -webkit-user-select: all; user-select: all; }
 .show-card-value { display: grid; gap: 2px; font-size: clamp(22px, 1.5rem, 32px); font-weight: 650; line-height: 1.2; }
 .show-card-copy { justify-self: start; }
+.pill-button.is-primary-show { background: oklch(100% 0 0 / .16); color: var(--text); box-shadow: inset 0 0 0 .5px oklch(100% 0 0 / .2); }
 .sheet-action.is-placeholder { visibility: hidden; }
 
 .check-list { display: grid; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow-card); overflow: hidden; }
@@ -2428,7 +2347,7 @@ li.route-stop:only-of-type::before { display: none; }
   opacity: .92;
   filter: drop-shadow(0 1px 0 color-mix(in oklab, var(--ink) 30%, transparent));
 }
-:root[data-appearance='light'] .hero-scene .eki-stamp { mix-blend-mode: multiply; opacity: .88; }
+
 .hero-scene .eki-stamp .stamp-kanji { font-size: 21px; }
 /* One snappy-spring press (its own overshoot is the squash), with the ink on a separate curve. */
 .eki-stamp.is-pressing { animation: stamp-press 460ms both; }
@@ -2439,7 +2358,7 @@ li.route-stop:only-of-type::before { display: none; }
   66% { transform: rotate(-12deg) scale(1.02); }
   100% { transform: rotate(-12deg) scale(1); opacity: .92; }
 }
-:root[data-appearance='light'] .eki-stamp.is-pressing { animation-name: stamp-press-light; }
+
 @keyframes stamp-press-light {
   0% { transform: rotate(-4deg) scale(1.55); opacity: 0; animation-timing-function: cubic-bezier(.55, 0, .9, .5); }
   30% { opacity: .25; }
@@ -2464,7 +2383,7 @@ li.route-stop:only-of-type::before { display: none; }
 .stamp-cell .stamp-ring { stroke-width: 2.2; stroke-dasharray: 3 3.5; }
 .stamp-cell .stamp-ring-inner { opacity: 0; }
 .stamp-cell .stamp-kanji { font-size: 24px; opacity: .7; }
-:root[data-appearance='light'] .stamp-cell:not(.is-collected) .stamp-kanji { opacity: .8; }
+
 .stamp-cell .stamp-arc { font-size: 12px; letter-spacing: .08em; }
 .stamp-cell.is-collected .eki-stamp { --ink: var(--c); transform: rotate(-10deg); }
 .stamp-cell.is-collected .stamp-ring { stroke-dasharray: none; stroke-width: 3.4; }
@@ -2517,7 +2436,7 @@ li.route-stop:only-of-type::before { display: none; }
   overflow: hidden;
   text-align: center;
 }
-:root[data-appearance='light'] .station-sign { background: #fff; }
+
 .station-sign-face { display: grid; justify-items: center; gap: 2px; padding: 0 16px 12px; }
 .station-sign-face .station-code { margin-bottom: 4px; }
 .station-sign-kanji { font-size: 30px; line-height: 1.1; letter-spacing: .18em; padding-left: .18em; color: var(--text); }
@@ -2530,8 +2449,8 @@ li.route-stop:only-of-type::before { display: none; }
 }
 .station-sign-bar::before { left: 6px; border-right: 7px solid var(--surface); }
 .station-sign-bar::after { right: 6px; border-left: 7px solid var(--surface); }
-:root[data-appearance='light'] .station-sign-bar::before { border-right-color: #fff; }
-:root[data-appearance='light'] .station-sign-bar::after { border-left-color: #fff; }
+
+
 .station-sign-ends { display: grid; grid-template-columns: 1fr 1fr; }
 .station-end {
   min-height: 48px;
@@ -2602,7 +2521,7 @@ html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .br
   .modal-backdrop.is-open::before { opacity: 0; }
   .modal-backdrop.is-open .modal-panel { transform: translateY(100%); }
 }
-:root:not([data-appearance='light']) .modal-panel { background: var(--surface-2); }
+:root[data-appearance] .modal-panel { background: var(--surface-2); }
 .sheet-grabber {
   display: grid; place-items: center;
   height: 22px;
@@ -2615,7 +2534,7 @@ html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .br
 .sheet { padding: 0 0 calc(20px + var(--safe-bottom)); }
 .sheet-head { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; padding: 6px 8px 8px; }
 .sheet-title { font-size: var(--fs-headline); font-weight: 700; text-align: center; }
-.sheet-action { min-height: 44px; padding: 0 10px; justify-self: start; color: var(--accent); font-size: var(--fs-body); font-weight: 500; border-radius: var(--r-sm); }
+.sheet-action { min-height: 44px; padding: 0 10px; justify-self: start; color: var(--text); font-size: var(--fs-body); font-weight: 500; border-radius: var(--r-sm); }
 .sheet-action.is-primary { justify-self: end; font-weight: 700; }
 .form-stack { display: grid; gap: 14px; padding: 8px 16px 0; }
 .field { display: grid; gap: 6px; }
@@ -2658,7 +2577,7 @@ html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .br
 /* Focus lands here inside the Search tap so iOS raises the keyboard, then moves to the real
    field once the sheet has painted. It must stay focusable: no display:none or visibility. */
 .search-focus-proxy { position: fixed; top: 0; left: 0; width: 1px; height: 1px; padding: 0; border: 0; opacity: 0; font-size: 16px; pointer-events: none; }
-:root:not([data-appearance='light']) .global-search-panel { background: var(--bg); }
+:root[data-appearance] .global-search-panel { background: var(--surface-2); }
 .global-search-head { padding: 8px 12px 10px; }
 .global-search-head-row { display: flex; align-items: center; gap: 8px; }
 .global-search-input-shell {
@@ -2682,7 +2601,7 @@ html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .br
 .global-search-input::-webkit-search-cancel-button { display: none; }
 .global-search-input:focus, .global-search-input:focus-visible { outline: none; }
 .global-search-clear { width: 44px; height: 44px; display: grid; place-items: center; color: var(--text-3); }
-.global-search-close { min-height: 44px; padding: 0 6px 0 4px; color: var(--accent); font-size: var(--fs-body); font-weight: 500; }
+.global-search-close { min-height: 44px; padding: 0 6px 0 4px; color: var(--text); font-size: var(--fs-body); font-weight: 500; }
 .global-search-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 4px max(14px, var(--safe-right)) calc(24px + var(--safe-bottom)) max(14px, var(--safe-left)); }
 .global-search-meta { padding: 8px 4px; font-size: var(--fs-footnote); font-weight: 650; color: var(--text-3); letter-spacing: .02em; }
 .search-suggestion-grid { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px 0 14px; }
@@ -2692,7 +2611,7 @@ html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .br
   display: inline-flex; align-items: center; gap: 7px;
   padding: 0 14px;
   border-radius: var(--r-pill);
-  background: var(--surface);
+  background: var(--surface-3);
   box-shadow: var(--shadow-card);
   color: var(--text);
   font-size: var(--fs-subhead); font-weight: 600;
@@ -2708,7 +2627,7 @@ html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .br
   display: grid; grid-template-columns: 44px minmax(0, 1fr) 18px; align-items: center; gap: 12px;
   padding: 13px 14px 13px 12px;
   border-radius: var(--r-lg);
-  background: var(--surface);
+  background: var(--surface-3);
   box-shadow: var(--shadow-card);
   text-align: left; color: var(--text);
   transition: transform var(--dur-press) var(--ease-ui);
@@ -2728,7 +2647,7 @@ html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .br
 /* Matched text: Safari's find-in-page yellow (ginkgo, if you like), dark text on it in both
    themes so it reads as a marker rather than a colour. */
 ::highlight(search-hit) { background-color: oklch(90% .13 96); color: oklch(21% .02 60); }
-:root:not([data-appearance='light']) ::highlight(search-hit) { background-color: oklch(86% .14 94); color: oklch(18% .02 60); }
+:root[data-appearance] ::highlight(search-hit) { background-color: oklch(86% .14 94); color: oklch(18% .02 60); }
 html.global-search-open, html.global-search-open body { overflow: hidden; overscroll-behavior: none; }
 
 @media (min-width: 768px) {
@@ -2819,22 +2738,24 @@ html.vt-live .app-chrome::before, html.vt-live .day-jumpbar-inner { -webkit-back
 /* Day change inside the Day tab: the hero art cross-fades and the timeline settles. */
 body { --day-shift: 16px; }
 body[data-motion-direction='backward'] { --day-shift: -16px; }
-body[data-day-changing] .hero-scene .scene-art { animation: scene-swap 380ms var(--ease-spring-smooth) both; }
+/* Changing days is the most frequent action in the app, so it gets the least motion: the photo
+   fades up in place (a photo that also slides and scales inside a fixed frame reads as jitter)
+   and the title block does not move at all. */
+body[data-day-changing] .hero-scene .scene-art { animation: scene-swap 320ms var(--ease-spring-smooth) both; }
 /* One duration for the whole change: the art's colours land with the art, not 300ms later. */
 body[data-day-changing] .hero-scene, body[data-day-changing] .scene-art :is(path, circle) { transition-duration: 380ms; }
-body[data-day-changing] .hero-body { animation: day-hero-swap 380ms var(--ease-spring-snappy) both; }
 .hero-ghost, .hero-ghost * { transition: none !important; animation: none !important; }
 /* The incoming card arrives finished: no colour still settling after it lands. */
 body[data-swipe-change] #day-summary .hero-scene, body[data-swipe-change] #day-summary .scene-art :is(path, circle) { transition: none !important; }
 /* A swiped day arrives as one sheet with the card; its art and title don't animate again. */
-body[data-day-changing][data-swipe-change] .hero-scene .scene-art, body[data-day-changing][data-swipe-change] .hero-body { animation: none; }
-body[data-day-changing] .now-card, body[data-day-changing] .brief-card { animation: day-card-swap 360ms var(--ease-out) 60ms both; }
+body[data-day-changing][data-swipe-change] .hero-scene .scene-art { animation: none; }
+body[data-day-changing] .scene-photo { transition: none; }
+body[data-day-changing]:not([data-revisit]) .now-card, body[data-day-changing]:not([data-revisit]) .brief-card { animation: day-card-swap 320ms var(--ease-out) 40ms both; }
 /* The row stagger plays on a day's first visit only: switching days is the most frequent
    action in the app, and motion on a frequent action gets old (HIG). */
 body[data-day-changing]:not([data-revisit]) .timeline-row { animation: day-card-swap 360ms var(--ease-out) both; animation-delay: calc(90ms + min(var(--timeline-index, 0), 6) * 36ms); }
-@keyframes scene-swap { from { opacity: .45; transform: translateX(calc(var(--day-shift) * 1.2)) scale(1.03); } }
-@keyframes day-hero-swap { from { opacity: .6; transform: translate3d(var(--day-shift), 0, 0); } }
-@keyframes day-card-swap { from { opacity: .3; transform: translate3d(calc(var(--day-shift) * .6), 8px, 0); } }
+@keyframes scene-swap { from { opacity: .55; } }
+@keyframes day-card-swap { from { opacity: 0; transform: translate3d(0, 6px, 0); } }
 
 /* Launch: once the runtime is ready the content fades up a few points, as an app does when
    it finishes launching, instead of every pane popping in at once. The header (outside
@@ -2869,7 +2790,7 @@ i[data-lucide] > svg { stroke-width: 1.5; }
 /* legacy · small Japanese UI text in Hiragino Sans; Mincho stays for display sizes. */
 :root { --font-jp-ui: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', var(--font-ui); }
 .day-chip-kanji, .now-next-label [lang='ja'], .section-kanji, .show-card-label [lang='ja'], .sheet-title [lang='ja'] { font-family: var(--font-jp-ui); font-weight: 600; }
-.day-chip-kanji, :root[data-appearance='light'] .day-chip-kanji { opacity: 1; }
+.day-chip-kanji{ opacity: 1; }
 
 /* legacy · the type glyph sits in the time rail, so the title gets the card's width. */
 .event-card-header { grid-template-columns: minmax(0, 1fr) auto; }
@@ -2888,10 +2809,10 @@ i[data-lucide] > svg { stroke-width: 1.5; }
 .roll[data-old]::after { content: attr(data-old); position: absolute; inset: 0; animation: roll-out 260ms var(--ease-in) forwards; }
 .roll.is-up .roll-in { --from: .55em; } .roll.is-up::after { --to: -.55em; }
 .roll.is-down .roll-in { --from: -.55em; } .roll.is-down::after { --to: .55em; }
-@keyframes roll-in { from { translate: 0 var(--from); filter: blur(2px); opacity: 0; } }
-@keyframes roll-out { to { translate: 0 var(--to); filter: blur(2px); opacity: .001; } }
+@keyframes roll-in { from { translate: 0 var(--from); opacity: 0; } }
+@keyframes roll-out { to { translate: 0 var(--to); opacity: .001; } }
 .is-swapping { animation: text-swap 360ms var(--ease-spring-smooth); }
-@keyframes text-swap { from { opacity: 0; translate: 0 .3em; filter: blur(3px); } }
+@keyframes text-swap { from { opacity: 0; translate: 0 .3em; } }
 
 /* C2 · light under the fingertip, the lens lifts, the dock is a slider */
 .mobile-dock { touch-action: none; }
@@ -2901,7 +2822,7 @@ i[data-lucide] > svg { stroke-width: 1.5; }
   box-shadow: inset 0 0 0 1px oklch(100% 0 0 / .16);
   opacity: 0; transition: opacity 420ms var(--ease-ui);
 }
-:root[data-appearance='light'] .mobile-dock::after { background: radial-gradient(36px 36px at var(--glow-x, 50%) var(--glow-y, 50%), oklch(100% 0 0 / .6), transparent 70%); box-shadow: inset 0 0 0 1px oklch(100% 0 0 / .7); }
+
 .mobile-dock.is-pressed::after { opacity: 1; transition-duration: 90ms; }
 .mobile-nav-lens { transition: translate var(--dur-spatial) var(--ease-spring-smooth), opacity var(--dur-fast) var(--ease-ui), scale 260ms var(--ease-spring-smooth); }
 .mobile-dock.is-pressed .mobile-nav-lens { scale: 1.08 1.05; transition: translate var(--dur-spatial) var(--ease-spring-smooth), opacity var(--dur-fast) var(--ease-ui), scale 180ms var(--ease-spring-snappy); }
@@ -2973,7 +2894,6 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
-  .scene-particles { display: none !important; }
   .eki-stamp.is-pressing { animation: none !important; }
   .scene-art, .scene-far, .scene-sun, .scene-moon, .scene-stars, .stars-b { animation: none !important; transform: none !important; }
 }
@@ -3100,6 +3020,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       :data-city-theme="currentCityTheme"
       :data-motion-direction="motionDirection"
       :data-sky="skyPhase"
+      :data-live-day="isViewingLiveTripDay ? '' : null"
       :data-scene="currentScene"
       :data-tab="activeTab">
 
@@ -3236,7 +3157,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                   :class="['day-chip', 'city-' + d.city.toLowerCase(), selectedDayNumber === d.dayNumber ? 'is-active' : '', isDayCompleted(d.dayNumber) ? 'is-done' : '', isLiveDay(d.dayNumber) ? 'is-live' : '']">
             <span class="day-chip-top" aria-hidden="true">
               <span class="day-chip-weekday" x-text="weekdayShort(d)"></span>
-              <span class="day-chip-kanji" x-text="weekdayKanji(d)"></span>
+              <span class="day-chip-kanji" :data-wd="weekdayKanji(d)" x-text="weekdayKanji(d)"></span>
             </span>
             <span class="day-chip-date" aria-hidden="true" x-text="dayOfMonth(d)"></span>
             <span class="day-chip-meta" aria-hidden="true">
@@ -3256,7 +3177,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
              aria-labelledby="now-card-title">
       <div class="now-head">
         <span class="now-badge" :class="'is-' + liveActivity.state">
-          <span class="live-dot" x-show="isViewingLiveTripDay" aria-hidden="true"></span>
+          <span class="live-dot" x-show="isViewingLiveTripDay && liveActivity.state === 'current'" aria-hidden="true"></span>
           <i data-lucide="eye" class="icon-xs" x-show="!isViewingLiveTripDay && liveActivity.state !== 'complete'" aria-hidden="true"></i>
           <span id="now-card-title" x-text="liveActivity.badge"></span>
         </span>
@@ -3354,13 +3275,10 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
              @touchend.passive="onHeroTouchEnd($event)"
              @touchcancel.passive="onHeroTouchCancel()">
 
-      <div class="hero-scene" aria-hidden="true" :class="{ 'is-moonless': !moonUp }" @click="if (sceneParticles) { leafRun++; burstLeaves(); }">
+      <div class="hero-scene" aria-hidden="true" :class="{ 'is-moonless': !moonUp }" >
         <img class="scene-art scene-photo" :src="scenePhoto.src" alt="" decoding="async" draggable="false">
         <!-- One short flurry each time the scene appears (WCAG 2.2.2: nothing moves on its own
              for more than five seconds); tapping the scene lets them fall again. -->
-        <div class="scene-particles" x-show="sceneParticles && leafBurst" x-cloak>
-          <template x-for="n in 6" :key="n + '-' + leafRun + '-' + selectedDayNumber"><span class="scene-leaf" :class="'leaf-' + n"></span></template>
-        </div>
         <div class="scene-place">
           <span class="scene-place-name" x-text="dayPlace.name"></span>
           <span class="scene-place-kanji" lang="ja" x-text="dayPlace.kanji"></span>
@@ -3477,7 +3395,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                     <button type="button" class="icon-button" @click="copyBookingRef(bookingPass(ticket).ref, $event)" :aria-label="'Copy booking reference ' + bookingPass(ticket).ref"><i data-lucide="copy" class="icon-sm" aria-hidden="true"></i></button>
                   </template>
                   <template x-if="isPassCard(ticket) && (bookingPass(ticket).ref || bookingPass(ticket).seats)">
-                    <button type="button" class="pill-button is-show" @click="openShowCard(ticket.id, $event.currentTarget)" :aria-label="'Show the ' + ticket.title + ' booking to staff'"><span>Show</span></button>
+                    <button type="button" class="pill-button is-show is-primary-show" @click="openShowCard(ticket.id, $event.currentTarget)" :aria-label="'Show the ' + ticket.title + ' booking to staff'"><span>Show</span></button>
                   </template>
                   <template x-if="sanitizeHttpUrl(ticket.officialUrl)">
                     <a :href="sanitizeHttpUrl(ticket.officialUrl)" target="_blank" rel="noopener noreferrer" class="icon-button is-tinted" :aria-label="'Open booking site for ' + ticket.title"><i data-lucide="arrow-up-right" class="icon-sm" aria-hidden="true"></i></a>
@@ -3839,32 +3757,6 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
 
 
 
-    <section class="shopping-windows" aria-labelledby="shopping-windows-title">
-      <div class="shopping-windows-head">
-        <div>
-          <p class="eyebrow">Protected time · 買い物</p>
-          <h3 id="shopping-windows-title" class="section-title">Shopping windows</h3>
-        </div>
-        <span class="shopping-total">6h 15m planned</span>
-      </div>
-      <p class="shopping-windows-lede">Oct 27 is the main shopping day. The later windows are intentionally bounded so shopping never eats the experiences around them.</p>
-      <ol class="shopping-window-list">
-        <template x-for="(slot, index) in shoppingWindows" :key="slot.day + '-' + slot.time">
-          <li class="shopping-window-item" :class="['city-' + slot.city, slot.primary ? 'is-primary' : '']">
-            <button type="button" class="shopping-window-button" @click="selectDayFromIndex(slot.day)" :aria-label="'Open Day ' + slot.day + ': ' + slot.title + ', ' + slot.date + ', ' + slot.time">
-              <span class="shopping-window-path" aria-hidden="true"><span class="shopping-window-dot"></span></span>
-              <span class="shopping-window-copy">
-                <span class="shopping-window-top"><span x-text="slot.date"></span><span class="shopping-window-time tabular" x-text="slot.time"></span></span>
-                <span class="shopping-window-title" x-text="slot.title"></span>
-                <span class="shopping-window-purpose" x-text="slot.purpose"></span>
-                <span class="shopping-window-detail" x-text="slot.detail"></span>
-              </span>
-              <i data-lucide="chevron-right" class="icon-sm shopping-window-chevron" aria-hidden="true"></i>
-            </button>
-          </li>
-        </template>
-      </ol>
-    </section>
 
     <!-- Filters -->
     <div class="trip-controls">
@@ -3950,6 +3842,32 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         </template>
       </ol>
     </section>
+    <section class="shopping-windows" aria-labelledby="shopping-windows-title">
+      <div class="shopping-windows-head">
+        <div>
+          <p class="eyebrow">Protected time · 買い物</p>
+          <h3 id="shopping-windows-title" class="section-title">Shopping windows</h3>
+        </div>
+        <span class="shopping-total">6h 15m planned</span>
+      </div>
+      <p class="shopping-windows-lede">Oct 27 is the main shopping day. The later windows are intentionally bounded so shopping never eats the experiences around them.</p>
+      <ol class="shopping-window-list">
+        <template x-for="(slot, index) in shoppingWindows" :key="slot.day + '-' + slot.time">
+          <li class="shopping-window-item" :class="['city-' + slot.city, slot.primary ? 'is-primary' : '']">
+            <button type="button" class="shopping-window-button" @click="selectDayFromIndex(slot.day)" :aria-label="'Open Day ' + slot.day + ': ' + slot.title + ', ' + slot.date + ', ' + slot.time">
+              <span class="shopping-window-path" aria-hidden="true"><span class="shopping-window-dot"></span></span>
+              <span class="shopping-window-copy">
+                <span class="shopping-window-top"><span x-text="slot.date"></span><span class="shopping-window-time tabular" x-text="slot.time"></span></span>
+                <span class="shopping-window-title" x-text="slot.title"></span>
+                <span class="shopping-window-purpose" x-text="slot.purpose"></span>
+                <span class="shopping-window-detail" x-text="slot.detail"></span>
+              </span>
+              <i data-lucide="chevron-right" class="icon-sm shopping-window-chevron" aria-hidden="true"></i>
+            </button>
+          </li>
+        </template>
+      </ol>
+    </section>
 
     <div x-show="filteredDays.length === 0" class="empty-state">
       <i data-lucide="search-x" class="icon-lg" aria-hidden="true"></i>
@@ -4021,7 +3939,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           </template>
           <template x-if="onSaleSince(ticket)"><p class="ticket-onsale" x-text="onSaleSince(ticket)"></p></template>
           <p class="ticket-details" x-text="ticket.details"></p>
-          <template x-if="isPassCard(ticket)"><span class="booking-seal" :class="justBooked === ticket.id ? 'is-pressing' : ''" aria-hidden="true" lang="ja" x-text="bookingPass(ticket).state === 'pending' ? '仮' : '予約済'"></span></template>
+          <template x-if="isPassCard(ticket) && bookingPass(ticket).state === 'pending'"><span class="booking-seal" :class="justBooked === ticket.id ? 'is-pressing' : ''" aria-hidden="true" lang="ja" x-text="bookingPass(ticket).state === 'pending' ? '仮' : '予約済'"></span></template>
           <div class="ticket-actions">
             <label class="toggle-button" :class="ticket.booked ? 'is-on' : ''">
               <input type="checkbox" switch class="toggle-input" :checked="ticket.booked" @change="toggleTicketBooked(ticket.id, $event)" :aria-label="ticket.title + ' booked'">
@@ -4030,7 +3948,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             </label>
             <div class="ticket-links">
               <template x-if="isPassCard(ticket) && (bookingPass(ticket).ref || bookingPass(ticket).seats)">
-                <button type="button" class="pill-button is-show" @click="openShowCard(ticket.id, $event.currentTarget)" :aria-label="'Show the ' + ticket.title + ' booking to staff'"><span>Show</span></button>
+                <button type="button" class="pill-button is-show is-primary-show" @click="openShowCard(ticket.id, $event.currentTarget)" :aria-label="'Show the ' + ticket.title + ' booking to staff'"><span>Show</span></button>
               </template>
               <template x-if="ticket.releaseAt && !ticket.booked && !releasePassed(ticket)">
                 <button type="button" class="icon-button is-tinted" @click="exportICS(ticket)" :aria-label="'Add release reminder for ' + ticket.title + ' to calendar'" title="Calendar reminder (.ics)">
@@ -4110,16 +4028,6 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     <section class="settings-group" aria-labelledby="set-display">
       <h3 id="set-display" class="settings-group-title">Display</h3>
       <div class="settings-card">
-        <div class="settings-row is-stacked">
-          <div class="settings-label"><i data-lucide="sun-moon" class="icon-md" aria-hidden="true"></i><span id="appearance-label">Appearance</span></div>
-          <div class="segmented is-full" role="radiogroup" aria-labelledby="appearance-label">
-            <template x-for="opt in [{ id: 'system', label: 'Auto', icon: 'monitor' }, { id: 'light', label: 'Light', icon: 'sun' }, { id: 'dark', label: 'Dark', icon: 'moon' }]" :key="opt.id">
-              <button type="button" role="radio" class="segment" :class="appearance === opt.id ? 'is-active' : ''" :aria-checked="appearance === opt.id" @click="setAppearance(opt.id)">
-                <i :data-lucide="opt.icon" class="icon-sm" aria-hidden="true"></i><span x-text="opt.label"></span>
-              </button>
-            </template>
-          </div>
-        </div>
         <div class="settings-row is-stacked">
           <div class="settings-label"><i data-lucide="clock" class="icon-md" aria-hidden="true"></i><span id="timefmt-label">Time format</span></div>
           <div class="segmented is-full" role="radiogroup" aria-labelledby="timefmt-label">
@@ -4799,7 +4707,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "departureRequired": true,
     "priority": 6,
     "officialUrl": "https://www.jreast.co.jp/multi/en/",
-    "details": "Confirmed Nikko rail pair for Mon Oct 26. Outbound: JR Limited Express Nikko 21, Shinjuku 08:03 → Tobu-Nikko 10:01, Car 4, Seats 1-C & 1-D, booking ref E48706, ¥8,280 total. Return: Tobu Limited Express Kegon 052, Tobu-Nikko 18:41 → Asakusa 20:35, Car 1, Seats 03A & 03B, transaction ID Ex20261009U6ICNS (customer ID YBHUVQ9H57), ¥3,300 total.",
+    "details": "Confirmed Nikko rail pair for Mon Oct 26. Outbound: JR Limited Express Nikko 21, Shinjuku 08:03 → Tobu-Nikko 10:01, Car 4, Seats 1-C & 1-D, booking ref E48706, ¥8,280 total; if the QR won't scan at the Shinjuku ticket machine, enter the 17-digit pickup code 31272338787521288. Return: Tobu Limited Express Kegon 052, Tobu-Nikko 18:41 → Asakusa 20:35, Car 1, Seats 03A & 03B, transaction ID Ex20261009U6ICNS (customer ID YBHUVQ9H57), ¥3,300 total.",
     "statusLabel": "CONFIRMED · NIKKO 21 & KEGON 052"
   },
   {
@@ -4883,8 +4791,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "departureRequired": true,
     "priority": 10,
     "officialUrl": "https://kyotocity-kyocera.museum/en/exhibition/20261003-20261206",
-    "statusLabel": "TICKETED · TIMED RESERVATION NEEDED",
-    "details": "Rakuten E-Ticket is confirmed, but the museum introduced reservation-priority entry from Oct 31. Make the free timed-entry reservation when it opens Oct 16 at 10:00 JST; target around 10:00 on Sat Oct 31."
+    "statusLabel": "CONFIRMED · 10:00 ENTRY",
+    "details": "Confirmed for Sat Oct 31, 10:00–10:30 entry window. Booking ref XZMZ-5UM5 (ArtPass timed entry); Rakuten order 1617725. Show the ArtPass reservation with the Rakuten e-ticket at the entrance."
   },
   {
     "id": "t17",
@@ -5035,11 +4943,12 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
   },
   {
     "id": "c12",
-    "label": "Reserve Zen & Ghibli timed entry (~10:00)",
+    "label": "Zen & Ghibli timed entry · CONFIRMED 10:00",
     "category": "Booking",
     "deadline": "Oct 16 · 10:00 JST",
     "departureRequired": true,
-    "desc": "The existing Rakuten ticket remains valid, but Oct 31 uses reservation-priority entry. Make the free timed-entry reservation and target the first practical slot around 10:00.",
+    "done": true,
+    "desc": "Booked: Sat Oct 31, 10:00–10:30 entry window, ArtPass ref XZMZ-5UM5 (Rakuten order 1617725). Bring both the reservation and the Rakuten e-ticket.",
     "officialUrl": "https://kyotocity-kyocera.museum/en/exhibition/20261003-20261206"
   }
 ];
@@ -5178,22 +5087,22 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                         "primary": true
                 },
                 {
-                        "day": 9,
-                        "date": "Sat · Oct 31",
-                        "time": "~15:50–17:15 window",
-                        "title": "Central Kyoto rescue only",
-                        "purpose": "One unresolved item",
-                        "detail": "Target 25–30 minutes; 45-minute absolute maximum. If there is no named item, use the time for coffee and GEAR buffer.",
-                        "city": "kyoto",
-                        "primary": false
-                },
-                {
                         "day": 7,
                         "date": "Thu · Oct 29",
                         "time": "15:50–16:20",
                         "title": "Uji Bridge tea / souvenirs",
                         "purpose": "Incidental",
                         "detail": "Matcha, tea or sweets only if the stop is low-wait. This is not a shopping mission.",
+                        "city": "kyoto",
+                        "primary": false
+                },
+                {
+                        "day": 9,
+                        "date": "Sat · Oct 31",
+                        "time": "~15:50–17:15 window",
+                        "title": "Central Kyoto rescue only",
+                        "purpose": "One unresolved item",
+                        "detail": "Target 25–30 minutes; 45-minute absolute maximum. If there is no named item, use the time for coffee and GEAR buffer.",
                         "city": "kyoto",
                         "primary": false
                 },
@@ -5215,7 +5124,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         nowMinute: 0,
         activeDaySection: 'now',
         motionDirection: 'forward',
-        appearance: 'system',
+        appearance: 'dark',
         resolvedAppearance: 'dark',
         timeFormat: '24h',
         notificationState: 'default',
@@ -6482,7 +6391,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         // A tick used to assign a fresh relevantPlan even when nothing had changed (three ticks
         // in four fall inside the same minute), re-running ~100 effects for nothing.
         commitRelevantPlan(plan) {
-          const key = p => (p ? [p.day, p.targetKind, p.eventIndex, p.state, p.afterEventIndex, p.label, p.pastBefore, p.liveLabel, p.liveState, p.liveStart, p.progress === undefined ? '' : Math.round(p.progress * 100)].join('|') : '');
+          const key = p => (p ? [p.day, p.targetKind, p.eventIndex, p.state, p.afterEventIndex, p.label, p.pastBefore, p.liveLabel, p.liveState, p.liveStart, p.liveMinutesLeft, p.progress === undefined ? '' : Math.round(p.progress * 100)].join('|') : '');
           if (key(this.relevantPlan) !== key(plan)) {
             const block = p => (p ? [p.day, p.targetKind, p.eventIndex, p.liveLabel, p.liveStart].join('|') : '');
             if (this.relevantPlan && block(this.relevantPlan) !== block(plan)) {
@@ -6768,7 +6677,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           const nowEntry = schedule.find(m => (m.start === m.end ? nowMinutes === m.start : nowMinutes >= m.start && nowMinutes < m.end));
           const nextEntry = nowEntry ? null : schedule.find(m => nowMinutes < m.start);
           const live = nowEntry
-            ? { liveState: 'now', liveLabel: nowEntry.label, liveStart: nowEntry.startText }
+            ? { liveState: 'now', liveLabel: nowEntry.label, liveStart: nowEntry.startText, liveMinutesLeft: Math.max(0, nowEntry.end - nowMinutes) }
             : (nextEntry ? { liveState: 'next', liveLabel: nextEntry.label, liveStart: nextEntry.startText } : {});
 
           const events = Array.isArray(day.events) ? day.events : [];
@@ -7130,38 +7039,16 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         },
 
         // ======================= Presentation helpers =======================
-        setAppearance(pref) {
-          if (!['system', 'light', 'dark'].includes(pref)) pref = 'system';
-          this.appearance = pref;
-          try { localStorage.setItem('jp_appearance', pref); } catch (_) {}
-          this.applyAppearance(true);
-          this.haptic();
+        // Dark only. Kept so older backups that carry an appearance preference still import.
+        setAppearance() {
+          this.appearance = 'dark';
+          this.applyAppearance();
         },
 
-        applyAppearance(animate = false) {
-          const dark = this.appearance === 'dark' || (this.appearance === 'system' && Boolean(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches));
-          const next = dark ? 'dark' : 'light';
-          const root = document.documentElement;
-          const commit = () => {
-            root.dataset.appearance = next;
-            this.resolvedAppearance = next;
-            document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0b0e15' : '#f7f4ef');
-            document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')?.setAttribute('content', dark ? 'black-translucent' : 'default');
-          };
-          if (root.dataset.appearance === next) { commit(); return; }
-          // A whole-page cross-fade reads as the lights changing rather than a repaint.
-          if (animate && document.startViewTransition && !this.prefersReducedMotion()) {
-            try {
-              root.dataset.vt = 'theme';
-              const owner = (this._themeOwner = (this._themeOwner || 0) + 1);
-              const vt = this.startNamedTransition(() => { root.classList.add('theme-swap'); commit(); });
-              // A second toggle within the dissolve owns the markers now; the first must not clear them.
-              const clear = () => { if (this._themeOwner !== owner) return; delete root.dataset.vt; root.classList.remove('theme-swap'); };
-              vt.finished.then(clear, clear);
-              return;
-            } catch (_) { delete root.dataset.vt; root.classList.remove('theme-swap'); }
-          }
-          commit();
+        applyAppearance() {
+          document.documentElement.dataset.appearance = 'dark';
+          this.resolvedAppearance = 'dark';
+          document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#090c11');
         },
 
         setTimeFormat(fmt) {
@@ -7257,6 +7144,11 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
 
         get dockTabs() { return this.tabs.filter(tab => tab.id !== 'settings'); },
 
+        formatMinutesLeft(minutes) {
+          const m = Math.max(0, Math.round(minutes));
+          return m < 60 ? `${m}m left` : `${Math.floor(m / 60)}h ${m % 60}m left`;
+        },
+
         get dockIndex() { return this.dockTabs.findIndex(tab => tab.id === this.activeTab); },
 
         get liveAccessory() {
@@ -7272,7 +7164,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
               state: plan.liveState === 'now' ? 'now' : 'next',
               urgent: countdown?.urgency === 'urgent' || countdown?.urgency === 'now',
               label: this.displayLabel(plan.liveLabel, plan.liveStart),
-              time: this.formatTime(plan.liveStart),
+              time: plan.liveState === 'now' && Number.isFinite(plan.liveMinutesLeft) && plan.liveMinutesLeft > 0 ? this.formatMinutesLeft(plan.liveMinutesLeft) : this.formatTime(plan.liveStart),
               trailing: leaving || (pass ? `Ref ${pass.pass.ref}` : ''),
               progress: plan.targetKind === 'event' && plan.state === 'current' && plan.progress !== undefined ? plan.progress : null
             };
@@ -7326,7 +7218,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         // hang off that day's actual sunrise and sunset in its base city (DAY_SUN): dawn from
         // 40 minutes before sunrise, golden hour from 75 before sunset, dusk until an hour after.
         get skyPhase() {
-          const fallback = this.resolvedAppearance === 'light' ? 'day' : 'night';
+          const fallback = 'night';
           if (!this.isViewingLiveTripDay) return fallback;
           const m = String(this.jstTimeFormatted || '').match(/^(\d{2}):(\d{2})$/);
           if (!m) return fallback;
@@ -10079,29 +9971,29 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "city": "KYOTO",
     "title": "Zen & Ghibli → Disaster Prevention Center → GEAR → Kiyamachi Finale",
     "baseHotel": "Tabist Kyogura Kyoto Nijo",
-    "startTime": "10:00 AM",
+    "startTime": "09:20 AM",
     "primaryTransit": "Subway / walking",
-    "criticalRule": "Protect the confirmed 18:00 GEAR performance: be near Art Complex 1928 around 17:30. Zen & Ghibli is ticketed, but Oct 31 uses reservation-priority entry; make the free timed reservation when it opens Oct 16 at 10:00 JST and target around 10:00. After lunch, use the Disaster Prevention Center as the interactive afternoon block. Optional shopping is one unresolved item only.",
+    "criticalRule": "Protect the confirmed 18:00 GEAR performance: be near Art Complex 1928 around 17:30. Zen & Ghibli is CONFIRMED for the 10:00–10:30 entry window (ArtPass XZMZ-5UM5): leave Nijo by 09:20 so you are at the museum doors at 10:00. After lunch, use the Disaster Prevention Center as the interactive afternoon block. Optional shopping is one unresolved item only.",
     "flexOption": "If the center is dominated by group bookings or language makes the simulations impractical, exit early and use the saved time as a GEAR buffer; do not add another temple or shop circuit.",
     "briefing": {
       "pace": "Interactive exhibition + disaster simulation + theater",
       "walking": "7-10 km",
-      "reservations": "Zen & Ghibli ticketed — free timed-entry reservation still required for Oct 31; GEAR CONFIRMED 18:00–19:30, Row B 7–8 (7241).",
+      "reservations": "Zen & Ghibli CONFIRMED 10:00–10:30 entry (XZMZ-5UM5); GEAR CONFIRMED 18:00–19:30, Row B 7–8 (7241).",
       "cutFirst": "Cut the optional Oct 31 shopping top-up first, then individual Disaster Center modules if waits are long. Protect GEAR.",
       "backup": "If Disaster Center experience slots are unavailable, use the saved time as GEAR buffer; only use a single central store if a specific D5 item is still unresolved. Do not create a browsing circuit.",
       "localTips": "The Disaster Center is more interactive than its name sounds, but some instruction/exhibits may be Japanese-heavy. Use translation on phone and prioritize the physical simulations."
     },
     "milestones": [
       {
-        "startTime": "10:00",
-        "endTime": "10:30",
-        "label": "Slow start → Okazaki",
+        "startTime": "09:20",
+        "endTime": "10:00",
+        "label": "Nijo → Okazaki",
         "mapQuery": "Kyoto City KYOCERA Museum"
       },
       {
-        "startTime": "10:30",
+        "startTime": "10:00",
         "endTime": "12:30",
-        "label": "Zen & Ghibli special exhibition",
+        "label": "CONFIRMED · Zen & Ghibli 10:00 entry",
         "mapQuery": "Kyoto City KYOCERA Museum of Art"
       },
       {
@@ -10150,23 +10042,23 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     ],
     "events": [
       {
-        "time": "10:00 AM",
-        "title": "Slow morning → Kyoto City KYOCERA Museum",
+        "time": "09:20 AM",
+        "title": "Nijo → Kyoto City KYOCERA Museum",
         "description": "Keep the recovery-day intent, but give it a genuinely special 2026 anchor instead of more generic shopping.",
         "mapQuery": "Kyoto City KYOCERA Museum of Art",
         "mapLabel": "KYOCERA Museum",
         "nextTransit": "Stay in Okazaki for lunch",
         "execution": {
           "steps": [
-            "Sleep in and leave Nijo around 10:00.",
-            "Ride/walk to Okazaki and arrive at the museum around 10:30.",
+            "Leave Nijo by 09:20 (09:30 at the latest).",
+            "Ride/walk to Okazaki and be at the museum doors by 10:00; the entry window is 10:00–10:30.",
             "Store any larger bag/umbrella as required.",
-            "Enter Zen & Ghibli using the pre-purchased ticket and timed reservation."
+            "Enter with the ArtPass timed reservation (XZMZ-5UM5) and the Rakuten e-ticket."
           ]
         }
       },
       {
-        "time": "10:30 AM",
+        "time": "10:00 AM",
         "title": "Zen and Ghibli special exhibition",
         "description": "A trip-period-only, immersive exhibition is a much better fit than another shrine-heavy morning.",
         "mapQuery": "Kyoto City KYOCERA Museum of Art",
@@ -10174,12 +10066,12 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "nextTransit": "Walk / transit toward downtown",
         "execution": {
           "steps": [
-            "Use about 90-120 minutes for the Higashiyama Cube exhibition.",
+            "Use about 2 hours for the Higashiyama Cube exhibition.",
             "Move at your own pace through the experiential Ghibli/Zen installations.",
             "Avoid stacking the museum's other paid exhibitions unless one strongly appeals on the day.",
             "Exit around 12:30 for lunch and canal/park air."
           ],
-          "watch": "Reservation-priority entry begins Oct 31. Timed reservations open Oct 16 at 10:00 JST, including for existing ticket holders; target around 10:00."
+          "watch": "Timed entry confirmed for 10:00–10:30, ArtPass ref XZMZ-5UM5 (Rakuten order 1617725). Arriving after 10:30 risks the slot."
         },
         "sourceUrl": "https://kyotocity-kyocera.museum/en/exhibition/20261003-20261206"
       },
@@ -12480,7 +12372,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(Object.keys(SCENES.scenes).every(key => SCENE_MIST[key] && SCENE_SKYLINE[key]) && Object.entries(SCENES.scenes).filter(([, sc]) => sc.layers.water).every(([, sc]) => /^M-10 180V\d/.test(sc.layers.water)), 'A scene has no mist, skyline or readable water line.');
           check(this.days.every(d => DAY_PLACES[d.dayNumber] && DAY_PLACES[d.dayNumber].name), 'Every day needs a place label.');
           check(document.querySelector('.hero-scene .scene-photo')?.getAttribute('src') === this.scenePhoto.src, 'Hero did not render the day\'s photo.');
-          check(['light', 'dark'].includes(document.documentElement.dataset.appearance), 'Appearance did not resolve to light or dark.');
+          check(document.documentElement.dataset.appearance === 'dark' && this.resolvedAppearance === 'dark', 'The app is dark only, but it resolved to another appearance.');
           check(this.formatTime('01:55 PM') === (this.timeFormat === '12h' ? '1:55 PM' : '13:55') && this.formatTime('12:05 AM') === (this.timeFormat === '12h' ? '12:05 AM' : '00:05'), 'Clock formatting is wrong.');
           check(Boolean(MAP_GEO && MAP_GEO.land && MAP_GEO.route && MAP_GEO.stops.length >= 8), 'Route map geometry missing.');
           check(this.days.every(d => MAP_GEO.dayPoint[String(d.dayNumber)]), 'Every day needs a map position.');
@@ -12535,15 +12427,9 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           } catch (_) {}
           this.updateJST();
           // Appearance, clock format and device capabilities.
-          try { const a = localStorage.getItem('jp_appearance'); if (['system', 'light', 'dark'].includes(a)) this.appearance = a; } catch (_) {}
           try { if (localStorage.getItem('jp_time_format') === '12h') this.timeFormat = '12h'; } catch (_) {}
-          this.applyAppearance(false);
+          this.applyAppearance();
           document.documentElement.classList.toggle('is-12h', this.timeFormat === '12h');
-          try {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-              if (this.appearance === 'system') this.applyAppearance(true);
-            });
-          } catch (_) {}
           this.notificationState = 'Notification' in window ? Notification.permission : 'unsupported';
           this.installSheetDrag();
           this.installGlassTouch();
@@ -13392,7 +13278,7 @@ ${r?'Expression: "'+r+`"
   // The status bar matches the chrome of the active appearance (paper or ink), not the
   // city: a coloured bar above a neutral header read as a rendering fault.
   const updateThemeColor = () => {
-    if (themeMeta) themeMeta.setAttribute('content', root.dataset.appearance === 'light' ? '#f7f4ef' : '#0b0e15');
+    if (themeMeta) themeMeta.setAttribute('content', '#090c11');
   };
 
   const announceCurrentContext = () => {
