@@ -2310,7 +2310,13 @@ li.route-stop:only-of-type::before { display: none; }
 .settings-chevron { color: var(--text-3); }
 .settings-row.is-destructive .settings-label, .settings-row.is-destructive .settings-label i { color: var(--danger); }
 .settings-footnote { padding: 0 16px; font-size: var(--fs-footnote); line-height: 1.45; color: var(--text-3); }
-.sim-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; }
+/* On iPhone a datetime field renders as wide formatted text ("Nov 3, 2026 at 8:30 AM") with a
+   minimum width it will not give up, so beside the buttons it ran under Apply. It gets a row. */
+.sim-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; min-width: 0; }
+/* The native control also reports a large minimum width; appearance:none lets it take the row. */
+.sim-controls .text-input { grid-column: 1 / -1; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box; text-align: left; -webkit-appearance: none; appearance: none; }
+.sim-controls .text-input::-webkit-date-and-time-value { text-align: left; }
+.sim-controls .pill-button { justify-content: center; min-height: 44px; }
 .app-colophon { padding: 8px 16px 0; text-align: center; font-size: var(--fs-footnote); color: var(--text-3); }
 
 /* =============================== SIGNATURE DETAILS =============================== */
@@ -6379,6 +6385,26 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           return getTokyoDateComponents(this.getNowDate());
         },
 
+        // A simulated (or restored) moment is a jump in time, so the Day tab goes to that moment's
+        // day: the live day during the trip, Day 1 before it, the last day after it. Like the
+        // midnight rollover, it sets the day from any tab and repositions only when Today is shown,
+        // so tapping Apply in Settings does not yank you out of Settings.
+        followSimulatedDay() {
+          const status = this.tripStatus;
+          const days = this.days;
+          const target = status.isOngoing ? status.currentDayNum
+            : status.badgeText === 'COMPLETE' ? days[days.length - 1].dayNumber : days[0].dayNumber;
+          if (!target) return;
+          this._followingLiveDay = true;
+          this._lastLiveDay = this.relevantPlan?.day ?? this._lastLiveDay;
+          if (target === this.selectedDayNumber) return;
+          if (this.activeTab === 'today') { this.selectDay(target); this._followingLiveDay = true; return; }
+          this.selectedDayNumber = target;
+          this.tabScrollPositions.today = 0;
+          this.activeDaySection = 'now';
+          this.$nextTick(() => this.scrollActiveDayChip && this.scrollActiveDayChip());
+        },
+
         syncSimulationContext() {
           this.updateJST();
           this.refreezePrepIfDayChanged();
@@ -6437,6 +6463,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             this.isSimulated = false;
             this.simulatedDate = null;
             this.syncSimulationContext();
+            this.followSimulatedDay();
             this.triggerToast('Live Japan time restored', 'info');
             return;
           }
@@ -6446,6 +6473,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           }
           this.isSimulated = true;
           this.syncSimulationContext();
+          this.followSimulatedDay();
           this.triggerToast('Simulated Japan time on', 'info');
         },
 
@@ -6477,7 +6505,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             this.simulatedDate = parsed;
             this.isSimulated = true;
             this.syncSimulationContext();
-            this.triggerToast('Simulated time applied', 'info');
+            this.followSimulatedDay();
+            this.triggerToast(this.tripStatus.isOngoing ? `Simulated time applied · Day ${this.tripStatus.currentDayNum}` : 'Simulated time applied', 'info');
           } else {
             this.simulatedDate = null;
             this.isSimulated = false;
@@ -6490,6 +6519,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           this.isSimulated = false;
           this.simulatedDate = null;
           this.syncSimulationContext();
+          this.followSimulatedDay();
           this.triggerToast('Live Japan time restored', 'info');
         },
 
@@ -12542,6 +12572,10 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           this.$watch('showAddTicketModal', isOpen => { this.syncModalState('ticket', isOpen); this.$nextTick(() => window.lucide && lucide.createIcons()); });
           this.$watch('showAddChecklistModal', isOpen => { this.syncModalState('checklist', isOpen); this.$nextTick(() => window.lucide && lucide.createIcons()); });
           this.$watch('showResetConfirmModal', isOpen => { this.syncModalState('reset', isOpen); this.$nextTick(() => window.lucide && lucide.createIcons()); });
+          // The rail cannot scroll while Today is hidden, so a day chosen from another tab (simulated
+          // time, the midnight rollover) is brought into view when Today is shown. Instant: a smooth
+          // scroll in progress swallows the next tap on iOS.
+          this.$watch('activeTab', tab => { if (tab === 'today') this.$nextTick(() => requestAnimationFrame(() => this.scrollActiveDayChip(true))); });
           this.$watch('showPassModal', isOpen => { this.syncModalState('pass', isOpen); if (!isOpen) this.releaseWakeLock(); this.$nextTick(() => window.lucide && lucide.createIcons()); });
         },
 
