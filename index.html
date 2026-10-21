@@ -1800,6 +1800,16 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 .steps-label { display: flex; align-items: center; gap: 6px; font-size: var(--fs-caption); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
 .steps-list { display: grid; gap: 7px; counter-reset: none; }
 .steps-list li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; }
+/* Product photo tiles: the brand's own photo, name and colour below. The 5:6 box is the clothing photos' own shape,
+   so they fill it; square or wide pack shots on white sit centred on the white background. */
+.event-items-wrap { display: grid; gap: 8px; }
+.event-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.event-items li { display: flex; }
+.event-item { flex: 1; display: flex; flex-direction: column; gap: 6px; min-height: 44px; padding: 8px; border-radius: var(--r-md); background: var(--surface-2); color: var(--text); }
+.event-item-img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 6; object-fit: contain; border-radius: 10px; background: #fff; }
+.event-item-name { font-size: var(--fs-caption); font-weight: 650; line-height: 1.3; overflow-wrap: anywhere; }
+.event-item-ja { font-family: var(--font-jp-ui); font-size: var(--fs-caption); font-weight: 500; line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
+.event-item-note { margin-top: auto; font-size: var(--fs-caption); line-height: 1.3; color: var(--text-2); }
 .step-num {
   width: 22px; height: 22px; margin-top: 1px;
   display: grid; place-items: center;
@@ -3602,6 +3612,22 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                           <li><span class="step-num tabular" x-text="sIdx + 1" aria-hidden="true"></span><span class="step-text" x-text="step"></span></li>
                         </template>
                       </ol>
+                    </div>
+                  </template>
+
+                  <template x-if="eventItems(event).length">
+                    <div class="event-items-wrap">
+                      <p class="steps-label"><i data-lucide="shopping-bag" class="icon-sm" aria-hidden="true"></i><span>Look for</span></p>
+                      <ul class="event-items" role="list">
+                        <template x-for="item in eventItems(event)" :key="item.name + '|' + item.note + '|' + item.url">
+                          <li><a class="event-item" :href="item.url" target="_blank" rel="noopener noreferrer" :aria-label="item.name + (item.note ? ', ' + item.note : '') + ', official product page'">
+                            <template x-if="item.image"><img class="event-item-img" :src="item.image" alt="" width="240" height="288" loading="lazy" decoding="async" referrerpolicy="no-referrer" @error="$el.style.display = 'none'"></template>
+                            <span class="event-item-name" x-text="item.name"></span>
+                            <template x-if="item.ja"><span class="event-item-ja" lang="ja" x-text="item.ja"></span></template>
+                            <template x-if="item.note"><span class="event-item-note" x-text="item.note"></span></template>
+                          </a></li>
+                        </template>
+                      </ul>
                     </div>
                   </template>
 
@@ -6702,6 +6728,18 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             .filter(link => link.label && link.url);
         },
 
+        // An event's products to look for (execution.items: [{ name, ja, note, image, url }]; `ja` is the official
+        // Japanese name, shown so the tile can be handed to staff). The page URL and
+        // the image both go through sanitizeHttpUrl; an item without a name or a safe page URL is dropped, and an
+        // unsafe image is dropped on its own (the tile then shows the name only).
+        eventItems(event) {
+          const items = event?.execution?.items;
+          if (!Array.isArray(items)) return [];
+          return items
+            .map(item => ({ name: String(item?.name || '').trim(), ja: String(item?.ja || '').trim(), note: String(item?.note || '').trim(), url: sanitizeHttpUrl(item?.url), image: sanitizeHttpUrl(item?.image) }))
+            .filter(item => item.name && item.url);
+        },
+
         // A shopping plan's lanes: its own `lanes` ([{ label, text }]) when it has them, otherwise the
         // older Men / Women pair.
         shopLanes(plan) {
@@ -8336,17 +8374,28 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             {
               "label": "Green Label Solamachi",
               "url": "https://store.united-arrows.co.jp/brand/glr/stores/gst.html"
-            },
+            }
+          ],
+          "items": [
             {
-              "label": "Homespun slacks",
+              "name": "Homespun 2-Pleat Wide Slacks",
+              "ja": "ホームスパン 2プリーツ ワイド スラックス",
+              "note": "Medium Gray",
+              "image": "https://cdn.shopify.com/s/files/1/0601/3141/0035/files/31141280041-15.jpg?v=1792491455&width=240",
               "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0596"
             },
             {
-              "label": "Flannel slacks",
+              "name": "GLR CLOTH Flannel RLX/RG 2-Pleat Slacks",
+              "ja": "GLR CLOTH フラノ RLX/RG 2プリーツ スラックス セットアップパンツ",
+              "note": "Black",
+              "image": "https://uaoi.united-arrows.co.jp/img/item/31000/3100026F0642/3100026F0642_l1_c101.jpg",
               "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0642?clr_id=101"
             },
             {
-              "label": "Skipper knit polo",
+              "name": "Aze V-Neck Skipper Knit Polo",
+              "ja": "アゼ Vネック スキッパー ニット ポロシャツ",
+              "note": "Black",
+              "image": "https://cdn.shopify.com/s/files/1/0601/3141/0035/files/31131000010-09.jpg?v=1792491393&width=240",
               "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0593?clr_id=102"
             }
           ]
@@ -8405,6 +8454,57 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             {
               "label": "Daikoku Asakusa Chuo",
               "url": "https://www.daikokudrug.com/store/641"
+            }
+          ],
+          "items": [
+            {
+              "name": "Makeup Cleansing Gel",
+              "ja": "キュレル ジェルメイク落とし",
+              "note": "× 2",
+              "image": "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kao/www-kao-kirei-com/jp/ja/item/kbb/curel/25915006/GG01.jpg?wid=240&hei=240",
+              "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301236203/"
+            },
+            {
+              "name": "Foaming Wash",
+              "ja": "キュレル 潤浸保湿 泡洗顔料",
+              "note": "× 1",
+              "image": "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kao/www-kao-kirei-com/jp/ja/item/kbb/curel/25940671/25940671_01.jpg?wid=240&hei=240",
+              "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301269348/"
+            },
+            {
+              "name": "Foaming Wash refill",
+              "ja": "キュレル 潤浸保湿 泡洗顔料 つめかえ用",
+              "note": "× 1",
+              "image": "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kao/www-kao-kirei-com/jp/ja/item/kbb/curel/25336042/GG01.jpg?wid=240&hei=240",
+              "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301272140/"
+            },
+            {
+              "name": "Lotion III",
+              "ja": "キュレル 潤浸保湿 化粧水 Ⅲとてもしっとり",
+              "note": "× 1",
+              "image": "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kao/www-kao-kirei-com/jp/ja/item/kbb/curel/25341900/GG01.jpg?wid=240&hei=240",
+              "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301236180/"
+            },
+            {
+              "name": "Lotion III refill",
+              "ja": "キュレル 潤浸保湿 化粧水 Ⅲとてもしっとり つめかえ用",
+              "note": "× 2",
+              "image": "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kao/www-kao-kirei-com/jp/ja/item/kbb/curel/25341896/GG01.jpg?wid=240&hei=240",
+              "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301411273/"
+            },
+            {
+              "name": "Face Cream",
+              "ja": "キュレル 潤浸保湿 フェイスクリーム",
+              "note": "× 2",
+              "image": "https://kao-h.assetsadobe3.com/is/image/content/dam/sites/kao/www-kao-kirei-com/jp/ja/item/kbb/curel/25417079/GG01.jpg?wid=240&hei=240",
+              "url": "https://www.kao-kirei.com/ja/item/kbb/curel/4901301236210/"
+            },
+            {
+              "name": "ANESSA Mild Milk",
+              "ja": "アネッサ パーフェクトUV マイルドミルク NA",
+              "note": "× 3",
+              "image": "https://www.shiseido.co.jp/anessa/products/suncare/perfect_uv_mild/img/product_img_pc.png",
+              "url": "https://www.shiseido.co.jp/anessa/products/suncare/perfect_uv_mild/"
             }
           ]
         },
@@ -9446,7 +9546,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           "steps": [
             "UNITED TOKYO Jingumae (6-28-9 Jingumae; 12:00–20:00) first. Try these first: 18G Sable Stretch Polo Knit Tee (Navy) and 18G Sable Stretch Crewneck Knit Tee (Light Gray).",
             "Then PUBLIC TOKYO Jingumae, nearby at 6-25-16 Jingumae, 1F (12:00–20:00). Try the Washable Shorty Knit in Brown, and in Khaki or Blue.",
-          "For your friend, women’s alternatives nearby in Jingumae 4-chome: STUDIOUS WOMENS Omotesando (4-27-2) and CONZ WOMENS Harajuku (4-26-31), both 12:00–20:00 and from the same group as UNITED TOKYO / PUBLIC TOKYO.",
+            "For your friend, women’s alternatives nearby in Jingumae 4-chome: STUDIOUS WOMENS Omotesando (4-27-2) and CONZ WOMENS Harajuku (4-26-31), both 12:00–20:00 and from the same group as UNITED TOKYO / PUBLIC TOKYO.",
             "If something else fits or looks better in person, buy the better piece instead.",
             "Leave together at 15:05. This is a hard stop."
           ],
@@ -9457,20 +9557,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
               "url": "https://united-tokyo.com/shop/pages/ut-storelist.aspx"
             },
             {
-              "label": "Sable polo knit tee",
-              "url": "https://united-tokyo.com/shop/g/g135330003106/"
-            },
-            {
-              "label": "Sable crewneck knit tee",
-              "url": "https://united-tokyo.com/shop/g/g135330002107/"
-            },
-            {
               "label": "PUBLIC TOKYO Jingumae",
               "url": "https://public-tokyo.com/shop/pages/pt-storelist.aspx"
-            },
-            {
-              "label": "Washable Shorty Knit",
-              "url": "https://public-tokyo.com/shop/g/g155530001216/"
             },
             {
               "label": "STUDIOUS WOMENS",
@@ -9479,6 +9567,43 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             {
               "label": "CONZ WOMENS",
               "url": "https://tokyobase.co.jp/shoplist"
+            }
+          ],
+          "items": [
+            {
+              "name": "18G Sable Stretch Polo Knit Tee",
+              "ja": "18G サーブルストレッチポロニットTEE",
+              "note": "Navy · UNITED TOKYO",
+              "image": "https://united-tokyo.com/img/goods/S/135330003766_df73d174c55547fea485a3e567e1bdc3.jpg",
+              "url": "https://united-tokyo.com/shop/g/g135330003766/"
+            },
+            {
+              "name": "18G Sable Stretch Crewneck Knit Tee",
+              "ja": "18G サーブルストレッチクルーネックニットTEE",
+              "note": "Light Gray · UNITED TOKYO",
+              "image": "https://united-tokyo.com/img/goods/S/135330002106_1b3a7d4d49cd44b4acd5e318acf45b9c.jpg",
+              "url": "https://united-tokyo.com/shop/g/g135330002107/"
+            },
+            {
+              "name": "Washable Shorty Knit",
+              "ja": "ウォッシャブルショーティニット",
+              "note": "Brown · PUBLIC TOKYO",
+              "image": "https://public-tokyo.com/img/goods/S/155530001266_262e9e784c5a46b5b68b3108acce595b.jpg",
+              "url": "https://public-tokyo.com/shop/g/g155530001266/"
+            },
+            {
+              "name": "Washable Shorty Knit",
+              "ja": "ウォッシャブルショーティニット",
+              "note": "Khaki · PUBLIC TOKYO",
+              "image": "https://public-tokyo.com/img/goods/S/155530001_21_L.jpg",
+              "url": "https://public-tokyo.com/shop/g/g155530001216/"
+            },
+            {
+              "name": "Washable Shorty Knit",
+              "ja": "ウォッシャブルショーティニット",
+              "note": "Blue · PUBLIC TOKYO",
+              "image": "https://public-tokyo.com/img/goods/S/155530001716_e5b205e6322f4d5496916a7fdbce35b9.jpg",
+              "url": "https://public-tokyo.com/shop/g/g155530001716/"
             }
           ]
         },
@@ -12679,8 +12804,11 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(/SOLO/.test(`${d1?.title} ${d1?.criticalRule}`) && !/\bwomen|meet at the store/i.test(JSON.stringify(d1 || {})) && this.shopLanes(d1?.shoppingPlan).every(l => !/^(Men|Women)$/.test(l.label)), 'Day 1 is not the solo wardrobe day, or still assumes a companion.');
           check(hostsOf(cardOf(d1, /Green Label/)).length >= 1 && hostsOf(cardOf(d1, /Green Label/)).every(h => h === 'store.united-arrows.co.jp') && this.eventLinks(cardOf(d1, /UNIQLO Asakusa/) || {}).some(l => l.url === 'https://map.uniqlo.com/jp/ja/detail/10101708'), 'Day 1 Green Label / UNIQLO Asakusa cards lost their official links.');
           check(/Solamachi/.test(JSON.stringify(d1?.milestones)) && /UNIQLO Asakusa/.test(JSON.stringify(d1?.milestones)) && !/Tokyo Station|Yaesu|Yaechika|JR East Logistics|ORIHICA|Kamakura/i.test(JSON.stringify(d1 || {})), 'Day 1 is not Asakusa → Green Label Solamachi → UNIQLO Asakusa, or still routes through Tokyo Station.');
-          const shopText = [cardOf(d1, /Green Label/), cardOf(d1, /UNIQLO Asakusa/), cardOf(d5, /UNITED TOKYO/)].map(e => JSON.stringify({ ...(e || {}), execution: { ...(e?.execution || {}), links: undefined } })).join(' ');
+          const shopText = [cardOf(d1, /Green Label/), cardOf(d1, /UNIQLO Asakusa/), cardOf(d5, /UNITED TOKYO/)].map(e => JSON.stringify({ ...(e || {}), execution: { ...(e?.execution || {}), links: undefined, items: (e?.execution?.items || []).map(i => [i.name, i.ja, i.note]) } })).join(' ');
           const d1drug = cardOf(d1, /drugstore/i);
+          check(this.eventItems({ execution: { items: [{ name: 'x', url: 'javascript:alert(1)' }, { name: 'y', url: 'https://example.com/', image: 'javascript:alert(1)' }] } }).map(i => `${i.name}:${i.image}`).join() === 'y:null', 'Product tiles are not sanitised.');
+          check([d1drug, cardOf(d1, /Green Label/), cardOf(d5, /UNITED TOKYO/)].every(c => this.eventItems(c || {}).length > 0 && this.eventItems(c || {}).every(i => /[\u3040-\u30ff\u4e00-\u9fff]/.test(i.ja) && !/[\u3040-\u30ff\u4e00-\u9fff]/.test(i.name))), 'Product tiles need an English name plus the official Japanese name.');
+          check(this.eventItems(d1drug || {}).length === 7 && this.eventItems(d1drug || {}).every(i => /^https:/.test(i.image || '')) && this.eventItems(cardOf(d1, /Green Label/) || {}).filter(i => /^https:/.test(i.image || '')).length === 3 && this.eventItems(cardOf(d5, /UNITED TOKYO/) || {}).filter(i => /^https:/.test(i.image || '')).length === 5, 'Product photo tiles missing from the shopping cards.');
           check(Boolean(d1drug) && ['キュレル ジェルメイク落とし', '泡洗顔料', '化粧水 Ⅲ', 'フェイスクリーム', 'マイルドミルク NA'].every(p => JSON.stringify(d1drug.execution.steps).includes(p)) && ['www.donki.com', 'www.daikokudrug.com', 'shop.tsuruha-g.com'].every(h => hostsOf(d1drug).includes(h)) && ['curel', 'anessa', 'drugstore', 'daikoku', 'don quijote', 'fukutaro'].every(q => bestDay(q) === 1), 'Day 1 drugstore loop (Curél + ANESSA, official store links, search) missing.');
           check(shopText.length > 200 && !/\bSKU\b|inventory|in stock|stock check|reserve online|\bsizes?\b|3100026F|g1[35]5\d{6}/i.test(shopText), 'A shopping card shows sizes, item numbers or inventory instructions.');
           check(!/BEAMS|Cat Street|distinctive/i.test(JSON.stringify(d5 || {})), 'The old BEAMS / Cat Street shopping objective survived on Day 5.');
