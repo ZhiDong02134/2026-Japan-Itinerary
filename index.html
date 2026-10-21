@@ -194,7 +194,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   <script>
   (() => {
     // Lucide 1.43.0 (ISC licence) stroke icons, pruned to the names this document uses.
-    const ICONS = {"arrow-down":"<path d=\"M12 5v14\"/><path d=\"m19 12-7 7-7-7\"/>","arrow-up-right":"<path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/>","copy":"<rect width=\"14\" height=\"14\" x=\"8\" y=\"8\" rx=\"2\" ry=\"2\"/><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"/>","hourglass":"<path d=\"M5 22h14\"/><path d=\"M5 2h14\"/><path d=\"M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22\"/><path d=\"M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2\"/>","bed-double":"<path d=\"M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8\"/><path d=\"M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4\"/><path d=\"M12 4v6\"/><path d=\"M2 18h20\"/>","bell":"<path d=\"M10.268 21a2 2 0 0 0 3.464 0\"/><path d=\"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326\"/>","bus":"<path d=\"M8 6v6\"/><path d=\"M15 6v6\"/><path d=\"M2 12h19.6\"/><path d=\"M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3\"/><circle cx=\"7\" cy=\"18\" r=\"2\"/><path d=\"M9 18h5\"/><circle cx=\"16\" cy=\"18\" r=\"2\"/>","calendar-check":"<path d=\"M8 2v3\"/><path d=\"M16 2v3\"/><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 9h18\"/><path d=\"m9 15 2 2 4-4\"/>","calendar-days":"<path d=\"M8 2v3\"/><path d=\"M16 2v3\"/><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 9h18\"/><path d=\"M8 13h.01\"/><path d=\"M12 13h.01\"/><path d=\"M16 13h.01\"/><path d=\"M8 17h.01\"/><path d=\"M12 17h.01\"/><path d=\"M16 17h.01\"/>","calendar-plus":"<path d=\"M16 18h6\"/><path d=\"M16 2v3\"/><path d=\"M19 15v6\"/><path d=\"M21 11.5V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h8.3\"/><path d=\"M3 9h18\"/><path d=\"M8 2v3\"/>","camera":"<path d=\"M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/>","check":"<path d=\"M20 6 9 17l-5-5\"/>","chevron-left":"<path d=\"m15 18-6-6 6-6\"/>","chevron-right":"<path d=\"m9 18 6-6-6-6\"/>","circle":"<circle cx=\"12\" cy=\"12\" r=\"10\"/>","circle-dot":"<circle cx=\"12\" cy=\"12\" r=\"1\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","clipboard-check":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/><path d=\"m9 14 2 2 4-4\"/>","clock":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/>","cloud-off":"<path d=\"M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057\"/><path d=\"M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78\"/><path d=\"m2 2 20 20\"/>","cloud-rain":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M16 14v6\"/><path d=\"M8 14v6\"/><path d=\"M12 16v6\"/>","compass":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\"/>","download":"<path d=\"M12 15V3\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><path d=\"m7 10 5 5 5-5\"/>","eye":"<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","footprints":"<path d=\"M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z\"/><path d=\"M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z\"/><path d=\"M16 17h4\"/><path d=\"M4 13h4\"/>","list":"<path d=\"M3 5h.01\"/><path d=\"M3 12h.01\"/><path d=\"M3 19h.01\"/><path d=\"M8 5h13\"/><path d=\"M8 12h13\"/><path d=\"M8 19h13\"/>","list-checks":"<path d=\"M13 5h8\"/><path d=\"M13 12h8\"/><path d=\"M13 19h8\"/><path d=\"m3 17 2 2 4-4\"/><path d=\"m3 7 2 2 4-4\"/>","luggage":"<path d=\"M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2\"/><path d=\"M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14\"/><path d=\"M10 20h4\"/><circle cx=\"16\" cy=\"20\" r=\"2\"/><circle cx=\"8\" cy=\"20\" r=\"2\"/>","map":"<path d=\"M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z\"/><path d=\"M15 5.764v15\"/><path d=\"M9 3.236v15\"/>","map-pin":"<path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>","milk":"<path d=\"M8 2h8\"/><path d=\"M9 2v2.789a4 4 0 0 1-.672 2.219l-.656.984A4 4 0 0 0 7 10.212V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-9.789a4 4 0 0 0-.672-2.219l-.656-.984A4 4 0 0 1 15 4.788V2\"/><path d=\"M7 15a6.472 6.472 0 0 1 5 0 6.47 6.47 0 0 0 5 0\"/>","monitor":"<rect width=\"20\" height=\"14\" x=\"2\" y=\"3\" rx=\"2\"/><line x1=\"8\" x2=\"16\" y1=\"21\" y2=\"21\"/><line x1=\"12\" x2=\"12\" y1=\"17\" y2=\"21\"/>","moon":"<path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401\"/>","navigation":"<polygon points=\"3 11 22 2 13 21 11 13 3 11\"/>","plane":"<path d=\"M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z\"/>","plane-landing":"<path d=\"M2 22h20\"/><path d=\"M3.77 10.77 2 9l2-4.5 1.1.55c.55.28.9.84.9 1.45s.35 1.17.9 1.45L8 8.5l3-6 1.05.53a2 2 0 0 1 1.09 1.52l.72 5.4a2 2 0 0 0 1.09 1.52l4.4 2.2c.42.22.78.55 1.01.96l.6 1.03c.49.88-.06 1.98-1.06 2.1l-1.18.15c-.47.06-.95-.02-1.37-.24L4.29 11.15a2 2 0 0 1-.52-.38Z\"/>","plus":"<path d=\"M5 12h14\"/><path d=\"M12 5v14\"/>","receipt":"<path d=\"M12 17V7\"/><path d=\"M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8\"/><path d=\"M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z\"/>","refresh-cw":"<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\"/><path d=\"M21 3v5h-5\"/><path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\"/><path d=\"M8 16H3v5\"/>","rotate-ccw":"<path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"/><path d=\"M3 3v5h5\"/>","route":"<circle cx=\"6\" cy=\"19\" r=\"3\"/><path d=\"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15\"/><circle cx=\"18\" cy=\"5\" r=\"3\"/>","search":"<path d=\"m21 21-4.34-4.34\"/><circle cx=\"11\" cy=\"11\" r=\"8\"/>","search-x":"<path d=\"m13.5 8.5-5 5\"/><path d=\"m8.5 8.5 5 5\"/><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/>","settings":"<path d=\"M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","shield-alert":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/>","ship":"<path d=\"M12 2v2\"/><path d=\"M12 9.189V13\"/><path d=\"M19 12V6a2 2 0 00-2-2H7a2 2 0 00-2 2v6\"/><path d=\"M19.38 19A11.6 11.6 0 0021 13l-8.188-3.639a2 2 0 00-1.624 0L3 13.001a11.6 11.6 0 002.81 7.76\"/><path d=\"M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1\"/>","shopping-bag":"<path d=\"M16 10a4 4 0 0 1-8 0\"/><path d=\"M3.103 6.034h17.794\"/><path d=\"M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z\"/>","shuffle":"<path d=\"m18 14 4 4-4 4\"/><path d=\"m18 2 4 4-4 4\"/><path d=\"M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22\"/><path d=\"M2 6h1.972a4 4 0 0 1 3.6 2.2\"/><path d=\"M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45\"/>","sliders-horizontal":"<path d=\"M10 5H3\"/><path d=\"M12 19H3\"/><path d=\"M14 3v4\"/><path d=\"M16 17v4\"/><path d=\"M21 12h-9\"/><path d=\"M21 19h-5\"/><path d=\"M21 5h-7\"/><path d=\"M8 10v4\"/><path d=\"M8 12H3\"/>","sparkles":"<path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\"/><path d=\"M20 2v4\"/><path d=\"M22 4h-4\"/><circle cx=\"4\" cy=\"20\" r=\"2\"/>","sun":"<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2\"/><path d=\"M12 20v2\"/><path d=\"m4.93 4.93 1.41 1.41\"/><path d=\"m17.66 17.66 1.41 1.41\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"m6.34 17.66-1.41 1.41\"/><path d=\"m19.07 4.93-1.41 1.41\"/>","sun-moon":"<path d=\"M12 2v2\"/><path d=\"M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715\"/><path d=\"M16 12a4 4 0 0 0-4-4\"/><path d=\"m19 5-1.256 1.256\"/><path d=\"M20 12h2\"/>","sunrise":"<path d=\"M12 2v8\"/><path d=\"m4.93 10.93 1.41 1.41\"/><path d=\"M2 18h2\"/><path d=\"M20 18h2\"/><path d=\"m19.07 10.93-1.41 1.41\"/><path d=\"M22 22H2\"/><path d=\"m8 6 4-4 4 4\"/><path d=\"M16 18a4 4 0 0 0-8 0\"/>","ticket":"<path d=\"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\"/><path d=\"M13 5v2\"/><path d=\"M13 17v2\"/><path d=\"M13 11v2\"/>","timer":"<line x1=\"10\" x2=\"14\" y1=\"2\" y2=\"2\"/><line x1=\"12\" x2=\"15\" y1=\"14\" y2=\"11\"/><circle cx=\"12\" cy=\"14\" r=\"8\"/>","train-front":"<path d=\"M8 3.1V7a4 4 0 0 0 8 0V3.1\"/><path d=\"m9 15-1-1\"/><path d=\"m15 15 1-1\"/><path d=\"M9 19c-2.8 0-5-2.2-5-5v-4a8 8 0 0 1 16 0v4c0 2.8-2.2 5-5 5Z\"/><path d=\"m8 19-2 3\"/><path d=\"m16 19 2 3\"/>","tram-front":"<rect width=\"16\" height=\"16\" x=\"4\" y=\"3\" rx=\"2\"/><path d=\"M4 11h16\"/><path d=\"M12 3v8\"/><path d=\"m8 19-2 3\"/><path d=\"m18 22-2-3\"/><path d=\"M8 15h.01\"/><path d=\"M16 15h.01\"/>","triangle-alert":"<path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/>","upload":"<path d=\"M12 3v12\"/><path d=\"m17 8-5-5-5 5\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/>","utensils":"<path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\"/><path d=\"M7 2v20\"/><path d=\"M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7\"/>","x":"<path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/>","zap":"<path d=\"M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z\"/>"};
+    const ICONS = {"dumbbell":"<path d=\"M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z\"/><path d=\"m2.5 21.5 1.4-1.4\"/><path d=\"m20.1 3.9 1.4-1.4\"/><path d=\"M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z\"/><path d=\"m9.6 14.4 4.8-4.8\"/>","arrow-down":"<path d=\"M12 5v14\"/><path d=\"m19 12-7 7-7-7\"/>","arrow-up-right":"<path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/>","copy":"<rect width=\"14\" height=\"14\" x=\"8\" y=\"8\" rx=\"2\" ry=\"2\"/><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"/>","hourglass":"<path d=\"M5 22h14\"/><path d=\"M5 2h14\"/><path d=\"M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22\"/><path d=\"M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2\"/>","bed-double":"<path d=\"M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8\"/><path d=\"M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4\"/><path d=\"M12 4v6\"/><path d=\"M2 18h20\"/>","bell":"<path d=\"M10.268 21a2 2 0 0 0 3.464 0\"/><path d=\"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326\"/>","bus":"<path d=\"M8 6v6\"/><path d=\"M15 6v6\"/><path d=\"M2 12h19.6\"/><path d=\"M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3\"/><circle cx=\"7\" cy=\"18\" r=\"2\"/><path d=\"M9 18h5\"/><circle cx=\"16\" cy=\"18\" r=\"2\"/>","calendar-check":"<path d=\"M8 2v3\"/><path d=\"M16 2v3\"/><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 9h18\"/><path d=\"m9 15 2 2 4-4\"/>","calendar-days":"<path d=\"M8 2v3\"/><path d=\"M16 2v3\"/><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 9h18\"/><path d=\"M8 13h.01\"/><path d=\"M12 13h.01\"/><path d=\"M16 13h.01\"/><path d=\"M8 17h.01\"/><path d=\"M12 17h.01\"/><path d=\"M16 17h.01\"/>","calendar-plus":"<path d=\"M16 18h6\"/><path d=\"M16 2v3\"/><path d=\"M19 15v6\"/><path d=\"M21 11.5V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h8.3\"/><path d=\"M3 9h18\"/><path d=\"M8 2v3\"/>","camera":"<path d=\"M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/>","check":"<path d=\"M20 6 9 17l-5-5\"/>","chevron-left":"<path d=\"m15 18-6-6 6-6\"/>","chevron-right":"<path d=\"m9 18 6-6-6-6\"/>","circle":"<circle cx=\"12\" cy=\"12\" r=\"10\"/>","circle-dot":"<circle cx=\"12\" cy=\"12\" r=\"1\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","clipboard-check":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/><path d=\"m9 14 2 2 4-4\"/>","clock":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/>","cloud-off":"<path d=\"M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057\"/><path d=\"M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78\"/><path d=\"m2 2 20 20\"/>","cloud-rain":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M16 14v6\"/><path d=\"M8 14v6\"/><path d=\"M12 16v6\"/>","compass":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\"/>","download":"<path d=\"M12 15V3\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><path d=\"m7 10 5 5 5-5\"/>","eye":"<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","footprints":"<path d=\"M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z\"/><path d=\"M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z\"/><path d=\"M16 17h4\"/><path d=\"M4 13h4\"/>","list":"<path d=\"M3 5h.01\"/><path d=\"M3 12h.01\"/><path d=\"M3 19h.01\"/><path d=\"M8 5h13\"/><path d=\"M8 12h13\"/><path d=\"M8 19h13\"/>","list-checks":"<path d=\"M13 5h8\"/><path d=\"M13 12h8\"/><path d=\"M13 19h8\"/><path d=\"m3 17 2 2 4-4\"/><path d=\"m3 7 2 2 4-4\"/>","luggage":"<path d=\"M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2\"/><path d=\"M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14\"/><path d=\"M10 20h4\"/><circle cx=\"16\" cy=\"20\" r=\"2\"/><circle cx=\"8\" cy=\"20\" r=\"2\"/>","map":"<path d=\"M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z\"/><path d=\"M15 5.764v15\"/><path d=\"M9 3.236v15\"/>","map-pin":"<path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>","milk":"<path d=\"M8 2h8\"/><path d=\"M9 2v2.789a4 4 0 0 1-.672 2.219l-.656.984A4 4 0 0 0 7 10.212V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-9.789a4 4 0 0 0-.672-2.219l-.656-.984A4 4 0 0 1 15 4.788V2\"/><path d=\"M7 15a6.472 6.472 0 0 1 5 0 6.47 6.47 0 0 0 5 0\"/>","monitor":"<rect width=\"20\" height=\"14\" x=\"2\" y=\"3\" rx=\"2\"/><line x1=\"8\" x2=\"16\" y1=\"21\" y2=\"21\"/><line x1=\"12\" x2=\"12\" y1=\"17\" y2=\"21\"/>","moon":"<path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401\"/>","navigation":"<polygon points=\"3 11 22 2 13 21 11 13 3 11\"/>","plane":"<path d=\"M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z\"/>","plane-landing":"<path d=\"M2 22h20\"/><path d=\"M3.77 10.77 2 9l2-4.5 1.1.55c.55.28.9.84.9 1.45s.35 1.17.9 1.45L8 8.5l3-6 1.05.53a2 2 0 0 1 1.09 1.52l.72 5.4a2 2 0 0 0 1.09 1.52l4.4 2.2c.42.22.78.55 1.01.96l.6 1.03c.49.88-.06 1.98-1.06 2.1l-1.18.15c-.47.06-.95-.02-1.37-.24L4.29 11.15a2 2 0 0 1-.52-.38Z\"/>","plus":"<path d=\"M5 12h14\"/><path d=\"M12 5v14\"/>","receipt":"<path d=\"M12 17V7\"/><path d=\"M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8\"/><path d=\"M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z\"/>","refresh-cw":"<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\"/><path d=\"M21 3v5h-5\"/><path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\"/><path d=\"M8 16H3v5\"/>","rotate-ccw":"<path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"/><path d=\"M3 3v5h5\"/>","route":"<circle cx=\"6\" cy=\"19\" r=\"3\"/><path d=\"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15\"/><circle cx=\"18\" cy=\"5\" r=\"3\"/>","search":"<path d=\"m21 21-4.34-4.34\"/><circle cx=\"11\" cy=\"11\" r=\"8\"/>","search-x":"<path d=\"m13.5 8.5-5 5\"/><path d=\"m8.5 8.5 5 5\"/><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/>","settings":"<path d=\"M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","shield-alert":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/>","ship":"<path d=\"M12 2v2\"/><path d=\"M12 9.189V13\"/><path d=\"M19 12V6a2 2 0 00-2-2H7a2 2 0 00-2 2v6\"/><path d=\"M19.38 19A11.6 11.6 0 0021 13l-8.188-3.639a2 2 0 00-1.624 0L3 13.001a11.6 11.6 0 002.81 7.76\"/><path d=\"M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1\"/>","shopping-bag":"<path d=\"M16 10a4 4 0 0 1-8 0\"/><path d=\"M3.103 6.034h17.794\"/><path d=\"M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z\"/>","shuffle":"<path d=\"m18 14 4 4-4 4\"/><path d=\"m18 2 4 4-4 4\"/><path d=\"M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22\"/><path d=\"M2 6h1.972a4 4 0 0 1 3.6 2.2\"/><path d=\"M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45\"/>","sliders-horizontal":"<path d=\"M10 5H3\"/><path d=\"M12 19H3\"/><path d=\"M14 3v4\"/><path d=\"M16 17v4\"/><path d=\"M21 12h-9\"/><path d=\"M21 19h-5\"/><path d=\"M21 5h-7\"/><path d=\"M8 10v4\"/><path d=\"M8 12H3\"/>","sparkles":"<path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\"/><path d=\"M20 2v4\"/><path d=\"M22 4h-4\"/><circle cx=\"4\" cy=\"20\" r=\"2\"/>","sun":"<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2\"/><path d=\"M12 20v2\"/><path d=\"m4.93 4.93 1.41 1.41\"/><path d=\"m17.66 17.66 1.41 1.41\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"m6.34 17.66-1.41 1.41\"/><path d=\"m19.07 4.93-1.41 1.41\"/>","sun-moon":"<path d=\"M12 2v2\"/><path d=\"M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715\"/><path d=\"M16 12a4 4 0 0 0-4-4\"/><path d=\"m19 5-1.256 1.256\"/><path d=\"M20 12h2\"/>","sunrise":"<path d=\"M12 2v8\"/><path d=\"m4.93 10.93 1.41 1.41\"/><path d=\"M2 18h2\"/><path d=\"M20 18h2\"/><path d=\"m19.07 10.93-1.41 1.41\"/><path d=\"M22 22H2\"/><path d=\"m8 6 4-4 4 4\"/><path d=\"M16 18a4 4 0 0 0-8 0\"/>","ticket":"<path d=\"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\"/><path d=\"M13 5v2\"/><path d=\"M13 17v2\"/><path d=\"M13 11v2\"/>","timer":"<line x1=\"10\" x2=\"14\" y1=\"2\" y2=\"2\"/><line x1=\"12\" x2=\"15\" y1=\"14\" y2=\"11\"/><circle cx=\"12\" cy=\"14\" r=\"8\"/>","train-front":"<path d=\"M8 3.1V7a4 4 0 0 0 8 0V3.1\"/><path d=\"m9 15-1-1\"/><path d=\"m15 15 1-1\"/><path d=\"M9 19c-2.8 0-5-2.2-5-5v-4a8 8 0 0 1 16 0v4c0 2.8-2.2 5-5 5Z\"/><path d=\"m8 19-2 3\"/><path d=\"m16 19 2 3\"/>","tram-front":"<rect width=\"16\" height=\"16\" x=\"4\" y=\"3\" rx=\"2\"/><path d=\"M4 11h16\"/><path d=\"M12 3v8\"/><path d=\"m8 19-2 3\"/><path d=\"m18 22-2-3\"/><path d=\"M8 15h.01\"/><path d=\"M16 15h.01\"/>","triangle-alert":"<path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/>","upload":"<path d=\"M12 3v12\"/><path d=\"m17 8-5-5-5 5\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/>","utensils":"<path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\"/><path d=\"M7 2v20\"/><path d=\"M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7\"/>","x":"<path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/>","zap":"<path d=\"M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z\"/>"};
     const OPEN = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">';
     function renderIcon(el, name) {
       if (el.dataset.renderedIcon === name && el.firstElementChild) return;
@@ -1781,6 +1781,7 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 .event-state.is-now { background: var(--accent-soft); color: var(--accent); }
 .event-state.is-next { background: var(--fill-2); color: var(--text); }
 .event-kind { font-size: var(--fs-caption); font-weight: 650; color: var(--tone-food); }
+.event-kind.is-optional { color: var(--event-accent, var(--tone-active)); }
 .event-desc { font-size: var(--fs-body); line-height: 1.5; color: var(--text-2); }
 
 .food-decision { display: grid; gap: 8px; padding: 10px; border-radius: var(--r-inner); background: var(--surface-2); }
@@ -1822,6 +1823,8 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 .timeline-card > .event-notes:has(> :not(template)) { padding-top: 11px; border-top: .5px solid var(--separator); }
 
 .event-source { justify-self: start; margin-left: -4px; }
+/* Several official links on one card: the same link buttons as Source, wrapping on narrow phones. */
+.event-links { display: flex; flex-wrap: wrap; gap: 0 4px; margin-left: -4px; }
 .leave-by-callout {
   display: grid; gap: 4px;
   padding: 10px 12px;
@@ -3523,7 +3526,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                         <span class="event-state" :class="eventPlanState(idx) === 'current' ? 'is-now' : 'is-next'" x-text="eventPlanState(idx) === 'current' ? 'Now' : 'Up next'"></span>
                       </template>
                       <h4 class="event-title" x-text="displayLabel(event.title)"></h4>
-                      <span class="event-kind" x-show="event.kind === 'meal' || event.kind === 'fuel'" x-text="event.kind === 'meal' ? 'Meal' : 'Fuel'"></span>
+                      <span class="event-kind" :class="event.optional && 'is-optional'" x-show="event.optional || event.kind === 'meal' || event.kind === 'fuel'" x-text="event.optional ? 'Optional' : (event.kind === 'meal' ? 'Meal' : 'Fuel')"></span>
                     </div>
                     <template x-if="event.mapQuery">
                       <a :href="getMapUrl(event.mapQuery)" target="_blank" rel="noopener noreferrer" class="map-button" :aria-label="'Directions to ' + displayLabel(event.mapLabel || event.title)">
@@ -3622,6 +3625,13 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                       <p class="note-row tone-watch"><i data-lucide="refresh-cw" class="icon-sm" aria-hidden="true"></i><span><strong>Recheck</strong> <span x-text="event.execution.recheck"></span></span></p>
                     </template>
 
+                    <template x-if="eventLinks(event).length">
+                      <div class="event-links" role="group" :aria-label="'Links for ' + displayLabel(event.title)">
+                        <template x-for="link in eventLinks(event)" :key="link.label + '|' + link.url">
+                          <a class="link-button" :href="link.url" target="_blank" rel="noopener noreferrer"><span x-text="link.label"></span><i data-lucide="arrow-up-right" class="icon-sm" aria-hidden="true"></i></a>
+                        </template>
+                      </div>
+                    </template>
                     <template x-if="sanitizeHttpUrl(event.sourceUrl || (event.execution && event.execution.sourceUrl))">
                       <a class="link-button event-source" :href="sanitizeHttpUrl(event.sourceUrl || (event.execution && event.execution.sourceUrl))" target="_blank" rel="noopener noreferrer" :aria-label="'Official source for ' + displayLabel(event.title)"><span>Source</span><i data-lucide="arrow-up-right" class="icon-sm" aria-hidden="true"></i></a>
                     </template>
@@ -3671,11 +3681,14 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           </div>
           <p class="support-lede" x-text="currentDay.shoppingPlan.objective"></p>
           <div class="shop-split">
-            <div class="shop-lane"><p class="shop-lane-label">Men</p><p x-text="currentDay.shoppingPlan.mens"></p></div>
-            <div class="shop-lane"><p class="shop-lane-label">Women</p><p x-text="currentDay.shoppingPlan.womens"></p></div>
+            <template x-for="lane in shopLanes(currentDay.shoppingPlan)" :key="lane.label">
+              <div class="shop-lane"><p class="shop-lane-label" x-text="lane.label"></p><p x-text="lane.text"></p></div>
+            </template>
           </div>
-          <p class="note-row tone-route"><i data-lucide="route" class="icon-sm" aria-hidden="true"></i><span><strong>Shared route</strong> <span x-text="currentDay.shoppingPlan.shared"></span></span></p>
-          <p class="note-row tone-food"><i data-lucide="map-pin" class="icon-sm" aria-hidden="true"></i><span><strong>Rejoin</strong> <span x-text="currentDay.shoppingPlan.meetPoint"></span></span></p>
+          <p class="note-row tone-route"><i data-lucide="route" class="icon-sm" aria-hidden="true"></i><span><strong x-text="currentDay.shoppingPlan.routeLabel || 'Shared route'"></strong> <span x-text="currentDay.shoppingPlan.shared"></span></span></p>
+          <template x-if="currentDay.shoppingPlan.meetPoint">
+            <p class="note-row tone-food"><i data-lucide="map-pin" class="icon-sm" aria-hidden="true"></i><span><strong x-text="currentDay.shoppingPlan.meetLabel || 'Rejoin'"></strong> <span x-text="currentDay.shoppingPlan.meetPoint"></span></span></p>
+          </template>
           <p class="note-row tone-watch"><i data-lucide="receipt" class="icon-sm" aria-hidden="true"></i><span><strong>Tax-free</strong> <span x-text="currentDay.shoppingPlan.taxNote"></span></span></p>
         </section>
       </template>
@@ -3854,9 +3867,9 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           <p class="eyebrow">Protected time · 買い物</p>
           <h3 id="shopping-windows-title" class="section-title">Shopping windows</h3>
         </div>
-        <span class="shopping-total">6h 15m planned</span>
+        <span class="shopping-total">8h 05m planned</span>
       </div>
-      <p class="shopping-windows-lede">Oct 27 is the main shopping day. The later windows are intentionally bounded so shopping never eats the experiences around them.</p>
+      <p class="shopping-windows-lede">Oct 23 builds the wardrobe solo; Oct 27 adds shared Ginza and one casual piece. The later windows are intentionally bounded so shopping never eats the experiences around them.</p>
       <ol class="shopping-window-list">
         <template x-for="(slot, index) in shoppingWindows" :key="slot.day + '-' + slot.time">
           <li class="shopping-window-item" :class="['city-' + slot.city, slot.primary ? 'is-primary' : '']">
@@ -4916,6 +4929,14 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "desc": "Associate each booked Shinkansen reservation with the correct digital IC card."
   },
   {
+    "id": "c13",
+    "label": "Measure suitcases + prep Oct 27 Tokyo Station storage",
+    "category": "Transit",
+    "deadline": "Do now · before Oct 27",
+    "departureRequired": true,
+    "desc": "Measure both suitcases (H × W × D). Preferred request: Multi-E-Cube outside the ticket gates, Yaesu Underground Central Exit, near the ticket office (reservation-only model). Its L box is 86 × 34 × 55 cm, so a case must be ≤ 86 cm tall with wheels, ≤ 34 cm thick and ≤ 55 cm wide; two big cases need two boxes. Bookable from 02:00 one month ahead (open now); new registrations need a JRE ID and a credit card. A request is only final when the ~02:05 email arrives on Oct 27, so check it before relying on it. When checked Oct 21 JST, that bank’s one M and one L were already taken for Oct 27, while other Yaesu “Outside ticket gates” banks had space (a snapshot only; recheck live availability before deciding). Not confirmed or does not fit: go straight to JR East Logistics outside Yaesu South Gate, 09:30–20:00."
+  },
+  {
     "id": "c6",
     "label": "Confirm Haneda T3 Yamato cutoff",
     "category": "Luggage",
@@ -4933,11 +4954,11 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
   },
   {
     "id": "c9",
-    "label": "Finish intentional shopping on Oct 27 · Oct 31 rescue only",
+    "label": "Finish intentional shopping by Oct 27 · Oct 31 rescue only",
     "category": "Shopping / Tax-Free",
     "deadline": "Oct 31 Evening",
     "departureRequired": false,
-    "desc": "Main shopping is Day 5 / Oct 27: Ginza + Jingumae/Cat Street. Through Oct 31, eligible purchases at participating shops can still use the pre-Nov-1 point-of-sale exemption; from Nov 1 purchases move to the refund method after departure customs confirmation. Use Oct 31 only for one specific unresolved item, not another shopping day."
+    "desc": "The wardrobe foundation is Oct 23 (solo, Yaesu); Oct 27 adds shared Ginza and one distinctive casual piece in Jingumae. Through Oct 31, eligible purchases at participating shops can still use the pre-Nov-1 point-of-sale exemption; from Nov 1 purchases move to the refund method after departure customs confirmation. Use Oct 31 only for one specific unresolved item, never as a second wardrobe round."
   },
   {
     "id": "c11",
@@ -5055,12 +5076,12 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                 {
                         "day": 1,
                         "date": "Fri · Oct 23",
-                        "time": "16:55–17:55",
-                        "title": "UNIQLO Asakusa",
-                        "purpose": "Arrival essentials",
-                        "detail": "Underwear, socks, tees, pants or one outer layer. Hard stop at 17:55 so arrival night stays easy.",
+                        "time": "16:00–18:45",
+                        "title": "Yaesu Wardrobe Foundation · SOLO",
+                        "purpose": "Primary business-casual fitting + basics",
+                        "detail": "Green Label primary → ORIHICA optional → UNIQLO basics → Kamakura shirts. Arrival-dependent; ORIHICA is the first cut.",
                         "city": "tokyo",
-                        "primary": false
+                        "primary": true
                 },
                 {
                         "day": 2,
@@ -5075,10 +5096,10 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                 {
                         "day": 5,
                         "date": "Tue · Oct 27",
-                        "time": "10:40–12:25",
-                        "title": "Ginza",
-                        "purpose": "Main design / stationery / department-store block",
-                        "detail": "Itoya first, then only targeted nearby stores. This is the first half of the trip’s main shopping day.",
+                        "time": "10:35–12:25",
+                        "title": "Ginza + Chiyoda Workout Split",
+                        "purpose": "Friend’s Itoya time + one unresolved item max",
+                        "detail": "Your friend browses Itoya / Ginza while you train at Chiyoda; reunite around noon; at most one specific unresolved clothing stop.",
                         "city": "tokyo",
                         "primary": true
                 },
@@ -5086,9 +5107,9 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                         "day": 5,
                         "date": "Tue · Oct 27",
                         "time": "13:35–15:05",
-                        "title": "Jingumae · Cat Street · BEAMS",
-                        "purpose": "Main fashion / streetwear block",
-                        "detail": "BEAMS opens at noon on weekdays, so this window lands cleanly after lunch. Retrieve luggage after the block.",
+                        "title": "BEAMS PLUS · Cat Street",
+                        "purpose": "One distinctive long-lived casual piece",
+                        "detail": "BEAMS PLUS Harajuku first; regular BEAMS / Cat Street only if time remains. 15:05 is a hard leave for the luggage and Nozomi buffer.",
                         "city": "tokyo",
                         "primary": true
                 },
@@ -5579,6 +5600,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           if (/shop|uniqlo|fashion|market|department store|doguyasuji/.test(title)) return 'shop';
           if (kind === 'transit' || /train|rail|transit|transfer|airport|flight|shinkansen|\bbus\b|ferry|station|\bjr\b|return to|depart|arrival|check-in|bag drop|hotel reunion/.test(title)) return 'transit';
           if (/illumination|sunset|night|evening|lantern|\bgear\b|tower|industrial night cruise/.test(title)) return 'night';
+          if (/\bgym\b/.test(title)) return 'active';
           if (/round1|fantazooma|hike|climb|trail|kayak|obstacle|racecourse|football|animal kingdom|river cruise|aqua-liner|cosmo world|disaster prevention|goldfish/.test(context)) return 'active';
           return 'culture';
         },
@@ -5586,6 +5608,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         getEventIcon(event) {
           const tone = this.getEventTone(event);
           if (tone === 'transit' && /\bbus\b/i.test(event?.title || '')) return 'bus';
+          if (/\bgym\b/i.test(event?.title || '')) return 'dumbbell';
           return {
             food: 'utensils',
             transit: 'train-front',
@@ -6669,6 +6692,25 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           return this.selectDay(dayNum);
         },
 
+        // An event's official links (execution.links: [{ label, url }]). Every URL goes through
+        // sanitizeHttpUrl; an entry without a label or a safe http(s) URL is dropped.
+        eventLinks(event) {
+          const links = event?.execution?.links;
+          if (!Array.isArray(links)) return [];
+          return links
+            .map(link => ({ label: String(link?.label || '').trim(), url: sanitizeHttpUrl(link?.url) }))
+            .filter(link => link.label && link.url);
+        },
+
+        // A shopping plan's lanes: its own `lanes` ([{ label, text }]) when it has them, otherwise the
+        // older Men / Women pair.
+        shopLanes(plan) {
+          const lanes = Array.isArray(plan?.lanes)
+            ? plan.lanes.map(lane => ({ label: String(lane?.label || '').trim(), text: String(lane?.text || '').trim() }))
+            : [{ label: 'Men', text: String(plan?.mens || '') }, { label: 'Women', text: String(plan?.womens || '') }];
+          return lanes.filter(lane => lane.label && lane.text);
+        },
+
         // Clean action step extractor (returns explicit execution.steps directly; no sentence splitting)
         getActionSteps(event) {
           if (event && event.execution && Array.isArray(event.execution.steps) && event.execution.steps.length > 0) {
@@ -7543,6 +7585,14 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             return status.isOngoing && this.selectedDayNumber < status.currentDayNum;
           }
           if (plan.targetKind === 'complete') return true;
+          const events = this.currentDay?.events || [];
+          if (events[idx]?.optional) {
+            const until = convertEventTimeToHHMM(String((events[idx + 1] || events[idx]).time || ''));
+            if (!until) return false;
+            const [uh, um] = until.split(':').map(Number);
+            const now = this.jstNow;
+            return uh * 60 + um <= now.hour * 60 + now.minute;
+          }
           if (plan.pastBefore !== undefined) return idx < plan.pastBefore;
           if (plan.targetKind !== 'event' || idx === plan.eventIndex) return false;
           if (idx < plan.eventIndex) return true;
@@ -8175,123 +8225,201 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "dayNumber": 1,
     "dateFormatted": "FRI OCT 23",
     "city": "TOKYO",
-    "title": "Haneda Arrival → UNIQLO Asakusa → Lantern Night",
+    "title": "Haneda → Yaesu Wardrobe Foundation → Asakusa",
     "baseHotel": "APA Hotel Asakusa Kaminarimon Minami",
     "startTime": "01:55 PM",
-    "primaryTransit": "Keikyu / Toei Asakusa Line",
-    "criticalRule": "Keep arrival day flexible. After dropping bags, use a 60-minute UNIQLO Asakusa essentials run while the store is open (current 10:00-20:00). If airport delays leave less than ~35 minutes before closing, skip the shopping sprint and protect dinner/rest. Buy practical trip clothing first; use tax-free only if eligible and frictionless.",
-    "flexOption": "Asakusa Culture Tourist Information Center 8F deck if energy/time is good",
+    "primaryTransit": "Rail/monorail to Tokyo Station (live routing) → Asakusa",
+    "criticalRule": "SOLO ARRIVAL; your friend lands Oct 24. If the flight and immigration run normally: Haneda → Tokyo Station (Haneda lists about 30 min by rail/monorail) → suitcase to the Yaesu South staffed counter → fit the wardrobe foundation in Yaechika / Tokyo Midtown Yaesu → Asakusa once. Airport processing wins over the plan, and nothing on this day has to be bought.",
+    "flexOption": "Low energy or a big delay: skip the Yaesu circuit, go straight to APA, use UNIQLO Asakusa only if it is genuinely easy before it closes, and defer the rest to Oct 27. Arrival-night extras (Asakusa 8F view, Senso-ji loop, Silk Pudding) only if you are unexpectedly fresh.",
     "briefing": {
-      "pace": "Low-stress arrival with one practical shopping mission",
-      "walking": "4-6 km easy Asakusa walking",
-      "reservations": "None",
-      "cutFirst": "Cut the 8F deck first, then shorten the temple stroll; never rush UNIQLO if airport arrival is heavily delayed",
-      "backup": "If UNIQLO is too tight, buy one emergency outfit locally and use the main Oct 27 Ginza/Cat Street block for the wardrobe",
-      "localTips": "Pack light on purpose: the first clothing stop is functional, not a long fashion crawl. The main curated fashion window is Oct 27 before the Nov 1 tax-system switch."
+      "pace": "Solo arrival + fit-heavy wardrobe foundation in Yaesu, then Asakusa once",
+      "walking": "About 3–5 km, mostly underground through Yaechika",
+      "reservations": "None. Shops are walk-in; the suitcase goes to the JR East Logistics counter outside Yaesu South Gate (temporary storage 09:30–20:00).",
+      "cutFirst": "Running late: drop ORIHICA first, then UNIQLO if needed (basics can wait). Protect Green Label and Kamakura. Arrival-night extras are optional.",
+      "backup": "Exhausted or very late: straight to APA; UNIQLO Asakusa only if easy before it closes; anything unresolved becomes one targeted Ginza stop on Oct 27.",
+      "localTips": "Fit rule: chest and shoulders first, then torso and sleeve length; S/M/L are not standard across brands. Another 5–10 lb may come off, so buy one premium trouser now, not three. Through Oct 31 eligible purchases are still tax-exempt at the register (Green Label and ORIHICA Yaechika mark TAX FREE; bring your passport). Never buy for the tax."
     },
     "milestones": [
       {
         "startTime": "13:55",
-        "endTime": "16:25",
-        "label": "Touchdown Haneda T3",
+        "endTime": "15:00",
+        "label": "Touchdown Haneda T3 · immigration, bags, customs",
         "mapQuery": "Haneda Airport Terminal 3"
       },
       {
-        "startTime": "16:30",
-        "endTime": "16:50",
-        "label": "APA bag drop",
+        "startTime": "15:00",
+        "endTime": "15:40",
+        "label": "Haneda → Tokyo Station · live rail/monorail (~30 min)",
+        "timelineEventTime": "01:55 PM",
+        "mapQuery": "Tokyo Station Yaesu South Exit"
+      },
+      {
+        "startTime": "15:40",
+        "endTime": "16:00",
+        "label": "Tokyo Station · suitcase to the Yaesu South counter",
+        "mapQuery": "Tokyo Station Yaesu South Exit"
+      },
+      {
+        "startTime": "16:00",
+        "endTime": "17:00",
+        "label": "Green Label Yaechika · trousers + refined tops",
+        "mapQuery": "ユナイテッドアローズ グリーンレーベル リラクシング ヤエチカ店"
+      },
+      {
+        "startTime": "17:00",
+        "endTime": "17:25",
+        "label": "ORIHICA Yaechika · optional comparison (first cut)",
+        "timelineEventTime": "04:00 PM",
+        "mapQuery": "オリヒカ ヤエチカ店"
+      },
+      {
+        "startTime": "17:30",
+        "endTime": "18:00",
+        "label": "UNIQLO Yaechika · basics",
+        "timelineEventTime": "04:00 PM",
+        "mapQuery": "ユニクロ ヤエチカ店"
+      },
+      {
+        "startTime": "18:05",
+        "endTime": "18:45",
+        "label": "Kamakura Shirts · Tokyo Midtown Yaesu 2F",
+        "timelineEventTime": "04:00 PM",
+        "mapQuery": "鎌倉シャツ 東京ミッドタウン八重洲店"
+      },
+      {
+        "startTime": "18:50",
+        "endTime": "19:15",
+        "label": "Collect the suitcase · Yaesu South counter",
+        "mapQuery": "Tokyo Station Yaesu South Exit"
+      },
+      {
+        "startTime": "19:15",
+        "endTime": "19:55",
+        "label": "Tokyo Station → APA Asakusa · check in",
+        "timelineEventTime": "06:50 PM",
         "mapQuery": "APA Hotel Asakusa Kaminarimon Minami"
       },
       {
-        "startTime": "16:55",
-        "endTime": "17:55",
-        "label": "UNIQLO Asakusa essentials",
-        "timelineEventTime": "04:30 PM",
-        "mapQuery": "UNIQLO Asakusa"
-      },
-      {
-        "startTime": "18:00",
-        "endTime": "18:45",
-        "label": "Asakusa dusk/night loop",
-        "mapQuery": "Senso-ji"
-      },
-      {
-        "startTime": "18:45",
-        "endTime": "18:55",
-        "label": "Silk Pudding · route-adjacent dessert",
-        "mapQuery": "Asakusa Silk Pudding"
-      },
-      {
-        "startTime": "19:00",
-        "endTime": "20:15",
-        "label": "Dinner · low-queue Asakusa pick",
-        "mapQuery": "Asakusa"
+        "startTime": "20:10",
+        "endTime": "21:10",
+        "label": "DINNER · Tonkatsu Juroku / Sushiro",
+        "mapQuery": "Tonkatsu Juroku Asakusa"
       }
     ],
     "events": [
       {
         "time": "01:55 PM",
-        "title": "Haneda arrival → Asakusa",
-        "description": "Clear the airport efficiently and use rail rather than adding an arrival-day airport detour.",
+        "title": "Haneda arrival (solo) → Tokyo Station · Yaesu",
+        "description": "You are solo today. Route Haneda → Tokyo Station → Asakusa once, instead of going to Asakusa first and doubling back.",
         "mapQuery": "Haneda Airport Terminal 3",
         "mapLabel": "Haneda T3",
-        "nextTransit": "Keikyu / Toei Asakusa through-service when available",
+        "nextTransit": "Rail/monorail → Tokyo Station (Yaesu side)",
         "execution": {
           "steps": [
-            "Complete immigration and customs using the prepared digital paperwork.",
-            "Check live Keikyu departure boards for a through-service toward the Toei Asakusa Line.",
-            "Use a Sengakuji transfer only if the direct through-train timing is poor.",
-            "Arrive in Asakusa, walk to the hotel and keep the first hour deliberately simple."
+            "Immigration, bags and customs with the prepared digital paperwork. This takes what it takes; the rest of the day bends around it.",
+            "Once you are through, check live rail/monorail routing and take the fastest sensible option to Tokyo Station (Haneda lists about 30 minutes). Use the direct airport bus only if its live departure happens to line up.",
+            "Head for the Yaesu side: the baggage counter and all four stores are there.",
+            "Choose the mode on arrival. On time and feeling good: the full wardrobe plan. Late: compressed (ORIHICA goes first). Exhausted or very late: straight to APA Asakusa."
           ],
-          "watch": "Airport queues override the nominal 16:30 hotel arrival; do not force the rest of the evening if the flight is late."
-        }
+          "watch": "Arrival processing and Tokyo transit times vary, so every time after touchdown is a target, not a promise. Keikyu’s direct Haneda–Tokyo Station bus leaves T3 only a few times in the afternoon (12:55, 14:15, 16:00), so it rarely lines up.",
+          "sourceUrl": "https://tokyo-haneda.com/en/access/train/index.html"
+        },
+        "kind": "transit"
       },
       {
-        "time": "04:30 PM",
-        "title": "Bag drop · UNIQLO Asakusa essentials",
-        "description": "Drop luggage, then use the nearby large UNIQLO as a practical first supply stop before its current 20:00 close.",
-        "mapQuery": "UNIQLO Asakusa",
-        "mapLabel": "UNIQLO Asakusa",
-        "nextTransit": "Short walk through central Asakusa",
+        "time": "03:40 PM",
+        "title": "Tokyo Station · suitcase to Yaesu South counter + Oct 27 scout",
+        "description": "Free your hands before shopping, and learn the Oct 27 luggage geography while you are here.",
+        "mapQuery": "Tokyo Station Yaesu South Exit",
+        "mapLabel": "Yaesu South baggage counter",
+        "nextTransit": "Underground to Yaechika",
         "execution": {
           "steps": [
-            "Drop the main bag at APA and keep passport/payment method accessible.",
-            "Walk to UNIQLO Asakusa and set a ~60-minute shopping cap.",
-            "Men: prioritize underwear, socks, tees, pants and one layer so the light-packing strategy works immediately.",
-            "Women: use the same store for the full LifeWear range; browse independently if desired.",
-            "Meet at the store entrance by ~17:55 and leave alterations/customization for another day if they create a wait."
+            "Store the suitcase at the JR East Logistics baggage service counter outside Yaesu South Gate (temporary storage 09:30–20:00; per item ¥500 up to 100 cm H+W+D, ¥1,000 up to 200 cm, ¥2,000 over 200 cm).",
+            "Meaningful line, or a fitting Yaesu-side locker is free right now on Live locker map: use the locker instead and photograph its bank, floor and nearest gate.",
+            "Spend about 5 minutes scouting Oct 27: the Yaesu South counter, the Yaesu Underground Central Exit and, if convenient, the Multi-E-Cube near its ticket office. Photograph the floor, nearest gate, locker or counter name and a nearby sign.",
+            "Then straight into Yaechika; this is not a sightseeing stop."
           ],
-          "watch": "Current official hours are 10:00-20:00. If arrival is too late, skip rather than turn the first evening into a sprint.",
-          "food": "Utility purchase first; tax-free only if eligible and convenient. Bring passport."
-        }
-      },
-      {
-        "time": "06:00 PM",
-        "title": "Asakusa 8F view · Senso-ji night",
-        "description": "Use the free elevated view only if convenient, then enjoy the temple district when the daytime crush has faded.",
-        "mapQuery": "Senso-ji",
-        "mapLabel": "Senso-ji",
-        "nextTransit": "Walk into the surrounding Asakusa dining streets",
-        "execution": {
-          "steps": [
-            "If energy is good, take the Asakusa Culture Tourist Information Center elevator to the 8F view.",
-            "Cross to Kaminarimon and walk the quieter evening Nakamise corridor.",
-            "Continue through Senso-ji grounds for illuminated exterior architecture and night photos.",
-            "Keep the visit compact because a fuller shared Asakusa/Hoppy block is built into Day 2."
+          "watch": "Temporary storage at the counter ends at 20:00. Tokyo Station City lists wider hours for the parcel counter itself; those are not the storage hours. Plan to collect around 19:00–19:20.",
+          "links": [
+            {
+              "label": "Staffed baggage counter",
+              "url": "https://www.jrbutsuryu.jregroup.ne.jp/business/baggage.html"
+            },
+            {
+              "label": "Live locker map",
+              "url": "https://www.tokyostationcity.com/en/information/#locker"
+            }
           ]
-        }
+        },
+        "kind": "transit"
       },
       {
-        "time": "07:00 PM",
+        "time": "04:00 PM",
+        "title": "Yaesu Wardrobe Foundation · SOLO shopping",
+        "description": "The best solo window for fit-heavy business-casual shopping before your friend arrives. All four stores sit on the Yaesu side, underground-connected to Tokyo Station.",
+        "mapQuery": "ユナイテッドアローズ グリーンレーベル リラクシング ヤエチカ店",
+        "mapLabel": "Yaechika · Green Label / ORIHICA / UNIQLO · Kamakura Shirts",
+        "nextTransit": "Collect the suitcase → Asakusa",
+        "leaveBy": "18:45 — wrap up and collect the suitcase before the counter’s 20:00 close",
+        "execution": {
+          "steps": [
+            "Green Label Relaxing, Yaechika (~50–60 min; 10:00–20:00; TAX FREE): the primary business-casual store. Try trousers, refined knit/business polos, a fine-gauge crewneck, a cardigan or overshirt and relaxed shirts. Likely buy: 1 good trouser, 1–2 refined tops, a knit only if excellent.",
+            "ORIHICA, Yaechika (~20–25 min; 10:00–20:00; TAX FREE): optional comparison of the cheaper tier. At most one temporary trouser for the cutting phase if the fit is great. First stop to drop.",
+            "UNIQLO Yaechika (~25–30 min; 10:00–20:30), straight out of the Yaesu Underground Central Exit: underwear, socks, 3–4 plain tees or undershirts, maybe one cheap temporary trouser. Basics only.",
+            "Kamakura Shirts MEN’S, Tokyo Midtown Yaesu 2F (~30–40 min; 11:00–21:00, so it goes last): 1–2 shirts (white/off-white Oxford, light blue) only if the proportions are right. Ask for a shorter yuki (sleeve) that keeps chest and shoulder room; the catalogue pairs collar and sleeve like 38-79, 39-80 and 40-81, and stock varies.",
+            "Fit rule everywhere: chest and shoulders first, then torso and sleeve length; S/M/L differ by brand. Do not buy several expensive trousers while another 5–10 lb may come off."
+          ],
+          "watch": "Arrival-dependent. Compressed mode: drop ORIHICA, protect Green Label and Kamakura, and fit UNIQLO in if convenient. Collect the suitcase around 19:00–19:20 rather than drifting toward 20:00. Tax-free: Green Label and ORIHICA mark TAX FREE (bring your passport); do not assume it at Kamakura or UNIQLO.",
+          "links": [
+            {
+              "label": "Green Label",
+              "url": "https://www.yaechika.com/shop/sp389/"
+            },
+            {
+              "label": "ORIHICA",
+              "url": "https://www.orihica.com/shop/store/0473"
+            },
+            {
+              "label": "UNIQLO",
+              "url": "https://map.uniqlo.com/jp/ja/detail/10100937"
+            },
+            {
+              "label": "Kamakura Shirts",
+              "url": "https://shop.shirt.co.jp/shop/pages/shop.aspx"
+            }
+          ]
+        },
+        "kind": "activity"
+      },
+      {
+        "time": "06:50 PM",
+        "title": "Collect suitcase → APA Asakusa · check in",
+        "description": "One trip to Asakusa, with the shopping already done.",
+        "mapQuery": "APA Hotel Asakusa Kaminarimon Minami",
+        "mapLabel": "APA Asakusa",
+        "nextTransit": "Short walk to dinner",
+        "execution": {
+          "steps": [
+            "Collect the suitcase at the Yaesu South counter (or your photographed locker) around 19:00–19:20.",
+            "Tokyo Station → Asakusa by the simplest live route.",
+            "Check in at APA Hotel Asakusa Kaminarimon Minami, drop the shopping and reset briefly."
+          ],
+          "watch": "If the shopping runs long, collect the suitcase first: the counter’s temporary storage ends at 20:00."
+        },
+        "kind": "transit"
+      },
+      {
+        "time": "08:10 PM",
         "title": "Dinner — Tonkatsu Juroku",
-        "description": "Your first-night food decision is fixed: Juroku first, Sushiro if the line is bad.",
+        "description": "First-night food stays simple: Juroku first, Sushiro if it is closed or queued.",
         "mapQuery": "Tonkatsu Juroku Asakusa",
         "mapLabel": "Asakusa dinner",
         "execution": {
           "steps": [
-            "Walk to Tonkatsu Juroku after the Senso-ji block.",
-            "Use the <=15 minute queue gate.",
-            "Eat, then return to APA; only do a short Rokku/Hoppy side-street loop if you still have energy."
+            "Check Juroku’s last order before walking over; dinner is later than it used to be.",
+            "Use the ≤15-minute queue gate; otherwise go straight to Sushiro Asakusa Rokku.",
+            "Only if you are unexpectedly fresh afterwards: a short Kaminarimon / Senso-ji night loop (the 8F view only if it is still open). Otherwise sleep; Day 2 already has a shared Senso-ji / Hoppy night with your friend."
           ],
           "food": "Normal meal; no alcohol-centered stop.",
           "protein": "~35–55g from dinner; optional +15–25g konbini top-up only if hungry."
@@ -8301,18 +8429,29 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "foodBackup": "Sushiro Asakusa Rokku",
         "foodBackupMap": "Sushiro Asakusa Rokku",
         "foodOrder": "Pork loin or fillet tonkatsu set. Keep dinner simple after the flight.",
-        "foodSwitch": "If Juroku projects >15 minutes, go directly to Sushiro; do not start another restaurant search.",
-        "foodExtra": "Asakusa Silk Pudding around 18:40–18:55 only if you are already passing the shop."
+        "foodSwitch": "If Juroku is closed, past last order or projects >15 minutes, go directly to Sushiro; do not start another restaurant search.",
+        "foodExtra": "Asakusa Silk Pudding only if it is still open and on your way."
       }
     ],
     "shoppingPlan": {
-      "priority": "LANDING BASICS — 60 MIN CAP",
-      "objective": "Buy enough clothing to make the light-packing strategy work immediately without sacrificing the arrival evening.",
-      "mens": "UNIQLO Asakusa 2F: underwear, socks, tees, pants, light outer layer and simple travel basics. Skip customization/alterations if there is a queue.",
-      "womens": "UNIQLO Asakusa 1F carries the women's LifeWear range, making it easy to browse independently in the same building.",
-      "shared": "Same store, same meeting point, zero cross-city detour. Current official store hours: 10:00-20:00.",
-      "meetPoint": "Front entrance around 17:55; if airport delays make the stop impractical, abandon it cleanly.",
-      "taxNote": "Oct 23 is before the Nov 1 refund-method change. Eligible UNIQLO tax-free shopping currently requires passport/eligibility conditions; treat the tax benefit as a bonus, not a reason to overbuy."
+      "priority": "WARDROBE FOUNDATION · SOLO · OCT 23",
+      "objective": "Wave 1 of the wardrobe while your weight is still falling: fit-heavy business-casual pieces in Yaesu before your friend arrives. Target about ¥70,000–90,000 in total; ¥100,000 is a ceiling, not a goal. Fit and quality beat spending the budget.",
+      "lanes": [
+        {
+          "label": "You (solo)",
+          "text": "Green Label first: 1 good trouser, 1–2 refined knit/business polos or tops, and a fine knit, cardigan or overshirt only if excellent. ORIHICA: optional, at most one temporary trouser. UNIQLO: underwear, socks, 3–4 plain tees. Kamakura: 1–2 shirts if the proportions fit."
+        },
+        {
+          "label": "Across the trip",
+          "text": "1 premium work trouser · 0–1 cheap temporary trouser · 1–2 Kamakura shirts · ~2 refined knit polos/tops · ~1 fine-knit crewneck · ~1 cardigan/overshirt · 0–1 distinctive BEAMS PLUS piece · 3–4 plain tees · enough underwear and socks for weekly laundry."
+        }
+      ],
+      "routeLabel": "Route",
+      "shared": "Suitcase to the Yaesu South counter → Green Label (~50–60 min) → ORIHICA (~20–25, optional) → UNIQLO (~25–30) → Kamakura (~30–40; open to 21:00, so last) → collect the suitcase around 19:00–19:20.",
+      "meetLabel": "Suitcase",
+      "meetPoint": "JR East Logistics counter outside Yaesu South Gate. Temporary storage ends at 20:00, so do not drift past about 19:20.",
+      "taxNote": "Through Oct 31, eligible purchases at tax-free shops are exempt at the register; from Nov 1 the refund method starts (Japan Tourism Agency). Green Label and ORIHICA Yaechika mark TAX FREE: bring your passport. Do not assume tax-free at Kamakura or UNIQLO, and never buy for the tax.",
+      "taxSourceUrl": "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html"
     }
   },
   {
@@ -9064,41 +9203,55 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "baseHotel": "Tabist Kyogura Kyoto Nijo",
     "startTime": "09:30 AM",
     "primaryTransit": "Metro/JR + Tokyo Station luggage storage + Nozomi + JR Sagano",
-    "criticalRule": "MAIN SHOPPING DAY stays on Oct 27 before the Nov 1 tax-free refund-method switch. Check out of Asakusa, park luggage at Tokyo Station, complete the protected Ginza + Jingumae/Cat Street purchases, and be back at Tokyo Station with luggage by about 16:05. Nozomi 453 is fixed: Tokyo 16:21 → Kyoto 18:32, Car 12 Seats 4-D/4-E. Do not defer the shopping mission or compress the train buffer.",
-    "flexOption": "If shopping runs long, cut the Kyoto night walk first—never the Tokyo Station luggage-retrieval buffer or Nozomi 453. If JR East staffed storage has a line, switch immediately to a station coin locker / Multi E-Cube.",
+    "criticalRule": "SHARED TOKYO DAY + FIXED TRANSFER. Check out of Asakusa, store luggage on the Yaesu side of Tokyo Station, split briefly (friend at Itoya while you do a solo workout via Kanda), rejoin in Ginza around 12:00, then stay together through lunch and the protected Jingumae block. Leave Jingumae at 15:05 (hard) and be back at Tokyo Station with luggage by about 15:40. Nozomi 453 is fixed: Tokyo 16:21 → Kyoto 18:32, Car 12 Seats 4-D/4-E. If something must go, cut shopping first, then the Kyoto night walk; never the train buffer.",
+    "flexOption": "Gym running late or busy: shorten or skip the workout; do not look for another gym. Luggage: use a Multi-E-Cube only if its ~02:05 day-of assignment email arrived; otherwise the JR East Logistics counter outside Yaesu South Gate (no account needed), then a Yaesu-side locker from the live map. Never spend 20+ minutes hunting.",
     "briefing": {
-      "pace": "Protected Tokyo shopping + cross-country transfer + short Kyoto night",
+      "pace": "Shared Ginza + compact solo workout + casual shopping + Kyoto transfer + short Kyoto night",
       "walking": "8-11 km, mostly flat shopping streets/stations",
-      "reservations": "Nozomi 453 confirmed: Tokyo 16:21 → Kyoto 18:32, Car 12 Seats 4-D/4-E, ref 2008. Optional Kura dinner now targets about 20:00.",
-      "cutFirst": "Cut the Kyoto Kiyamachi/Pontocho walk first. Inside Tokyo, skip low-priority stores before cutting the protected Ginza/Cat Street windows or the 16:05 station readiness target.",
-      "backup": "JR East staffed storage line/full → station coin locker. Shopping delay → release the optional dinner and keep Nozomi 453.",
-      "localTips": "Ginza first because Itoya / GINZA SIX are open before the weekday BEAMS/Jingumae noon openings. Finish intentional purchases here while the pre-Nov-1 point-of-sale tax-free method is still in effect for eligible travelers; Oct 31 is only a last-chance top-up if something specific remains."
+      "reservations": "Nozomi 453 confirmed: Tokyo 16:21 → Kyoto 18:32, Car 12 Seats 4-D/4-E, ref 2008. Optional Kura dinner now targets about 20:00. Tokyo Station locker: a Multi-E-Cube request (JRE ID + card) is only real once the ~02:05 email arrives. Gym: walk-in, ¥500 + ¥300 shoes + ¥300 towel.",
+      "cutFirst": "Cut shopping first (the one Ginza fix, then Cat Street extras), then the Kyoto Kiyamachi/Pontocho walk. Never the 15:05 Jingumae leave or the 15:40 luggage/platform buffer. The workout never moves the ~11:50–12:00 rejoin: shorten or skip it.",
+      "backup": "Gym late, busy or closed → shorten or skip; no gym search. Locker request unconfirmed or the bags do not fit → straight to JR East Logistics outside Yaesu South Gate (09:30–20:00), then the live locker map. Shopping delay → release the optional dinner and keep Nozomi 453.",
+      "localTips": "Itoya (10:00) and GINZA SIX (10:30) open before the weekday 12:00 BEAMS openings, so Ginza goes first. Through Oct 31 eligible purchases are still exempt at the register; Oct 31 is only a rescue for one specific item."
     },
     "milestones": [
       {
         "startTime": "09:30",
         "endTime": "10:05",
-        "label": "Asakusa checkout → Tokyo Station",
-        "mapQuery": "Tokyo Station"
+        "label": "Asakusa checkout → Tokyo Station (Yaesu side)",
+        "mapQuery": "Tokyo Station Yaesu Underground Central Exit"
       },
       {
         "startTime": "10:05",
-        "endTime": "10:25",
-        "label": "Tokyo Station · same-day luggage storage",
+        "endTime": "10:20",
+        "label": "Tokyo Station · Yaesu-side luggage drop",
         "timelineEventTime": "09:30 AM",
-        "mapQuery": "JR EAST Travel Service Center Tokyo Station"
+        "mapQuery": "Tokyo Station Yaesu Underground Central Exit"
       },
       {
-        "startTime": "10:25",
+        "startTime": "10:20",
         "endTime": "10:40",
-        "label": "Tokyo Station → Ginza",
-        "mapQuery": "Ginza Station"
+        "label": "Short split · friend → Ginza (M16) · you → JR Kanda (West Exit)",
+        "mapQuery": "千代田区立スポーツセンター 2-1-8 Uchikanda Tokyo"
       },
       {
         "startTime": "10:40",
+        "endTime": "11:40",
+        "label": "SOLO WORKOUT · Chiyoda Sports Center · friend at Itoya",
+        "timelineEventTime": "10:20 AM",
+        "mapQuery": "千代田区立スポーツセンター 2-1-8 Uchikanda Tokyo"
+      },
+      {
+        "startTime": "11:40",
+        "endTime": "11:55",
+        "label": "Kanda (G13) → Ginza (G09) · rejoin at Itoya",
+        "timelineEventTime": "10:20 AM",
+        "mapQuery": "Ginza Itoya"
+      },
+      {
+        "startTime": "11:55",
         "endTime": "12:25",
-        "label": "PROTECTED GINZA · Itoya / GINZA SIX / Chuo-dori",
-        "mapQuery": "Ginza Six"
+        "label": "PROTECTED GINZA · together · Itoya, one clothing fix at most",
+        "mapQuery": "Ginza Itoya"
       },
       {
         "startTime": "12:25",
@@ -9115,8 +9268,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "startTime": "13:35",
         "endTime": "15:05",
-        "label": "PROTECTED CAT STREET · Jingumae / BEAMS cluster",
-        "mapQuery": "BEAMS Harajuku"
+        "label": "PROTECTED JINGUMAE · BEAMS PLUS first → Cat Street",
+        "mapQuery": "BEAMS PLUS Harajuku"
       },
       {
         "startTime": "15:05",
@@ -9127,7 +9280,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "startTime": "15:40",
         "endTime": "16:15",
-        "label": "Retrieve luggage · ekiben · platform buffer",
+        "label": "Retrieve luggage (Yaesu side) · ekiben · platform buffer",
         "timelineEventTime": "03:05 PM",
         "mapQuery": "Tokyo Station"
       },
@@ -9163,41 +9316,98 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "events": [
       {
         "time": "09:30 AM",
-        "title": "Checkout → Tokyo Station · store luggage",
-        "description": "Turn the transfer day into the clean pre-November shopping window without dragging suitcases through Ginza or Harajuku.",
-        "mapQuery": "JR EAST Travel Service Center Tokyo Station",
-        "mapLabel": "Tokyo Station luggage",
-        "nextTransit": "Metro / short hop to Ginza",
+        "title": "Checkout → Tokyo Station · Yaesu-side luggage storage",
+        "description": "Store both suitcases on the Yaesu side, the Tokaido Shinkansen side, so the ~15:40 pickup is a short walk to the Nozomi gates.",
+        "mapQuery": "Tokyo Station Yaesu Underground Central Exit",
+        "mapLabel": "Tokyo Station · Yaesu lockers (Multi-E-Cube) or counter",
+        "nextTransit": "Short split · friend to Ginza (M16) · you to JR Kanda",
         "execution": {
           "steps": [
-            "Check out of APA around 09:30.",
-            "Go to Tokyo Station and use the JR EAST Travel Service Center same-day luggage storage; current official hours are 08:30–19:00.",
-            "If the staffed counter has a meaningful line or cannot take the bags, switch immediately to a station coin locker / Multi E-Cube rather than waiting.",
-            "Carry only passports, payment methods and a light day bag."
+            "Check out of APA together around 09:30 and ride to Tokyo Station’s Yaesu side (about 10:05). Keep the gym kit (light tee, shorts) out of the suitcase.",
+            "Multi-E-Cube only if today’s ~02:05 confirmation email arrived: it alone names the locker (the website does not). At the bank tap “WEB予約済みの方はこちら” → 預ける・送る → 預ける・送る, then scan the QR or enter the reservation number. A request without that email is not a locker.",
+            "No confirmation, no account, a bag that will not fit or an awkward shape: go straight to the JR East Logistics baggage service counter outside Yaesu South Gate (temporary storage 09:30–20:00; per item ¥500 up to 100 cm H+W+D, ¥1,000 up to 200 cm, ¥2,000 over 200 cm).",
+            "Counter not wanted: open Live locker map while walking in, stay on the Yaesu side and take a locker that fits.",
+            "Photograph where the bags are (locker bank or counter name, floor, nearest gate, a nearby sign) so the ~15:40 pickup needs no searching. Never spend 20+ minutes hunting or drift to the Marunouchi side; split at about 10:20."
           ],
-          "watch": "The staffed storage closes 19:00, but this plan retrieves bags around 15:40; there is a very large operating-hours buffer.",
-          "sourceUrl": "https://www.jreast.co.jp/en/multi/customer_support/service_center_tokyo.html"
+          "watch": "Preferred request: the reservation-only Multi-E-Cube outside the Yaesu Underground Central Exit, near the ticket office (first to last train; SS ¥800 · S ¥1,000 · M ¥1,200 · L ¥1,400 including the ¥500 reservation fee). Reservation-only boxes are 55 cm deep, so its L is 86 × 34 × 55 cm (standard banks 65 cm); measure both cases, and two L-size bags need two boxes. That bank has only one M and one L box. On Oct 21 JST both were taken for Oct 27; that is a dated snapshot, so check live availability on the locker page. If they are still taken, request another “Outside ticket gates” Yaesu bank (e.g. 1F Yaesu Central Exit, near the north–south passage) or use the counter.",
+          "links": [
+            {
+              "label": "Locker details / reserve",
+              "url": "https://multiecube.com/en/location/1315/"
+            },
+            {
+              "label": "How reservations work",
+              "url": "https://multiecube.com/en/how-to-use/"
+            },
+            {
+              "label": "Live locker map",
+              "url": "https://www.tokyostationcity.com/en/information/#locker"
+            },
+            {
+              "label": "Staffed baggage fallback",
+              "url": "https://www.jrbutsuryu.jregroup.ne.jp/business/baggage.html"
+            }
+          ]
         },
         "kind": "transit"
       },
       {
-        "time": "10:40 AM",
-        "title": "PROTECTED GINZA — pre-Nov 1 shopping block",
-        "description": "Give the friend-priority district real time while the old tax-free sales method is still in force. Keep it curated rather than turning it into an all-mall crawl.",
-        "mapQuery": "Ginza Six",
-        "mapLabel": "Ginza",
+        "time": "10:20 AM",
+        "title": "Solo gym workout at Chiyoda Sports Center · friend at Itoya",
+        "description": "A short, intentional split: only you work out. Your friend goes straight to Ginza Itoya and stays in or right next to it; you go via JR Kanda, train, and rejoin at Itoya around noon.",
+        "mapQuery": "千代田区立スポーツセンター 2-1-8 Uchikanda Tokyo",
+        "mapLabel": "Chiyoda Sports Center (3F gym)",
+        "nextTransit": "Kanda (G13) → Ginza (G09) · rejoin at Itoya",
+        "leaveBy": "11:40 — leave the gym for Ginza; your friend stays at Itoya",
+        "execution": {
+          "steps": [
+            "Friend: Marunouchi Line Tokyo (M17) → Ginza (M16), Exit A13, about 3 min on foot to Itoya (2-7-15 Ginza; weekdays 10:00–20:00). Relaxed Itoya and nearby Ginza browsing only; Itoya is the meeting point.",
+            "You: JR Tokyo → Kanda (one stop), West Exit, then about 5 min on foot to 2-1-8 Uchikanda; aim to be at the gym around 10:40. Times are targets; live boards win.",
+            "1F: buy a training-room ticket at the machine (¥500, no booking) and rent indoor shoes and a towel (¥300 each, ¥1,100 in all); wear your own light tee and shorts. 3F desk: hand over the ticket and write your name and entry time.",
+            "~10:50–11:30 maintenance only: about 40 minutes, no sets to failure, keep 2–3 reps in reserve, skip high-volume legs. Kit: power rack, Smith machine, 2 bench-press stations, 2 incline benches, barbells, dumbbells 1–40 kg, functional trainer, lat pulldown/seated row, leg press and other machines. ~11:30–11:40 shower and change, then sign out in the log.",
+            "Walk back to Kanda (Tokyo Metro lists its Exit 1 for the Sports Center), Ginza Line Kanda (G13) → Ginza (G09), then Itoya around 11:50–12:00. Running late: shorten or skip the workout, never the rejoin."
+          ],
+          "watch": "The official October calendar shows training-room individual use on Oct 27 morning, afternoon and evening (09:00–21:00, reception ends 20:30; ages 15+, not junior-high students). Indoor training shoes are required. Changing-room lockers ¥20–40 per use (10-yen-return type, so carry coins); 3F changing rooms have showers. Rack, Smith and bench stations are 30 minutes per turn: write your time on the whiteboard. If the center cannot admit you or is too busy for a short session, skip it and go to Itoya; do not look for another gym. Otemachi fallback: current Tokyo Metro signage lists Exit A5 (the operator’s access page still says A2); live station signage wins.",
+          "links": [
+            {
+              "label": "Gym info",
+              "url": "https://shisetsu.mizuno.jp/m-7501/guide"
+            },
+            {
+              "label": "Oct 27 calendar",
+              "url": "https://shisetsu.mizuno.jp/storage/rel_doc/m-7501/491_11370955_3.pdf"
+            }
+          ]
+        },
+        "kind": "activity"
+      },
+      {
+        "time": "11:55 AM",
+        "title": "PROTECTED GINZA — together after the split",
+        "description": "Your friend’s priority district. Back together until lunch: Itoya and nearby Ginza, plus at most one targeted clothing fix if Oct 23 left a specific gap.",
+        "mapQuery": "Ginza Itoya",
+        "mapLabel": "Ginza · Itoya",
         "nextTransit": "Lunch, then Meiji-jingumae / Cat Street",
         "leaveBy": "12:25 — protect Cat Street and the Nozomi buffer",
         "execution": {
           "steps": [
-            "Start with Ginza Itoya if stationery/design goods are interesting; official weekday hours are 10:00–20:00.",
-            "Walk the Ginza 4-chome / Chuo-dori core.",
-            "Use GINZA SIX selectively from its 10:30 opening; its tourist/tax-free counter is also listed 10:30–20:30.",
+            "Rejoin at Ginza Itoya around 11:50–12:00 (official weekday hours 10:00–20:00); stay together from here.",
+            "Keep Itoya and nearby Chuo-dori as the shared, friend-priority browse; GINZA SIX (open since 10:30) only if it fits.",
+            "At most ONE unresolved clothing stop, and only if Oct 23 revealed a specific gap: Green Label Yurakucho for a trouser or top OR Kamakura Ginza (6-9-14 Ginza, 11:00–20:00) for a shirt size. Never both; if Oct 23 went well, skip them.",
             "Buy intentional items now rather than deferring shopping to Nov 6.",
             "Leave by ~12:25 for lunch."
           ],
           "watch": "Store hours can change for special events; recheck official pages the week of the trip.",
-          "sourceUrl": "https://www.ginza6.tokyo/hours/"
+          "links": [
+            {
+              "label": "Itoya",
+              "url": "https://www.ito-ya.co.jp/ext/store/ginza/ginza/index.html"
+            },
+            {
+              "label": "GINZA SIX hours",
+              "url": "https://www.ginza6.tokyo/hours/"
+            }
+          ]
         },
         "kind": "activity"
       },
@@ -9225,22 +9435,31 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       },
       {
         "time": "01:35 PM",
-        "title": "PROTECTED Cat Street · Jingumae fashion cluster",
-        "description": "Put the fashion-specific shopping where it belongs geographically and temporally: weekday afternoon, after the noon openings, before the Nov 1 refund-method change.",
-        "mapQuery": "BEAMS Harajuku",
-        "mapLabel": "Cat Street / Jingumae",
+        "title": "PROTECTED Jingumae · BEAMS PLUS first · Cat Street",
+        "description": "Weekday afternoon after the noon openings, before the Nov 1 refund-method change: one distinctive, long-lived casual piece at most.",
+        "mapQuery": "BEAMS PLUS Harajuku",
+        "mapLabel": "BEAMS PLUS / Cat Street",
         "nextTransit": "Tokyo Station",
         "leaveBy": "15:05 — luggage and Nozomi buffer win",
         "execution": {
           "steps": [
             "Arrive after the weekday 12:00 openings, so no time is wasted waiting for stores.",
-            "Men: BEAMS Harajuku → BEAMS PLUS Harajuku only if both add value.",
-            "Women: BEAMS Women Harajuku is in the same Jingumae cluster for independent browsing without extra cross-city transit.",
-            "Use Cat Street / Ura-Harajuku selectively for streetwear, secondhand or Japanese labels; do not add Takeshita Street just to say you did it.",
-            "Rejoin and leave around 15:05."
+            "First: BEAMS PLUS Harajuku (3-25-12 Jingumae; weekdays 12:00–20:00), BEAMS’ authentic men’s casual line built around clothes to wear for years. At most one distinctive piece: an overshirt, casual knit, Oxford, sweatshirt, light jacket or casual trouser.",
+            "Test before buying: is it meaningfully better or more distinctive than something UNIQLO sells? If not, do not force a purchase.",
+            "Second, only if time remains: regular BEAMS Harajuku (3-24-7 Jingumae) and a selective look along Cat Street. No random streetwear store-hopping, and skip Takeshita Street.",
+            "Leave together at 15:05. This is a hard stop."
           ],
-          "watch": "BEAMS official store pages currently show weekday 12:00–20:00 and mark these locations as duty-free. Irregular/event closures can occur, so recheck close to Oct 27.",
-          "sourceUrl": "https://www.beams.co.jp/en/shop/h/"
+          "watch": "BEAMS PLUS Harajuku and BEAMS Harajuku list weekday hours 12:00–20:00 (Sat, Sun and holidays from 11:00) and show the tax-free mark. Closures are irregular, so recheck close to Oct 27.",
+          "links": [
+            {
+              "label": "BEAMS PLUS Harajuku",
+              "url": "https://www.beams.co.jp/en/shop/bph/"
+            },
+            {
+              "label": "BEAMS Harajuku",
+              "url": "https://www.beams.co.jp/en/shop/h/"
+            }
+          ]
         },
         "kind": "activity"
       },
@@ -9254,7 +9473,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         "execution": {
           "steps": [
             "Leave Jingumae around 15:05.",
-            "Retrieve stored luggage around 15:40.",
+            "Retrieve the bags on the Yaesu side around 15:40 from wherever you photographed them: Multi-E-Cube → “WEB予約済みの方はこちら” → 預ける・送る → 取り出す (Take out) with the same QR or number; JR East Logistics → the Yaesu South counter (open to 20:00); day-of locker → your photo of the bank, floor and gate.",
             "Buy water / ekiben only if frictionless.",
             "Be through the Shinkansen gates and near the platform by about 16:05."
           ],
@@ -9340,13 +9559,21 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "transferFrom": "APA Asakusa",
     "transferTo": "Tabist Nijo",
     "shoppingPlan": {
-      "priority": "MAIN SHOPPING BLOCK — OCT 27 · BEFORE NOV 1",
-      "objective": "Finish the intentional Ginza + Cat Street/Jingumae purchases on Oct 27 before Japan switches to the refund method on Nov 1, while keeping the transfer route efficient. D9/Oct 31 is only a last-chance specific-item top-up, not a second shopping day.",
-      "mens": "Ginza targeted stores first; then BEAMS Harajuku → BEAMS PLUS Harajuku in Jingumae. Add Cat Street only for specific streetwear/vintage/Japanese-label finds.",
-      "womens": "Ginza targeted stores first; then BEAMS Women Harajuku in the same Jingumae cluster, with Cat Street as optional adjacent browsing rather than a second cross-city mission.",
-      "shared": "Ginza 10:40–12:25 → lunch → Jingumae/Cat Street 13:35–15:05 → Tokyo Station luggage/Nozomi. The order matches official store-opening times and avoids dead time.",
-      "meetPoint": "BEAMS Harajuku / Jingumae cluster by ~15:00; leave together at 15:05.",
-      "taxNote": "Oct 27 is before the Nov 1, 2026 refund-method start. Eligible purchases at participating stores can still use the pre-change point-of-sale tax exemption through Oct 31. Make planned buys now; do not create post-Nov-1 shopping just for tax mechanics.",
+      "priority": "SHARED GINZA + CASUAL · OCT 27 · BEFORE NOV 1",
+      "objective": "Oct 23 built the wardrobe foundation; Oct 27 is shared Ginza time, a solo workout and one distinctive casual piece, all before the Nov 1 refund-method switch. Oct 31 is rescue-only for one specific item.",
+      "lanes": [
+        {
+          "label": "You",
+          "text": "Solo workout during the split; then at most one unresolved Ginza item (Green Label Yurakucho OR Kamakura Ginza) only if Oct 23 left a specific gap. In Jingumae: BEAMS PLUS Harajuku first, one distinctive long-lived piece at most."
+        },
+        {
+          "label": "Friend",
+          "text": "Itoya and nearby Ginza browsing during the split, with no cross-city side trip. Then Ginza, lunch and Jingumae together."
+        }
+      ],
+      "shared": "Short split ~10:20–11:50 only: friend at Itoya, you at Chiyoda Sports Center via JR Kanda. Then together: Ginza ~11:55–12:25 → lunch → Jingumae/Cat Street 13:35–15:05 (hard leave) → Tokyo Station luggage/Nozomi.",
+      "meetPoint": "Ginza Itoya (2-7-15 Ginza; Ginza Exit A13) around 11:50–12:00; whoever arrives first waits inside. After that you stay together through Ginza, lunch, Jingumae and the transfer.",
+      "taxNote": "Oct 27 is before the Nov 1 refund-method start: through Oct 31, eligible purchases at tax-free shops are exempt at the register (BEAMS PLUS and BEAMS Harajuku show the tax-free mark). Do not create purchases for tax mechanics.",
       "taxSourceUrl": "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html"
     },
     "foodExtras": [
@@ -9602,7 +9829,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "briefing": {
       "pace": "Scenic tea + river walk + hill viewpoint; deliberately unstructured",
       "walking": "About 9–12 km including Daikichiyama",
-      "reservations": "None. Nakamura Tokichi Byodoin Store is walk-in / no reservations.",
+      "reservations": "None. Nakamura Tokichi Byodoin Store is walk-in / no reservations. The optional 08:05 Gold's Gym visit is walk-in too (passport, ¥2,860 each).",
       "cutFirst": "Skip Phoenix Hall interior first, then Tsuen. Protect the scenic matcha stop and Daikichiyama if weather is good.",
       "backup": "Bad weather -> shorter river loop and earlier Kyoto return. No replacement workshop.",
       "localTips": "Nakamura Tokichi Byodoin Store overlooks the Uji River. Daikichiyama is the day’s active block, so there is no mandatory Nijo exercise lap at night."
@@ -9692,6 +9919,26 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       }
     ],
     "events": [
+      {
+        "time": "08:05 AM",
+        "title": "Gold's Gym Kyoto Nijo · morning workout",
+        "optional": true,
+        "description": "A full gym in the JR Nijo Station building, about 5 minutes on foot. Entirely optional: Uji still leaves at 09:30 either way.",
+        "mapQuery": "Gold's Gym Kyoto Nijo",
+        "mapLabel": "Gold's Gym Kyoto Nijo",
+        "nextTransit": "Hotel turnaround → Nijo → Uji",
+        "execution": {
+          "steps": [
+            "08:05 leave the hotel → about 5 min on foot to JR Nijo Station NK Bldg 2F (京都市中京区西ノ京東栂尾町3).",
+            "First visit: visitor sign-up at the front desk takes about 10 min, so leave by 07:55 to keep a full hour. Each person shows their passport (staff photocopy it).",
+            "Visitor pass ¥2,860 per person (up to 5 h). Bring clean indoor shoes and a towel; showers are available.",
+            "Work out until about 09:10, then walk back 09:10–09:15.",
+            "09:15–09:28 room turnaround: stash gym gear, change → ready for the 09:30 departure."
+          ],
+          "watch": "Not yet confirmed: whether the desk can register visitors at 08:00, and which payment it takes. Call 075-803-2626 before the trip. Closed Sun 21:00–Mon 07:00 and on the 3rd Monday (Oct 19 and Nov 16, neither a trip day). Ages 16+; tattoos must be covered, and any larger than 15×15 cm are refused."
+        },
+        "kind": "activity"
+      },
       {
         "time": "09:30 AM",
         "title": "Kyoto → Uji",
@@ -10170,10 +10417,10 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           "steps": [
             "Leave the Disaster Prevention Center by ~15:50.",
             "Move toward Sanjo/Kawaramachi / Art Complex 1928 first.",
-            "ONLY if a specific D5 item is still missing, use one preselected central store for ~25-30 minutes maximum; no multi-store browsing.",
+            "ONLY if a specific Oct 23/27 item is still missing, use one preselected central store for ~25-30 minutes maximum; no multi-store browsing.",
             "Be at/near GEAR by ~17:10-17:15. If transit is slow, cut the shopping top-up immediately."
           ],
-          "watch": "Oct 31 is the final day before the Nov 1 refund-method change for eligible tax-free purchases. The itinerary's main shopping remains Oct 27."
+          "watch": "Oct 31 is the final day before the Nov 1 refund-method change for eligible tax-free purchases. Wardrobe shopping happens Oct 23 and Oct 27."
         },
         "kind": "transit"
       },
@@ -10233,9 +10480,13 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     ],
     "shoppingPlan": {
       "priority": "OPTIONAL · 45 MIN MAX",
-      "objective": "LAST-CHANCE PRE-NOV-1 RESCUE ONLY. Main shopping is Oct 27. Use Oct 31 only if one specific item remained unresolved; otherwise skip shopping entirely.",
-      "mens": "One preselected central store only if a specific Oct 27 target is still missing.",
-      "womens": "One preselected central store only if a specific Oct 27 target is still missing.",
+      "objective": "LAST-CHANCE PRE-NOV-1 RESCUE ONLY. Wardrobe shopping happens Oct 23 and Oct 27. Use Oct 31 only if one specific item remained unresolved; otherwise skip shopping entirely.",
+      "lanes": [
+        {
+          "label": "Rescue rule",
+          "text": "One preselected central store only if a specific Oct 23/27 target is still missing. Not a second wardrobe round."
+        }
+      ],
       "shared": "Operational target is ~25-30 minutes inside the 15:50-17:15 transfer buffer; 45 minutes is the absolute ceiling only if the Disaster Center ends early. No browsing circuit.",
       "meetPoint": "Art Complex 1928 / GEAR by ~17:10-17:15.",
       "taxNote": "Oct 31 is the last day under the pre-Nov-1 point-of-sale tax-free method for eligible purchases. Do not let the tax change manufacture shopping you did not want.",
@@ -11935,7 +12186,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "baseHotel": "Departure Day",
     "startTime": "11:00 AM",
     "primaryTransit": "Keikyu / Toei through-service",
-    "criticalRule": "The 16:25 friend flight sets every shared cutoff. Planned shopping was moved before Nov 1, so a new-system refund workflow should NOT be part of the base plan. If you nevertheless made eligible Nov 1+ purchases, follow the live customs/refund instructions with goods accessible before bag drop whenever inspection could be required. Haneda currently warns Terminal 3 security can be congested, especially 13:00–16:00: target security/immigration around 14:05–14:35, then eat AIRSIDE. Never schedule a landside meal ahead of security.",
+    "criticalRule": "The 16:25 friend flight sets every shared cutoff. Planned shopping was moved before Nov 1, so a new-system refund workflow should NOT be part of the base plan. If you nevertheless made eligible Nov 1+ purchases, leave for Haneda 20–30 minutes earlier and follow the live customs/refund instructions with the goods accessible before bag drop. Haneda currently warns Terminal 3 security can be congested, especially 13:00–16:00: target security/immigration around 14:05–14:35, then eat AIRSIDE. Never schedule a landside meal ahead of security.",
     "flexOption": "If processing is fast, use spare time for a calm coffee / gate buffer — no extra sightseeing.",
     "parallelLogistics": {
       "label": "FINAL FLIGHT SPLIT",
@@ -12042,7 +12293,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           "steps": [
             "Check out at 11:00 and verify passports, wallets, chargers and shipping slips.",
             "Use only hotel-adjacent coffee/brunch if desired.",
-            "Be ready to leave by 12:00.",
+            "Be ready to leave by 12:00, or by about 11:30–11:40 if you have Nov 1+ refund purchases.",
             "Keep the final transit simple and rail-based."
           ]
         }
@@ -12061,7 +12312,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             "Confirm Terminal 3 before boarding.",
             "Arrive around 12:40 and retrieve Yamato luggage first."
           ],
-          "watch": "Live rail service and terminal signage override the planned route."
+          "watch": "Only if you made meaningful eligible tax-free purchases on Nov 1–8: leave for Haneda 20–30 minutes earlier (about 11:30–11:40). The customs check must happen before bag drop, and a red result means showing the goods to a customs officer. Otherwise keep the 12:00 departure. Live rail service and terminal signage override the planned route."
         }
       },
       {
@@ -12075,10 +12326,12 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           "steps": [
             "Collect the forwarded suitcases from the current T3 Yamato pickup location.",
             "If there are NO eligible Nov 1+ refund-method purchases, go straight to airline check-in when available.",
-            "If there ARE eligible Nov 1+ purchases, keep the relevant goods accessible and follow the live airport/Customs/retailer refund instructions before making checked items inaccessible.",
+            "If there ARE eligible Nov 1+ purchases, do the customs check at the tax-free terminal in the departure lobby before bag drop (Haneda also accepts Visit Japan Web on the lobby Wi-Fi), with the goods accessible; checked bags cannot be retrieved afterwards.",
             "Complete bag drop around 14:00 if airline counter timing permits, then go directly to security."
           ],
-          "recheck": "The Nov 1 refund system is new in 2026 and individual retailer refund mechanisms can differ. Reconfirm official NTA/Customs/airline instructions near departure rather than hard-coding an airport counter flow now."
+          "recheck": "The Nov 1 refund system is new in 2026 and individual retailer refund mechanisms can differ. Reconfirm official NTA/Customs/airline instructions near departure rather than hard-coding an airport counter flow now.",
+          "watch": "Japan Tourism Agency: the terminal scan takes seconds, but a red result needs a customs officer to see the goods, so arrive early whenever this step applies.",
+          "sourceUrl": "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00027.html"
         }
       },
       {
@@ -12136,10 +12389,10 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         // Canonical optimized transit blueprints
         transitRoutes: [
   {
-    "title": "1. Haneda T3 → Asakusa",
-    "tag": "Arrival Rail",
-    "path": "HND T3 -> Keikyu Airport Line -> Toei Asakusa through-service when practical",
-    "hack": "Check the live board. Prefer a direct through-service; otherwise make the simplest rail transfer. Avoid arrival-day taxi uncertainty."
+    "title": "1. Haneda T3 → Tokyo Station → Asakusa",
+    "tag": "Arrival · Wardrobe",
+    "path": "HND T3 -> rail/monorail (live routing) -> Tokyo Station Yaesu -> Asakusa",
+    "hack": "Check live rail/monorail routing after immigration; Haneda lists about 30 minutes to Tokyo Station. Take the direct airport bus only if its live departure happens to line up. Low energy or a big delay: go straight to Asakusa instead."
   },
   {
     "title": "2. Asakusa → Yokohama",
@@ -12156,8 +12409,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
   {
     "title": "4. Tokyo shopping → Kyoto",
     "tag": "Pre-Nov-1 Shop + Transfer",
-    "path": "Asakusa -> Tokyo Station luggage -> Ginza -> Cat Street/Jingumae -> Tokyo Station -> Nozomi 453 16:21 -> Kyoto 18:32 -> Nijo",
-    "hack": "Shop hands-free before the Nov 1 refund-method switch. Be back at Tokyo Station with luggage by about 16:05; Car 12 Seats 4-D/4-E are confirmed."
+    "path": "Asakusa -> Tokyo Station Yaesu luggage -> short split: friend to Ginza Itoya / you to Chiyoda Sports Center via JR Kanda -> Ginza together -> Cat Street/Jingumae -> Tokyo Station -> Nozomi 453 16:21 -> Kyoto 18:32 -> Nijo",
+    "hack": "Store bags on the Yaesu (Shinkansen) side. Leave Jingumae at 15:05 and be back at Tokyo Station with luggage by about 16:05; Car 12 Seats 4-D/4-E are confirmed."
   },
   {
     "title": "5. Fushimi Inari → Kiyomizu",
@@ -12386,7 +12639,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(Boolean(document.getElementById('global-itinerary-search')), 'Global itinerary search input missing.');
           const ginzaSearch = this.searchItinerary('ginza');
           check(ginzaSearch.length >= 1 && ginzaSearch[0].dayNumber === 5, 'Global search does not rank the planned Ginza day first.');
-          check(ginzaSearch[0]?.targetId === 'timeline-event-5-1', 'Global search does not target the exact Day 5 Ginza event.');
+          check(ginzaSearch[0]?.targetId === 'timeline-event-5-' + (this.days.find(d => d.dayNumber === 5)?.events || []).findIndex(e => /^PROTECTED GINZA/.test(e.title || '')), 'Global search does not target the exact Day 5 Ginza event.');
           check(!ginzaSearch.some(result => result.dayNumber === 15), 'Global search leaked a secondary post-Nov-1 Ginza note into planned-activity results.');
           check(this.searchItinerary('cat street')[0]?.dayNumber === 5, 'Global search cannot locate Cat Street on Day 5.');
           check(this.searchItinerary('fantazooma')[0]?.dayNumber === 14, 'Global search cannot locate FANTAZOOMA on Day 14.');
@@ -12396,6 +12649,28 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(!document.getElementById('day-food'), 'Separate day-food section still exists.');
           check(this.shoppingWindows.length === 7 && Boolean(document.querySelector('.shopping-windows')), 'Shopping-window overview is incomplete.');
           check(CANONICAL_CHECKLIST.some(item => item.id === 'c12'), 'Zen & Ghibli timed-entry task missing.');
+          // Day 1 solo wardrobe foundation; Day 5 solo workout via Kanda and Yaesu luggage.
+          const d1 = this.days.find(d => d.dayNumber === 1);
+          const d5 = this.days.find(d => d.dayNumber === 5);
+          const bestDay = q => this.searchItinerary(q).find(r => r.best)?.dayNumber;
+          const cardOf = (day, re) => (day?.events || []).find(e => re.test(e.title || ''));
+          const hostsOf = e => (e ? this.eventLinks(e) : []).map(l => new URL(l.url).hostname);
+          check(/SOLO/.test(`${d1?.title} ${d1?.criticalRule}`) && !/\bwomen|meet at the store/i.test(JSON.stringify(d1 || {})) && this.shopLanes(d1?.shoppingPlan).every(l => !/^(Men|Women)$/.test(l.label)), 'Day 1 is not the solo wardrobe day, or still assumes a companion.');
+          check(['www.yaechika.com', 'www.orihica.com', 'map.uniqlo.com', 'shop.shirt.co.jp'].every(h => hostsOf(cardOf(d1, /Wardrobe Foundation/)).includes(h)), 'Day 1 wardrobe card lost an official store link.');
+          check(!/UNIQLO Asakusa/.test(JSON.stringify([d1?.milestones, (d1?.events || []).map(e => [e.title, e.mapQuery, e.mapLabel])])), 'UNIQLO Asakusa is scheduled again instead of staying a delay fallback.');
+          check(!/UtMost|utmost-gym|QUICK WORKOUT|quickworkout|private room workout|Travel Service Center|service_center_tokyo|08:30–19:00/i.test(JSON.stringify([this.days, CANONICAL_CHECKLIST, this.shoppingWindows, this.transitRoutes])), 'A retired gym or luggage plan survived.');
+          const d5gym = cardOf(d5, /\bgym\b.*Chiyoda Sports Center/);
+          check(Boolean(d5gym) && /solo/i.test(d5gym.title) && /Itoya/.test(d5gym.title) && /JR Tokyo → Kanda/.test(JSON.stringify(d5gym)) && /G13\) → Ginza \(G09/.test(JSON.stringify(d5gym)) && hostsOf(d5gym).length >= 1 && hostsOf(d5gym).every(h => h === 'shisetsu.mizuno.jp'), 'Day 5 solo workout card (Kanda route, official Mizuno links) missing.');
+          const d5bags = cardOf(d5, /luggage storage/);
+          check(['multiecube.com', 'www.tokyostationcity.com', 'www.jrbutsuryu.jregroup.ne.jp'].every(h => hostsOf(d5bags).includes(h)) && (d5bags?.execution?.links || []).length === hostsOf(d5bags).length && /02:05/.test(JSON.stringify(d5bags || {})), 'Day 5 luggage card lost an official link or the 02:05 confirmation rule.');
+          check(!/confirmed Multi-E-Cube/i.test(JSON.stringify(d5 || {})) && this.eventLinks(d5bags || {}).some(l => /\/location\/1315\//.test(l.url)), 'A Multi-E-Cube locker is called confirmed before its 02:05 email, or the exact locker link is gone.');
+          check(/20–30 minutes earlier/.test(JSON.stringify(this.days.find(d => d.dayNumber === 17) || {})), 'Day 17 lost the earlier-departure rule for Nov 1+ refund purchases.');
+          check(this.eventLinks({ execution: { links: [{ label: 'x', url: 'javascript:alert(1)' }, { label: '', url: 'https://example.com/' }, { label: 'ok', url: 'https://example.com/' }] } }).length === 1, 'Event links are not sanitised.');
+          check(d5?.milestones?.some(m => m.startTime === '15:40' && m.endTime === '16:15') && d5?.events?.some(e => /^15:05\b/.test(e.leaveBy || '')), 'Day 5 15:05 hard leave or the 15:40 luggage/platform buffer moved.');
+          check(['yaechika', 'green label', 'green label relaxing', 'kamakura shirts', 'orihica', 'uniqlo yaechika'].every(q => bestDay(q) === 1), 'Global search does not open Day 1 for the Yaesu stores.');
+          check(['chiyoda sports center', 'gym', 'ginza itoya', 'beams plus', 'tokyo station luggage', 'multi-e-cube', 'yaesu underground central exit', 'locker'].every(q => bestDay(q) === 5) && ['workout', 'kanda', 'yaesu south baggage storage'].every(q => this.searchItinerary(q).some(r => r.dayNumber === 5)), 'Global search does not find the Day 5 gym, Itoya, BEAMS PLUS or luggage plan.');
+          check(!this.searchItinerary('utmost').length && !this.searchItinerary('quick workout').some(r => r.dayNumber === 5), 'A retired Day 5 gym still surfaces in search.');
+          check(CANONICAL_CHECKLIST.filter(item => /suitcase|locker|luggage/i.test(item.label)).length === 1 && CANONICAL_CHECKLIST.find(item => item.id === 'c13')?.departureRequired === true, 'Tokyo Station storage task missing or duplicated.');
           // Presentation checks
           check(this.days.every(d => SCENE_PHOTOS[DAY_SCENES[d.dayNumber]]?.src), 'Every day needs a hero photo.');
           check(Object.values(SCENE_PHOTOS).every(p => p.author && p.license && /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/.test(p.page)), 'A hero photo is missing its author, license or source page.');
