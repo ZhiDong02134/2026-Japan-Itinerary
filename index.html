@@ -1354,13 +1354,6 @@ body[data-sky='night'] .hero-scene { --horizon-glow: 26%; }
    laid out as cover + centre-bottom, which is exactly the SVG's xMidYMax slice, so the two
    stay registered at every width. Stars are static paint; one composited layer of them
    breathes slowly — the only motion, and opacity-only. */
-.scene-stars { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity var(--dur-ambient) var(--ease-ui); }
-.scene-stars > span { position: absolute; inset: 0; background-position: center bottom; background-size: cover; background-repeat: no-repeat; }
-.stars-a { background-image: var(--stars-a); }
-.stars-b { background-image: var(--stars-b); animation: star-breathe 4.8s ease-in-out 1 alternate both; }
-@keyframes star-breathe { from { opacity: .2; } to { opacity: 1; } }
-body[data-sky='night'] .scene-stars { opacity: 1; }
-body:not([data-sky='night']) .stars-b { animation: none; } /* nothing to animate while the stars are hidden */
 /* The real moon for the day's date: the lit limb and its terminator are drawn as one path
    over a faint earthshine disc. Only at night; by day the disc is the sun. */
 /* 月白 geppaku — moon-white, faintly blue, not the sun's cream. */
@@ -1369,10 +1362,6 @@ body[data-sky='night'] .scene-moon { display: block; }
 body[data-sky='night'] .scene-sun { fill: oklch(95% .022 242 / .13); filter: none; }
 /* Before moonrise (or after moonset) the night has no moon at all. */
 body[data-sky='night'] .is-moonless .scene-moon, body[data-sky='night'] .is-moonless .scene-sun { display: none; }
-:root {
-  --stars-a: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 180'%3E%3Ccircle cx='277' cy='44' r='0.55' fill='white' fill-opacity='0.87'/%3E%3Ccircle cx='236' cy='78' r='0.55' fill='white' fill-opacity='0.51'/%3E%3Ccircle cx='157' cy='28' r='0.55' fill='white' fill-opacity='0.46'/%3E%3Ccircle cx='114' cy='89' r='0.75' fill='white' fill-opacity='0.57'/%3E%3Ccircle cx='115' cy='26' r='0.75' fill='white' fill-opacity='0.82'/%3E%3Ccircle cx='318' cy='8' r='0.75' fill='white' fill-opacity='0.62'/%3E%3Ccircle cx='167' cy='76' r='0.75' fill='white' fill-opacity='0.52'/%3E%3Ccircle cx='6' cy='16' r='0.75' fill='white' fill-opacity='0.49'/%3E%3Ccircle cx='49' cy='60' r='0.55' fill='white' fill-opacity='0.55'/%3E%3Ccircle cx='387' cy='72' r='0.75' fill='white' fill-opacity='0.80'/%3E%3Ccircle cx='260' cy='23' r='1.05' fill='white' fill-opacity='0.52'/%3E%3Ccircle cx='292' cy='9' r='0.75' fill='white' fill-opacity='0.92'/%3E%3Ccircle cx='239' cy='30' r='0.55' fill='white' fill-opacity='0.68'/%3E%3Ccircle cx='139' cy='48' r='1.05' fill='white' fill-opacity='0.55'/%3E%3Ccircle cx='367' cy='14' r='0.75' fill='white' fill-opacity='0.51'/%3E%3Ccircle cx='261' cy='73' r='0.55' fill='white' fill-opacity='0.50'/%3E%3Ccircle cx='37' cy='34' r='0.75' fill='white' fill-opacity='0.73'/%3E%3Cpath d='M52 19.6L52.45 21.55L54.4 22L52.45 22.45L52 24.4L51.55 22.45L49.6 22L51.55 21.55Z' fill='white' fill-opacity='0.95'/%3E%3Cpath d='M232 11.8L232.38 13.42L234 13.8L232.38 14.18L232 15.8L231.62 14.18L230 13.8L231.62 13.42Z' fill='white' fill-opacity='0.85'/%3E%3Cpath d='M349 36.2L349.42 37.98L351.2 38.4L349.42 38.82L349 40.6L348.58 38.82L346.8 38.4L348.58 37.98Z' fill='white' fill-opacity='0.9'/%3E%3C/svg%3E");
-  --stars-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 180'%3E%3Ccircle cx='179' cy='24' r='0.75' fill='white' fill-opacity='0.73'/%3E%3Ccircle cx='73' cy='95' r='0.55' fill='white' fill-opacity='0.73'/%3E%3Ccircle cx='355' cy='59' r='1.05' fill='white' fill-opacity='0.51'/%3E%3Ccircle cx='383' cy='31' r='0.55' fill='white' fill-opacity='0.94'/%3E%3Ccircle cx='283' cy='73' r='0.55' fill='white' fill-opacity='0.68'/%3E%3Ccircle cx='62' cy='7' r='0.75' fill='white' fill-opacity='0.77'/%3E%3Ccircle cx='375' cy='92' r='0.55' fill='white' fill-opacity='0.80'/%3E%3Ccircle cx='132' cy='6' r='0.55' fill='white' fill-opacity='0.63'/%3E%3Ccircle cx='29' cy='6' r='0.55' fill='white' fill-opacity='0.67'/%3E%3C/svg%3E");
-}
 /* The card's own colour rises into the bottom of the scene so the art sits in the card. In light
    mode it runs all the way to the card (a half-veil left a milky band and a hard step). */
 
@@ -1444,33 +1433,6 @@ body[data-sky='night'] .scene-glow { filter: drop-shadow(0 0 1.4px var(--glow));
 
 
 
-/* Autumn particles: a handful of momiji leaves drift through foliage-season scenes. */
-.scene-particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-.scene-leaf {
-  position: absolute; top: -18px;
-  width: 11px; height: 11px;
-  background: var(--leaf, oklch(66% .17 38));
-  opacity: 0;
-  -webkit-mask: var(--momiji) center / contain no-repeat;
-  mask: var(--momiji) center / contain no-repeat;
-  animation: leaf-fall var(--fall, 4s) cubic-bezier(.3, .1, .6, 1) var(--delay, 0s) 1 both;
-}
-/* Every leaf has landed by ~4.9s. */
-.leaf-1 { left: 12%; --fall: 3.8s; --delay: .1s; }
-.leaf-2 { left: 34%; --fall: 4.4s; --delay: .5s; width: 9px; height: 9px; --leaf: oklch(72% .15 60); }
-.leaf-3 { left: 58%; --fall: 3.6s; --delay: .25s; }
-.leaf-4 { left: 76%; --fall: 4.2s; --delay: .7s; width: 8px; height: 8px; --leaf: oklch(60% .17 30); }
-.leaf-5 { left: 88%; --fall: 3.4s; --delay: .4s; --leaf: oklch(76% .14 75); }
-.leaf-6 { left: 22%; --fall: 4s; --delay: .9s; width: 7px; height: 7px; }
-/* Kawaguchiko turns ginkgo-gold before it turns red. */
-body[data-scene='fuji'] .leaf-1, body[data-scene='fuji'] .leaf-3, body[data-scene='fuji'] .leaf-6 { --leaf: oklch(78% .14 88); }
-@keyframes leaf-fall {
-  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
-  8% { opacity: .9; }
-  50% { transform: translate3d(-22px, 105px, 0) rotate(160deg); }
-  92% { opacity: .75; }
-  100% { transform: translate3d(12px, 230px, 0) rotate(330deg); opacity: 0; }
-}
 
 .hero-body { position: relative; padding: 14px 16px 18px; display: grid; gap: 12px; }
 .hero-kicker-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -2501,8 +2463,6 @@ html.theme-swap *, html.theme-swap *::before, html.theme-swap *::after { transit
 html.vt-live .app-chrome::before, html.vt-live .brand-wordmark, html.vt-live .brand-context, html.vt-live .day-strip-wrap { transition: none !important; }
 @keyframes vt-fade-in-flat { from { opacity: 0; } }
 
-/* Momiji leaf mask used by the Nikko particles. */
-:root { --momiji: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5l1.6 4.4 3-2.2-.6 3.9 4-.9-2.3 3.1 3.8 1.2-3.6 1.7 2.1 2.9-4.2-.5.6 3.6-3.4-2.2-.4 5.5h-1.2l-.4-5.5-3.4 2.2.6-3.6-4.2.5 2.1-2.9L2.5 11l3.8-1.2L4 6.7l4 .9-.6-3.9 3 2.2z'/%3E%3C/svg%3E"); }
 
 /* =============================== OVERLAYS ===============================
    Every overlay uses BOTH a state class and @starting-style. The class alone races on
@@ -3033,6 +2993,52 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
   .shopping-window-button { transition: none !important; }
 }
 
+
+/* =============================== POLISH: PHOTO-MATCHED HERO ===============================
+   Each hero photo's dominant hue (OKLab, chroma²-weighted hue histogram, computed at build time from
+   photos/*.webp and kept inside sRGB) tints the card the photo sits in, and lights a soft glow beneath
+   it, the way a player takes on its album art. Low-chroma and below the text's lightness, so contrast
+   is unchanged; vermilion stays "now" only. The two colours are registered, so a day change
+   cross-fades them with the photo. */
+@property --photo-tone { syntax: '<color>'; inherits: true; initial-value: oklch(21% .014 262); }
+@property --photo-glow { syntax: '<color>'; inherits: true; initial-value: oklch(62% 0 262); }
+.day-hero[data-scene='asakusa'] { --photo-tone: oklch(24% 0.030 32); --photo-glow: oklch(62% 0.092 32); }
+.day-hero[data-scene='expo'] { --photo-tone: oklch(24% 0.030 108); --photo-glow: oklch(62% 0.097 108); }
+.day-hero[data-scene='fuji'] { --photo-tone: oklch(24% 0.030 257); --photo-glow: oklch(62% 0.079 257); }
+.day-hero[data-scene='haneda'] { --photo-tone: oklch(24% 0.030 245); --photo-glow: oklch(62% 0.053 245); }
+.day-hero[data-scene='himeji'] { --photo-tone: oklch(24% 0.030 234); --photo-glow: oklch(62% 0.070 234); }
+.day-hero[data-scene='inari'] { --photo-tone: oklch(24% 0.030 37); --photo-glow: oklch(62% 0.120 37); }
+.day-hero[data-scene='kyoto'] { --photo-tone: oklch(24% 0.030 254); --photo-glow: oklch(62% 0.078 254); }
+.day-hero[data-scene='nara'] { --photo-tone: oklch(24% 0.030 78); --photo-glow: oklch(62% 0.050 78); }
+.day-hero[data-scene='nikko'] { --photo-tone: oklch(24% 0.030 99); --photo-glow: oklch(62% 0.077 99); }
+.day-hero[data-scene='osaka'] { --photo-tone: oklch(24% 0.030 122); --photo-glow: oklch(62% 0.061 122); }
+.day-hero[data-scene='osaka-bay'] { --photo-tone: oklch(24% 0.030 261); --photo-glow: oklch(62% 0.062 261); }
+.day-hero[data-scene='shinkansen'] { --photo-tone: oklch(24% 0.030 260); --photo-glow: oklch(62% 0.084 260); }
+.day-hero[data-scene='shinsekai'] { --photo-tone: oklch(24% 0.030 85); --photo-glow: oklch(62% 0.082 85); }
+.day-hero[data-scene='tokyo'] { --photo-tone: oklch(24% 0.030 78); --photo-glow: oklch(62% 0.071 78); }
+.day-hero[data-scene='uji'] { --photo-tone: oklch(24% 0.030 126); --photo-glow: oklch(62% 0.050 126); }
+.day-hero[data-scene='yokohama'] { --photo-tone: oklch(24% 0.030 277); --photo-glow: oklch(62% 0.062 277); }
+.day-hero {
+  --hero-surface: color-mix(in oklab, var(--photo-tone) 70%, var(--surface));
+  background: var(--hero-surface);
+  box-shadow: var(--shadow-raised), 0 30px 64px -34px color-mix(in oklab, var(--photo-glow) var(--photo-glow-a, 55%), transparent);
+  transition: --photo-tone 620ms var(--ease-ui), --photo-glow 620ms var(--ease-ui);
+}
+.hero-scene::after { background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--hero-surface) 84%, transparent)); }
+/* The glow follows the photo's own time-of-day grade on the live day: quieter at dusk, low at night. */
+body[data-live-day][data-sky='dusk'] .day-hero { --photo-glow-a: 38%; }
+body[data-live-day][data-sky='night'] .day-hero { --photo-glow-a: 24%; }
+
+/* A new day's photo settles into place: a slight zoom easing to rest under the existing fade.
+   Transform only (compositor), once per change, and off under Reduce Motion with everything else. */
+@keyframes photo-settle { from { transform: scale(1.055); } }
+body[data-day-changing]:not([data-swipe-change]) .hero-scene .scene-photo {
+  animation: scene-swap 320ms var(--ease-spring-smooth) both, photo-settle 900ms var(--ease-spring-smooth) both;
+}
+
+/* A warning reads from its amber icon and title on a neutral fill: amber at 10% over the card
+   composited olive-brown ("muddy"). A hairline in the same hue keeps it distinct. */
+.callout.tone-warning { --tone-soft: var(--fill); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--warning) 20%, transparent); }
 </style>
 </head>
 <body x-data="travelCompanion()"
@@ -3288,7 +3294,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     </section>
 
     <!-- ============ DAY HERO: living landscape + title + essentials ============ -->
-    <article id="day-summary" class="day-hero" :class="'city-' + currentDay.city.toLowerCase()"
+    <article id="day-summary" class="day-hero" :class="'city-' + currentDay.city.toLowerCase()" :data-scene="currentScene"
              aria-labelledby="day-hero-title"
              @touchstart.passive="onHeroTouchStart($event)"
              @touchmove.passive="onHeroTouchMove($event)"
@@ -8429,7 +8435,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           "steps": [
             "Back in Asakusa: UNIQLO Asakusa (2-6-7 Asakusa, 1F–2F; 10:00–20:00) for basics.",
             "Try these first: UNIQLO U Crew Neck T-Shirt × 4 (Black, Navy, Charcoal and a muted olive-brown; no white) and the Washable Milano Ribbed Knitted T-Shirt (Beige). UNIQLO Japan names the colours differently: navy is 66 Blue, charcoal is 07 Gray and the olive-brown is 36 Brown (38 Dark Brown if you prefer a plain brown).",
-            "Underwear is separate: one AIRism Boxer Briefs in Black or Navy to compare with your SAXX Quest before buying more.",
+            "Underwear is separate: one AIRism Boxer Briefs in Black or Navy.",
             "If something else fits or looks better in person, buy the better piece instead.",
             "Then the drugstore loop starts next door."
           ],
@@ -8474,13 +8480,6 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
               "note": "Beige",
               "image": "https://image.uniqlo.com/UQ/ST3/jp/imagesgoods/481004/item/jpgoods_31_481004_3x4.jpg?width=400",
               "url": "https://www.uniqlo.com/jp/ja/products/E481004-000/00?colorDisplayCode=31"
-            },
-            {
-              "name": "AIRism Boxer Briefs",
-              "ja": "エアリズムボクサーブリーフ/前開き",
-              "note": "Black or Navy · try one first",
-              "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454326/item/goods_09_454326_3x4.jpg?width=400",
-              "url": "https://www.uniqlo.com/jp/ja/products/E454326-000/00?colorDisplayCode=09"
             }
           ]
         },
@@ -8599,7 +8598,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     ],
     "shoppingPlan": {
       "priority": "CORE WARDROBE · SOLO · OCT 23",
-      "objective": "Solo core wardrobe before your friend arrives: Green Label Solamachi, then UNIQLO Asakusa. The core target is 10 pieces: 2 trousers and 3 polos (2 short-sleeve, 1 long-sleeve) at Green Label, 4 tees and a knit tee at UNIQLO. The UNITED TOKYO pullover (Oct 27) is the only optional extra, and the Oct 27 MUJI stop is a browse with nothing to buy. Never buy a second colour until the first is tried on and clearly works. It is a guide, not a quota; fit, quality and how a piece looks in person come first. Budget about ¥70,000–90,000 across the trip; ¥100,000 is a ceiling, not a goal.",
+      "objective": "Solo core wardrobe before your friend arrives: Green Label Solamachi, then UNIQLO Asakusa. The core target is 10 pieces: 2 trousers and 3 polos (2 short-sleeve, 1 long-sleeve) at Green Label, 4 tees and a knit tee at UNIQLO. The UNITED TOKYO pullover (Blue Gray, Oct 27) is the only optional extra, and the Oct 27 MUJI stop is a browse with nothing to buy. Never buy a second colour until the first is tried on and clearly works. It is a guide, not a quota; fit, quality and how a piece looks in person come first. Budget about ¥70,000–90,000 across the trip; ¥100,000 is a ceiling, not a goal.",
       "lanes": [
         {
           "label": "Green Label · Solamachi",
@@ -8607,7 +8606,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         },
         {
           "label": "UNIQLO Asakusa",
-          "text": "Try these first: UNIQLO U Crew Neck T-Shirt × 4 (Black, Navy, Charcoal and a muted olive-brown; no white) and the Washable Milano Ribbed Knitted T-Shirt (Beige). UNIQLO Japan names the colours differently: navy is 66 Blue, charcoal is 07 Gray and the olive-brown is 36 Brown (38 Dark Brown if you prefer a plain brown). Underwear is separate: one AIRism Boxer Briefs in Black or Navy to compare with your SAXX Quest before buying more. If something else fits or looks better in person, buy the better piece instead."
+          "text": "Try these first: UNIQLO U Crew Neck T-Shirt × 4 (Black, Navy, Charcoal and a muted olive-brown; no white) and the Washable Milano Ribbed Knitted T-Shirt (Beige). UNIQLO Japan names the colours differently: navy is 66 Blue, charcoal is 07 Gray and the olive-brown is 36 Brown (38 Dark Brown if you prefer a plain brown). Underwear is separate: one AIRism Boxer Briefs in Black or Navy. If something else fits or looks better in person, buy the better piece instead."
         },
         {
           "label": "Drugstores",
@@ -9605,14 +9604,14 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "time": "01:35 PM",
         "title": "Jingumae · UNITED TOKYO → PUBLIC TOKYO",
-        "description": "UNITED TOKYO and PUBLIC TOKYO after lunch, both browses with one optional top, before the Nov 1 refund-method change.",
+        "description": "UNITED TOKYO and PUBLIC TOKYO after lunch, both optional browses, before the Nov 1 refund-method change.",
         "mapQuery": "UNITED TOKYO 神宮前",
         "mapLabel": "UNITED TOKYO / PUBLIC TOKYO · Jingumae",
         "nextTransit": "Tokyo Station",
         "leaveBy": "15:05 — luggage and Nozomi buffer win",
         "execution": {
           "steps": [
-            "UNITED TOKYO Jingumae (6-28-9 Jingumae; 12:00–20:00) first. Optional: Outlast Double-Knit Pullover (Off White), only if it is there and clearly adds something; nothing today depends on it.",
+            "UNITED TOKYO Jingumae (6-28-9 Jingumae; 12:00–20:00) first, as an optional browse. Optional: Outlast Double-Knit Pullover (Blue Gray) — only if it is there, fits extremely well, and clearly adds something.",
             "Then PUBLIC TOKYO Jingumae, nearby at 6-25-16 Jingumae, 1F (12:00–20:00), as a browse only; there is no trouser target there.",
             "For your friend, women’s alternatives nearby in Jingumae 4-chome: STUDIOUS WOMENS Omotesando (4-27-2) and CONZ WOMENS Harajuku (4-26-31), both 12:00–20:00 and from the same group as UNITED TOKYO / PUBLIC TOKYO.",
             "If something else fits or looks better in person, buy the better piece instead.",
@@ -9641,9 +9640,9 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             {
               "name": "Outlast Double-Knit Pullover",
               "ja": "アウトラスト ダンボール プルオーバー",
-              "note": "Off White · UNITED TOKYO · optional",
-              "image": "https://united-tokyo.com/img/goods/S/136523001036_b7ca795d27904796b6e15a96275cddff.png",
-              "url": "https://united-tokyo.com/shop/g/g136523001036/"
+              "note": "Blue Gray · UNITED TOKYO · optional",
+              "image": "https://united-tokyo.com/img/goods/S/136523001116_61f9ed5a1c694197b6fd7c4a272e54c0.png",
+              "url": "https://united-tokyo.com/shop/g/g136523001116/"
             }
           ]
         },
@@ -9750,7 +9749,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       "lanes": [
         {
           "label": "You",
-          "text": "Solo workout during the split. In Ginza, MUJI Ginza is a browse only. In Jingumae, UNITED TOKYO first (optional: Outlast Double-Knit Pullover in Off White), then PUBLIC TOKYO as a browse only. If something else fits or looks better in person, buy the better piece instead."
+          "text": "Solo workout during the split. In Ginza, MUJI Ginza is a browse only. In Jingumae, UNITED TOKYO first as an optional browse (the Outlast Double-Knit Pullover in Blue Gray only if it fits extremely well), then PUBLIC TOKYO as a browse only. If something else fits or looks better in person, buy the better piece instead."
         },
         {
           "label": "Friend",
@@ -12848,10 +12847,11 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           const d1drug = cardOf(d1, /drugstore/i);
           check(this.eventItems({ execution: { items: [{ name: 'x', url: 'javascript:alert(1)' }, { name: 'y', url: 'https://example.com/', image: 'javascript:alert(1)' }] } }).map(i => `${i.name}:${i.image}`).join() === 'y:null', 'Product tiles are not sanitised.');
           check([d1drug, cardOf(d1, /Green Label/), cardOf(d1, /UNIQLO Asakusa/), cardOf(d5, /UNITED TOKYO/)].every(c => this.eventItems(c || {}).length > 0 && this.eventItems(c || {}).every(i => /[\u3040-\u30ff\u4e00-\u9fff]/.test(i.ja) && !/[\u3040-\u30ff\u4e00-\u9fff]/.test(i.name))), 'Product tiles need an English name plus the official Japanese name.');
-          check(this.eventItems(d1drug || {}).length === 7 && this.eventItems(d1drug || {}).every(i => /^https:/.test(i.image || '')) && this.eventItems(cardOf(d1, /Green Label/) || {}).filter(i => /^https:/.test(i.image || '')).length === 5 && this.eventItems(cardOf(d5, /UNITED TOKYO/) || {}).filter(i => /^https:/.test(i.image || '')).length === 1 && this.eventItems(cardOf(d1, /UNIQLO Asakusa/) || {}).filter(i => /^https:\/\/image\.uniqlo\.com\//.test(i.image || '')).length === 6, 'Product photo tiles missing from the shopping cards.');
+          check(this.eventItems(d1drug || {}).length === 7 && this.eventItems(d1drug || {}).every(i => /^https:/.test(i.image || '')) && this.eventItems(cardOf(d1, /Green Label/) || {}).filter(i => /^https:/.test(i.image || '')).length === 5 && this.eventItems(cardOf(d5, /UNITED TOKYO/) || {}).filter(i => /^https:/.test(i.image || '')).length === 1 && this.eventItems(cardOf(d1, /UNIQLO Asakusa/) || {}).filter(i => /^https:\/\/image\.uniqlo\.com\//.test(i.image || '')).length === 5, 'Product photo tiles missing from the shopping cards.');
           check(/Never buy the second colour/.test(JSON.stringify(cardOf(d1, /Green Label/)?.execution?.steps || [])) && !/Brooks Brothers|Oxford/.test(JSON.stringify(d1 || {})), 'Day 1 lost the second-colour rule, or a dropped item (Brooks Brothers, Oxford) came back.');
           check(!/White × 2|Oversized|エアリズムコットンオーバーサイズ/.test(JSON.stringify(cardOf(d1, /UNIQLO Asakusa/) || {})) && this.eventItems(cardOf(d1, /UNIQLO Asakusa/) || {}).filter(i => /クルーネックTシャツ/.test(i.ja)).length === 4, 'Day 1 UNIQLO list should be four non-white U Crew tees and no AIRism Oversized tee.');
           check(this.eventLinks(cardOf(d5, /^Ginza — together/) || {}).some(l => l.url === 'https://www.muji.com/jp/ja/shop/detail/046604') && /browse/i.test(JSON.stringify(cardOf(d5, /^Ginza — together/)?.execution?.steps || [])), 'Day 5 Ginza lost the MUJI Ginza browse stop or its official link.');
+          check(!/SAXX|ボクサーブリーフ/.test(JSON.stringify(this.eventItems(cardOf(d1, /UNIQLO Asakusa/) || {}))) && /AIRism Boxer Briefs in Black or Navy\./.test(JSON.stringify(cardOf(d1, /UNIQLO Asakusa/)?.execution?.steps || [])) && this.eventItems(cardOf(d5, /UNITED TOKYO/) || {})[0]?.note === 'Blue Gray · UNITED TOKYO · optional', 'Underwear should be name-only (no tile, no comparison), and the UNITED TOKYO pullover Blue Gray.');
           check(!/Ever-?Crease|GR Twill|ＧＲツイル/.test(JSON.stringify(d5 || {})) && /PUBLIC TOKYO/.test(cardOf(d5, /UNITED TOKYO/)?.title || ''), 'The dropped PUBLIC TOKYO slacks came back, or PUBLIC TOKYO left the Jingumae browse.');
           check(Boolean(d1drug) && ['キュレル ジェルメイク落とし', '泡洗顔料', '化粧水 Ⅲ', 'フェイスクリーム', 'マイルドミルク NA'].every(p => JSON.stringify(d1drug.execution.steps).includes(p)) && ['www.donki.com', 'www.daikokudrug.com', 'shop.tsuruha-g.com'].every(h => hostsOf(d1drug).includes(h)) && ['curel', 'anessa', 'drugstore', 'daikoku', 'don quijote', 'fukutaro'].every(q => bestDay(q) === 1), 'Day 1 drugstore loop (Curél + ANESSA, official store links, search) missing.');
           check(shopText.length > 200 && !/\bSKU\b|inventory|in stock|stock check|reserve online|\bsizes?\b|3100026F|g1[35]5\d{6}/i.test(shopText), 'A shopping card shows sizes, item numbers or inventory instructions.');
@@ -12872,6 +12872,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           check(CANONICAL_CHECKLIST.filter(item => /suitcase|locker|luggage/i.test(item.label)).length === 1 && CANONICAL_CHECKLIST.find(item => item.id === 'c13')?.departureRequired === true, 'Tokyo Station storage task missing or duplicated.');
           // Presentation checks
           check(this.days.every(d => SCENE_PHOTOS[DAY_SCENES[d.dayNumber]]?.src), 'Every day needs a hero photo.');
+          check(Object.keys(SCENE_PHOTOS).every(key => [...document.styleSheets].some(sheet => { try { return [...sheet.cssRules].some(rule => (rule.selectorText || '') === `.day-hero[data-scene="${key}"]`); } catch (_) { return false; } })), 'A hero photo has no matching tint rule.');
+          check(document.getElementById('day-summary')?.dataset.scene === this.currentScene, 'The hero does not carry its scene key for the photo tint.');
           check(Object.values(SCENE_PHOTOS).every(p => p.author && p.license && /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/.test(p.page)), 'A hero photo is missing its author, license or source page.');
           check(Object.keys(SCENES.scenes).every(key => SCENE_MIST[key] && SCENE_SKYLINE[key]) && Object.entries(SCENES.scenes).filter(([, sc]) => sc.layers.water).every(([, sc]) => /^M-10 180V\d/.test(sc.layers.water)), 'A scene has no mist, skyline or readable water line.');
           check(this.days.every(d => DAY_PLACES[d.dayNumber] && DAY_PLACES[d.dayNumber].name), 'Every day needs a place label.');
@@ -12968,6 +12970,12 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           // A passive touch listener on body keeps iOS applying :active press states, whatever
           // else is registered.
           document.body.addEventListener('touchstart', () => {}, { passive: true });
+          // Taps during a view transition all hit the document element (css-view-transitions §7.1.1), so
+          // they were swallowed. Finishing the transition first lets the tap reach what is under the finger.
+          document.addEventListener('pointerdown', () => {
+            const vt = document.activeViewTransition;
+            if (vt && typeof vt.skipTransition === 'function') vt.skipTransition();
+          }, { capture: true, passive: true });
           // A touch anywhere but the hero releases a drag whose stream was lost (see armHeroSwipeGuard).
           document.addEventListener('touchstart', event => {
             const onHero = event.target instanceof Element && event.target.closest('#day-summary');

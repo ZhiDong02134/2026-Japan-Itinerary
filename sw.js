@@ -6,7 +6,7 @@
   normalised to one shell key so Today, Trip, and Prep cannot drift into separate copies.
 */
 const CACHE_PREFIX = 'japan-2026-shell-';
-const CACHE = `${CACHE_PREFIX}de0882127d6e`;
+const CACHE = `${CACHE_PREFIX}71db03adc357`;
 const SHELL = [
   './index.html',
   './manifest.webmanifest',
