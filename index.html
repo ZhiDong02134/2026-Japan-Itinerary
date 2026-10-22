@@ -1807,6 +1807,7 @@ html.live-reset .now-progress-fill, html.live-reset .now-accessory::after, html.
 .event-items li { display: flex; }
 .event-item { flex: 1; display: flex; flex-direction: column; gap: 6px; min-height: 44px; padding: 8px; border-radius: var(--r-md); background: var(--surface-2); color: var(--text); }
 .event-item-img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 6; object-fit: contain; border-radius: 10px; background: #fff; }
+.event-item-img[src^="https://image.uniqlo.com/"] { object-fit: cover; object-position: top; }
 .event-item-name { font-size: var(--fs-caption); font-weight: 650; line-height: 1.3; overflow-wrap: anywhere; }
 .event-item-ja { font-family: var(--font-jp-ui); font-size: var(--fs-caption); font-weight: 500; line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
 .event-item-note { margin-top: auto; font-size: var(--fs-caption); line-height: 1.3; color: var(--text-2); }
@@ -3895,7 +3896,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
         </div>
         <span class="shopping-total">8h 05m planned</span>
       </div>
-      <p class="shopping-windows-lede">Oct 23 builds the core wardrobe solo; Oct 27 adds contemporary tops in Jingumae. The later windows are intentionally bounded so shopping never eats the experiences around them.</p>
+      <p class="shopping-windows-lede">Oct 23 builds the core wardrobe solo; Oct 27 is a Jingumae browse with one optional top. The later windows are intentionally bounded so shopping never eats the experiences around them.</p>
       <ol class="shopping-window-list">
         <template x-for="(slot, index) in shoppingWindows" :key="slot.day + '-' + slot.time">
           <li class="shopping-window-item" :class="['city-' + slot.city, slot.primary ? 'is-primary' : '']">
@@ -4984,7 +4985,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "category": "Shopping / Tax-Free",
     "deadline": "Oct 31 Evening",
     "departureRequired": false,
-    "desc": "The core wardrobe is Oct 23 (solo: Green Label Solamachi, UNIQLO Asakusa); Oct 27 adds contemporary tops at UNITED TOKYO and PUBLIC TOKYO in Jingumae. Through Oct 31, eligible purchases at participating shops can still use the pre-Nov-1 point-of-sale exemption; from Nov 1 purchases move to the refund method after departure customs confirmation. Use Oct 31 only for one specific unresolved item, never as a second wardrobe round."
+    "desc": "The core wardrobe is Oct 23 (solo: Green Label Solamachi, UNIQLO Asakusa); Oct 27 is a browse at UNITED TOKYO and PUBLIC TOKYO in Jingumae, with one optional top. Through Oct 31, eligible purchases at participating shops can still use the pre-Nov-1 point-of-sale exemption; from Nov 1 purchases move to the refund method after departure customs confirmation. Use Oct 31 only for one specific unresolved item, never as a second wardrobe round."
   },
   {
     "id": "c11",
@@ -5105,7 +5106,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                         "time": "16:30–19:15",
                         "title": "Green Label Solamachi + UNIQLO + drugstores · SOLO",
                         "purpose": "Core wardrobe, basics + skincare",
-                        "detail": "Green Label Relaxing at Solamachi (try the named slacks and knit polo first), UNIQLO Asakusa for basics, then a Curél + ANESSA drugstore loop (Don Quijote, Daikoku × 2, Fukutaro). Arrival-dependent; shorten rather than rush.",
+                        "detail": "Green Label Relaxing at Solamachi (try the named slacks and polos first), UNIQLO Asakusa for tees and a knit tee, then a Curél + ANESSA drugstore loop (Don Quijote, Daikoku × 2, Fukutaro). Arrival-dependent; shorten rather than rush.",
                         "city": "tokyo",
                         "primary": true
                 },
@@ -5134,8 +5135,8 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
                         "date": "Tue · Oct 27",
                         "time": "13:35–15:05",
                         "title": "UNITED TOKYO + PUBLIC TOKYO",
-                        "purpose": "Contemporary Japanese tops",
-                        "detail": "UNITED TOKYO, then PUBLIC TOKYO (both in Jingumae, open 12:00–20:00); women’s alternatives nearby: STUDIOUS WOMENS, CONZ WOMENS. 15:05 is a hard leave for the luggage and Nozomi buffer.",
+                        "purpose": "Browse + optional top",
+                        "detail": "UNITED TOKYO, then a PUBLIC TOKYO browse (both in Jingumae, open 12:00–20:00); women’s alternatives nearby: STUDIOUS WOMENS, CONZ WOMENS. 15:05 is a hard leave for the luggage and Nozomi buffer.",
                         "city": "tokyo",
                         "primary": true
                 },
@@ -8359,14 +8360,15 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "time": "04:10 PM",
         "title": "Green Label Relaxing Solamachi · SOLO shopping",
-        "description": "Core wardrobe, solo: two trousers and one elevated top are the aim, not a requirement.",
+        "description": "Core wardrobe, solo: two trousers and three polos (two short-sleeve, one long-sleeve) are the aim, not a requirement.",
         "mapQuery": "ユナイテッドアローズ グリーンレーベル リラクシング 東京ソラマチ",
         "mapLabel": "Green Label Relaxing · Tokyo Skytree Town Solamachi 3F",
         "nextTransit": "Back to UNIQLO Asakusa",
         "execution": {
           "steps": [
             "From APA, a short walk across the Sumida River or a quick train hop to Tokyo Skytree Town Solamachi; Green Label Relaxing is on 3F.",
-            "Try these first: Homespun 2-Pleat Wide Slacks (Medium Gray), GLR CLOTH Flannel RLX/RG 2-Pleat Slacks (Black) and Aze V-Neck Skipper Knit Polo (Black).",
+            "Try these first: Cotton Rayon Chino Tumbler 2-Pleat Slacks (Black first, then Beige), Ice Cotton Kanoko Short-Sleeve Polo (Navy first, then Dark Brown) and one Smooth Knit Long-Sleeve Polo (Medium Gray).",
+            "Never buy the second colour until the first colour is tried on and clearly works.",
             "If something else fits or looks better in person, buy the better piece instead."
           ],
           "watch": "Solamachi’s shops are listed as open 10:00–21:00.",
@@ -8378,25 +8380,39 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           ],
           "items": [
             {
-              "name": "Homespun 2-Pleat Wide Slacks",
-              "ja": "ホームスパン 2プリーツ ワイド スラックス",
+              "name": "Cotton Rayon Chino Tumbler 2-Pleat Slacks",
+              "ja": "コットンレーヨン チノ タンブラー 2プリーツ スラックス ドレスチノ チノパンツ",
+              "note": "Black · first",
+              "image": "https://uaoi.united-arrows.co.jp/img/item/31000/3100026F0503/3100026F0503_l1_c102.jpg",
+              "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0503?clr_id=102"
+            },
+            {
+              "name": "Cotton Rayon Chino Tumbler 2-Pleat Slacks",
+              "ja": "コットンレーヨン チノ タンブラー 2プリーツ スラックス ドレスチノ チノパンツ",
+              "note": "Beige · only if the Black fits great",
+              "image": "https://uaoi.united-arrows.co.jp/img/item/31000/3100026F0503/3100026F0503_l1_c103.jpg",
+              "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0503?clr_id=103"
+            },
+            {
+              "name": "Ice Cotton Kanoko Short-Sleeve Polo",
+              "ja": "アイスコットン カノコ ポロシャツ -接触冷感-",
+              "note": "Navy · first",
+              "image": "https://uaoi.united-arrows.co.jp/img/item/31000/3100026F0251/3100026F0251_l1_c103.jpg",
+              "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0251?clr_id=103"
+            },
+            {
+              "name": "Ice Cotton Kanoko Short-Sleeve Polo",
+              "ja": "アイスコットン カノコ ポロシャツ -接触冷感-",
+              "note": "Dark Brown · only if the Navy fits great",
+              "image": "https://uaoi.united-arrows.co.jp/img/item/31000/3100026F0251/3100026F0251_l1_c102.jpg",
+              "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0251?clr_id=102"
+            },
+            {
+              "name": "Smooth Knit Long-Sleeve Polo · Washable",
+              "ja": "スムース ニット 長袖 ポロシャツ -ウォッシャブル-",
               "note": "Medium Gray",
-              "image": "https://cdn.shopify.com/s/files/1/0601/3141/0035/files/31141280041-15.jpg?v=1792491455&width=240",
-              "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0596"
-            },
-            {
-              "name": "GLR CLOTH Flannel RLX/RG 2-Pleat Slacks",
-              "ja": "GLR CLOTH フラノ RLX/RG 2プリーツ スラックス セットアップパンツ",
-              "note": "Black",
-              "image": "https://uaoi.united-arrows.co.jp/img/item/31000/3100026F0642/3100026F0642_l1_c101.jpg",
-              "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0642?clr_id=101"
-            },
-            {
-              "name": "Aze V-Neck Skipper Knit Polo",
-              "ja": "アゼ Vネック スキッパー ニット ポロシャツ",
-              "note": "Black",
-              "image": "https://cdn.shopify.com/s/files/1/0601/3141/0035/files/31131000010-09.jpg?v=1792491393&width=240",
-              "url": "https://store.united-arrows.co.jp/brand/glr/item/3100026F0593?clr_id=102"
+              "image": "https://uaoi.united-arrows.co.jp/img/item/32000/3200026F0737/3200026F0737_l1_c101.jpg",
+              "url": "https://store.united-arrows.co.jp/brand/glr/item/3200026F0737?clr_id=101"
             }
           ]
         },
@@ -8405,19 +8421,66 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "time": "05:30 PM",
         "title": "UNIQLO Asakusa · basics",
-        "description": "Basic wardrobe items.",
+        "description": "Basics: four heavyweight tees and a knit tee.",
         "mapQuery": "ユニクロ 浅草店",
         "mapLabel": "UNIQLO Asakusa",
         "nextTransit": "Next door: Don Quijote Asakusa",
         "execution": {
           "steps": [
             "Back in Asakusa: UNIQLO Asakusa (2-6-7 Asakusa, 1F–2F; 10:00–20:00) for basics.",
+            "Try these first: UNIQLO U Crew Neck T-Shirt × 4 (Black, Navy, Charcoal and a muted olive-brown; no white) and the Washable Milano Ribbed Knitted T-Shirt (Beige). UNIQLO Japan names the colours differently: navy is 66 Blue, charcoal is 07 Gray and the olive-brown is 36 Brown (38 Dark Brown if you prefer a plain brown).",
+            "Underwear is separate: one AIRism Boxer Briefs in Black or Navy to compare with your SAXX Quest before buying more.",
+            "If something else fits or looks better in person, buy the better piece instead.",
             "Then the drugstore loop starts next door."
           ],
           "links": [
             {
               "label": "UNIQLO Asakusa",
               "url": "https://map.uniqlo.com/jp/ja/detail/10101708"
+            }
+          ],
+          "items": [
+            {
+              "name": "UNIQLO U Crew Neck T-Shirt",
+              "ja": "Uniqlo U クルーネックTシャツ",
+              "note": "Black",
+              "image": "https://image.uniqlo.com/UQ/ST3/jp/imagesgoods/422992/item/jpgoods_09_422992_3x4.jpg?width=400",
+              "url": "https://www.uniqlo.com/jp/ja/products/E422992-000/00?colorDisplayCode=09"
+            },
+            {
+              "name": "UNIQLO U Crew Neck T-Shirt",
+              "ja": "Uniqlo U クルーネックTシャツ",
+              "note": "Navy · sold as 66 Blue",
+              "image": "https://image.uniqlo.com/UQ/ST3/jp/imagesgoods/422992/item/jpgoods_66_422992_3x4.jpg?width=400",
+              "url": "https://www.uniqlo.com/jp/ja/products/E422992-000/00?colorDisplayCode=66"
+            },
+            {
+              "name": "UNIQLO U Crew Neck T-Shirt",
+              "ja": "Uniqlo U クルーネックTシャツ",
+              "note": "Charcoal · sold as 07 Gray",
+              "image": "https://image.uniqlo.com/UQ/ST3/jp/imagesgoods/422992/item/jpgoods_07_422992_3x4.jpg?width=400",
+              "url": "https://www.uniqlo.com/jp/ja/products/E422992-000/00?colorDisplayCode=07"
+            },
+            {
+              "name": "UNIQLO U Crew Neck T-Shirt",
+              "ja": "Uniqlo U クルーネックTシャツ",
+              "note": "Olive-brown · sold as 36 Brown",
+              "image": "https://image.uniqlo.com/UQ/ST3/jp/imagesgoods/422992/item/jpgoods_36_422992_3x4.jpg?width=400",
+              "url": "https://www.uniqlo.com/jp/ja/products/E422992-000/00?colorDisplayCode=36"
+            },
+            {
+              "name": "Washable Milano Ribbed Knitted T-Shirt",
+              "ja": "ウォッシャブルミラノリブニットTシャツ",
+              "note": "Beige",
+              "image": "https://image.uniqlo.com/UQ/ST3/jp/imagesgoods/481004/item/jpgoods_31_481004_3x4.jpg?width=400",
+              "url": "https://www.uniqlo.com/jp/ja/products/E481004-000/00?colorDisplayCode=31"
+            },
+            {
+              "name": "AIRism Boxer Briefs",
+              "ja": "エアリズムボクサーブリーフ/前開き",
+              "note": "Black or Navy · try one first",
+              "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/454326/item/goods_09_454326_3x4.jpg?width=400",
+              "url": "https://www.uniqlo.com/jp/ja/products/E454326-000/00?colorDisplayCode=09"
             }
           ]
         },
@@ -8536,15 +8599,15 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     ],
     "shoppingPlan": {
       "priority": "CORE WARDROBE · SOLO · OCT 23",
-      "objective": "Solo core wardrobe before your friend arrives: Green Label Solamachi, then UNIQLO Asakusa. Aim for two trousers and one elevated top, not a quota; fit, quality and how a piece looks in person come first. Budget about ¥70,000–90,000 across the trip; ¥100,000 is a ceiling, not a goal.",
+      "objective": "Solo core wardrobe before your friend arrives: Green Label Solamachi, then UNIQLO Asakusa. The core target is 10 pieces: 2 trousers and 3 polos (2 short-sleeve, 1 long-sleeve) at Green Label, 4 tees and a knit tee at UNIQLO. The UNITED TOKYO pullover (Oct 27) is the only optional extra, and the Oct 27 MUJI stop is a browse with nothing to buy. Never buy a second colour until the first is tried on and clearly works. It is a guide, not a quota; fit, quality and how a piece looks in person come first. Budget about ¥70,000–90,000 across the trip; ¥100,000 is a ceiling, not a goal.",
       "lanes": [
         {
           "label": "Green Label · Solamachi",
-          "text": "Try these first: Homespun 2-Pleat Wide Slacks (Medium Gray), GLR CLOTH Flannel RLX/RG 2-Pleat Slacks (Black) and Aze V-Neck Skipper Knit Polo (Black). If something else fits or looks better in person, buy the better piece instead."
+          "text": "Try these first: Cotton Rayon Chino Tumbler 2-Pleat Slacks (Black first, then Beige), Ice Cotton Kanoko Short-Sleeve Polo (Navy first, then Dark Brown) and one Smooth Knit Long-Sleeve Polo (Medium Gray). Never buy the second colour until the first colour is tried on and clearly works. If something else fits or looks better in person, buy the better piece instead."
         },
         {
           "label": "UNIQLO Asakusa",
-          "text": "Basics."
+          "text": "Try these first: UNIQLO U Crew Neck T-Shirt × 4 (Black, Navy, Charcoal and a muted olive-brown; no white) and the Washable Milano Ribbed Knitted T-Shirt (Beige). UNIQLO Japan names the colours differently: navy is 66 Blue, charcoal is 07 Gray and the olive-brown is 36 Brown (38 Dark Brown if you prefer a plain brown). Underwear is separate: one AIRism Boxer Briefs in Black or Navy to compare with your SAXX Quest before buying more. If something else fits or looks better in person, buy the better piece instead."
         },
         {
           "label": "Drugstores",
@@ -9353,7 +9416,7 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "startTime": "11:55",
         "endTime": "12:25",
-        "label": "GINZA · together · Itoya and nearby Ginza",
+        "label": "GINZA · together · Itoya → MUJI Ginza",
         "mapQuery": "Ginza Itoya"
       },
       {
@@ -9485,16 +9548,17 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       },
       {
         "time": "11:55 AM",
-        "title": "Ginza — together after the split",
-        "description": "Back together until lunch: Itoya and nearby Ginza.",
+        "title": "Ginza — together after the split · Itoya + MUJI Ginza",
+        "description": "Back together until lunch: Itoya, then a MUJI Ginza browse on the way to lunch.",
         "mapQuery": "Ginza Itoya",
-        "mapLabel": "Ginza · Itoya",
+        "mapLabel": "Ginza · Itoya → MUJI Ginza",
         "nextTransit": "Lunch, then Meiji-jingumae",
         "leaveBy": "12:25 — protect Jingumae and the Nozomi buffer",
         "execution": {
           "steps": [
             "Rejoin at Ginza Itoya around 11:50–12:00 (official weekday hours 10:00–20:00); stay together from here.",
-            "Keep Itoya and nearby Chuo-dori as the shared, friend-priority browse; GINZA SIX (open since 10:30) only if it fits.",
+            "Then MUJI Ginza, the world flagship about 130 m from Itoya at 3-3-5 Ginza and on the way to lunch (11:00–21:00; tax-free register on 4F). A browse with nothing planned to buy: polos, simple knitwear or travel goods only if something clearly earns its place.",
+            "Itoya and nearby Chuo-dori stay the friend-priority browse; GINZA SIX (open since 10:30) only if it fits.",
             "Buy intentional items now rather than deferring shopping to Nov 6.",
             "Leave by ~12:25 for lunch."
           ],
@@ -9503,6 +9567,10 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
             {
               "label": "Itoya",
               "url": "https://www.ito-ya.co.jp/ext/store/ginza/ginza/index.html"
+            },
+            {
+              "label": "MUJI Ginza",
+              "url": "https://www.muji.com/jp/ja/shop/detail/046604"
             },
             {
               "label": "GINZA SIX hours",
@@ -9537,15 +9605,15 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
       {
         "time": "01:35 PM",
         "title": "Jingumae · UNITED TOKYO → PUBLIC TOKYO",
-        "description": "Contemporary Japanese tops after lunch, before the Nov 1 refund-method change.",
+        "description": "UNITED TOKYO and PUBLIC TOKYO after lunch, both browses with one optional top, before the Nov 1 refund-method change.",
         "mapQuery": "UNITED TOKYO 神宮前",
         "mapLabel": "UNITED TOKYO / PUBLIC TOKYO · Jingumae",
         "nextTransit": "Tokyo Station",
         "leaveBy": "15:05 — luggage and Nozomi buffer win",
         "execution": {
           "steps": [
-            "UNITED TOKYO Jingumae (6-28-9 Jingumae; 12:00–20:00) first. Try these first: 18G Sable Stretch Polo Knit Tee (Navy) and 18G Sable Stretch Crewneck Knit Tee (Light Gray).",
-            "Then PUBLIC TOKYO Jingumae, nearby at 6-25-16 Jingumae, 1F (12:00–20:00). Try the Washable Shorty Knit in Brown, and in Khaki or Blue.",
+            "UNITED TOKYO Jingumae (6-28-9 Jingumae; 12:00–20:00) first. Optional: Outlast Double-Knit Pullover (Off White), only if it is there and clearly adds something; nothing today depends on it.",
+            "Then PUBLIC TOKYO Jingumae, nearby at 6-25-16 Jingumae, 1F (12:00–20:00), as a browse only; there is no trouser target there.",
             "For your friend, women’s alternatives nearby in Jingumae 4-chome: STUDIOUS WOMENS Omotesando (4-27-2) and CONZ WOMENS Harajuku (4-26-31), both 12:00–20:00 and from the same group as UNITED TOKYO / PUBLIC TOKYO.",
             "If something else fits or looks better in person, buy the better piece instead.",
             "Leave together at 15:05. This is a hard stop."
@@ -9571,39 +9639,11 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           ],
           "items": [
             {
-              "name": "18G Sable Stretch Polo Knit Tee",
-              "ja": "18G サーブルストレッチポロニットTEE",
-              "note": "Navy · UNITED TOKYO",
-              "image": "https://united-tokyo.com/img/goods/S/135330003766_df73d174c55547fea485a3e567e1bdc3.jpg",
-              "url": "https://united-tokyo.com/shop/g/g135330003766/"
-            },
-            {
-              "name": "18G Sable Stretch Crewneck Knit Tee",
-              "ja": "18G サーブルストレッチクルーネックニットTEE",
-              "note": "Light Gray · UNITED TOKYO",
-              "image": "https://united-tokyo.com/img/goods/S/135330002106_1b3a7d4d49cd44b4acd5e318acf45b9c.jpg",
-              "url": "https://united-tokyo.com/shop/g/g135330002107/"
-            },
-            {
-              "name": "Washable Shorty Knit",
-              "ja": "ウォッシャブルショーティニット",
-              "note": "Brown · PUBLIC TOKYO",
-              "image": "https://public-tokyo.com/img/goods/S/155530001266_262e9e784c5a46b5b68b3108acce595b.jpg",
-              "url": "https://public-tokyo.com/shop/g/g155530001266/"
-            },
-            {
-              "name": "Washable Shorty Knit",
-              "ja": "ウォッシャブルショーティニット",
-              "note": "Khaki · PUBLIC TOKYO",
-              "image": "https://public-tokyo.com/img/goods/S/155530001_21_L.jpg",
-              "url": "https://public-tokyo.com/shop/g/g155530001216/"
-            },
-            {
-              "name": "Washable Shorty Knit",
-              "ja": "ウォッシャブルショーティニット",
-              "note": "Blue · PUBLIC TOKYO",
-              "image": "https://public-tokyo.com/img/goods/S/155530001716_e5b205e6322f4d5496916a7fdbce35b9.jpg",
-              "url": "https://public-tokyo.com/shop/g/g155530001716/"
+              "name": "Outlast Double-Knit Pullover",
+              "ja": "アウトラスト ダンボール プルオーバー",
+              "note": "Off White · UNITED TOKYO · optional",
+              "image": "https://united-tokyo.com/img/goods/S/136523001036_b7ca795d27904796b6e15a96275cddff.png",
+              "url": "https://united-tokyo.com/shop/g/g136523001036/"
             }
           ]
         },
@@ -9705,19 +9745,19 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
     "transferFrom": "APA Asakusa",
     "transferTo": "Tabist Nijo",
     "shoppingPlan": {
-      "priority": "CONTEMPORARY TOPS · OCT 27 · BEFORE NOV 1",
-      "objective": "Oct 23 covered the core wardrobe; Oct 27 is shared Ginza time, a solo workout and contemporary Japanese tops at UNITED TOKYO and PUBLIC TOKYO, all before the Nov 1 refund-method switch. Oct 31 is rescue-only for one unresolved item.",
+      "priority": "OPTIONAL TOP · OCT 27 · BEFORE NOV 1",
+      "objective": "Oct 23 covered the core wardrobe; Oct 27 is shared Ginza time (Itoya, a MUJI Ginza browse), a solo workout and a Jingumae browse at UNITED TOKYO and PUBLIC TOKYO with one optional top, all before the Nov 1 refund-method switch. Oct 31 is rescue-only for one unresolved item.",
       "lanes": [
         {
           "label": "You",
-          "text": "Solo workout during the split. In Jingumae, UNITED TOKYO first (18G Sable Stretch Polo Knit Tee in Navy, 18G Sable Stretch Crewneck Knit Tee in Light Gray), then PUBLIC TOKYO (Washable Shorty Knit in Brown, and in Khaki or Blue). Try these first; if something else fits or looks better in person, buy the better piece instead."
+          "text": "Solo workout during the split. In Ginza, MUJI Ginza is a browse only. In Jingumae, UNITED TOKYO first (optional: Outlast Double-Knit Pullover in Off White), then PUBLIC TOKYO as a browse only. If something else fits or looks better in person, buy the better piece instead."
         },
         {
           "label": "Friend",
           "text": "Itoya and nearby Ginza browsing during the split, with no cross-city side trip. Then Ginza, lunch and Jingumae together; in Jingumae, women’s alternatives nearby are STUDIOUS WOMENS Omotesando and CONZ WOMENS Harajuku (both 12:00–20:00)."
         }
       ],
-      "shared": "Short split ~10:20–11:50 only: friend at Itoya, you at Chiyoda Sports Center via JR Kanda. Then together: Ginza ~11:55–12:25 → lunch → Jingumae (UNITED TOKYO → PUBLIC TOKYO) 13:35–15:05 (hard leave) → Tokyo Station luggage/Nozomi.",
+      "shared": "Short split ~10:20–11:50 only: friend at Itoya, you at Chiyoda Sports Center via JR Kanda. Then together: Ginza ~11:55–12:25 (Itoya → MUJI Ginza) → lunch → Jingumae (UNITED TOKYO → PUBLIC TOKYO) 13:35–15:05 (hard leave) → Tokyo Station luggage/Nozomi.",
       "meetPoint": "Ginza Itoya (2-7-15 Ginza; Ginza Exit A13) around 11:50–12:00; whoever arrives first waits inside. After that you stay together through Ginza, lunch, Jingumae and the transfer.",
       "taxNote": "Oct 27 is before the Nov 1 refund-method start: through Oct 31, eligible purchases at tax-free shops are exempt at the register. Bring your passport and ask; do not create purchases for tax mechanics.",
       "taxSourceUrl": "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html"
@@ -12807,8 +12847,12 @@ html.vt-sheet .show-card { view-transition-name: sheet; }
           const shopText = [cardOf(d1, /Green Label/), cardOf(d1, /UNIQLO Asakusa/), cardOf(d5, /UNITED TOKYO/)].map(e => JSON.stringify({ ...(e || {}), execution: { ...(e?.execution || {}), links: undefined, items: (e?.execution?.items || []).map(i => [i.name, i.ja, i.note]) } })).join(' ');
           const d1drug = cardOf(d1, /drugstore/i);
           check(this.eventItems({ execution: { items: [{ name: 'x', url: 'javascript:alert(1)' }, { name: 'y', url: 'https://example.com/', image: 'javascript:alert(1)' }] } }).map(i => `${i.name}:${i.image}`).join() === 'y:null', 'Product tiles are not sanitised.');
-          check([d1drug, cardOf(d1, /Green Label/), cardOf(d5, /UNITED TOKYO/)].every(c => this.eventItems(c || {}).length > 0 && this.eventItems(c || {}).every(i => /[\u3040-\u30ff\u4e00-\u9fff]/.test(i.ja) && !/[\u3040-\u30ff\u4e00-\u9fff]/.test(i.name))), 'Product tiles need an English name plus the official Japanese name.');
-          check(this.eventItems(d1drug || {}).length === 7 && this.eventItems(d1drug || {}).every(i => /^https:/.test(i.image || '')) && this.eventItems(cardOf(d1, /Green Label/) || {}).filter(i => /^https:/.test(i.image || '')).length === 3 && this.eventItems(cardOf(d5, /UNITED TOKYO/) || {}).filter(i => /^https:/.test(i.image || '')).length === 5, 'Product photo tiles missing from the shopping cards.');
+          check([d1drug, cardOf(d1, /Green Label/), cardOf(d1, /UNIQLO Asakusa/), cardOf(d5, /UNITED TOKYO/)].every(c => this.eventItems(c || {}).length > 0 && this.eventItems(c || {}).every(i => /[\u3040-\u30ff\u4e00-\u9fff]/.test(i.ja) && !/[\u3040-\u30ff\u4e00-\u9fff]/.test(i.name))), 'Product tiles need an English name plus the official Japanese name.');
+          check(this.eventItems(d1drug || {}).length === 7 && this.eventItems(d1drug || {}).every(i => /^https:/.test(i.image || '')) && this.eventItems(cardOf(d1, /Green Label/) || {}).filter(i => /^https:/.test(i.image || '')).length === 5 && this.eventItems(cardOf(d5, /UNITED TOKYO/) || {}).filter(i => /^https:/.test(i.image || '')).length === 1 && this.eventItems(cardOf(d1, /UNIQLO Asakusa/) || {}).filter(i => /^https:\/\/image\.uniqlo\.com\//.test(i.image || '')).length === 6, 'Product photo tiles missing from the shopping cards.');
+          check(/Never buy the second colour/.test(JSON.stringify(cardOf(d1, /Green Label/)?.execution?.steps || [])) && !/Brooks Brothers|Oxford/.test(JSON.stringify(d1 || {})), 'Day 1 lost the second-colour rule, or a dropped item (Brooks Brothers, Oxford) came back.');
+          check(!/White × 2|Oversized|エアリズムコットンオーバーサイズ/.test(JSON.stringify(cardOf(d1, /UNIQLO Asakusa/) || {})) && this.eventItems(cardOf(d1, /UNIQLO Asakusa/) || {}).filter(i => /クルーネックTシャツ/.test(i.ja)).length === 4, 'Day 1 UNIQLO list should be four non-white U Crew tees and no AIRism Oversized tee.');
+          check(this.eventLinks(cardOf(d5, /^Ginza — together/) || {}).some(l => l.url === 'https://www.muji.com/jp/ja/shop/detail/046604') && /browse/i.test(JSON.stringify(cardOf(d5, /^Ginza — together/)?.execution?.steps || [])), 'Day 5 Ginza lost the MUJI Ginza browse stop or its official link.');
+          check(!/Ever-?Crease|GR Twill|ＧＲツイル/.test(JSON.stringify(d5 || {})) && /PUBLIC TOKYO/.test(cardOf(d5, /UNITED TOKYO/)?.title || ''), 'The dropped PUBLIC TOKYO slacks came back, or PUBLIC TOKYO left the Jingumae browse.');
           check(Boolean(d1drug) && ['キュレル ジェルメイク落とし', '泡洗顔料', '化粧水 Ⅲ', 'フェイスクリーム', 'マイルドミルク NA'].every(p => JSON.stringify(d1drug.execution.steps).includes(p)) && ['www.donki.com', 'www.daikokudrug.com', 'shop.tsuruha-g.com'].every(h => hostsOf(d1drug).includes(h)) && ['curel', 'anessa', 'drugstore', 'daikoku', 'don quijote', 'fukutaro'].every(q => bestDay(q) === 1), 'Day 1 drugstore loop (Curél + ANESSA, official store links, search) missing.');
           check(shopText.length > 200 && !/\bSKU\b|inventory|in stock|stock check|reserve online|\bsizes?\b|3100026F|g1[35]5\d{6}/i.test(shopText), 'A shopping card shows sizes, item numbers or inventory instructions.');
           check(!/BEAMS|Cat Street|distinctive/i.test(JSON.stringify(d5 || {})), 'The old BEAMS / Cat Street shopping objective survived on Day 5.');
